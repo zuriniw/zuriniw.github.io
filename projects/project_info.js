@@ -7,6 +7,7 @@ class Project {
         labels,
         time,
         ispage,
+        ismarkdown = false,
         collaborator = null,
         tutor = null,
         ta = null,
@@ -30,6 +31,7 @@ class Project {
         this.labels = Array.isArray(labels) ? labels : [labels]; // 确保labels是数组
         this.time = time;
         this.ispage = ispage;
+        this.ismarkdown = ismarkdown;
         this.isteam = isteam;
         this.gifImage = `projects/${name}/${name}.gif`;  // 使用 name 构建 gif 路径
         this.collaborator = collaborator;
@@ -57,6 +59,11 @@ class Project {
     // 获取项目 GIF 路径
     getGifPath() {
         return `projects/${this.name}/${this.name}.gif`;
+    }
+    
+    // 获取项目 Markdown 文件路径
+    getMdPath() {
+        return `projects/${this.name}/${this.name}.md`;
     }
 }
 
@@ -96,6 +103,7 @@ const projects = [
         tools: "Particle Cloud, Photon2, Woodworking Tools",
         briefDescription: `Build peripheral and expressive awareness in lovable devices, to foster emotive communication through low-fidelity information`,
         youtubeLink: "https://www.youtube.com/watch?v=KNwp1Vy8hrg",
+        otherLink1: "https://github.com/zuriniw/SEEINGSAW",
         weight: 8.9,
         situate: { x: -23, y: 89 }
     }),
@@ -110,9 +118,11 @@ const projects = [
         tools: "Python",
         briefDescription: `Use Python in Grasshopper? Build your own Grasshopper using Python!`,
         youtubeLink: "https://www.youtube.com/watch?v=J2h9kxWUWH4",
+        otherLink1: "https://github.com/zuriniw/ShapeShift-Playground",
         prize: "1st Prize in CMU 15-112 Term Project",
         weight: 7.1,
-        situate: { x: -67, y: -34 }
+        situate: { x: -67, y: -34 },
+        ismarkdown: true
     }),
     new Project({
         name: "villagerenewal",
@@ -171,9 +181,10 @@ const projects = [
         time: "2024",
         ispage: true,
         isteam: false,
-        tools: "Python, Flask",
+        tools: "Python, Machine Learning",
         briefDescription: `Create an experimental platform, Knitting Text, that uses gaze position prediction models to explore human-text interaction in a non-streamlined reading scenario. By predicting and visualizing gaze projections and knitting them into a dynamic representation of the reading journey, it emphasizes the importance of human agency and the messiness inherent in reading.`,
         youtubeLink: "https://www.youtube.com/watch?v=9TzxzTWuwcQ",
+        otherLink1: "https://github.com/ziru-wei/WebGesturesSDK",
         weight: 5,
         situate: { x: -45, y: -67 }
     }),

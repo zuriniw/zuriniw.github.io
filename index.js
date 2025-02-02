@@ -61,7 +61,6 @@ function createProjectCards() {
         console.log('Creating card for:', project.title);
         const card = document.createElement('div');
         card.className = 'card';
-        // 为卡片添加标签数据属性
         project.labels.forEach(label => {
             const labelAttr = `data-${label.toLowerCase()}`;
             card.setAttribute(labelAttr, '');
@@ -82,7 +81,9 @@ function createProjectCards() {
                         : project.youtubeLink || project.otherLink1 || '#';
                     const target = (!response.ok || !project.ispage) && 
                         (project.youtubeLink || project.otherLink1) ? '_blank' : '';
-
+                    return { href, target };
+                })
+                .then(({ href, target }) => {
                     card.innerHTML = `
                         <a href="${href}" ${target ? `target="${target}"` : ''} class="card-image-link">
                             <img src="${project.getGifPath()}" alt="${project.title}">

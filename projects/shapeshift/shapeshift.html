@@ -6,6 +6,7 @@
     <title>Loading... - Ziru Wei</title>
     <link rel="icon" type="image/png" href="../../images/kitten.png">
     <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -39,6 +40,12 @@
         </div>
     </div>
 
+        <!-- 添加 markdown 内容容器 -->
+        <div id="markdown-content" class="markdown-content">
+            <!-- Markdown 内容将被动态加载到这里 -->
+        </div>
+    </div>
+
     <!-- 页脚 -->
     <footer class="footer-wrapper">
         <div class="footer">
@@ -58,5 +65,22 @@
     </footer>
 
     <script type="module" src="../project_page.js"></script>
+
+    <!-- 添加 marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- 添加加载 markdown 的脚本 -->
+    <script>
+        // 获取 markdown 文件内容
+        fetch('shapeshift.md')
+            .then(response => response.text())
+            .then(mdContent => {
+                // 将 markdown 转换为 HTML 并插入到容器中
+                document.getElementById('markdown-content').innerHTML = marked.parse(mdContent);
+            })
+            .catch(error => {
+                console.error('Error loading markdown:', error);
+            });
+    </script>
 </body>
 </html>
