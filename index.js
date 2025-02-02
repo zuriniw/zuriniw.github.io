@@ -9,7 +9,7 @@ const buttonSection = document.querySelector('.buttons-section');
 const cardSection = document.querySelector('.cards-section');
 
 // 存储选中的过滤条件
-let activeFilters = [];  // 初始状态下没有激活的过滤器
+let activeFilters = JSON.parse(localStorage.getItem('activeFilters')) || [];  // 从 localStorage 恢复过滤器状态
 
 // 存储上次点击的时间和按钮
 let lastClickTime = 0;
@@ -23,8 +23,14 @@ function createFilterButtons() {
         const button = document.createElement('button');
         button.setAttribute('data-name', label.toLowerCase());
         button.textContent = label;
+        // 恢复按钮激活状态
+        if (activeFilters.includes(label.toLowerCase())) {
+            button.classList.add('active');
+        }
         buttonSection.appendChild(button);
     });
+    // 初始化时应用过滤器
+    updateCards();
 }
 
 // 生成项目卡片
@@ -38,10 +44,11 @@ function createProjectCards() {
             card.setAttribute(`data-${label.toLowerCase()}`, '');
         });
 
-        const workType = (project.myContribution || project.collaborator) ? 'Teamwork' : 'Independent Work';
+        // 根据 isteam 属性判断是否是团队项目
+        const workType = project.isteam ? 'Teamwork' : 'Independent Work';
 
         // 构建项目页面路径
-        const htmlPath = `projects/${project.name}/${project.name}.html`;
+        const htmlPath = project.getHtmlPath();
 
         // 创建图片链接
         const imageLink = document.createElement('a');
@@ -50,7 +57,7 @@ function createProjectCards() {
         // 检查项目页面是否存在
         fetch(htmlPath)
             .then(response => {
-                if (response.ok) {
+                if (response.ok && project.ispage) {  // 检查 ispage 属性
                     imageLink.href = htmlPath;
                 } else {
                     imageLink.href = project.youtubeLink || project.otherLink1 || '#';
@@ -62,7 +69,7 @@ function createProjectCards() {
                 // 在获取到正确的链接后再设置卡片内容
                 card.innerHTML = `
                     <a href="${imageLink.href}" ${imageLink.target ? `target="${imageLink.target}"` : ''} class="card-image-link">
-                        <img src="${project.gifImage}" alt="${project.title}">
+                        <img src="${project.getGifPath()}" alt="${project.title}">
                     </a>
                     <div class="card-body">
                         <div class="card-title-container">
@@ -88,7 +95,7 @@ function createProjectCards() {
                 // 在获取到备选链接后再设置卡片内容
                 card.innerHTML = `
                     <a href="${imageLink.href}" ${imageLink.target ? `target="${imageLink.target}"` : ''} class="card-image-link">
-                        <img src="${project.gifImage}" alt="${project.title}">
+                        <img src="${project.getGifPath()}" alt="${project.title}">
                     </a>
                     <div class="card-body">
                         <div class="card-title-container">
@@ -139,6 +146,9 @@ function handleFilterClick(e) {
     // 更新最后点击的时间和按钮
     lastClickTime = currentTime;
     lastClickedFilter = clickedFilter;
+    
+    // 保存过滤器状态到 localStorage
+    localStorage.setItem('activeFilters', JSON.stringify(activeFilters));
     
     updateCards();
 }
@@ -280,12 +290,12 @@ function createProjectPoints() {
         const clickArea = document.createElement('a');
         
         // 构建可能的项目页面路径
-        const htmlPath = `projects/${project.name}/${project.name}.html`;
+        const htmlPath = project.getHtmlPath();
         
         // 检查项目页面是否存在
         fetch(htmlPath)
             .then(response => {
-                if (response.ok) {
+                if (response.ok && project.ispage) {  // 检查 ispage 属性
                     clickArea.href = htmlPath;
                 } else {
                     // 如果项目页面不存在，使用视频链接或其他链接
@@ -334,7 +344,9 @@ function createProjectPoints() {
         wrapper.addEventListener('mouseenter', (e) => {
             const preview = document.createElement('div');
             preview.className = 'point-preview';
-            preview.innerHTML = `<img src="${project.gifImage}" alt="${project.title}">`;
+            preview.innerHTML = `
+                <img src="${project.getGifPath()}" alt="${project.title}">
+            `;
             
             // 根据 y 坐标决定预览框的位置
             const previewHeight = 160; // 预览框的大致高度
@@ -366,11 +378,17 @@ function initViewSwitch() {
     const switchButton = document.querySelector('.switch-view');
     const cardsSection = document.querySelector('.cards-section');
     const coordinateView = document.querySelector('.coordinate-view');
-    let isGalleryView = true;
+    let isGalleryView = false;  // 默认不是 gallery 视图
     let pointsCreated = false;
 
     // 初始化按钮文字
-    switchButton.textContent = '⌘';
+    switchButton.textContent = '∀';  // 默认显示切换到 gallery 的图标
+
+    // 初始化为数轴视图
+    cardsSection.classList.add('hide');
+    coordinateView.classList.remove('hide');
+    createProjectPoints();  // 创建项目点
+    pointsCreated = true;
 
     switchButton.addEventListener('click', () => {
         if (isGalleryView) {
