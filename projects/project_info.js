@@ -170,6 +170,97 @@ const projects = [
         briefDescription: `The project introduces an experimental platform, Knitting Text, that uses gaze position prediction models to explore human-text interaction in a non-streamlined reading scenario. By predicting and visualizing gaze projections and knitting them into a dynamic representation of the reading journey, it emphasizes the importance of human agency and the messiness inherent in reading.`,
         youtubeLink: "https://www.youtube.com/watch?v=9TzxzTWuwcQ",
         situate: { x: -45, y: -67 }
+    }),
+    new Project({
+        name: "fadingroses",
+        title: "Fading Roses",
+        subtitle: "Digital Narrative Game",
+        labels: ["Digital"],
+        time: "2022",
+        ispage: false,
+        isteam: false,
+        myContribution: "Independent exploration",
+        prize: "Award of Excellence & Award of New Talent on Bilibili 'Gamify Everything' Competition",
+        situate: { x: 78, y: 45 }
+    }),
+    new Project({
+        name: "zijin",
+        title: "Island Landscaping",
+        subtitle: "3D Modeling and Animation work",
+        labels: ["Spatial", "Digital"],
+        time: "2022",
+        ispage: false,
+        isteam: true,
+        myContribution: "Storytelling, modeling, and rendering in teamwork",
+        prize: "1st Prize, Top 10/613 in Architectural Design Competition 'Zijin Award'",
+        situate: { x: -56, y: 67 }
+    }),
+    new Project({
+        name: "taihustone",
+        title: "Generative Digital TAIHU Stone",
+        subtitle: "Computational Design and Interface Design",
+        labels: ["Digital"],
+        time: "2022",
+        ispage: false,
+        isteam: false,
+        myContribution: "Computational design, Interface design",
+        situate: { x: 23, y: -45 }
+    }),
+    new Project({
+        name: "mobius",
+        title: "Mobius",
+        subtitle: "Bar Table Furniture design",
+        labels: ["Spatial"],
+        time: "2021",
+        ispage: false,
+        isteam: true,
+        myContribution: "Teamwork",
+        prize: "Patent",
+        situate: { x: -89, y: -23 }
+    }),
+    new Project({
+        name: "intdesign",
+        title: "Interior Design",
+        subtitle: "spatial design work",
+        labels: ["Spatial"],
+        time: "2023",
+        ispage: false,
+        isteam: false,
+        myContribution: "Solo design work",
+        situate: { x: 34, y: 78 }
+    }),
+    new Project({
+        name: "keyboard",
+        title: "Mini-keyboard",
+        subtitle: "PCB making, electronic assembling, and 3D printing",
+        labels: ["Digital"],
+        time: "2022",
+        ispage: false,
+        isteam: false,
+        myContribution: "Individual exploration",
+        situate: { x: -67, y: 34 }
+    }),
+    new Project({
+        name: "mrintdesign",
+        title: "MR Interior Design",
+        subtitle: "MR-aided Participatory Design Experiment",
+        labels: ["XR", "Spatial"],
+        time: "2021",
+        ispage: false,
+        isteam: true,
+        myContribution: "Teamwork",
+        situate: { x: 56, y: -67 }
+    }),
+    new Project({
+        name: "mrfarm",
+        title: "BlendedFarm",
+        subtitle: "MR interaction game",
+        labels: ["XR"],
+        time: "2021",
+        ispage: false,
+        isteam: true,
+        myContribution: "Teamwork",
+        situate: { x: -34, y: -78 }
     })
 ];
 
