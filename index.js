@@ -61,8 +61,10 @@ function createProjectCards() {
         console.log('Creating card for:', project.title);
         const card = document.createElement('div');
         card.className = 'card';
+        // 为卡片添加标签数据属性
         project.labels.forEach(label => {
-            card.setAttribute(`data-${label.toLowerCase()}`, '');
+            const labelAttr = `data-${label.toLowerCase()}`;
+            card.setAttribute(labelAttr, '');
         });
 
         // 根据 isteam 属性判断是否是团队项目
@@ -177,42 +179,57 @@ function updateCards() {
     const cards = cardSection.querySelectorAll('.card');
     const pointWrappers = document.querySelectorAll('.point-wrapper');
     
-    // 首先获取所有卡片及其对应的项目信息
-    const cardsWithProjects = Array.from(cards).map(card => {
-        const imgPath = card.querySelector('img').src.split('/').slice(-2).join('/');
-        const project = projects.find(p => p.gifImage === imgPath);
-        return { card, project };
-    });
-
-    // 过滤可见卡片
-    const visibleCards = cardsWithProjects.filter(({ card }) => {
-        return activeFilters.length === 0 || 
-            activeFilters.some(filter => card.hasAttribute(`data-${filter}`));
-    });
-
-    // 隐藏所有卡片
-    cards.forEach(card => {
-        card.classList.add('hide');
-    });
-
-    // 按weight和时间重新排序并显示可见卡片
-    visibleCards
-        .sort((a, b) => compareProjects(a.project, b.project))
-        .forEach(({ card }, index) => {
-            card.classList.remove('hide');
-            card.style.order = index;
-        });
-
+    // 更新数轴视图的点
     pointWrappers.forEach(wrapper => {
-        const isVisible = activeFilters.length === 0 || 
-            activeFilters.some(filter => wrapper.hasAttribute(`data-${filter}`));
+        const hasMatchingFilter = activeFilters.length === 0 || 
+            activeFilters.some(filter => wrapper.hasAttribute(`data-${filter.toLowerCase()}`));
         
-        if (isVisible) {
+        if (hasMatchingFilter) {
             wrapper.classList.remove('hide');
         } else {
             wrapper.classList.add('hide');
         }
     });
+
+    // 首先获取所有卡片及其对应的项目信息
+    const cardsWithProjects = Array.from(cards).map(card => {
+        // 使用卡片标题来匹配项目
+        const cardTitle = card.querySelector('.card-title').textContent;
+        const project = projects.find(p => p.title === cardTitle);
+        if (!project) {
+            console.error('Project not found for card:', cardTitle);
+        }
+        return { card, project };
+    });
+
+    // 过滤可见卡片
+    const visibleCards = cardsWithProjects.filter(({ card, project }) => {
+        if (!project) return false;  // 如果找不到项目信息，不显示该卡片
+        if (activeFilters.length === 0) return true;
+        
+        return activeFilters.some(filter => {
+            const labelAttr = `data-${filter.toLowerCase()}`;
+            return card.hasAttribute(labelAttr);
+        });
+    });
+
+    // 先重置所有卡片的显示状态
+    cardsWithProjects.forEach(({ card }) => {
+        card.classList.add('hide');
+        card.style.order = '';  // 重置排序
+    });
+
+    // 按weight和时间重新排序并显示可见卡片
+    visibleCards
+        .sort((a, b) => {
+            // 确保两个项目都存在
+            if (!a.project || !b.project) return 0;
+            return compareProjects(a.project, b.project);
+        })
+        .forEach(({ card }, index) => {
+            card.classList.remove('hide');
+            card.style.order = index;
+        });
 }
 
 // 添加过滤器按钮的悬停事件处理
@@ -445,7 +462,7 @@ function initViewSwitch() {
             const pointWrappers = document.querySelectorAll('.point-wrapper');
             pointWrappers.forEach(wrapper => {
                 const isVisible = activeFilters.length === 0 || 
-                    activeFilters.some(filter => wrapper.hasAttribute(`data-${filter}`));
+                    activeFilters.some(filter => wrapper.hasAttribute(`data-${filter.toLowerCase()}`));
                 
                 if (isVisible) {
                     wrapper.classList.remove('hide');
