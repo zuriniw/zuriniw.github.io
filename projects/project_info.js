@@ -174,82 +174,88 @@ const projects = [
     new Project({
         name: "fadingroses",
         title: "Fading Roses",
-        subtitle: "Digital Narrative Game",
+        subtitle: "Storytelling via text-and-space-exploration game",
         labels: ["Digital"],
         time: "2022",
-        ispage: false,
         isteam: false,
-        myContribution: "Independent exploration",
+        ispage: true,
+        tools: "procreate, adobe suite",
+        briefDescription: "It is a story starting from a rose, a home, and a place.",
+        youtubeLink: "https://www.bilibili.com/video/BV1jT411g7Xf/",
         prize: "Award of Excellence & Award of New Talent on Bilibili 'Gamify Everything' Competition",
-        situate: { x: 78, y: 45 }
+        situate: { x: 23, y: -45 }
     }),
     new Project({
         name: "zijin",
         title: "Island Landscaping",
-        subtitle: "3D Modeling and Animation work",
+        subtitle: "Urban renewal design and modeling",
         labels: ["Spatial", "Digital"],
         time: "2022",
-        ispage: false,
-        isteam: true,
-        myContribution: "Storytelling, modeling, and rendering in teamwork",
+        myContribution: "Storytelling, modeling, rendering",
+        isteam: false,
+        ispage: true,
+        tools: "Rhino, Grasshopper, D5 Render",
+        otherLink1: "https://ziruw.notion.site/the-Ark-the-construction-of-green-space-in-the-canal-community-based-on-ecological-restoration-and-2713ed7644ff46c2a4fef6125f90cacb",
+        briefDescription: `The design site, Hengtang Station, an ancient canal post, preserves its original texture through a concise oblique grid composition and narrative techniques. Integrating ecological restoration, wetland construction, and canal culture, it balances ecology, city, and history, fostering a shared community and sustainable landscape that embodies harmony between people, nature, and the city.`,
         prize: "1st Prize, Top 10/613 in Architectural Design Competition 'Zijin Award'",
-        situate: { x: -56, y: 67 }
+        situate: { x: -67, y: 89 }
     }),
     new Project({
         name: "taihustone",
         title: "Generative Digital TAIHU Stone",
-        subtitle: "Computational Design and Interface Design",
+        subtitle: "Computational design and interface design",
         labels: ["Digital"],
         time: "2022",
-        ispage: false,
-        isteam: false,
-        myContribution: "Computational design, Interface design",
-        situate: { x: 23, y: -45 }
+        myContribution: "Computational design, interface design",
+        isteam: true,
+        tools: "Grasshopper",
+        situate: { x: 34, y: -91 }
     }),
     new Project({
         name: "mobius",
         title: "Mobius",
-        subtitle: "Bar Table Furniture design",
+        subtitle: "Bar table furniture design",
         labels: ["Spatial"],
         time: "2021",
-        ispage: false,
+        collaborator: "fabrication team",
+        myContribution: "designing, modeling",
         isteam: true,
-        myContribution: "Teamwork",
+        ispage: true,
+        tools: "Rhino, Grasshopper",
         prize: "Patent",
-        situate: { x: -89, y: -23 }
+        situate: { x: -88, y: 12 }
     }),
     new Project({
         name: "intdesign",
         title: "Interior Design",
-        subtitle: "spatial design work",
+        subtitle: "Spatial design work",
         labels: ["Spatial"],
         time: "2023",
-        ispage: false,
         isteam: false,
-        myContribution: "Solo design work",
-        situate: { x: 34, y: 78 }
+        ispage: true,
+        situate: { x: 56, y: -34 }
     }),
     new Project({
         name: "keyboard",
-        title: "Mini-keyboard",
+        title: "Mini-Keyboard",
         subtitle: "PCB making, electronic assembling, and 3D printing",
         labels: ["Digital"],
         time: "2022",
-        ispage: false,
         isteam: false,
-        myContribution: "Individual exploration",
-        situate: { x: -67, y: 34 }
+        tools: "JLC EDA, Arduino, Rhino",
+        situate: { x: -12, y: 78 }
     }),
     new Project({
         name: "mrintdesign",
         title: "MR Interior Design",
-        subtitle: "MR-aided Participatory Design Experiment",
+        subtitle: "MR-aided participatory design experiment",
         labels: ["XR", "Spatial"],
         time: "2021",
-        ispage: false,
+        myContribution: "documentation, experiment design",
         isteam: true,
-        myContribution: "Teamwork",
-        situate: { x: 56, y: -67 }
+        ispage: true,
+        tools: "Rhino, Fologram, Unity",
+        situate: { x: 45, y: -67 }
     }),
     new Project({
         name: "mrfarm",
@@ -257,10 +263,13 @@ const projects = [
         subtitle: "MR interaction game",
         labels: ["XR"],
         time: "2021",
-        ispage: false,
+        collaborator: "Haoxuan Li, Yueying Chen",
+        myContribution: "coding, game design, modeling",
         isteam: true,
-        myContribution: "Teamwork",
-        situate: { x: -34, y: -78 }
+        ispage: true,
+        tools: "Unity, Arduino",
+        briefDescription: "What if data can flows among the real world and MR scene?",
+        situate: { x: -23, y: 56 }
     })
 ];
 

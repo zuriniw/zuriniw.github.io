@@ -378,17 +378,23 @@ function initViewSwitch() {
     const switchButton = document.querySelector('.switch-view');
     const cardsSection = document.querySelector('.cards-section');
     const coordinateView = document.querySelector('.coordinate-view');
-    let isGalleryView = false;  // 默认不是 gallery 视图
+    // 从 localStorage 获取上次的视图状态，默认为 false（数轴视图）
+    let isGalleryView = localStorage.getItem('isGalleryView') === 'true';
     let pointsCreated = false;
 
     // 初始化按钮文字
-    switchButton.textContent = '∀';  // 默认显示切换到 gallery 的图标
+    switchButton.textContent = isGalleryView ? '⌘' : '∀';
 
     // 初始化为数轴视图
-    cardsSection.classList.add('hide');
-    coordinateView.classList.remove('hide');
-    createProjectPoints();  // 创建项目点
-    pointsCreated = true;
+    if (isGalleryView) {
+        cardsSection.classList.remove('hide');
+        coordinateView.classList.add('hide');
+    } else {
+        cardsSection.classList.add('hide');
+        coordinateView.classList.remove('hide');
+        createProjectPoints();  // 创建项目点
+        pointsCreated = true;
+    }
 
     switchButton.addEventListener('click', () => {
         if (isGalleryView) {
@@ -419,6 +425,8 @@ function initViewSwitch() {
             switchButton.textContent = '⌘';
         }
         isGalleryView = !isGalleryView;
+        // 保存视图状态到 localStorage
+        localStorage.setItem('isGalleryView', isGalleryView);
     });
 }
 
