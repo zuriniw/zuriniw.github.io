@@ -34,21 +34,27 @@ function createProjectCards() {
         console.log('Creating card for:', project.title);
         const card = document.createElement('div');
         card.className = 'card';
-        // 设置多个标签的数据属性
         project.labels.forEach(label => {
             card.setAttribute(`data-${label.toLowerCase()}`, '');
         });
+
+        // 确定工作类型
+        const workType = project.collaborator ? 'Teamwork' : 'Independent Work';
 
         card.innerHTML = `
             <a href="${project.youtubeLink}" target="_blank" class="card-image-link">
                 <img src="${project.gifImage}" alt="${project.title}">
             </a>
             <div class="card-body">
-                <p class="card-title">${project.title}</p>
+                <div class="card-title-container">
+                    <p class="card-title">${project.title}</p>
+                    ${project.youtubeLink ? '<a href="' + project.youtubeLink + '" target="_blank" class="video-icon">►</a>' : ''}
+                </div>
+                <span class="card-description">${project.subtitle}</span>
+                <p class="card-time">${project.time}, ${workType}</p>
                 <div class="card-labels">
                     ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
                 </div>
-                <span class="card-description">${project.subtitle}</span>
             </div>
         `;
         cardSection.appendChild(card);
@@ -122,6 +128,11 @@ function addFilterHoverEffects() {
                     // 如果卡片不包含当前标签，添加淡出效果
                     card.querySelector('.card-title').classList.add('card-fade');
                     card.querySelector('.card-description').classList.add('card-fade');
+                    card.querySelector('.card-time').classList.add('card-fade');
+                    const videoIcon = card.querySelector('.video-icon');
+                    if (videoIcon) {
+                        videoIcon.classList.add('card-fade');
+                    }
                     card.querySelectorAll('.card-label').forEach(label => {
                         label.classList.add('card-fade');
                     });
@@ -143,6 +154,11 @@ function addFilterHoverEffects() {
             document.querySelectorAll('.card').forEach(card => {
                 card.querySelector('.card-title').classList.remove('card-fade');
                 card.querySelector('.card-description').classList.remove('card-fade');
+                card.querySelector('.card-time').classList.remove('card-fade');
+                const videoIcon = card.querySelector('.video-icon');
+                if (videoIcon) {
+                    videoIcon.classList.remove('card-fade');
+                }
                 card.querySelectorAll('.card-label').forEach(label => {
                     label.classList.remove('card-fade');
                     label.classList.remove('hover');
