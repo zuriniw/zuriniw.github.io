@@ -305,6 +305,19 @@ function initViewSwitch() {
                 createProjectPoints();
                 pointsCreated = true;
             }
+            
+            // 切换到数轴视图时，应用当前的过滤器状态
+            const pointWrappers = document.querySelectorAll('.point-wrapper');
+            pointWrappers.forEach(wrapper => {
+                const isVisible = activeFilters.length === 0 || 
+                    activeFilters.some(filter => wrapper.hasAttribute(`data-${filter}`));
+                
+                if (isVisible) {
+                    wrapper.classList.remove('hide');
+                } else {
+                    wrapper.classList.add('hide');
+                }
+            });
         } else {
             cardsSection.classList.remove('hide');
             coordinateView.classList.add('hide');

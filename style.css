@@ -1,6 +1,6 @@
 /* 颜色定义 */
 :root {
-    --color-background: #f4f4f4;
+    --color-background: #faf7f6;
     --color-text: #000;
     --color-text-hover: #9f9f9f;
     --color-border: #000;
@@ -89,7 +89,7 @@ button:hover {
 
 /* 卡片网格区域样式 */
 .cards-section {
-    margin-top: 30px;
+    margin-top: 10px;  /* 减小与过滤器的距离 */
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -274,7 +274,7 @@ button:hover {
 .intro-section {
     max-width: 1350px;
     width: 100%;
-    margin: 120px auto 0;
+    margin: 16px auto 0;  /* 减少顶部边距 */
     max-width: 760px;  /* 匹配新的卡片宽度 */
     font-family: "Barlow", sans-serif;
     line-height: 1.6;
@@ -282,7 +282,7 @@ button:hover {
 }
 
 .intro-text {
-    margin-bottom: 20px;
+    margin-bottom: 20px;  /* 减小下边距 */
     font-size: 18px;
     letter-spacing: 0.7px;
 }
@@ -423,7 +423,7 @@ button:hover {
 .filter-wrapper {
     width: 100%;
     background-color: var(--color-background);
-    padding: 48px 0 16px 0;  /* 上边距改为24px，其他保持不变 */
+    padding: 48px 0 16px 0;  /* 减小上边距 */
     transition: all 0.3s ease;
 }
 
@@ -474,8 +474,8 @@ button:hover {
 /* 坐标视图样式 */
 .coordinate-view {
     width: 760px;
-    height: 600px;
-    margin: 30px auto;
+    height: 480px;  /* 减小高度使坐标系更扁 */
+    margin: 10px auto;
     position: relative;
 }
 
