@@ -42,9 +42,42 @@ class Project {
 // 项目实例
 const projects = [
     new Project({
-        title: "Holographic Design-to-Construction",
+        title: "POI +-",
+        subtitle: "Humanizing Mixed Reality—Spatial Behavior Computation",
+        labels: ["XR", "Embodied", "Spatial"],
+        time: "2024",
+        gifImage: "projects/poi/poi.gif",
+        youtubeLink: "https://www.youtube.com/watch?v=X6KAT7KzDUs"
+    }),
+    new Project({
+        title: "Seeing-Saw",
+        subtitle: "Paired Device for Telepresence",
+        labels: "Embodied",
+        time: "2021-2022",
+        gifImage: "projects/seeingsaw/seeingsaw.gif",
+        myContribution: "paired device background research | ideating | electrical wiring |coding​",
+        youtubeLink: "https://www.youtube.com/watch?v=KNwp1Vy8hrg&t=12s"
+    }),
+    new Project({
+        title: "Shapeshift Playground",
+        subtitle: "Node-based drawing tool development",
+        labels: "Digital",
+        time: "2024",
+        gifImage: "projects/shapeshift/shapeshift.gif",
+        youtubeLink: "https://www.youtube.com/watch?v=J2h9kxWUWH4"
+    }),
+    new Project({
+        title: "Village Renewal Design",
+        subtitle: "Village Renewal Design in Fujian, China",  // 添加副标题
+        labels: "Spatial",
+        time: "2024",
+        gifImage: "projects/villagerenewal/villagerenewal.gif",
+        otherLink1: "https://www.behance.net/gallery/217218343/Village-Renewal-Design-in-Fujian-China"
+    }),
+    new Project({
+        title: "Holographic Design2Construction",
         subtitle: "A case study of the full-scale building：AURORA",
-        labels: "Blended",
+        labels: "XR",
         time: "2021-2022",
         gifImage: "projects/aurora/aurora.gif",
         myContribution: "designing | constructing | writing",
@@ -62,7 +95,7 @@ const projects = [
     new Project({
         title: "Gaze-Knitting",
         subtitle: "Gaze data visualization in a non-streamlined reading scenario",
-        labels: ["Embodied", "Speculative"],
+        labels: ["Embodied", 'Digital'],
         time: "2024",
         gifImage: "projects/gazeknitting/gazeknitting.gif",
         youtubeLink: "https://www.youtube.com/watch?v=9TzxzTWuwcQ&t=6s"
@@ -70,6 +103,8 @@ const projects = [
 ];
 
 // 导出所有可用的标签
-const availableLabels = ["Digital", "Spatial", "Blended", "Embodied", "Speculative"];
+const availableLabels = [
+    "Digital", "Spatial", "XR", "Embodied"
+];
 
 export { Project, projects, availableLabels };
