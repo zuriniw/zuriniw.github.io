@@ -96,7 +96,7 @@ const projects = [
         tools: "Particle Cloud, Photon2, Woodworking Tools",
         briefDescription: `Build peripheral and expressive awareness in lovable devices, to foster emotive communication through low-fidelity information`,
         youtubeLink: "https://www.youtube.com/watch?v=KNwp1Vy8hrg",
-        weight: 8,
+        weight: 8.9,
         situate: { x: -23, y: 89 }
     }),
     new Project({
@@ -111,20 +111,20 @@ const projects = [
         briefDescription: `Use Python in Grasshopper? Build your own Grasshopper using Python!`,
         youtubeLink: "https://www.youtube.com/watch?v=J2h9kxWUWH4",
         prize: "1st Prize in CMU 15-112 Term Project",
-        weight: 7,
+        weight: 7.1,
         situate: { x: -67, y: -34 }
     }),
     new Project({
         name: "villagerenewal",
         title: "Village Renewal",
-        subtitle: "Rural Revitalization Design",
+        subtitle: "Area Revitalization Design",
         labels: ["Spatial"],
         time: "2024",
         ispage: true,
         isteam: false,
         tutor: "Hui Luo",
         myContribution: "Ethnographic surveys, Designing, Drawing",
-        tools: "Rhino, Photoshop",
+        tools: "Rhino, Adobe Suite, AutoCAD",
         briefDescription: "Revitalize the village through architectural design and cultural preservation. The project aims to preserve and enhance the unique cultural heritage of the village while improving the living conditions of its residents.",
         prize: "Outstanding Undergraduate Thesis; 1st place in Architecture School",
         weight: 7,
@@ -135,7 +135,7 @@ const projects = [
         title: "Holographic Design2Construction",
         subtitle: "A case study of the full-scale building：AURORA",
         labels: ["XR"],
-        time: "2021-2022",
+        time: "2021",
         ispage: true,
         isteam: true,
         tutor: "Sining Wang, Dongchen Han",
@@ -144,7 +144,7 @@ const projects = [
         briefDescription: `Instead of chasing zero-tolerance implementation and avoiding any potential deviations, MR-aided design practices aim to increase construction allowance by injecting computation into human operations.`,
         youtubeLink: "https://www.dropbox.com/scl/fi/ajuzkeolpeorpc0979q8t/HolographicConstruction.mp4?rlkey=7s31yppucptg6rdk8dkhffny0&e=1&dl=0",
         paperLink: "https://papers.cumincad.org/cgi-bin/works/paper/caadria2022_157",
-        weight: 8,
+        weight: 8.1,
         situate: { x: -88, y: 56 }
     }),
     new Project({
@@ -160,7 +160,7 @@ const projects = [
         tools: "GHPython, Grasshopper, Kinect Camera",
         briefDescription: `This project explores the fusion of body movement with algorithmically generated sound and visuals, redefining how we interact with music creation.`,
         youtubeLink: "https://www.youtube.com/watch?v=FpLBtfClNgE",
-        weight: 8,
+        weight: 6,
         situate: { x: 34, y: -91 }
     }),
     new Project({
@@ -172,9 +172,9 @@ const projects = [
         ispage: true,
         isteam: false,
         tools: "Python, Flask",
-        briefDescription: `The project introduces an experimental platform, Knitting Text, that uses gaze position prediction models to explore human-text interaction in a non-streamlined reading scenario. By predicting and visualizing gaze projections and knitting them into a dynamic representation of the reading journey, it emphasizes the importance of human agency and the messiness inherent in reading.`,
+        briefDescription: `Create an experimental platform, Knitting Text, that uses gaze position prediction models to explore human-text interaction in a non-streamlined reading scenario. By predicting and visualizing gaze projections and knitting them into a dynamic representation of the reading journey, it emphasizes the importance of human agency and the messiness inherent in reading.`,
         youtubeLink: "https://www.youtube.com/watch?v=9TzxzTWuwcQ",
-        weight: 7,
+        weight: 5,
         situate: { x: -45, y: -67 }
     }),
     new Project({
@@ -254,7 +254,7 @@ const projects = [
         time: "2022",
         isteam: false,
         tools: "JLC EDA, Arduino, Rhino",
-        weight: 2,
+        weight: 1,
         situate: { x: -12, y: 78 }
     }),
     new Project({

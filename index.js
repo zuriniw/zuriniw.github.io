@@ -33,13 +33,31 @@ function createFilterButtons() {
     updateCards();
 }
 
+// 项目排序比较函数
+function compareProjects(a, b) {
+    // 首先按 weight 排序
+    const weightDiff = b.weight - a.weight;
+    if (weightDiff !== 0) return weightDiff;
+    
+    // weight 相同时，按时间排序（新的在前）
+    const getLatestYear = (time) => {
+        const years = time.toString().split('-');
+        return parseInt(years[years.length - 1]);
+    };
+    const timeDiff = getLatestYear(b.time) - getLatestYear(a.time);
+    if (timeDiff !== 0) return timeDiff;
+    
+    // 时间相同时，按项目名称排序（使用项目的唯一标识符）
+    return a.name.localeCompare(b.name);
+}
+
 // 生成项目卡片
 function createProjectCards() {
     console.log('Creating project cards');
-    // 按 weight 排序项目
-    const sortedProjects = [...projects].sort((a, b) => b.weight - a.weight);
+    const sortedProjects = [...projects].sort(compareProjects);
 
-    sortedProjects.forEach(project => {
+    // 使用 Promise.all 确保所有卡片按顺序创建
+    Promise.all(sortedProjects.map(project => {
         console.log('Creating card for:', project.title);
         const card = document.createElement('div');
         card.className = 'card';
@@ -53,68 +71,66 @@ function createProjectCards() {
         // 构建项目页面路径
         const htmlPath = project.getHtmlPath();
 
-        // 创建图片链接
-        const imageLink = document.createElement('a');
-        imageLink.className = 'card-image-link';
+        // 返回一个 Promise
+        return new Promise((resolve) => {
+            fetch(htmlPath)
+                .then(response => {
+                    const href = (response.ok && project.ispage) 
+                        ? htmlPath 
+                        : project.youtubeLink || project.otherLink1 || '#';
+                    const target = (!response.ok || !project.ispage) && 
+                        (project.youtubeLink || project.otherLink1) ? '_blank' : '';
 
-        // 检查项目页面是否存在
-        fetch(htmlPath)
-            .then(response => {
-                if (response.ok && project.ispage) {  // 检查 ispage 属性
-                    imageLink.href = htmlPath;
-                } else {
-                    imageLink.href = project.youtubeLink || project.otherLink1 || '#';
-                    if (project.youtubeLink || project.otherLink1) {
-                        imageLink.target = '_blank';
-                    }
-                }
-
-                // 在获取到正确的链接后再设置卡片内容
-                card.innerHTML = `
-                    <a href="${imageLink.href}" ${imageLink.target ? `target="${imageLink.target}"` : ''} class="card-image-link">
-                        <img src="${project.getGifPath()}" alt="${project.title}">
-                    </a>
-                    <div class="card-body">
-                        <div class="card-title-container">
-                            <p class="card-title">${project.title}</p>
-                            ${project.youtubeLink ? '<a href="' + project.youtubeLink + '" target="_blank" class="video-icon">►</a>' : ''}
+                    card.innerHTML = `
+                        <a href="${href}" ${target ? `target="${target}"` : ''} class="card-image-link">
+                            <img src="${project.getGifPath()}" alt="${project.title}">
+                        </a>
+                        <div class="card-body">
+                            <div class="card-title-container">
+                                <p class="card-title">${project.title}</p>
+                                ${project.youtubeLink ? '<a href="' + project.youtubeLink + '" target="_blank" class="video-icon">►</a>' : ''}
+                            </div>
+                            <span class="card-description">${project.subtitle}</span>
+                            <p class="card-time">${project.time}, ${workType}</p>
+                            ${project.prize ? `<p class="card-prize">${project.prize}</p>` : ''}
+                            <div class="card-labels">
+                                ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
+                            </div>
                         </div>
-                        <span class="card-description">${project.subtitle}</span>
-                        <p class="card-time">${project.time}, ${workType}</p>
-                        ${project.prize ? `<p class="card-prize">${project.prize}</p>` : ''}
-                        <div class="card-labels">
-                            ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
+                    `;
+                    resolve(card);
+                })
+                .catch(() => {
+                    // 处理错误情况，使用默认链接
+                    const href = project.youtubeLink || project.otherLink1 || '#';
+                    const target = (project.youtubeLink || project.otherLink1) ? '_blank' : '';
+                    
+                    // 设置相同的卡片内容
+                    card.innerHTML = `
+                        <a href="${href}" ${target ? `target="${target}"` : ''} class="card-image-link">
+                            <img src="${project.getGifPath()}" alt="${project.title}">
+                        </a>
+                        <div class="card-body">
+                            <div class="card-title-container">
+                                <p class="card-title">${project.title}</p>
+                                ${project.youtubeLink ? '<a href="' + project.youtubeLink + '" target="_blank" class="video-icon">►</a>' : ''}
+                            </div>
+                            <span class="card-description">${project.subtitle}</span>
+                            <p class="card-time">${project.time}, ${workType}</p>
+                            ${project.prize ? `<p class="card-prize">${project.prize}</p>` : ''}
+                            <div class="card-labels">
+                                ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
+                            </div>
                         </div>
-                    </div>
-                `;
-                cardSection.appendChild(card);
-            })
-            .catch(() => {
-                imageLink.href = project.youtubeLink || project.otherLink1 || '#';
-                if (project.youtubeLink || project.otherLink1) {
-                    imageLink.target = '_blank';
-                }
-                
-                // 在获取到备选链接后再设置卡片内容
-                card.innerHTML = `
-                    <a href="${imageLink.href}" ${imageLink.target ? `target="${imageLink.target}"` : ''} class="card-image-link">
-                        <img src="${project.getGifPath()}" alt="${project.title}">
-                    </a>
-                    <div class="card-body">
-                        <div class="card-title-container">
-                            <p class="card-title">${project.title}</p>
-                            ${project.youtubeLink ? '<a href="' + project.youtubeLink + '" target="_blank" class="video-icon">►</a>' : ''}
-                        </div>
-                        <span class="card-description">${project.subtitle}</span>
-                        <p class="card-time">${project.time}, ${workType}</p>
-                        ${project.prize ? `<p class="card-prize">${project.prize}</p>` : ''}
-                        <div class="card-labels">
-                            ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
-                        </div>
-                    </div>
-                `;
-                cardSection.appendChild(card);
-            });
+                    `;
+                    resolve(card);
+                });
+        });
+    })).then(cards => {
+        // 清空现有卡片
+        cardSection.innerHTML = '';
+        // 按顺序添加所有卡片
+        cards.forEach(card => cardSection.appendChild(card));
     });
 }
 
@@ -161,8 +177,15 @@ function updateCards() {
     const cards = cardSection.querySelectorAll('.card');
     const pointWrappers = document.querySelectorAll('.point-wrapper');
     
-    // 获取所有可见卡片并按weight排序
-    const visibleCards = Array.from(cards).filter(card => {
+    // 首先获取所有卡片及其对应的项目信息
+    const cardsWithProjects = Array.from(cards).map(card => {
+        const imgPath = card.querySelector('img').src.split('/').slice(-2).join('/');
+        const project = projects.find(p => p.gifImage === imgPath);
+        return { card, project };
+    });
+
+    // 过滤可见卡片
+    const visibleCards = cardsWithProjects.filter(({ card }) => {
         return activeFilters.length === 0 || 
             activeFilters.some(filter => card.hasAttribute(`data-${filter}`));
     });
@@ -172,15 +195,13 @@ function updateCards() {
         card.classList.add('hide');
     });
 
-    // 按weight重新排序并显示可见卡片
-    visibleCards.sort((a, b) => {
-        const projectA = projects.find(p => p.title === a.querySelector('.card-title').textContent);
-        const projectB = projects.find(p => p.title === b.querySelector('.card-title').textContent);
-        return projectB.weight - projectA.weight;
-    }).forEach((card, index) => {
-        card.classList.remove('hide');
-        card.style.order = index;  // 使用 flex order 属性控制顺序
-    });
+    // 按weight和时间重新排序并显示可见卡片
+    visibleCards
+        .sort((a, b) => compareProjects(a.project, b.project))
+        .forEach(({ card }, index) => {
+            card.classList.remove('hide');
+            card.style.order = index;
+        });
 
     pointWrappers.forEach(wrapper => {
         const isVisible = activeFilters.length === 0 || 
