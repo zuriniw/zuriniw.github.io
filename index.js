@@ -152,10 +152,37 @@ function addFilterHoverEffects() {
     });
 }
 
+// 添加滚动处理逻辑
+function initFilterScroll() {
+    const filterWrapper = document.querySelector('.filter-wrapper');
+    const cardsSection = document.querySelector('.cards-section');
+    let filterRect = filterWrapper.getBoundingClientRect();
+    let originalTop = filterRect.top + window.pageYOffset;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > originalTop) {
+            filterWrapper.classList.add('fixed');
+            cardsSection.classList.add('filter-fixed');
+        } else {
+            filterWrapper.classList.remove('fixed');
+            cardsSection.classList.remove('filter-fixed');
+        }
+    });
+
+    // 当窗口大小改变时重新计算位置
+    window.addEventListener('resize', () => {
+        filterRect = filterWrapper.getBoundingClientRect();
+        originalTop = filterRect.top + window.pageYOffset;
+    });
+}
+
 // 初始化页面
 createFilterButtons();
 createProjectCards();
 addFilterHoverEffects();
+initFilterScroll();
 
 // 添加过滤器点击事件监听
 buttonSection.querySelectorAll('button').forEach(button => {

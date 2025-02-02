@@ -1,6 +1,6 @@
 /* 颜色定义 */
 :root {
-    --color-background: #faf4f2d1;
+    --color-background: #f9f5f4;
     --color-text: #000;
     --color-text-hover: #9f9f9f;
     --color-border: #000;
@@ -43,15 +43,15 @@ body {
 .filter-container {
     width: 100%;
     margin: 0 auto;
-    max-width: calc(250px * 3 + 40px);
+    max-width: 800px;  /* 匹配新的卡片宽度 */
 }
 
 /* 过滤器内容样式 */
 .filter-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 12px;  /* 增加间距 */
+    align-items: flex-start;  /* 改为左对齐 */
+    gap: 12px;
 }
 
 /* 激活状态的按钮样式 */
@@ -62,14 +62,14 @@ body {
 
 /* 按钮基础样式 */
 button {
-    border: 1px solid var(--color-border);  /* 黑色边框 */
+    border: 1px solid var(--color-border);
     cursor: pointer;
-    padding: 4px 8px;   /* 正确的语法：上下 左右 */
-    font-size: 14px;
+    padding: 6px 12px;  /* 增大按钮 */
+    font-size: 16px;  /* 增大字体 */
     background: transparent;
-    transition: all 0.1s ease;  /* 过渡效果包含背景色 */
+    transition: all 0.1s ease;
     margin: 0;
-    font-family: "Lucida Console", monospace;  /* 如果需要使用 Console 字体 */
+    font-family: "Lucida Console", monospace;
 }
 
 /* 按钮悬停效果 */
@@ -80,20 +80,21 @@ button:hover {
 
 /* 卡片网格区域样式 */
 .cards-section {
-    margin-top: 30px;  /* 增加与 filter 的距离 */
-    display: grid;
-    grid-template-columns: repeat(3, 250px);
-    gap: 20px;
-    justify-content: flex-start;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;  /* 居中对齐 */
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: calc(250px * 3 + 40px);
 }
 
 /* 卡片基础样式 */
 .card {
-    width: 100%;
+    width: 800px;  /* 相应减小卡片整体宽度 */
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin: 0;  /* 确保没有额外的边距 */
 }
 
 /* 隐藏类 */
@@ -103,11 +104,11 @@ button:hover {
 
 /* 卡片图片样式 */
 .card img {
-    width: 100%;
-    aspect-ratio: 4/3;  /* 设置4:3比例 */
-    object-fit: cover;  /* 填充整个容器，必要时裁切 */
-    border: 1px solid var(--color-text);  /* 深灰色边框 */
-    transition: opacity 0.2s ease;  /* 添加透明度过渡效果 */
+    width: 320px;  /* 更小的图片宽度 */
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border: 1px solid var(--color-text);
+    transition: opacity 0.2s ease;
 }
 
 /* 当卡片被淡出时，图片的透明度变化 */
@@ -117,16 +118,17 @@ button:hover {
 
 /* 卡片内容区域样式 */
 .card-body {
-    padding: 8px 2px;  /* 增加上padding来调整图片和标题的距离 */
+    padding: 0;
+    flex: 1;
     font-family: "Lucida Console", monospace;  /* 确保使用 Console 字体 */
 }
 
 /* 卡片标题样式 */
 .card-title {
-    font-size: 16px;
-    font-family: "Barlow", sans-serif;  /* 确保使用 Barlow 字体 */
-    letter-spacing: 0.20px;  /* 字间距 */
-    margin-bottom: 4px;  /* 增加底部margin来调整标题和描述的距离 */
+    font-size: 20px;  /* 更大的标题 */
+    font-family: "Barlow", sans-serif;
+    letter-spacing: 0.20px;
+    margin-bottom: 12px;  /* 增加与标签的间距 */
     font-weight: 500;
     color: var(--color-text-darkgrey);
     transition: all 0.2s ease;
@@ -145,7 +147,8 @@ button:hover {
 .buttons-section {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;  /* 按钮之间的间距 */
+    gap: 16px;
+    justify-content: flex-start;  /* 改为左对齐 */
 }
 
 /* 导航栏样式 */
@@ -196,7 +199,7 @@ button:hover {
     max-width: 1350px;
     width: 100%;
     margin: 60px auto 0;
-    max-width: calc(250px * 3 + 40px);
+    max-width: 800px;  /* 匹配新的卡片宽度 */
     font-family: "Barlow", sans-serif;
     line-height: 1.6;
     text-align: left;
@@ -323,11 +326,32 @@ button:hover {
 /* 卡片图片链接样式 */
 .card-image-link {
     display: block;
-    width: 100%;
+    width: 320px;  /* 匹配新的图片宽度 */
     cursor: pointer;
     transition: opacity 0.2s ease;
 }
 
 .card-image-link:hover img {
     opacity: 0.8;
+}
+
+/* Filter wrapper 样式 */
+.filter-wrapper {
+    width: 100%;
+    background-color: var(--color-background);
+    padding: 8px 0;
+    transition: all 0.3s ease;
+}
+
+/* 固定状态的样式 */
+.filter-wrapper.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* 当 filter 固定时，为内容添加 padding-top */
+.cards-section.filter-fixed {
+    padding-top: 60px;  /* 根据 filter 高度调整 */
 }
