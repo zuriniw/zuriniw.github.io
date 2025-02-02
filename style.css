@@ -83,11 +83,11 @@ button:hover {
 
 /* 卡片网格区域样式 */
 .cards-section {
-    margin-top: 10px;  /* 减小与过滤器的距离 */
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 40px;
-    align-items: center;  /* 居中对齐 */
+    align-items: center;
     width: 100%;
 }
 
@@ -97,6 +97,7 @@ button:hover {
     display: flex;
     gap: 30px;
     align-items: flex-start;
+    order: 0;  /* 默认顺序 */
     margin: 0;
     border: 1px solid var(--color-text);
     padding: 0 30px 0 0;  /* 移除上下内边距 */
@@ -360,7 +361,7 @@ button:hover {
     gap: 8px;
     flex-wrap: wrap;
     position: absolute;
-    bottom: 16px;  /* 设置底部间距 */
+    bottom: 8px;  /* 设置底部间距 */
 }
 
 /* 卡片标签样式 */
@@ -440,7 +441,7 @@ button:hover {
     font-family: "Space Mono", monospace;
     font-size: 14px;
     color: var(--color-text-grey);
-    margin: 4px 0 12px 0;
+    margin: 4px 0 4px 0;
     letter-spacing: 0.4px;
 }
 
@@ -664,16 +665,19 @@ button:hover {
 
 .project-meta {
     margin-bottom: 60px;
+    letter-spacing: 0.4px;
 }
 
 .meta-item {
     margin-bottom: 16px;
     font-family: "Space Mono", monospace;
     font-size: 16px;
+    letter-spacing: 0.4px;
 }
 
 .meta-label {
     color: var(--color-text);
+    letter-spacing: 0.4px;
 }
 
 .meta-link {
@@ -688,6 +692,7 @@ button:hover {
 
 .meta-text {
     color: var(--color-text);
+    letter-spacing: 0.6px;
 }
 
 .project-footer {
@@ -699,7 +704,10 @@ button:hover {
 .project-context {
     font-family: "Space Mono", monospace;
     font-size: 16px;
-    color: var(--color-text-grey);
+    color: var(--color-text);
+    line-height:1.6;  /* 增加行间距 */
+    letter-spacing: -0.2px;
+    font-weight: 200;
 }
 
 /* 点包装器链接样式 */

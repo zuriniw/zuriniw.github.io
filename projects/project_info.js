@@ -21,6 +21,7 @@ class Project {
         otherLink2 = null,
         otherLink3 = null,
         prize = null,
+        weight = null,
         situate = null
     }) {
         this.name = name;
@@ -44,6 +45,7 @@ class Project {
         this.otherLink2 = otherLink2;
         this.otherLink3 = otherLink3;
         this.prize = prize;
+        this.weight = weight;
         this.situate = situate;
     }
 
@@ -76,6 +78,7 @@ const projects = [
         briefDescription: `"We shape our buildings, thereafter they shape us." --Winston Churchill, 1943`,
         youtubeLink: "https://www.youtube.com/watch?v=X6KAT7KzDUs",
         prize: "Best Academic Contribution Award",
+        weight: 9,
         situate: { x: 45, y: -78 }
     }),
     new Project({
@@ -93,6 +96,7 @@ const projects = [
         tools: "Particle Cloud, Photon2, Woodworking Tools",
         briefDescription: `Build peripheral and expressive awareness in lovable devices, to foster emotive communication through low-fidelity information`,
         youtubeLink: "https://www.youtube.com/watch?v=KNwp1Vy8hrg",
+        weight: 8,
         situate: { x: -23, y: 89 }
     }),
     new Project({
@@ -107,25 +111,24 @@ const projects = [
         briefDescription: `Use Python in Grasshopper? Build your own Grasshopper using Python!`,
         youtubeLink: "https://www.youtube.com/watch?v=J2h9kxWUWH4",
         prize: "1st Prize in CMU 15-112 Term Project",
+        weight: 7,
         situate: { x: -67, y: -34 }
     }),
     new Project({
         name: "villagerenewal",
-        title: "Village Renewal Design",
-        subtitle: "Village Renewal Design in Fujian, China",
+        title: "Village Renewal",
+        subtitle: "Rural Revitalization Design",
         labels: ["Spatial"],
         time: "2024",
         ispage: true,
         isteam: false,
         tutor: "Hui Luo",
         myContribution: "Ethnographic surveys, Designing, Drawing",
-        briefDescription: `From the perspective of post-lineage rural social relations, this study combines historical-geographic analysis of Huilong Village (investigating local history, geographic positioning, ethnic migration patterns, and spatial evolution) with ethnographic fieldwork documenting contemporary village life. To address critical issues of settlement hollowing, weakened social cohesion, and degradation of spatial fabric/cultural landscape, we propose a design intervention centered on Zhujiaxiang Lane, featuring:
-
-1. Community Hall for Local Gentry & public space redesign
-2. Architectural renovation of a vernacular rammed-earth dwelling
-3. Holistic revitalization of surrounding cultural landscapes`,
-        otherLink1: "https://www.behance.net/gallery/217218343/Village-Renewal-Design-in-Fujian-China",
-        situate: { x: 92, y: 12 }
+        tools: "Rhino, Photoshop",
+        briefDescription: "Revitalize the village through architectural design and cultural preservation. The project aims to preserve and enhance the unique cultural heritage of the village while improving the living conditions of its residents.",
+        prize: "Outstanding Undergraduate Thesis; 1st place in Architecture School",
+        weight: 7,
+        situate: { x: 67, y: 23 }
     }),
     new Project({
         name: "aurora",
@@ -141,6 +144,7 @@ const projects = [
         briefDescription: `Instead of chasing zero-tolerance implementation and avoiding any potential deviations, MR-aided design practices aim to increase construction allowance by injecting computation into human operations.`,
         youtubeLink: "https://www.dropbox.com/scl/fi/ajuzkeolpeorpc0979q8t/HolographicConstruction.mp4?rlkey=7s31yppucptg6rdk8dkhffny0&e=1&dl=0",
         paperLink: "https://papers.cumincad.org/cgi-bin/works/paper/caadria2022_157",
+        weight: 8,
         situate: { x: -88, y: 56 }
     }),
     new Project({
@@ -156,6 +160,7 @@ const projects = [
         tools: "GHPython, Grasshopper, Kinect Camera",
         briefDescription: `This project explores the fusion of body movement with algorithmically generated sound and visuals, redefining how we interact with music creation.`,
         youtubeLink: "https://www.youtube.com/watch?v=FpLBtfClNgE",
+        weight: 8,
         situate: { x: 34, y: -91 }
     }),
     new Project({
@@ -169,20 +174,22 @@ const projects = [
         tools: "Python, Flask",
         briefDescription: `The project introduces an experimental platform, Knitting Text, that uses gaze position prediction models to explore human-text interaction in a non-streamlined reading scenario. By predicting and visualizing gaze projections and knitting them into a dynamic representation of the reading journey, it emphasizes the importance of human agency and the messiness inherent in reading.`,
         youtubeLink: "https://www.youtube.com/watch?v=9TzxzTWuwcQ",
+        weight: 7,
         situate: { x: -45, y: -67 }
     }),
     new Project({
         name: "fadingroses",
         title: "Fading Roses",
-        subtitle: "Storytelling via text-and-space-exploration game",
+        subtitle: "text-space-exploration narrative game",
         labels: ["Digital"],
         time: "2022",
         isteam: false,
         ispage: true,
-        tools: "procreate, adobe suite",
+        tools: "Procreate, Adobe Suite",
         briefDescription: "It is a story starting from a rose, a home, and a place.",
         youtubeLink: "https://www.bilibili.com/video/BV1jT411g7Xf/",
-        prize: "Award of Excellence & Award of New Talent on Bilibili 'Gamify Everything' Competition",
+        prize: "Award of Excellence & Award of New Talent on Bilibili 'Gamify Everything'",
+        weight: 5,
         situate: { x: 23, y: -45 }
     }),
     new Project({
@@ -191,13 +198,14 @@ const projects = [
         subtitle: "Urban renewal design and modeling",
         labels: ["Spatial", "Digital"],
         time: "2022",
-        myContribution: "Storytelling, modeling, rendering",
+        myContribution: "Storystelling, modeling, rendering",
         isteam: false,
         ispage: true,
         tools: "Rhino, Grasshopper, D5 Render",
         otherLink1: "https://ziruw.notion.site/the-Ark-the-construction-of-green-space-in-the-canal-community-based-on-ecological-restoration-and-2713ed7644ff46c2a4fef6125f90cacb",
         briefDescription: `The design site, Hengtang Station, an ancient canal post, preserves its original texture through a concise oblique grid composition and narrative techniques. Integrating ecological restoration, wetland construction, and canal culture, it balances ecology, city, and history, fostering a shared community and sustainable landscape that embodies harmony between people, nature, and the city.`,
         prize: "1st Prize, Top 10/613 in Architectural Design Competition 'Zijin Award'",
+        weight: 4,
         situate: { x: -67, y: 89 }
     }),
     new Project({
@@ -209,6 +217,7 @@ const projects = [
         myContribution: "Computational design, interface design",
         isteam: true,
         tools: "Grasshopper",
+        weight: 4,
         situate: { x: 34, y: -91 }
     }),
     new Project({
@@ -223,6 +232,7 @@ const projects = [
         ispage: true,
         tools: "Rhino, Grasshopper",
         prize: "Patent",
+        weight: 5,
         situate: { x: -88, y: 12 }
     }),
     new Project({
@@ -233,6 +243,7 @@ const projects = [
         time: "2023",
         isteam: false,
         ispage: true,
+        weight: 1,
         situate: { x: 56, y: -34 }
     }),
     new Project({
@@ -243,6 +254,7 @@ const projects = [
         time: "2022",
         isteam: false,
         tools: "JLC EDA, Arduino, Rhino",
+        weight: 2,
         situate: { x: -12, y: 78 }
     }),
     new Project({
@@ -255,6 +267,7 @@ const projects = [
         isteam: true,
         ispage: true,
         tools: "Rhino, Fologram, Unity",
+        weight: 4,
         situate: { x: 45, y: -67 }
     }),
     new Project({
@@ -269,6 +282,7 @@ const projects = [
         ispage: true,
         tools: "Unity, Arduino",
         briefDescription: "What if data can flows among the real world and MR scene?",
+        weight: 4,
         situate: { x: -23, y: 56 }
     })
 ];

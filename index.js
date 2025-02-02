@@ -36,7 +36,10 @@ function createFilterButtons() {
 // 生成项目卡片
 function createProjectCards() {
     console.log('Creating project cards');
-    projects.forEach(project => {
+    // 按 weight 排序项目
+    const sortedProjects = [...projects].sort((a, b) => b.weight - a.weight);
+
+    sortedProjects.forEach(project => {
         console.log('Creating card for:', project.title);
         const card = document.createElement('div');
         card.className = 'card';
@@ -158,15 +161,25 @@ function updateCards() {
     const cards = cardSection.querySelectorAll('.card');
     const pointWrappers = document.querySelectorAll('.point-wrapper');
     
-    cards.forEach(card => {
-        const isVisible = activeFilters.length === 0 || 
+    // 获取所有可见卡片并按weight排序
+    const visibleCards = Array.from(cards).filter(card => {
+        return activeFilters.length === 0 || 
             activeFilters.some(filter => card.hasAttribute(`data-${filter}`));
-        
-        if (isVisible) {
-            card.classList.remove('hide');
-        } else {
-            card.classList.add('hide');
-        }
+    });
+
+    // 隐藏所有卡片
+    cards.forEach(card => {
+        card.classList.add('hide');
+    });
+
+    // 按weight重新排序并显示可见卡片
+    visibleCards.sort((a, b) => {
+        const projectA = projects.find(p => p.title === a.querySelector('.card-title').textContent);
+        const projectB = projects.find(p => p.title === b.querySelector('.card-title').textContent);
+        return projectB.weight - projectA.weight;
+    }).forEach((card, index) => {
+        card.classList.remove('hide');
+        card.style.order = index;  // 使用 flex order 属性控制顺序
     });
 
     pointWrappers.forEach(wrapper => {
