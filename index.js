@@ -38,8 +38,8 @@ function createProjectCards() {
             card.setAttribute(`data-${label.toLowerCase()}`, '');
         });
 
-        // 确定工作类型
-        const workType = project.collaborator ? 'Teamwork' : 'Independent Work';
+        // 如果有 myContribution 或 collaborator，就是团队项目
+        const workType = (project.myContribution || project.collaborator) ? 'Teamwork' : 'Independent Work';
 
         card.innerHTML = `
             <a href="${project.youtubeLink}" target="_blank" class="card-image-link">
@@ -52,6 +52,7 @@ function createProjectCards() {
                 </div>
                 <span class="card-description">${project.subtitle}</span>
                 <p class="card-time">${project.time}, ${workType}</p>
+                ${project.prize ? `<p class="card-prize">${project.prize}</p>` : ''}
                 <div class="card-labels">
                     ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
                 </div>
@@ -99,15 +100,27 @@ function handleFilterClick(e) {
 // 更新卡片显示状态
 function updateCards() {
     const cards = cardSection.querySelectorAll('.card');
+    const pointWrappers = document.querySelectorAll('.point-wrapper');
+    
     cards.forEach(card => {
-        // 检查卡片是否匹配任何激活的过滤器
-        const isVisible = activeFilters.length === 0 ||  // 如果没有激活的过滤器，显示所有卡片
+        const isVisible = activeFilters.length === 0 || 
             activeFilters.some(filter => card.hasAttribute(`data-${filter}`));
         
         if (isVisible) {
             card.classList.remove('hide');
         } else {
             card.classList.add('hide');
+        }
+    });
+
+    pointWrappers.forEach(wrapper => {
+        const isVisible = activeFilters.length === 0 || 
+            activeFilters.some(filter => wrapper.hasAttribute(`data-${filter}`));
+        
+        if (isVisible) {
+            wrapper.classList.remove('hide');
+        } else {
+            wrapper.classList.add('hide');
         }
     });
 }
@@ -118,27 +131,35 @@ function addFilterHoverEffects() {
         button.addEventListener('mouseenter', (e) => {
             const filterName = e.target.textContent;
             
-            // 处理所有卡片
-            document.querySelectorAll('.card').forEach(card => {
-                // 检查卡片是否包含当前悬停的标签
-                const hasLabel = Array.from(card.querySelectorAll('.card-label'))
-                    .some(label => label.textContent === filterName);
+            document.querySelectorAll('.card, .point-wrapper').forEach(element => {
+                const hasLabel = element.classList.contains('card') 
+                    ? Array.from(element.querySelectorAll('.card-label'))
+                        .some(label => label.textContent === filterName)
+                    : element.hasAttribute(`data-${filterName.toLowerCase()}`);
                 
                 if (!hasLabel) {
-                    // 如果卡片不包含当前标签，添加淡出效果
-                    card.querySelector('.card-title').classList.add('card-fade');
-                    card.querySelector('.card-description').classList.add('card-fade');
-                    card.querySelector('.card-time').classList.add('card-fade');
-                    const videoIcon = card.querySelector('.video-icon');
-                    if (videoIcon) {
-                        videoIcon.classList.add('card-fade');
+                    if (element.classList.contains('card')) {
+                        // 卡片淡出效果
+                        element.querySelector('.card-title').classList.add('card-fade');
+                        element.querySelector('.card-description').classList.add('card-fade');
+                        element.querySelector('.card-time').classList.add('card-fade');
+                        const prizeElement = element.querySelector('.card-prize');
+                        if (prizeElement) {
+                            prizeElement.classList.add('card-fade');
+                        }
+                        const videoIcon = element.querySelector('.video-icon');
+                        if (videoIcon) {
+                            videoIcon.classList.add('card-fade');
+                        }
+                        element.querySelectorAll('.card-label').forEach(label => {
+                            label.classList.add('card-fade');
+                        });
+                    } else {
+                        // 点和标签淡出效果
+                        element.classList.add('point-fade');
                     }
-                    card.querySelectorAll('.card-label').forEach(label => {
-                        label.classList.add('card-fade');
-                    });
-                } else {
-                    // 如果卡片包含当前标签，高亮显示匹配的标签
-                    card.querySelectorAll('.card-label').forEach(label => {
+                } else if (element.classList.contains('card')) {
+                    element.querySelectorAll('.card-label').forEach(label => {
                         if (label.textContent === filterName) {
                             label.classList.add('hover');
                         }
@@ -147,22 +168,27 @@ function addFilterHoverEffects() {
             });
         });
 
-        button.addEventListener('mouseleave', (e) => {
-            const filterName = e.target.textContent;
-            
-            // 移除所有淡出和高亮效果
-            document.querySelectorAll('.card').forEach(card => {
-                card.querySelector('.card-title').classList.remove('card-fade');
-                card.querySelector('.card-description').classList.remove('card-fade');
-                card.querySelector('.card-time').classList.remove('card-fade');
-                const videoIcon = card.querySelector('.video-icon');
-                if (videoIcon) {
-                    videoIcon.classList.remove('card-fade');
+        button.addEventListener('mouseleave', () => {
+            document.querySelectorAll('.card, .point-wrapper').forEach(element => {
+                if (element.classList.contains('card')) {
+                    element.querySelector('.card-title').classList.remove('card-fade');
+                    element.querySelector('.card-description').classList.remove('card-fade');
+                    element.querySelector('.card-time').classList.remove('card-fade');
+                    const prizeElement = element.querySelector('.card-prize');
+                    if (prizeElement) {
+                        prizeElement.classList.remove('card-fade');
+                    }
+                    const videoIcon = element.querySelector('.video-icon');
+                    if (videoIcon) {
+                        videoIcon.classList.remove('card-fade');
+                    }
+                    element.querySelectorAll('.card-label').forEach(label => {
+                        label.classList.remove('card-fade');
+                        label.classList.remove('hover');
+                    });
+                } else {
+                    element.classList.remove('point-fade');
                 }
-                card.querySelectorAll('.card-label').forEach(label => {
-                    label.classList.remove('card-fade');
-                    label.classList.remove('hover');
-                });
             });
         });
     });
@@ -194,11 +220,106 @@ function initFilterScroll() {
     });
 }
 
+// 修改项目点生成功能
+function createProjectPoints() {
+    const container = document.querySelector('.coordinate-container');
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+
+    projects.forEach(project => {
+        const pointWrapper = document.createElement('div');
+        pointWrapper.className = 'point-wrapper';
+        
+        const point = document.createElement('div');
+        point.className = 'project-point';
+        
+        // 添加项目名称标签
+        const label = document.createElement('div');
+        label.className = 'point-label';
+        label.textContent = `[${project.title}]`;
+        
+        // 添加与标签相同的数据属性
+        project.labels.forEach(label => {
+            point.setAttribute(`data-${label.toLowerCase()}`, '');
+            pointWrapper.setAttribute(`data-${label.toLowerCase()}`, '');
+        });
+        
+        // 将 -100 到 100 的坐标映射到容器尺寸
+        const x = (project.situate.x + 100) / 200 * containerWidth;
+        const y = (100 - project.situate.y) / 200 * containerHeight;
+        
+        pointWrapper.style.left = `${x}px`;
+        pointWrapper.style.top = `${y}px`;
+        
+        // 添加悬停预览
+        pointWrapper.addEventListener('mouseenter', (e) => {
+            const preview = document.createElement('div');
+            preview.className = 'point-preview';
+            preview.innerHTML = `<img src="${project.gifImage}" alt="${project.title}">`;
+            
+            // 根据 y 坐标决定预览框的位置
+            const previewHeight = 160; // 预览框的大致高度
+            const offset = 20; // 与光标的距离
+            
+            preview.style.left = `${e.clientX + offset}px`;
+            if (project.situate.y > 0) {
+                preview.style.top = `${e.clientY + offset}px`;
+            } else {
+                preview.style.top = `${e.clientY - previewHeight - offset}px`;
+            }
+            
+            document.body.appendChild(preview);
+        });
+
+        pointWrapper.addEventListener('mouseleave', () => {
+            const preview = document.querySelector('.point-preview');
+            if (preview) {
+                preview.remove();
+            }
+        });
+        
+        pointWrapper.appendChild(point);
+        pointWrapper.appendChild(label);
+        container.appendChild(pointWrapper);
+    });
+}
+
+// 修改视图切换功能
+function initViewSwitch() {
+    const switchButton = document.querySelector('.switch-view');
+    const cardsSection = document.querySelector('.cards-section');
+    const coordinateView = document.querySelector('.coordinate-view');
+    let isGalleryView = true;
+    let pointsCreated = false;
+
+    // 初始化按钮文字
+    switchButton.textContent = '⌘';
+
+    switchButton.addEventListener('click', () => {
+        if (isGalleryView) {
+            cardsSection.classList.add('hide');
+            coordinateView.classList.remove('hide');
+            switchButton.textContent = '∀';
+            
+            if (!pointsCreated) {
+                createProjectPoints();
+                pointsCreated = true;
+            }
+        } else {
+            cardsSection.classList.remove('hide');
+            coordinateView.classList.add('hide');
+            switchButton.textContent = '⌘';
+        }
+        isGalleryView = !isGalleryView;
+    });
+}
+
 // 初始化页面
 createFilterButtons();
 createProjectCards();
 addFilterHoverEffects();
 initFilterScroll();
+initViewSwitch();
 
 // 添加过滤器点击事件监听
 buttonSection.querySelectorAll('button').forEach(button => {

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filter Image Gallery</title>
+    <title>Ziru Wei</title>
     <link rel="icon" type="image/png" href="images/kitten.png">
     <link rel="stylesheet" href="style.css">
     <script src="index.js" type="module" defer></script>
@@ -35,7 +35,8 @@
     <div class="filter-wrapper">
         <div class="filter-container">
             <div class="filter-content">
-                <div class="filter-arrow"></div>
+                <button class="switch-view">⌘</button>
+                <div class="divider"></div>
                 <div class="buttons-section">
                     <!-- 过滤器按钮将由 JavaScript 动态生成 -->
                 </div>
@@ -45,6 +46,15 @@
 
     <div class="cards-section">
         <!-- 项目卡片将由 JavaScript 动态生成 -->
+    </div>
+
+    <!-- 添加坐标视图容器 -->
+    <div class="coordinate-view hide">
+        <div class="coordinate-container">
+            <div class="axis x-axis"></div>
+            <div class="axis y-axis"></div>
+            <!-- 项目点将由 JavaScript 动态生成 -->
+        </div>
     </div>
 
     <!-- 添加页脚部分 -->
