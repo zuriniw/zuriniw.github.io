@@ -38,27 +38,73 @@ function createProjectCards() {
             card.setAttribute(`data-${label.toLowerCase()}`, '');
         });
 
-        // 如果有 myContribution 或 collaborator，就是团队项目
         const workType = (project.myContribution || project.collaborator) ? 'Teamwork' : 'Independent Work';
 
-        card.innerHTML = `
-            <a href="${project.youtubeLink}" target="_blank" class="card-image-link">
-                <img src="${project.gifImage}" alt="${project.title}">
-            </a>
-            <div class="card-body">
-                <div class="card-title-container">
-                    <p class="card-title">${project.title}</p>
-                    ${project.youtubeLink ? '<a href="' + project.youtubeLink + '" target="_blank" class="video-icon">►</a>' : ''}
-                </div>
-                <span class="card-description">${project.subtitle}</span>
-                <p class="card-time">${project.time}, ${workType}</p>
-                ${project.prize ? `<p class="card-prize">${project.prize}</p>` : ''}
-                <div class="card-labels">
-                    ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
-                </div>
-            </div>
-        `;
-        cardSection.appendChild(card);
+        // 构建项目页面路径
+        const htmlPath = `projects/${project.name}/${project.name}.html`;
+
+        // 创建图片链接
+        const imageLink = document.createElement('a');
+        imageLink.className = 'card-image-link';
+
+        // 检查项目页面是否存在
+        fetch(htmlPath)
+            .then(response => {
+                if (response.ok) {
+                    imageLink.href = htmlPath;
+                } else {
+                    imageLink.href = project.youtubeLink || project.otherLink1 || '#';
+                    if (project.youtubeLink || project.otherLink1) {
+                        imageLink.target = '_blank';
+                    }
+                }
+
+                // 在获取到正确的链接后再设置卡片内容
+                card.innerHTML = `
+                    <a href="${imageLink.href}" ${imageLink.target ? `target="${imageLink.target}"` : ''} class="card-image-link">
+                        <img src="${project.gifImage}" alt="${project.title}">
+                    </a>
+                    <div class="card-body">
+                        <div class="card-title-container">
+                            <p class="card-title">${project.title}</p>
+                            ${project.youtubeLink ? '<a href="' + project.youtubeLink + '" target="_blank" class="video-icon">►</a>' : ''}
+                        </div>
+                        <span class="card-description">${project.subtitle}</span>
+                        <p class="card-time">${project.time}, ${workType}</p>
+                        ${project.prize ? `<p class="card-prize">${project.prize}</p>` : ''}
+                        <div class="card-labels">
+                            ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                cardSection.appendChild(card);
+            })
+            .catch(() => {
+                imageLink.href = project.youtubeLink || project.otherLink1 || '#';
+                if (project.youtubeLink || project.otherLink1) {
+                    imageLink.target = '_blank';
+                }
+                
+                // 在获取到备选链接后再设置卡片内容
+                card.innerHTML = `
+                    <a href="${imageLink.href}" ${imageLink.target ? `target="${imageLink.target}"` : ''} class="card-image-link">
+                        <img src="${project.gifImage}" alt="${project.title}">
+                    </a>
+                    <div class="card-body">
+                        <div class="card-title-container">
+                            <p class="card-title">${project.title}</p>
+                            ${project.youtubeLink ? '<a href="' + project.youtubeLink + '" target="_blank" class="video-icon">►</a>' : ''}
+                        </div>
+                        <span class="card-description">${project.subtitle}</span>
+                        <p class="card-time">${project.time}, ${workType}</p>
+                        ${project.prize ? `<p class="card-prize">${project.prize}</p>` : ''}
+                        <div class="card-labels">
+                            ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                cardSection.appendChild(card);
+            });
     });
 }
 
@@ -86,7 +132,7 @@ function handleFilterClick(e) {
             e.target.classList.remove('active');
         } else {
             activeFilters.push(clickedFilter);
-            e.target.classList.add('active');
+    e.target.classList.add('active');
         }
     }
     
@@ -227,32 +273,65 @@ function createProjectPoints() {
     const containerHeight = container.offsetHeight;
 
     projects.forEach(project => {
-        const pointWrapper = document.createElement('div');
-        pointWrapper.className = 'point-wrapper';
+        const wrapper = document.createElement('div');
+        wrapper.className = 'point-wrapper';
         
+        // 创建点击区域
+        const clickArea = document.createElement('a');
+        
+        // 构建可能的项目页面路径
+        const htmlPath = `projects/${project.name}/${project.name}.html`;
+        
+        // 检查项目页面是否存在
+        fetch(htmlPath)
+            .then(response => {
+                if (response.ok) {
+                    clickArea.href = htmlPath;
+                } else {
+                    // 如果项目页面不存在，使用视频链接或其他链接
+                    clickArea.href = project.youtubeLink || project.otherLink1 || '#';
+                    if (project.youtubeLink || project.otherLink1) {
+                        clickArea.target = '_blank';
+                    }
+                }
+            })
+            .catch(() => {
+                // 如果检查失败，使用视频链接或其他链接
+                clickArea.href = project.youtubeLink || project.otherLink1 || '#';
+                if (project.youtubeLink || project.otherLink1) {
+                    clickArea.target = '_blank';
+                }
+            });
+
+        clickArea.style.textDecoration = 'none';
+        clickArea.style.color = 'inherit';
+
         const point = document.createElement('div');
         point.className = 'project-point';
-        
-        // 添加项目名称标签
+        clickArea.appendChild(point);
+
         const label = document.createElement('div');
         label.className = 'point-label';
-        label.textContent = `[${project.title}]`;
+        label.textContent = project.title;
+        clickArea.appendChild(label);
         
+        wrapper.appendChild(clickArea);
+
         // 添加与标签相同的数据属性
         project.labels.forEach(label => {
             point.setAttribute(`data-${label.toLowerCase()}`, '');
-            pointWrapper.setAttribute(`data-${label.toLowerCase()}`, '');
+            wrapper.setAttribute(`data-${label.toLowerCase()}`, '');
         });
         
         // 将 -100 到 100 的坐标映射到容器尺寸
         const x = (project.situate.x + 100) / 200 * containerWidth;
         const y = (100 - project.situate.y) / 200 * containerHeight;
         
-        pointWrapper.style.left = `${x}px`;
-        pointWrapper.style.top = `${y}px`;
+        wrapper.style.left = `${x}px`;
+        wrapper.style.top = `${y}px`;
         
         // 添加悬停预览
-        pointWrapper.addEventListener('mouseenter', (e) => {
+        wrapper.addEventListener('mouseenter', (e) => {
             const preview = document.createElement('div');
             preview.className = 'point-preview';
             preview.innerHTML = `<img src="${project.gifImage}" alt="${project.title}">`;
@@ -271,16 +350,14 @@ function createProjectPoints() {
             document.body.appendChild(preview);
         });
 
-        pointWrapper.addEventListener('mouseleave', () => {
+        wrapper.addEventListener('mouseleave', () => {
             const preview = document.querySelector('.point-preview');
             if (preview) {
                 preview.remove();
             }
         });
         
-        pointWrapper.appendChild(point);
-        pointWrapper.appendChild(label);
-        container.appendChild(pointWrapper);
+        container.appendChild(wrapper);
     });
 }
 

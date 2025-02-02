@@ -1,6 +1,6 @@
 /* 颜色定义 */
 :root {
-    --color-background: #faf7f6;
+    --color-background: #f4f4f4;
     --color-text: #000;
     --color-text-hover: #9f9f9f;
     --color-border: #000;
@@ -405,9 +405,11 @@ button:hover {
 .card-image-link {
     display: block;
     width: 280px;
-    margin-left: -1px;  /* 让图片与卡片边框完美对齐 */
+    margin-left: -1px;
     cursor: pointer;
     transition: opacity 0.2s ease;
+    text-decoration: none;  /* 移除下划线 */
+    color: inherit;  /* 继承文字颜色 */
 }
 
 .card-image-link:hover img {
@@ -596,4 +598,119 @@ button:hover {
 
 .point-wrapper.hide {
     display: none;
+}
+
+/* 关于页面样式 */
+.about-section {
+    max-width: 760px;
+    margin: 60px auto 0;
+    padding: 0 20px;
+}
+
+.about-greeting {
+    font-family: "Geist Mono", monospace;
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: var(--color-text);
+}
+
+/* 添加图片容器样式 */
+.about-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 0 40px 20px;  /* 左对齐并向右偏移20px */
+}
+
+/* 图片样式 */
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-text {
+    font-family: "Barlow", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-text);
+    letter-spacing: 0.4px;
+}
+
+/* 项目页面样式 */
+.project-section {
+    max-width: 760px;
+    margin: 60px auto 0;
+    padding: 0 20px;
+}
+
+.project-header {
+    margin-bottom: 60px;
+}
+
+.project-title {
+    font-family: "Geist Mono", monospace;
+    font-size: 48px;
+    margin-bottom: 24px;
+    font-weight: normal;
+}
+
+.project-subtitle {
+    font-family: "Barlow", sans-serif;
+    font-size: 24px;
+    line-height: 1.4;
+    font-weight: normal;
+}
+
+.project-meta {
+    margin-bottom: 60px;
+}
+
+.meta-item {
+    margin-bottom: 16px;
+    font-family: "Geist Mono", monospace;
+    font-size: 16px;
+}
+
+.meta-label {
+    color: var(--color-text);
+}
+
+.meta-link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.meta-link:hover {
+    color: var(--color-text-hover);
+}
+
+.meta-text {
+    color: var(--color-text);
+}
+
+.project-footer {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--color-text);
+}
+
+.project-context {
+    font-family: "Geist Mono", monospace;
+    font-size: 16px;
+    color: var(--color-text-grey);
+}
+
+/* 点包装器链接样式 */
+.point-wrapper a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* 确保点击区域覆盖整个点和标签 */
+.point-wrapper a:hover {
+    text-decoration: none;
 }

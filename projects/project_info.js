@@ -1,6 +1,7 @@
 // 项目类定义
 class Project {
     constructor({
+        name,
         title,
         subtitle,
         labels,
@@ -21,6 +22,7 @@ class Project {
         prize = null,
         situate = null
     }) {
+        this.name = name;
         this.title = title;
         this.subtitle = subtitle;
         this.labels = Array.isArray(labels) ? labels : [labels]; // 确保labels是数组
@@ -46,26 +48,38 @@ class Project {
 // 项目实例
 const projects = [
     new Project({
+        name: "poi",
         title: "POI +-",
         subtitle: "Humanizing MR Spatial Behavior Computation",
         labels: ["XR", "Embodied", "Spatial"],
         time: "2024",
         gifImage: "projects/poi/poi.gif",
+        myContribution: "ideation, coding, experiment designing, documenting, drawing",
+        tutor: "Chao Yan",
+        ta: "Hanning Liu, Te Li",
         youtubeLink: "https://www.youtube.com/watch?v=X6KAT7KzDUs",
         prize: "Best Academic Contribution Award",
+        briefDescription: "Teamwork in 2024 DigitalFutures Workshop",
+        narrative: "\"We shape our buildings, thereafter they shape us.\" --Winston Churchill, 1943",
         situate: { x: 45, y: -78 }
     }),
     new Project({
+        name: "seeingsaw",
         title: "Seeing-Saw",
         subtitle: "Paired Device for Telepresence",
         labels: "Embodied",
         time: "2021-2022",
         gifImage: "projects/seeingsaw/seeingsaw.gif",
-        myContribution: "paired device background research | ideating | electrical wiring |coding​",
+        collaborator: "Leslie Liu",
+        tutor: "Daragh Byrne",
+        ta: "Zhenfang Chen",
+        myContribution: "paired device background research | ideating | electrical wiring | coding",
         youtubeLink: "https://www.youtube.com/watch?v=KNwp1Vy8hrg&t=12s",
+        briefDescription: "Build peripheral and expressive awareness in lovable devices, to foster emotive communication through low-fidelity information",
         situate: { x: -23, y: 89 }
     }),
     new Project({
+        name: "shapeshift",
         title: "Shapeshift Playground",
         subtitle: "Node-based drawing tool development",
         labels: "Digital",
@@ -76,6 +90,7 @@ const projects = [
         situate: { x: -67, y: -34 }
     }),
     new Project({
+        name: "villagerenewal",
         title: "Village Renewal Design",
         subtitle: "Village Renewal Design in Fujian, China",
         labels: "Spatial",
@@ -85,6 +100,7 @@ const projects = [
         situate: { x: 92, y: 12 }
     }),
     new Project({
+        name: "aurora",
         title: "Holographic Design2Construction",
         subtitle: "A case study of the full-scale building：AURORA",
         labels: "XR",
@@ -96,6 +112,7 @@ const projects = [
         situate: { x: -88, y: 56 }
     }),
     new Project({
+        name: "bodymusic",
         title: "Echos of Motion",
         subtitle: "Body as an interface for music creation",
         labels: "Embodied",
@@ -105,6 +122,7 @@ const projects = [
         situate: { x: 34, y: -91 }
     }),
     new Project({
+        name: "gazeknitting",
         title: "Gaze-Knitting",
         subtitle: "Gaze visualization in non-streamlined reading",
         labels: ["Embodied", 'Digital'],
