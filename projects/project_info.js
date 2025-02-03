@@ -308,7 +308,7 @@ const projects = [
         tools: "Unity, Arduino",
         briefDescription: "What if data can flows among the real world and MR scene?",
         weight: 4,
-        situate: { x: 10, y: -10 }
+        situate: { x: 10, y: 10 }
     })
 ];
 
