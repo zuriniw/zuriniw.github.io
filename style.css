@@ -160,7 +160,7 @@ button:hover {
     object-fit: cover;
     border: 1.2px solid var(--color-text);
     transition: opacity 0.2s ease;
-    margin: -1.2px 0;  /* 确保图片没有外边距，并向上和向下移动1px */
+    margin: -1.2px 0;  /* 确保图片没有外边距，并向上和向下移动1.2px */
     display: block;  /* 确保图片是块级元素，消除底部间隙 */
     opacity: 0.85;  /* 默认透明度为80% */
 }
@@ -217,7 +217,7 @@ button:hover {
     font-size: 16px;  /* 更大的标题 */
     font-family: "Roboto Mono", monospace;
     letter-spacing: 0.10px;
-    font-weight: 450;
+    font-weight: 350;
     color: var(--color-text-darkgrey);
     transition: all 0.2s ease;
 }
@@ -245,6 +245,7 @@ button:hover {
 .card-time {
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
+    font-weight: 350;
     color: var(--color-text-grey);
     margin: 2px 0 4px 0;
 }
@@ -253,6 +254,7 @@ button:hover {
 .card-description {
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
+    font-weight: 350;
     color: var(--color-text);
     margin: 12px 0 12px 0;
 }
@@ -486,6 +488,7 @@ button:hover {
 .card-prize {
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
+    font-weight: 350;
     color: var(--color-text-grey);
     margin: 2px 0 4px 0;
 }
@@ -752,14 +755,30 @@ button:hover {
     letter-spacing: 0.3px;
 }
 
+/* 链接容器样式 */
+.meta-links {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;  /* 链接之间的间距 */
+    flex-wrap: wrap;  /* 如果空间不够，允许换行 */
+}
+
+/* 项目链接样式 */
 .meta-link {
     color: var(--color-text);
     text-decoration: none;
     transition: color 0.3s ease;
+    background-color: var(--color-text);
+    color: var(--color-white);
+    padding: 2px 10px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    font-size: 14px;  /* 减小字体大小 */
 }
 
 .meta-link:hover {
-    color: var(--color-text-hover);
+    background-color: var(--color-text-hover);
+    color: var(--color-white);
 }
 
 .meta-text {
@@ -820,21 +839,15 @@ button:hover {
 .links-wrapper {
     margin-top: 8px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 8px;
+    flex-wrap: wrap;  /* 如果空间不够，允许换行 */
 }
 
 /* 链接样式 */
 .meta-link {
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color 0.3s ease;
     display: inline-block;
-    font-size: 16px;
-}
-
-.meta-link:hover {
-    color: var(--color-text-hover);
+    font-size: 14px;  /* 确保两处字体大小一致 */
 }
 
 /* Markdown 内容样式 */

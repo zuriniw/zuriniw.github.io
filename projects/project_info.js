@@ -18,7 +18,7 @@ class Project {
         narrative = null,
         youtubeLink = null,
         paperLink = null,
-        otherLink1 = null,
+        githubLink = null,
         otherLink2 = null,
         otherLink3 = null,
         prize = null,
@@ -43,7 +43,7 @@ class Project {
         this.narrative = narrative;
         this.youtubeLink = youtubeLink;
         this.paperLink = paperLink;
-        this.otherLink1 = otherLink1;
+        this.githubLink = githubLink;
         this.otherLink2 = otherLink2;
         this.otherLink3 = otherLink3;
         this.prize = prize;
@@ -87,7 +87,8 @@ const projects = [
         prize: "Best Academic Contribution Award",
         ismarkdown: true,   
         weight: 9,
-        situate: { x: 45, y: -78 }
+        situate: { x: 45, y: -78 },
+        otherLink2: null
     }),
     new Project({
         name: "seeingsaw",
@@ -104,7 +105,8 @@ const projects = [
         tools: "Particle Cloud, Photon2, Woodworking Tools",
         briefDescription: `Build peripheral and expressive awareness in lovable devices, to foster emotive communication through low-fidelity information`,
         youtubeLink: "https://www.youtube.com/watch?v=KNwp1Vy8hrg&feature=youtu.be",
-        otherLink1: "https://github.com/zuriniw/SEEINGSAW",
+        githubLink: "https://github.com/zuriniw/SEEINGSAW",
+        otherLink2: null,
         weight: 8.9,
         situate: { x: -23, y: 89 }
     }),
@@ -119,7 +121,7 @@ const projects = [
         tools: "Python",
         briefDescription: `Use Python in Grasshopper? Build your own Grasshopper using Python!`,
         youtubeLink: "https://www.youtube.com/watch?v=J2h9kxWUWH4",
-        otherLink1: "https://github.com/zuriniw/ShapeShift-Playground",
+        otherLink2: null,
         prize: "1st Prize in CMU 15-112 Term Project",
         weight: 7.1,
         situate: { x: -67, y: -34 },
@@ -136,10 +138,12 @@ const projects = [
         tutor: "Hui Luo",
         myContribution: "Ethnographic surveys, Designing, Drawing",
         tools: "Rhino, Adobe Suite, AutoCAD",
+        otherLink2: null,
         briefDescription: "Revitalize the village through architectural design and cultural preservation. The project aims to preserve and enhance the unique cultural heritage of the village while improving the living conditions of its residents.",
         prize: "Outstanding Undergraduate Thesis; 1st place in Architecture School",
         weight: 7,
-        situate: { x: 67, y: 23 }
+        situate: { x: 67, y: 23 },
+        otherLink2: "https://www.behance.net/gallery/217218343/Village-Renewal-Design-in-Fujian-China",
     }),
     new Project({
         name: "aurora",
@@ -185,7 +189,7 @@ const projects = [
         tools: "Python, Machine Learning",
         briefDescription: `Create an experimental platform, Knitting Text, that uses gaze position prediction models to explore human-text interaction in a non-streamlined reading scenario. By predicting and visualizing gaze projections and knitting them into a dynamic representation of the reading journey, it emphasizes the importance of human agency and the messiness inherent in reading.`,
         youtubeLink: "https://www.youtube.com/watch?v=9TzxzTWuwcQ",
-        otherLink1: "https://github.com/ziru-wei/WebGesturesSDK",
+        otherLink2: null,
         weight: 5,
         situate: { x: -45, y: -67 }
     }),
@@ -199,7 +203,7 @@ const projects = [
         ispage: true,
         tools: "Procreate, Adobe Suite",
         briefDescription: "It is a story starting from a rose, a home, and a place.",
-        youtubeLink: "https://www.bilibili.com/video/BV1jT411g7Xf/",
+        otherLink2: "https://www.bilibili.com/video/BV1jT411g7Xf/",
         prize: "Award of Excellence & Award of New Talent on Bilibili 'Gamify Everything'",
         weight: 5,
         situate: { x: 23, y: -45 }
@@ -214,7 +218,7 @@ const projects = [
         isteam: false,
         ispage: true,
         tools: "Rhino, Grasshopper, D5 Render",
-        otherLink1: "https://ziruw.notion.site/the-Ark-the-construction-of-green-space-in-the-canal-community-based-on-ecological-restoration-and-2713ed7644ff46c2a4fef6125f90cacb",
+        otherLink2: 'https://ziruw.notion.site/the-Ark-the-construction-of-green-space-in-the-canal-community-based-on-ecological-restoration-and-2713ed7644ff46c2a4fef6125f90cacb',
         briefDescription: `The design site, Hengtang Station, an ancient canal post, preserves its original texture through a concise oblique grid composition and narrative techniques. Integrating ecological restoration, wetland construction, and canal culture, it balances ecology, city, and history, fostering a shared community and sustainable landscape that embodies harmony between people, nature, and the city.`,
         prize: "1st Prize, Top 10/613 in Architectural Design Competition 'Zijin Award'",
         weight: 4,

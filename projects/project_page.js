@@ -17,27 +17,19 @@ if (project) {
     // 创建并填充元数据
     const metaSection = document.querySelector('.project-meta');
        // 添加链接
-       if (project.youtubeLink || project.paperLink || project.otherLink1) {
+       if (project.youtubeLink || project.paperLink || project.githubLink || project.otherLink2) {
         const linksContainer = document.createElement('div');
         linksContainer.className = 'meta-item links-container';
         const linksWrapper = document.createElement('div');
         linksWrapper.className = 'links-wrapper';
 
-        if (project.youtubeLink) {
-            const link = createMetaLink('  ○ Video ↗', project.youtubeLink);
-            linksWrapper.appendChild(link);
-        }
+        const links = [];
+        if (project.youtubeLink) links.push(createMetaLink('Demo Video↗', project.youtubeLink));
+        if (project.paperLink) links.push(createMetaLink('Paper↗', project.paperLink));
+        if (project.githubLink) links.push(createMetaLink('GitHub↗', project.githubLink));
+        if (project.otherLink2) links.push(createMetaLink('Project Page↗', project.otherLink2));
 
-        if (project.paperLink) {
-            const link = createMetaLink('  ○ Paper ↗', project.paperLink);
-            linksWrapper.appendChild(link);
-        }
-
-        if (project.otherLink1) {
-            const link = createMetaLink('  ○ Project Page ↗', project.otherLink1);
-            linksWrapper.appendChild(link);
-        }
-
+        linksWrapper.innerHTML = links.map(link => `<a href="${link.href}" target="_blank" class="meta-link">${link.textContent}</a>`).join('\n');
         linksContainer.appendChild(linksWrapper);
         metaSection.appendChild(linksContainer);
     }
@@ -88,8 +80,6 @@ if (project) {
         const prizeItem = createMetaItem('Honor', project.prize);
         metaSection.appendChild(prizeItem);
     }
-
- 
 
     // 添加项目描述
     if (project.briefDescription) {
