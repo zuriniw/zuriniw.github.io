@@ -170,6 +170,8 @@ button:hover {
     border-color: var(--color-light-grey);
     .card-title-container::after {
         background-color: var(--color-light-grey);
+        height: 1.5px;  /* 保持与普通状态一致 */
+        transform: scaleY(0.5);
     }
     img {
         opacity: 0.3;  /* 当卡片被淡出时，图片透明度变为30% */
@@ -203,9 +205,11 @@ button:hover {
     bottom: -6px;
     left: -30px;  /* 从标题容器左边开始 */
     right: 0px;  /* 延伸到卡片右边缘 */
-    height: 1px;
+    height: 1.5px;  /* 增加横线粗细，使其更稳定 */
     background-color: var(--color-text);
     width: calc(100% + 60px);  /* 确保横线延伸到卡片右边缘 */
+    transform: scaleY(0.5);  /* 使用 transform 来确保横线粗细的一致性 */
+    transform-origin: center;  /* 确保缩放是从中心开始的 */
 }
 
 /* 卡片标题样式 */
