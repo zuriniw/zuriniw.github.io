@@ -106,7 +106,7 @@ const projects = [
         briefDescription: `Build peripheral and expressive awareness in lovable devices, to foster emotive communication through low-fidelity information`,
         youtubeLink: "https://www.youtube.com/watch?v=KNwp1Vy8hrg&feature=youtu.be",
         githubLink: "https://github.com/zuriniw/SEEINGSAW",
-        otherLink2: null,
+        otherLink2: "http://ideate.xsead.cmu.edu/gallery/projects/remaking-shaker-1996",
         weight: 8.9,
         situate: { x: -23, y: 89 }
     }),
