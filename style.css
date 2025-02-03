@@ -1,23 +1,30 @@
 /* 字体声明 */
 
 @font-face {
-    font-family: 'Space Mono';
-    src: url('../fonts/SpaceMono-Regular.ttf') format('truetype');
-    font-weight: 400;
+    font-family: 'Roboto Mono';
+    src: url('../fonts/RobotoMono-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 700;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Space Mono';
-    src: url('../fonts/SpaceMono-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
+    font-family: 'Roboto Mono';
+    src: url('../fonts/RobotoMono-Italic-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 700;
+    font-style: italic;
 }
 
 @font-face {
     font-family: 'Barlow';
     src: url('../fonts/Barlow-Regular.ttf') format('truetype');
     font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url('../fonts/Barlow-Regular.ttf') format('truetype');
+    font-weight: 300;
     font-style: normal;
 }
 
@@ -107,7 +114,7 @@ button {
     background: transparent;
     transition: all 0.1s ease;
     margin: 0;
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
 }
 
 /* 按钮悬停效果 */
@@ -155,7 +162,7 @@ button:hover {
     transition: opacity 0.2s ease;
     margin: -1px 0;  /* 确保图片没有外边距，并向上和向下移动1px */
     display: block;  /* 确保图片是块级元素，消除底部间隙 */
-    opacity: 0.8;  /* 默认透明度为80% */
+    opacity: 0.85;  /* 默认透明度为80% */
 }
 
 /* 当卡片被淡出时的样式 */
@@ -173,8 +180,8 @@ button:hover {
 .card-body {
     padding: 0;
     flex: 1;
-    font-family: "Space Mono", monospace;
-    margin-top: 10px;
+    font-family: "Roboto Mono", monospace;
+    margin-top: 4px;
     padding-bottom: 40px;
     position: relative;  /* 为横线提供定位上下文 */
     overflow: visible;  /* 确保横线可以超出内容区域 */
@@ -204,8 +211,8 @@ button:hover {
 /* 卡片标题样式 */
 .card-title {
     font-size: 16px;  /* 更大的标题 */
-    font-family:"Space Mono", monospace;
-    letter-spacing: 0.20px;
+    font-family: "Roboto Mono", monospace;
+    letter-spacing: 0.10px;
     font-weight: 450;
     color: var(--color-text-darkgrey);
     transition: all 0.2s ease;
@@ -232,20 +239,18 @@ button:hover {
 
 /* 时间样式 */
 .card-time {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 14px;
     color: var(--color-text-grey);
     margin: 2px 0 4px 0;
-    letter-spacing: 0.4px;
 }
 
 /* 卡片描述文字样式 */
 .card-description {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 14px;
     color: var(--color-text);
     margin: 12px 0 12px 0;
-    letter-spacing: 0.4px;
 }
 
 /* 过滤按钮区域样式 */
@@ -280,7 +285,7 @@ button:hover {
 }
 
 .nav-item {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 16px;
     text-decoration: none;
     color: var(--color-text);
@@ -293,7 +298,7 @@ button:hover {
 
 /* 介绍部分名字样式 */
 .intro-name {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 24px;
     margin-bottom: 20px;
     color: var(--color-text);
@@ -358,7 +363,7 @@ button:hover {
 .contact-info,
 .copyright,
 .footer-link {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
 }
 
 .social-links {
@@ -403,7 +408,7 @@ button:hover {
 
 /* 卡片标签样式 */
 .card-label {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 12px;
     padding: 2px 8px;
     border: 1px solid var(--color-text);
@@ -475,11 +480,10 @@ button:hover {
 
 /* 奖项样式 */
 .card-prize {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 14px;
     color: var(--color-text-grey);
     margin: 2px 0 4px 0;
-    letter-spacing: 0.4px;
 }
 
 /* 切换按钮容器样式 */
@@ -604,7 +608,7 @@ button:hover {
 
 /* 点标签样式 */
 .point-label {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 12px;
     color: var(--color-text);
     white-space: nowrap;
@@ -653,7 +657,7 @@ button:hover {
 }
 
 .about-greeting {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 24px;
     margin-bottom: 40px;
     color: var(--color-text);
@@ -710,7 +714,7 @@ button:hover {
 }
 
 .project-title {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 48px;
     margin-bottom: 24px;
     font-weight: normal;
@@ -730,14 +734,14 @@ button:hover {
 
 .meta-item {
     margin-bottom: 16px;
-    font-family: "Space Mono", monospace;
-    font-size: 16px;
-    letter-spacing: 0.4px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 18px;
+    letter-spacing: 0.3px;
 }
 
 .meta-label {
     color: var(--color-text);
-    letter-spacing: 0.4px;
+    letter-spacing: 0.3px;
 }
 
 .meta-link {
@@ -767,12 +771,12 @@ button:hover {
 }
 
 .project-context {
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 16px;
     color: var(--color-text);
     line-height:1.6;  /* 增加行间距 */
     letter-spacing: -0.2px;
-    font-weight: 200;
+    font-weight: 400;
 }
 
 /* 点包装器链接样式 */
@@ -830,7 +834,7 @@ button:hover {
     margin: 20px auto;
     width: 60%;
     max-width: 320px;
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 16px;
     line-height: 1.6;
     color: var(--color-text);
@@ -874,9 +878,9 @@ button:hover {
 
 .markdown-content h2 {
     font-size: 30px;
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-weight: 200;
-    margin-top: 120px;  /* 增加二级标题上方的空间 */
+    margin-top: 320px;  /* 增加二级标题上方的空间 */
     margin-bottom: 80px;  /* 增加二级标题下方的空间 */
     position: relative;  /* 为下方横线提供定位上下文 */
 }
@@ -895,10 +899,10 @@ button:hover {
 
 .markdown-content h3 {
     font-size: 20px;
-    font-family: "Space Mono", monospace;
-    font-weight: 80;
-    margin-bottom: 36px;  /* 调整三级标题上方的空间 */
-    margin-top: 44px;  /* 调整三级标题上方的空间 */
+    font-family: "Roboto Mono", monospace;
+    font-weight: 300;
+    margin-bottom: 100px;  /* 调整三级标题上方的空间 */
+    margin-top: 200px;  /* 调整三级标题上方的空间 */
 }
 
 /* 为三级标题添加尖括号 */
@@ -914,7 +918,7 @@ button:hover {
 
 .markdown-content h4 {
     font-size: 22px;
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-weight: 200;
 }
 
@@ -937,7 +941,7 @@ button:hover {
     color: var(--color-white);
     padding: 2px 4px;
     border-radius: 4px;
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 14px;
     width: 60%;
 }
@@ -1012,7 +1016,7 @@ button:hover {
     font-style: italic;
     margin-top: 4px;
     margin-bottom: 120px;
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 14px;
 }
 
@@ -1036,7 +1040,7 @@ button:hover {
     width: 60%;
     border-collapse: collapse;
     margin: 24px 0;
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 14px;
     line-height: 1.6;
     margin-left: 50px;
@@ -1081,7 +1085,7 @@ button:hover {
     display: flex;
     gap: 32px;
     align-items: baseline;
-    font-family: "Space Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     padding: 16px;
     padding-right: 64px;  /* 增加右侧内边距，为星号留出更多空间 */
     border: 1px solid var(--color-text);
