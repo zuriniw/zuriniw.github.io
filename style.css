@@ -587,7 +587,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
     transition: opacity 0.3s ease;
 }
 
@@ -599,8 +598,7 @@ button:hover {
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.1s ease;
-    /* 添加模糊效果的准备 */
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    margin: 0;  /* 添加这行确保没有额外的边距 */
 }
 
 /* 点包装器悬停效果 */
@@ -631,13 +629,28 @@ button:hover {
     color: var(--color-light-grey);
 }
 
-/* 点标签样式 */
+/* 点标签基础样式 */
 .point-label {
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
     color: var(--color-text);
     white-space: nowrap;
     font-weight: 350;
+    position: absolute;  /* 修改为绝对定位 */
+    left: 50%;  /* 居中 */
+    transform: translateX(-50%);  /* 居中 */
+}
+
+/* 翻转的标签样式 */
+.point-label.flipped {
+    bottom: 100%;  /* 在点的上方 */
+    margin-bottom: 2px;
+}
+
+/* 非翻转的标签样式 */
+.point-label:not(.flipped) {
+    top: 100%;  /* 在点的下方 */
+    margin-top: 2px;
 }
 
 /* 项目点预览样式 */
@@ -1286,4 +1299,62 @@ button:hover {
 .label-highlight {
     color: var(--color-red);
     border-color: var(--color-red);
+}
+
+/* 轴标注基础样式 */
+.axis-label {
+    position: absolute;
+    font-family: "Roboto Mono", monospace;
+    font-size: 10px;
+    color: var(--color-text);
+    font-weight: 320;
+}
+
+/* X轴标注样式 */
+.x-label {
+    top: 49%;  /* 将标注移动到容器中间（y=0的位置） */
+    transform: translateY(-50%);  /* 微调位置使其对齐中线 */
+}
+
+.x-label.left {
+    left: 2px;
+}
+
+.x-label.right {
+    right: 2px;
+}
+
+/* Y轴标注样式 */
+.y-label {
+    position: absolute;
+    transform-origin: left center;
+    transform: rotate(90deg);
+    white-space: nowrap;
+}
+
+.y-label.top {
+    left: 49%;  /* 对齐y轴 */
+    top: -2px;   /* 靠近顶部 */
+}
+
+.y-label.bottom {
+    left: 49%;  /* 对齐y轴 */
+    bottom: 52px;  /* 调整位置，避免超出matrix */
+}
+
+/* 延伸线样式 */
+.extension-line {
+    position: absolute;
+    background-color: var(--color-text);
+    opacity: 0.95;
+    transition: opacity 0.1s ease;
+    pointer-events: none;
+}
+
+.extension-line.horizontal {
+    height: 0.6px;  /* 直接使用更细的高度，不使用 transform */
+}
+
+.extension-line.vertical {
+    width: 0.6px;  /* 直接使用更细的宽度，不使用 transform */
 }

@@ -308,17 +308,29 @@ function createProjectPoints() {
 
         // 计算点的位置
         const x = (project.situate.x + 100) * containerWidth / 200;
-        const y = (project.situate.y + 100) * containerHeight / 200;
+        const y = (-project.situate.y + 100) * containerHeight / 200;
         
         pointWrapper.style.left = `${x}px`;
         pointWrapper.style.top = `${y}px`;
-        
-        pointWrapper.innerHTML = `
-            <div class="project-point"></div>
-            <div class="point-label">${project.title}</div>
-        `;
-        
-        // 添加悬停预览
+
+        // 创建标签和点的元素
+        const label = document.createElement('div');
+        label.className = project.isflipped ? 'point-label flipped' : 'point-label';
+        label.textContent = project.title;
+
+        const point = document.createElement('div');
+        point.className = 'project-point';
+
+        // 根据 isflipped 属性决定添加顺序
+        if (project.isflipped) {
+            pointWrapper.appendChild(label);
+            pointWrapper.appendChild(point);
+        } else {
+            pointWrapper.appendChild(point);
+            pointWrapper.appendChild(label);
+        }
+
+        // 添加悬停预览和延伸线
         pointWrapper.addEventListener('mouseenter', (e) => {
             const preview = document.createElement('div');
             preview.className = 'point-preview';
@@ -331,19 +343,66 @@ function createProjectPoints() {
             const offset = 20; // 与光标的距离
             
             preview.style.left = `${e.clientX + offset}px`;
-            if (project.situate.y < 0) {  // 如果点在坐标系下半部分
+            if (project.situate.y > 0) {  // 如果点在坐标系上半部分
                 preview.style.top = `${e.clientY + offset}px`;
             } else {
                 preview.style.top = `${e.clientY - previewHeight - offset}px`;
             }
             
             document.body.appendChild(preview);
+            
+            // 添加延伸线
+            const container = document.querySelector('.coordinate-container');
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+            
+            // 创建横向延伸线（到y轴）
+            const horizontalLine = document.createElement('div');
+            horizontalLine.className = 'extension-line horizontal';
+            horizontalLine.style.top = `${y}px`;
+            horizontalLine.style.transform = 'translateY(-50%)';
+
+            // 计算横向延伸线
+            if (project.situate.x > 0) {
+                horizontalLine.style.left = `${containerWidth/2}px`;  // 从y轴开始
+                horizontalLine.style.width = `${x - containerWidth/2}px`;  // 延伸到点
+            } else {
+                horizontalLine.style.left = `${x}px`;  // 从点开始
+                horizontalLine.style.width = `${containerWidth/2 - x}px`;  // 延伸到y轴
+            }
+
+            // 创建竖向延伸线（到x轴）
+            const verticalLine = document.createElement('div');
+            verticalLine.className = 'extension-line vertical';
+            verticalLine.style.left = `${x}px`;
+            verticalLine.style.transform = 'translateX(-50%)';
+            
+            // 计算竖向延伸线
+            if (project.situate.y > 0) {
+                verticalLine.style.top = `${y}px`;  // 从点开始
+                verticalLine.style.height = `${containerHeight/2 - y}px`;  // 延伸到x轴
+            } else {
+                verticalLine.style.top = `${containerHeight/2}px`;  // 从x轴开始
+                verticalLine.style.height = `${y - containerHeight/2}px`;  // 延伸到点
+            }
+            
+            container.appendChild(horizontalLine);
+            container.appendChild(verticalLine);
+            
+            // 存储延伸线引用以便移除
+            pointWrapper.extensionLines = [horizontalLine, verticalLine];
         });
 
         pointWrapper.addEventListener('mouseleave', () => {
             const preview = document.querySelector('.point-preview');
             if (preview) {
                 preview.remove();
+            }
+            
+            // 移除延伸线
+            if (pointWrapper.extensionLines) {
+                pointWrapper.extensionLines.forEach(line => line.remove());
+                pointWrapper.extensionLines = null;
             }
         });
         
