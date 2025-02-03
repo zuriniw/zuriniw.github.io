@@ -2,12 +2,12 @@
 ShapeShift Playground is designed to make graphic and motion design accessible and enjoyable for all. Beyond just drawing, you can use it to construct personalized calculators or simulate mathematical function graphs, expanding the realms of design and calculation to suit your creative needs.
 
 ## To Run the Code
-- Include CMU Graphics in the file [What is CMU Graphic?](https://academy.cs.cmu.edu/desktop)
+- Include CMU Graphics in the file 
+    - [What is CMU Graphic?↗](https://academy.cs.cmu.edu/desktop)
 - Then run the main.py
 
 ## Features
-
-**Components**
+###  Components
 - 🔷 Geometry: Circle, Rectangle
 - 🔢 Math: Slider 1D, Slider 2D, Add, Subtract, Multiply, Divide, Square, Square Root, Pi, Absolute
 - ➡️ Vector: Point, Vector, VectorPreview
@@ -16,13 +16,13 @@ ShapeShift Playground is designed to make graphic and motion design accessible a
 
 🏗 more under construction...
 
-**Interaction**
+###  Interaction
 - Drag & drop to create components
 - Drag wiring node connections
 - Multi-select and group movement
 - Double-click deletion
 
-**Interface**
+### Interface
 - Component categories
 - Display toggles
 - Grid and axis system
@@ -47,22 +47,3 @@ ShapeShift Playground is designed to make graphic and motion design accessible a
 - Event-driven interaction
 - World coordinate system
 - Standardized data presentation and propagation
-
-## Data Flow
-```mermaid
-classDiagram
-    Component <|-- TypicleComponent
-    Component *-- Node
-    Node *-- Connection
-    
-    class Component{
-        +inputNodes
-        +outputNodes
-        +deleteComponent()
-    }
-    class Node{
-        +value
-        +connections
-        +receiveValue()
-    }
-```

@@ -85,6 +85,7 @@ const projects = [
         briefDescription: `"We shape our buildings, thereafter they shape us." --Winston Churchill, 1943`,
         youtubeLink: "https://www.youtube.com/watch?v=X6KAT7KzDUs",
         prize: "Best Academic Contribution Award",
+        ismarkdown: true,   
         weight: 9,
         situate: { x: 45, y: -78 }
     }),

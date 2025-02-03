@@ -159,10 +159,11 @@ button:hover {
     content: '';
     position: absolute;
     bottom: -6px;
-    left: -30px;  /* 延伸到图片右侧（对应 gap 的宽度） */
-    right: -30px;  /* 延伸到卡片右边缘（对应卡片的右内边距） */
+    left: -30px;  /* 从标题容器左边开始 */
+    right: 0px;  /* 延伸到卡片右边缘 */
     height: 1px;
     background-color: var(--color-text);
+    width: calc(100% + 60px);  /* 确保横线延伸到卡片右边缘 */
 }
 
 /* 卡片标题样式 */
@@ -767,15 +768,34 @@ button:hover {
 
 /* Markdown 内容样式 */
 .markdown-content {
-    margin: 20px auto;  /* 居中对齐 */
-    width: 70%;
-    max-width: 720px;  /* 略小于项目页面宽度，提供更好的阅读体验 */
+    margin: 20px auto;
+    width: 60%;
+    max-width: 320px;
     font-family: "Space Mono", monospace;
     font-size: 16px;
     line-height: 1.6;
     color: var(--color-text);
-    padding: 40px 20px;  /* 增加内部上下和左右间距 */
+    padding: 80px 0;  /* 移除左右内边距，改用单独的内容缩进 */
     max-width: 100%;
+}
+
+/* 内容缩进样式 */
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content p,
+.markdown-content ul,
+.markdown-content ol {
+    padding-left: 40px;  /* 统一的左侧缩进 */
+}
+
+/* 标题居中样式 */
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+    text-align: center;
+    padding-left: 0;  /* 移除标题的左侧缩进 */
+    width: 100%;  /* 确保标题占据整个宽度 */
 }
 
 .markdown-content h1,
@@ -793,21 +813,59 @@ button:hover {
     margin-top: 0;
 }
 
-.markdown-content h1 {
-    font-size: 28px;
+.markdown-content h2 {
+    font-size: 30px;
+    font-family: "Space Mono", monospace;
+    font-weight: 200;
+    margin-top: 120px;  /* 增加二级标题上方的空间 */
+    margin-bottom: 80px;  /* 增加二级标题下方的空间 */
+    position: relative;  /* 为下方横线提供定位上下文 */
 }
 
-.markdown-content h2 {
-    font-size: 24px;
+/* 二级标题下方的横线 */
+.markdown-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;  /* 横线长度 */
+    height: 1.5px;
+    background-color: var(--color-text);
 }
 
 .markdown-content h3 {
     font-size: 20px;
+    font-family: "Space Mono", monospace;
+    font-weight: 80;
+    margin-bottom: 36px;  /* 调整三级标题上方的空间 */
+    margin-top: 44px;  /* 调整三级标题上方的空间 */
+}
+
+/* 为三级标题添加尖括号 */
+.markdown-content h3::before {
+    content: '<';
+    margin-right: 8px;
+}
+
+.markdown-content h3::after {
+    content: '>';
+    margin-left: 8px;
+}
+
+.markdown-content h4 {
+    font-size: 22px;
+    font-family: "Space Mono", monospace;
+    font-weight: 200;
 }
 
 .markdown-content p {
     margin: 24px 0;  /* 增加段落间距 */
-    letter-spacing: 0.4px;
+    letter-spacing: 0.6px;
+    font-family: "Barlow", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-left: 8px;
 }
 
 /* 段落后的代码块减少顶部边距 */
@@ -816,23 +874,25 @@ button:hover {
 }
 
 .markdown-content code {
-    background-color: var(--color-light-grey);
+    background-color: var(--color-text-darkgrey);
+    color: var(--color-white);
     padding: 2px 4px;
     border-radius: 4px;
     font-family: "Space Mono", monospace;
     font-size: 14px;
+    width: 60%;
 }
 
 .markdown-content pre {
-    background-color: var(--color-light-grey);
+    background-color: var(--color-text-darkgrey);
     padding: 16px 20px;
     border-radius: 4px;
     overflow-x: auto;
-    margin: 32px 0;  /* 增加代码块的间距 */
-    line-height: 1.5;
-    margin-left: -20px;
-    margin-right: -20px;
-    width: calc(100% + 40px);
+    margin: 32px 0;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    padding: 24px 40px;  /* 与其他内容的缩进保持一致 */
 }
 
 .markdown-content pre code {
@@ -843,13 +903,27 @@ button:hover {
 
 .markdown-content ul,
 .markdown-content ol {
-    margin: 16px 0;
-    padding-left: 24px;
+    margin: 12px 0;
+    padding-left: 60px;  /* 增加左侧缩进，为项目符号腾出空间 */
+    font-family: "Barlow", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-left: 8px;
+}
+
+/* 调整项目符号的位置 */
+.markdown-content ul {
+    list-style-position: outside;  /* 确保项目符号在文本外部 */
+    list-style-type: disc;  /* 使用实心圆点 */
 }
 
 .markdown-content li {
-    margin: 8px 0;
-    letter-spacing: 0.4px;
+    margin: 4px 0;
+    padding-left: 12px;  /* 减少列表项的内部缩进 */
+    font-family: "Barlow", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-left: 8px;
 }
 
 .markdown-content a {
@@ -870,7 +944,24 @@ button:hover {
     height: auto;
     display: block;  /* 使图片变成块级元素 */
     margin: 24px auto;  /* 上下间距和水平居中 */
-    border: 1px solid var(--color-text);
+}
+
+/* 添加图片说明样式 */
+.markdown-content figcaption {
+    text-align: center;
+    color: var(--color-text-grey);
+    font-style: italic;
+    margin-top: 4px;
+    margin-bottom: 120px;
+    font-family: "Space Mono", monospace;
+    font-size: 14px;
+}
+
+/* 确保 figure 容器也居中 */
+.markdown-content figure {
+    margin: 32px auto;
+    text-align: center;
+    margin-top: 120px;
 }
 
 /* 添加引用样式 */
@@ -883,29 +974,29 @@ button:hover {
 
 /* 添加表格样式 */
 .markdown-content table {
-    width: 100%;
+    width: 60%;
     border-collapse: collapse;
     margin: 24px 0;
+    font-family: "Space Mono", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: calc(80%);
 }
 
 .markdown-content th,
 .markdown-content td {
-    padding: 12px;
+    padding: 8px 12px;
     border: 1px solid var(--color-text);
     text-align: left;
 }
 
 .markdown-content th {
-    background-color: var(--color-light-grey);
+    background-color: var(--color-text-darkgrey);
+    color: var(--color-white);
     font-weight: 600;
-}
-
-/* 调整代码块的宽度，使其可以稍微超出内容区 */
-.markdown-content pre {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding: 16px 20px;
-    width: calc(100% + 40px);
+    font-size: 14px;
 }
 
 /* 确保包含图片的段落居中 */
@@ -1003,4 +1094,11 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+/* 调整粗体文本样式 */
+.markdown-content strong {
+    font-weight: 520;  /* 减小粗体的权重 */
+    color: var(--color-text-darkgrey);  /* 使用深灰色而不是纯黑 */
+    letter-spacing: +0.4px;  /* 增加字间距 */
 }
