@@ -88,8 +88,8 @@ function createProjectCards() {
                     <span class="card-title">${project.title}</span>
                     ${project.youtubeLink ? `<a href="${project.youtubeLink}" target="_blank" class="video-icon">▶</a>` : ''}
                 </div>
-                <div class="card-time">${project.time}</div>
                 <div class="card-description">${project.subtitle}</div>
+                <div class="card-time">${project.time}, ${project.isteam ? 'Teamwork' : 'Independent Work'}</div>
                 ${project.prize ? `<div class="card-prize">${project.prize}</div>` : ''}
                 <div class="card-labels">
                     ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}

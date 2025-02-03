@@ -8,23 +8,14 @@
     <title>Ziru Wei</title>
     <link rel="icon" type="image/png" href="images/kitten.png">
     <link rel="stylesheet" href="style.css">
+    <script src="components/load_components.js"></script>
     <script src="index.js" type="module" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-left">
-                <a href="index.html" class="nav-item">Ziru Wei</a>
-            </div>
-            <div class="nav-right">
-                <a href="news.html" class="nav-item">News</a>
-                <a href="data/fakecv.png" class="nav-item" download>CV</a>
-                <a href="about.html" class="nav-item">About</a>
-            </div>
-        </div>
-    </nav>
+    <!-- 页眉容器 -->
+    <div id="header"></div>
 
     <!-- 修改介绍部分 -->
     <div class="intro-section">
@@ -36,7 +27,10 @@
     <div class="filter-wrapper">
         <div class="filter-container">
             <div class="filter-content">
-                <button class="switch-view">⌘</button>
+                <div class="switch-container">
+                    <span class="arrow-icon">▼</span>
+                    <button class="switch-view">⌘</button>
+                </div>
                 <div class="divider"></div>
                 <div class="buttons-section">
                     <!-- 过滤器按钮将由 JavaScript 动态生成 -->
@@ -58,23 +52,8 @@
         </div>
     </div>
 
-    <!-- 添加页脚部分 -->
-    <footer class="footer-wrapper">
-        <div class="footer">
-            <div class="social-links">
-                <a href="#" class="footer-link">GitHub↗</a>
-                <a href="#" class="footer-link">YouTube↗</a>
-                <a href="#" class="footer-link">Behance↗</a>
-            </div>
-            <div class="contact-info">
-                <p>Collaborate, befriends, or just wanna chat: ziruw@andrew.cmu.edu</p>
-            </div>
-            <div class="copyright">
-                <p>© 2025 by Ziru Wei</p>
-                <p>"NEVER FORGET TO BE CURIOUS"</p>
-            </div>
-        </div>
-    </footer>
+    <!-- 页脚容器 -->
+    <div id="footer"></div>
 </body>
 
 </html>

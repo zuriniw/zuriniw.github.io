@@ -200,7 +200,7 @@ button:hover {
     font-family: "Space Mono", monospace;
     font-size: 14px;
     color: var(--color-text-grey);
-    margin: 4px 0 12px 0;
+    margin: 2px 0 4px 0;
     letter-spacing: 0.4px;
 }
 
@@ -208,8 +208,8 @@ button:hover {
 .card-description {
     font-family: "Space Mono", monospace;
     font-size: 14px;
-    color: var(--color-text-grey);
-    margin: 4px 0 12px 0;
+    color: var(--color-text);
+    margin: 12px 0 12px 0;
     letter-spacing: 0.4px;
 }
 
@@ -225,8 +225,8 @@ button:hover {
 .navbar {
     width: 100%;
     padding: 16px 0;
-    background: var(--color-background);  /* 与页面背景色相同 */
     border-bottom: 1px solid var(--color-border);  /* 添加底部边框 */
+    background: transparent;
 }
 
 .nav-container {
@@ -269,7 +269,7 @@ button:hover {
 .intro-section {
     max-width: 1350px;
     width: 100%;
-    margin: 16px auto 0;  /* 减少顶部边距 */
+    margin: 120px auto 0;  /* 增加顶部边距 */
     max-width: 760px;  /* 匹配新的卡片宽度 */
     font-family: "Barlow", sans-serif;
     line-height: 1.6;
@@ -301,10 +301,11 @@ button:hover {
 /* 页脚包装器样式 */
 .footer-wrapper {
     width: 100%;
+    padding: 20px 0;
     border-top: 1px solid var(--color-border);
     margin-top: 200px;  /* 从100px增加到400px */
     padding-top: 40px;
-    background: var(--color-background);
+    background: transparent !important;
 }
 
 /* 页脚内容样式 */
@@ -442,8 +443,31 @@ button:hover {
     font-family: "Space Mono", monospace;
     font-size: 14px;
     color: var(--color-text-grey);
-    margin: 4px 0 4px 0;
+    margin: 2px 0 4px 0;
     letter-spacing: 0.4px;
+}
+
+/* 切换按钮容器样式 */
+.switch-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 箭头图标样式 */
+.arrow-icon {
+    display: inline-block;
+    transform: rotate(-50deg);  /* 默认逆时针旋转45度 */
+    font-size: 20px;
+    color: var(--color-text);
+    margin-top: -12px;
+    margin-right: -2px;
+    transition: transform 0.3s ease;  /* 添加过渡动画 */
+}
+
+/* 当悬停在切换按钮容器上时的箭头效果 */
+.switch-container:hover .arrow-icon {
+    transform: rotate(-80deg);  /* 额外逆时针旋转30度（总共-75度） */
 }
 
 /* 切换按钮样式 */
@@ -589,7 +613,7 @@ button:hover {
 /* 关于页面样式 */
 .about-section {
     max-width: 760px;
-    margin: 60px auto 0;
+    margin: 120px auto 0;
     padding: 0 20px;
 }
 
@@ -625,7 +649,7 @@ button:hover {
 /* 项目页面样式 */
 .project-section {
     max-width: 760px;
-    margin: 60px auto 0;
+    margin: 120px auto 0;
     padding: 0 20px;
 }
 
@@ -1008,7 +1032,7 @@ button:hover {
 /* 新闻页面样式 */
 .news-section {
     max-width: 760px;
-    margin: 60px auto 0;
+    margin: 120px auto 0;
     padding: 0 20px;
 }
 
@@ -1102,4 +1126,21 @@ button:hover {
     font-weight: 520;  /* 减小粗体的权重 */
     color: var(--color-text-darkgrey);  /* 使用深灰色而不是纯黑 */
     letter-spacing: +0.4px;  /* 增加字间距 */
+}
+
+/* 页眉样式 */
+#header {
+    position: fixed; /* 固定定位 */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0) !important; /* 透明背景，调整 alpha 值以控制透明度 */
+    z-index: 1000; /* 确保在其他元素之上 */
+}
+
+/* 页脚样式 */
+#footer {
+    background-color: rgba(255, 255, 255, 0) !important; /* 透明背景，调整 alpha 值以控制透明度 */
+    padding: 20px; /* 添加内边距 */
+    text-align: center; /* 居中对齐 */
 }
