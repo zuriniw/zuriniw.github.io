@@ -23,7 +23,7 @@
 
 @font-face {
     font-family: 'Barlow';
-    src: url('../fonts/Barlow-Regular.ttf') format('truetype');
+    src: url('../fonts/Barlow-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
@@ -44,7 +44,7 @@
 
 /* 颜色定义 */
 :root {
-    --color-background: #f4f4f4;
+    --color-background: #f5f1f0;
     --color-text: #000;
     --color-text-hover: #9f9f9f;
     --color-border: #000;
@@ -115,6 +115,7 @@ button {
     transition: all 0.1s ease;
     margin: 0;
     font-family: "Roboto Mono", monospace;
+    font-weight: 320;
 }
 
 /* 按钮悬停效果 */
@@ -318,6 +319,7 @@ button:hover {
     margin: 120px auto 0;  /* 增加顶部边距 */
     max-width: 760px;  /* 匹配新的卡片宽度 */
     font-family: "Barlow", sans-serif;
+    font-weight: 350;
     line-height: 1.6;
     text-align: left;
 }
@@ -346,20 +348,20 @@ button:hover {
 
 /* 页脚包装器样式 */
 .footer-wrapper {
-    width: 100%;
-    padding: 20px 0;
+    position: absolute;  /* 改为绝对定位 */
+    width: 100%;  /* 确保宽度是100% */
+    left: 0;  /* 从最左边开始 */
     border-top: 1.2px solid var(--color-border);
-    margin-top: 200px;  /* 从100px增加到400px */
-    padding-top: 40px;
-    background: transparent !important;
+    margin-top: 200px;
+    padding: 60px 0 20px 0;
 }
 
 /* 页脚内容样式 */
 .footer {
     max-width: 1350px;
     width: 100%;
-    margin: 0 auto 40px;
-    padding: 0 calc((100% - (250px * 3 + 40px)) / 2);  /* 与其他部分使用相同的计算方式 */
+    margin: 0 auto;
+    padding: 0 20px;
     text-align: center;
 }
 
@@ -373,7 +375,7 @@ button:hover {
 }
 
 .social-links {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     display: flex;
     justify-content: center;
     gap: 80px;
@@ -538,9 +540,9 @@ button:hover {
 }
 
 .coordinate-container {
+    position: relative;
     width: 100%;
     height: 100%;
-    position: relative;
     border: 1.2px solid var(--color-text);
 }
 
@@ -620,9 +622,10 @@ button:hover {
 /* 点标签样式 */
 .point-label {
     font-family: "Roboto Mono", monospace;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--color-text);
     white-space: nowrap;
+    font-weight: 350;
 }
 
 /* 项目点预览样式 */
@@ -631,7 +634,7 @@ button:hover {
     z-index: 1000;
     background: var(--color-background);
     border: 1.2px solid var(--color-text);
-    padding: 8px;
+    padding: 6px;
     pointer-events: none;
     transition: opacity 0.2s ease;
 }
@@ -672,6 +675,7 @@ button:hover {
     font-size: 24px;
     margin-bottom: 40px;
     color: var(--color-text);
+    font-weight: 350;
 }
 
 /* 添加图片容器样式 */
@@ -694,6 +698,7 @@ button:hover {
     line-height: 1.6;
     color: var(--color-text);
     letter-spacing: 0.4px;
+    font-weight: 350;
 }
 
 /* 项目页面样式 */
@@ -727,39 +732,43 @@ button:hover {
 .project-title {
     font-family: "Roboto Mono", monospace;
     font-size: 48px;
-    margin-bottom: 24px;
-    font-weight: normal;
+    margin-bottom: 12px;  /* 减小标题和副标题之间的间距 */
+    font-weight: 350;
 }
 
 .project-subtitle {
-    font-family: "Barlow", sans-serif;
-    font-size: 24px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 20px;
     line-height: 1.4;
-    font-weight: normal;
+    font-weight: 350;
+    letter-spacing: -0.2px;
 }
 
 .project-meta {
-    margin-bottom: 60px;
+    margin-top: 32px;  /* 减小副标题和链接之间的间距 */
     letter-spacing: 0.4px;
 }
 
 .meta-item {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     font-family: "Roboto Mono", monospace;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 0.3px;
 }
 
 .meta-label {
     color: var(--color-text);
     letter-spacing: 0.3px;
+    margin-left: 6px;
 }
 
 /* 链接容器样式 */
 .meta-links {
     display: flex;
+    margin-bottom: 40px;
+    margin-top: 2px;  /* 增加与上方标签的间距 */
     flex-direction: row;
-    gap: 20px;  /* 链接之间的间距 */
+    gap: 24px;  /* 链接之间的间距 */
     flex-wrap: wrap;  /* 如果空间不够，允许换行 */
 }
 
@@ -773,7 +782,7 @@ button:hover {
     padding: 2px 10px;
     border-radius: 16px;
     transition: all 0.3s ease;
-    font-size: 14px;  /* 减小字体大小 */
+    font-size: 14px;
 }
 
 .meta-link:hover {
@@ -783,7 +792,10 @@ button:hover {
 
 .meta-text {
     color: var(--color-text);
-    letter-spacing: 0.6px;
+    letter-spacing: 0.4px;
+    margin-top: 20px;  /* 增加与上方标签的间距 */
+    margin-left: 12px;
+    font-weight: 350;
 }
 
 /* 项目页脚样式 */
@@ -803,7 +815,7 @@ button:hover {
     color: var(--color-text);
     line-height:1.6;  /* 增加行间距 */
     letter-spacing: -0.2px;
-    font-weight: 400;
+    font-weight: 350;
 }
 
 /* 点包装器链接样式 */
@@ -1203,4 +1215,15 @@ button:hover {
     background-color: rgba(255, 255, 255, 0) !important; /* 透明背景，调整 alpha 值以控制透明度 */
     padding: 20px; /* 添加内边距 */
     text-align: center; /* 居中对齐 */
+}
+
+/* 矩阵说明文本样式 */
+.matrix-caption {
+    text-align: right;
+    font-weight: 320;
+    padding-right: -1px;
+    margin-top: 8px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    color: var(--color-text);
 }
