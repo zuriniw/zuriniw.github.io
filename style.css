@@ -205,7 +205,7 @@ button:hover {
     bottom: -6px;
     left: -30px;  /* 从标题容器左边开始 */
     right: 0px;  /* 延伸到卡片右边缘 */
-    height: 2px;  /* 增加横线粗细，使其更稳定 */
+    height: 1.8px;  /* 增加横线粗细，使其更稳定 */
     background-color: var(--color-text);
     width: calc(100% + 60px);  /* 确保横线延伸到卡片右边缘 */
     transform: scaleY(0.5);  /* 使用 transform 来确保横线粗细的一致性 */
