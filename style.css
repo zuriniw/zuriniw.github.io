@@ -107,7 +107,7 @@ body {
 
 /* 按钮基础样式 */
 button {
-    border: 1px solid var(--color-border);
+    border: 1.2px solid var(--color-border);
     cursor: pointer;
     padding: 4px 8px;  /* 增大按钮 */
     font-size: 16px;  /* 增大字体 */
@@ -141,7 +141,7 @@ button:hover {
     align-items: flex-start;
     order: 0;  /* 默认顺序 */
     margin: 0;
-    border: 1px solid var(--color-text);
+    border: 1.2px solid var(--color-text);
     padding: 0 30px 0 0;  /* 移除上下内边距 */
     height: auto;  /* 让卡片高度自动适应内容 */
     box-sizing: border-box;  /* 确保边框在内边距内 */
@@ -158,9 +158,9 @@ button:hover {
     width: 280px;
     aspect-ratio: 4.8/3;
     object-fit: cover;
-    border: 1px solid var(--color-text);
+    border: 1.2px solid var(--color-text);
     transition: opacity 0.2s ease;
-    margin: -1px 0;  /* 确保图片没有外边距，并向上和向下移动1px */
+    margin: -1.2px 0;  /* 确保图片没有外边距，并向上和向下移动1px */
     display: block;  /* 确保图片是块级元素，消除底部间隙 */
     opacity: 0.85;  /* 默认透明度为80% */
 }
@@ -269,7 +269,7 @@ button:hover {
 .navbar {
     width: 100%;
     padding: 16px 0;
-    border-bottom: 1px solid var(--color-border);  /* 添加底部边框 */
+    border-bottom: 1.2px solid var(--color-border);  /* 添加底部边框 */
     background: transparent;
 }
 
@@ -346,7 +346,7 @@ button:hover {
 .footer-wrapper {
     width: 100%;
     padding: 20px 0;
-    border-top: 1px solid var(--color-border);
+    border-top: 1.2px solid var(--color-border);
     margin-top: 200px;  /* 从100px增加到400px */
     padding-top: 40px;
     background: transparent !important;
@@ -415,7 +415,7 @@ button:hover {
     font-family: "Roboto Mono", monospace;
     font-size: 12px;
     padding: 2px 8px;
-    border: 1px solid var(--color-text);
+    border: 1.2px solid var(--color-text);
     border-radius: 12px;
     color: var(--color-text);
     transition: all 0.2s ease;  /* 添加过渡效果 */
@@ -445,7 +445,7 @@ button:hover {
 .card-image-link {
     display: block;
     width: 280px;
-    margin-left: -1px;
+    margin-left: -1.2px;
     cursor: pointer;
     transition: opacity 0.2s ease;
     text-decoration: none;  /* 移除下划线 */
@@ -538,7 +538,7 @@ button:hover {
     width: 100%;
     height: 100%;
     position: relative;
-    border: 1px solid var(--color-text);
+    border: 1.2px solid var(--color-text);
 }
 
 .axis {
@@ -548,7 +548,7 @@ button:hover {
 
 .x-axis {
     width: 100%;
-    height: 1.5px;
+    height: 1.2px;
     transform: scaleY(0.5);
     transform-origin: center;  /* 确保缩放是从中心开始的 */
     top: 50%;
@@ -556,7 +556,7 @@ button:hover {
 }
 
 .y-axis {
-    width: 1.5px;
+    width: 1.2px;
     transform: scaleX(0.5);
     height: 100%;
     transform-origin: center;  /* 确保缩放是从中心开始的 */
@@ -627,7 +627,7 @@ button:hover {
     position: fixed;
     z-index: 1000;
     background: var(--color-background);
-    border: 1px solid var(--color-text);
+    border: 1.2px solid var(--color-text);
     padding: 8px;
     pointer-events: none;
     transition: opacity 0.2s ease;
@@ -775,7 +775,7 @@ button:hover {
 /* 只有当 project-context 有内容时才显示上边框 */
 .project-footer:has(.project-context:not(:empty)) {
     padding-top: 40px;
-    border-top: 1px solid var(--color-text);
+    border-top: 1.2px solid var(--color-text);
 }
 
 .project-context {
@@ -901,7 +901,7 @@ button:hover {
     left: 50%;
     transform: translateX(-50%);
     width: 40px;  /* 横线长度 */
-    height: 1.5px;
+    height: 1.2px;
     background-color: var(--color-text);
 }
 
@@ -1000,7 +1000,7 @@ button:hover {
 .markdown-content a {
     color: var(--color-text);
     text-decoration: none;
-    border-bottom: 1px solid var(--color-text);
+    border-bottom: 1.2px solid var(--color-text);
     transition: color 0.3s ease;
 }
 
@@ -1059,7 +1059,7 @@ button:hover {
 .markdown-content th,
 .markdown-content td {
     padding: 8px 12px;
-    border: 1px solid var(--color-text);
+    border: 1.2px solid var(--color-text);
     text-align: left;
 }
 
@@ -1096,7 +1096,7 @@ button:hover {
     font-family: "Roboto Mono", monospace;
     padding: 16px;
     padding-right: 64px;  /* 增加右侧内边距，为星号留出更多空间 */
-    border: 1px solid var(--color-text);
+    border: 1.2px solid var(--color-text);
     transition: all 0.3s ease;
     position: relative;  /* 为星号定位 */
 }
@@ -1134,7 +1134,7 @@ button:hover {
 }
 
 .news-link {
-    border-bottom: 1px solid transparent;
+    border-bottom: 1.2px solid transparent;
     text-decoration: none;
     color: var(--color-text);
     transition: all 0.3s ease;
@@ -1157,7 +1157,7 @@ button:hover {
     padding-bottom: 56.25%; /* 16:9 宽高比 */
     height: 0;
     overflow: hidden;
-    border: 1px solid var(--color-text);
+    border: 1.2px solid var(--color-text);
 }
 
 .video-container iframe {
