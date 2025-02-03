@@ -655,7 +655,7 @@ button:hover {
 
 /* 项目页面背景 */
 .project-page {
-    background: var(--color-white);
+    background: var(--color-white) !important;
     position: fixed;
     top: 0;
     left: 0;
