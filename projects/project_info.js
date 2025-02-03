@@ -89,7 +89,7 @@ const projects = [
         prize: "Best Academic Contribution Award",
         ismarkdown: true,   
         weight: 9,
-        situate: { x: -70, y: -40 },
+        situate: { x: -68, y: 77 },
         otherLink2: null
     }),
     new Project({
@@ -110,7 +110,8 @@ const projects = [
         githubLink: "https://github.com/zuriniw/SEEINGSAW",
         otherLink2: "http://ideate.xsead.cmu.edu/gallery/projects/remaking-shaker-1996",
         weight: 8.9,
-        situate: { x: -60, y: -60 }
+        isflipped: false,
+        situate: { x: -60, y: -20 }
     }),
     new Project({
         name: "shapeshift",
@@ -128,7 +129,7 @@ const projects = [
         weight: 7.1,
         situate: { x: 50, y: -90 },
         ismarkdown: true,
-        isflipped: true
+        isflipped: false
     }),
     new Project({
         name: "villagerenewal",
@@ -145,7 +146,7 @@ const projects = [
         briefDescription: "Revitalize the village through architectural design and cultural preservation. The project aims to preserve and enhance the unique cultural heritage of the village while improving the living conditions of its residents.",
         prize: "Outstanding Undergraduate Thesis; 1st place in Architecture School",
         weight: 7,
-        situate: { x: 50, y: -80 },
+        situate: { x: -50, y: 50 },
         otherLink2: "https://www.behance.net/gallery/217218343/Village-Renewal-Design-in-Fujian-China",
     }),
     new Project({
@@ -163,7 +164,7 @@ const projects = [
         youtubeLink: "https://www.dropbox.com/scl/fi/ajuzkeolpeorpc0979q8t/HolographicConstruction.mp4?rlkey=7s31yppucptg6rdk8dkhffny0&e=1&dl=0",
         paperLink: "https://papers.cumincad.org/cgi-bin/works/paper/caadria2022_157",
         weight: 8.1,
-        situate: { x: -50, y: 20 }
+        situate: { x: 80, y: -80 }
     }),
     new Project({
         name: "bodymusic",
@@ -179,7 +180,7 @@ const projects = [
         briefDescription: `This project explores the fusion of body movement with algorithmically generated sound and visuals, redefining how we interact with music creation.`,
         youtubeLink: "https://www.youtube.com/watch?v=FpLBtfClNgE",
         weight: 6,
-        situate: { x: -10, y: 30 }
+        situate: { x: -10, y: 40 }
     }),
     new Project({
         name: "gazeknitting",
@@ -194,7 +195,7 @@ const projects = [
         youtubeLink: "https://www.youtube.com/watch?v=9TzxzTWuwcQ",
         otherLink2: null,
         weight: 5,
-        situate: { x: -20, y: 50 }
+        situate: { x: 35, y: 50 }
     }),
     new Project({
         name: "fadingroses",
@@ -209,7 +210,7 @@ const projects = [
         otherLink2: "https://www.bilibili.com/video/BV1jT411g7Xf/",
         prize: "Award of Excellence & Award of New Talent on Bilibili 'Gamify Everything'",
         weight: 5,
-        situate: { x: 80, y: 10 }
+        situate: { x: -80, y: -30 }
     }),
     new Project({
         name: "zijin",
@@ -225,7 +226,8 @@ const projects = [
         briefDescription: `The design site, Hengtang Station, an ancient canal post, preserves its original texture through a concise oblique grid composition and narrative techniques. Integrating ecological restoration, wetland construction, and canal culture, it balances ecology, city, and history, fostering a shared community and sustainable landscape that embodies harmony between people, nature, and the city.`,
         prize: "1st Prize, Top 10/613 in Architectural Design Competition 'Zijin Award'",
         weight: 4,
-        situate: { x: 40, y: -30 }
+        isflipped: false,
+        situate: { x: -60, y: -80 }
     }),
     new Project({
         name: "taihustone",
@@ -237,7 +239,8 @@ const projects = [
         isteam: true,
         tools: "Grasshopper",
         weight: 4,
-        situate: { x: 60, y: -81 }
+        situate: { x: 60, y: -31 },
+        isflipped: true
     }),
     new Project({
         name: "mobius",
@@ -252,7 +255,7 @@ const projects = [
         tools: "Rhino, Grasshopper",
         prize: "Patent",
         weight: 5,
-        situate: { x: -30, y: -70 }
+        situate: { x: -30, y: -80 }
     }),
     new Project({
         name: "intdesign",
@@ -263,7 +266,8 @@ const projects = [
         isteam: false,
         ispage: true,
         weight: 1,
-        situate: { x: 56, y: -34 }
+        isflipped: true,
+        situate: { x: -6, y: -64 }
     }),
     new Project({
         name: "keyboard",
@@ -275,7 +279,7 @@ const projects = [
         tools: "JLC EDA, Arduino, Rhino",
         weight: 1,
         situate: { x: 85, y: -70 },
-        isflipped: true
+        isflipped: false
     }),
     new Project({
         name: "mrintdesign",
@@ -288,7 +292,8 @@ const projects = [
         ispage: true,
         tools: "Rhino, Fologram, Unity",
         weight: 4,
-        situate: { x: 45, y: -67 }
+        situate: { x: 75, y: -67 },
+        isflipped: true
     }),
     new Project({
         name: "mrfarm",
@@ -303,7 +308,7 @@ const projects = [
         tools: "Unity, Arduino",
         briefDescription: "What if data can flows among the real world and MR scene?",
         weight: 4,
-        situate: { x: 30, y: -10 }
+        situate: { x: 10, y: -10 }
     })
 ];
 

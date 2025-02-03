@@ -632,7 +632,7 @@ button:hover {
 /* 点标签基础样式 */
 .point-label {
     font-family: "Roboto Mono", monospace;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--color-text);
     white-space: nowrap;
     font-weight: 350;
