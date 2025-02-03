@@ -378,7 +378,7 @@ button:hover {
     margin-bottom: 60px;
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap: 120px;
 }
 
 .footer-link {
@@ -952,7 +952,7 @@ button:hover {
 .markdown-content h4 {
     font-size: 22px;
     font-family: "Roboto Mono", monospace;
-    font-weight: 200;
+    font-weight: 300;
 }
 
 .markdown-content p {
@@ -960,6 +960,7 @@ button:hover {
     letter-spacing: 0.6px;
     font-family: "Barlow", sans-serif;
     font-size: 18px;
+    font-weight: 320;
     line-height: 1.6;
     margin-left: 8px;
 }
@@ -1005,12 +1006,14 @@ button:hover {
     font-size: 18px;
     line-height: 1.6;
     margin-left: 8px;
+    font-weight: 320;
 }
 
 /* 调整项目符号的位置 */
 .markdown-content ul {
     list-style-position: outside;  /* 确保项目符号在文本外部 */
     list-style-type: disc;  /* 使用实心圆点 */
+    font-weight: 320;
 }
 
 .markdown-content li {
@@ -1020,6 +1023,7 @@ button:hover {
     font-size: 18px;
     line-height: 1.6;
     margin-left: 8px;
+    font-weight: 320;
 }
 
 .markdown-content a {
@@ -1027,6 +1031,7 @@ button:hover {
     text-decoration: none;
     border-bottom: 1.2px solid var(--color-text);
     transition: color 0.3s ease;
+    font-weight: 320;
 }
 
 .markdown-content a:hover {
@@ -1049,8 +1054,9 @@ button:hover {
     font-style: italic;
     margin-top: 4px;
     margin-bottom: 120px;
-    font-family: "Roboto Mono", monospace;
-    font-size: 14px;
+    font-family: "Barlow", sans-serif;
+    font-size: 16px;
+    font-weight: 320;
 }
 
 /* 确保 figure 容器也居中 */
@@ -1195,7 +1201,7 @@ button:hover {
 
 /* 调整粗体文本样式 */
 .markdown-content strong {
-    font-weight: 520;  /* 减小粗体的权重 */
+    font-weight: 450;  /* 减小粗体的权重 */
     color: var(--color-text-darkgrey);  /* 使用深灰色而不是纯黑 */
     letter-spacing: +0.4px;  /* 增加字间距 */
 }
