@@ -1070,7 +1070,8 @@ button:hover {
 }
 
 .news-link:hover {
-    color: var(--color-text-hover);
+    color: var(--color-red);
+    font-weight: 550;
 }
 
 /* YouTube 视频部分样式 */

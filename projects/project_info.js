@@ -271,7 +271,7 @@ const projects = [
     }),
     new Project({
         name: "mrintdesign",
-        title: "MR Interior Design",
+        title: "Mixed Interior Design",
         subtitle: "MR-aided participatory design experiment",
         labels: ["XR", "Spatial"],
         time: "2021",
