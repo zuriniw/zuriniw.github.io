@@ -61,38 +61,37 @@ function createProjectCards() {
         console.log('Creating card for:', project.title);
         const card = document.createElement('div');
         card.className = 'card';
+        card.style.cursor = 'pointer';  // 添加鼠标指针样式
+        
         // 添加标签数据属性
         project.labels.forEach(label => {
             card.setAttribute(`data-${label.toLowerCase()}`, '');
         });
 
+        // 添加点击事件
+        if (project.ispage) {
+            card.addEventListener('click', () => {
+                window.location.href = `projects/${project.name}/${project.name}.html`;
+            });
+        }
 
         // 创建图片部分（根据 ispage 决定是否添加链接）
-        let imageContent;
-        if (project.ispage) {
-            imageContent = `
-                <a href="${project.getHtmlPath()}" class="card-image-link">
-                    <img src="${project.getGifPath()}" alt="${project.title}">
-                </a>
-            `;
-        } else {
-            imageContent = `
-                <img src="${project.getGifPath()}" alt="${project.title}">
-            `;
-        }
-        
+        const imageContent = `<img src="${project.getGifPath()}" alt="${project.title}">`;
+
         card.innerHTML = `
             ${imageContent}
             <div class="card-body">
                 <div class="card-title-container">
-                    <span class="card-title">${project.title}</span>
-                    ${project.youtubeLink ? `<a href="${project.youtubeLink}" target="_blank" class="video-icon">▶</a>` : ''}
+                    <h3 class="card-title">${project.title}</h3>
+                    ${project.youtubeLink ? '<span class="video-icon">▶</span>' : ''}
                 </div>
-                <div class="card-description">${project.subtitle}</div>
-                <div class="card-time">${project.time}, ${project.isteam ? 'Teamwork' : 'Independent Work'}</div>
-                ${project.prize ? `<div class="card-prize">${project.prize}</div>` : ''}
+                <p class="card-time">
+                    ${project.time}
+                    ${project.isteam ? ' -- Team' : ' -- Solo Work'}
+                </p>
+                <p class="card-description">${project.subtitle}</p>
                 <div class="card-labels">
-                    ${project.labels.map(label => `<span class="card-label">${label}</span>`).join('')}
+                    ${project.labels.map(label => `<span class="label">${label}</span>`).join('')}
                 </div>
             </div>
         `;
@@ -203,97 +202,76 @@ function updateCards() {
         });
 }
 
-// 添加过滤器按钮的悬停事件处理
+// 添加过滤器按钮的悬停效果
 function addFilterHoverEffects() {
-    buttonSection.querySelectorAll('button').forEach(button => {
-        button.addEventListener('mouseenter', (e) => {
-            const filterName = e.target.textContent;
-            
-            document.querySelectorAll('.card, .point-wrapper').forEach(element => {
-                const hasLabel = element.classList.contains('card') 
-                    ? Array.from(element.querySelectorAll('.card-label'))
-                        .some(label => label.textContent === filterName)
-                    : element.hasAttribute(`data-${filterName.toLowerCase()}`);
-                
-                if (!hasLabel) {
-                    if (element.classList.contains('card')) {
-                        // 卡片淡出效果
-                        element.querySelector('.card-title').classList.add('card-fade');
-                        element.querySelector('.card-description').classList.add('card-fade');
-                        element.querySelector('.card-time').classList.add('card-fade');
-                        const prizeElement = element.querySelector('.card-prize');
-                        if (prizeElement) {
-                            prizeElement.classList.add('card-fade');
-                        }
-                        const videoIcon = element.querySelector('.video-icon');
-                        if (videoIcon) {
-                            videoIcon.classList.add('card-fade');
-                        }
-                        element.querySelectorAll('.card-label').forEach(label => {
-                            label.classList.add('card-fade');
-                        });
-                    } else {
-                        // 点和标签淡出效果
-                        element.classList.add('point-fade');
-                    }
-                } else if (element.classList.contains('card')) {
-                    element.querySelectorAll('.card-label').forEach(label => {
-                        if (label.textContent === filterName) {
-                            label.classList.add('hover');
+    const buttons = document.querySelectorAll('.buttons-section button');
+    const cards = document.querySelectorAll('.card');
+    const points = document.querySelector('.coordinate-view').querySelectorAll('.point-wrapper');
+
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            const filter = button.textContent.trim();
+            if (filter === 'All') return;
+
+            cards.forEach(card => {
+                if (!card.hasAttribute(`data-${filter.toLowerCase()}`)) {
+                    card.classList.add('fade-out');
+                } else {
+                    // 找到匹配的标签并添加高亮效果
+                    const labels = card.querySelectorAll('.label');
+                    labels.forEach(label => {
+                        if (label.textContent === filter) {
+                            label.classList.add('label-highlight');
                         }
                     });
+                }
+            });
+
+            points.forEach(point => {
+                if (!point.hasAttribute(`data-${filter.toLowerCase()}`)) {
+                    point.classList.add('fade-out');
                 }
             });
         });
 
         button.addEventListener('mouseleave', () => {
-            document.querySelectorAll('.card, .point-wrapper').forEach(element => {
-                if (element.classList.contains('card')) {
-                    element.querySelector('.card-title').classList.remove('card-fade');
-                    element.querySelector('.card-description').classList.remove('card-fade');
-                    element.querySelector('.card-time').classList.remove('card-fade');
-                    const prizeElement = element.querySelector('.card-prize');
-                    if (prizeElement) {
-                        prizeElement.classList.remove('card-fade');
-                    }
-                    const videoIcon = element.querySelector('.video-icon');
-                    if (videoIcon) {
-                        videoIcon.classList.remove('card-fade');
-                    }
-                    element.querySelectorAll('.card-label').forEach(label => {
-                        label.classList.remove('card-fade');
-                        label.classList.remove('hover');
-                    });
-                } else {
-                    element.classList.remove('point-fade');
-                }
+            cards.forEach(card => {
+                card.classList.remove('fade-out');
+                // 移除所有标签的高亮效果
+                const labels = card.querySelectorAll('.label');
+                labels.forEach(label => {
+                    label.classList.remove('label-highlight');
+                });
+            });
+
+            points.forEach(point => {
+                point.classList.remove('fade-out');
             });
         });
     });
 }
 
-// 添加滚动处理逻辑
+// 初始化过滤器滚动效果
 function initFilterScroll() {
-    const filterWrapper = document.querySelector('.filter-wrapper');
-    const cardsSection = document.querySelector('.cards-section');
-    let filterRect = filterWrapper.getBoundingClientRect();
+    const buttonSection = document.querySelector('.buttons-section');
+    const filterRect = buttonSection.getBoundingClientRect();
     let originalTop = filterRect.top + window.pageYOffset;
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         
         if (currentScroll > originalTop) {
-            filterWrapper.classList.add('fixed');
-            cardsSection.classList.add('filter-fixed');
+            buttonSection.classList.add('fixed');
+            cardSection.classList.add('filter-fixed');
         } else {
-            filterWrapper.classList.remove('fixed');
-            cardsSection.classList.remove('filter-fixed');
+            buttonSection.classList.remove('fixed');
+            cardSection.classList.remove('filter-fixed');
         }
     });
 
     // 当窗口大小改变时重新计算位置
     window.addEventListener('resize', () => {
-        filterRect = filterWrapper.getBoundingClientRect();
+        filterRect = buttonSection.getBoundingClientRect();
         originalTop = filterRect.top + window.pageYOffset;
     });
 }
@@ -305,65 +283,43 @@ function createProjectPoints() {
     const containerHeight = container.offsetHeight;
 
     projects.forEach(project => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'point-wrapper';
-        
-        // 创建点击区域
-        const clickArea = document.createElement('a');
-        
-        // 构建可能的项目页面路径
-        const htmlPath = project.getHtmlPath();
-        
-        // 检查项目页面是否存在
-        fetch(htmlPath)
-            .then(response => {
-                if (response.ok && project.ispage) {  // 检查 ispage 属性
-                    clickArea.href = htmlPath;
-                } else {
-                    // 如果项目页面不存在，使用视频链接或其他链接
-                    clickArea.href = project.youtubeLink || project.otherLink1 || '#';
-                    if (project.youtubeLink || project.otherLink1) {
-                        clickArea.target = '_blank';
-                    }
-                }
-            })
-            .catch(() => {
-                // 如果检查失败，使用视频链接或其他链接
-                clickArea.href = project.youtubeLink || project.otherLink1 || '#';
-                if (project.youtubeLink || project.otherLink1) {
-                    clickArea.target = '_blank';
-                }
-            });
+        if (!project.situate) return;
 
-        clickArea.style.textDecoration = 'none';
-        clickArea.style.color = 'inherit';
-
-        const point = document.createElement('div');
-        point.className = 'project-point';
-        clickArea.appendChild(point);
-
-        const label = document.createElement('div');
-        label.className = 'point-label';
-        label.textContent = project.title;
-        clickArea.appendChild(label);
+        const pointWrapper = document.createElement('div');
+        pointWrapper.className = 'point-wrapper';
         
-        wrapper.appendChild(clickArea);
-
-        // 添加与标签相同的数据属性
+        // 为每个点添加标签数据属性
         project.labels.forEach(label => {
-            point.setAttribute(`data-${label.toLowerCase()}`, '');
-            wrapper.setAttribute(`data-${label.toLowerCase()}`, '');
+            pointWrapper.setAttribute(`data-${label.toLowerCase()}`, '');
         });
+
+        // 添加点击事件
+        if (project.ispage) {
+            pointWrapper.style.cursor = 'pointer';
+            pointWrapper.addEventListener('click', () => {
+                window.location.href = `projects/${project.name}/${project.name}.html`;
+            });
+        } else if (project.youtubeLink) {
+            pointWrapper.style.cursor = 'pointer';
+            pointWrapper.addEventListener('click', () => {
+                window.open(project.youtubeLink, '_blank');
+            });
+        }
+
+        // 计算点的位置
+        const x = (project.situate.x + 100) * containerWidth / 200;
+        const y = (project.situate.y + 100) * containerHeight / 200;
         
-        // 将 -100 到 100 的坐标映射到容器尺寸
-        const x = (project.situate.x + 100) / 200 * containerWidth;
-        const y = (100 - project.situate.y) / 200 * containerHeight;
+        pointWrapper.style.left = `${x}px`;
+        pointWrapper.style.top = `${y}px`;
         
-        wrapper.style.left = `${x}px`;
-        wrapper.style.top = `${y}px`;
+        pointWrapper.innerHTML = `
+            <div class="project-point"></div>
+            <div class="point-label">${project.title}</div>
+        `;
         
         // 添加悬停预览
-        wrapper.addEventListener('mouseenter', (e) => {
+        pointWrapper.addEventListener('mouseenter', (e) => {
             const preview = document.createElement('div');
             preview.className = 'point-preview';
             preview.innerHTML = `
@@ -375,7 +331,7 @@ function createProjectPoints() {
             const offset = 20; // 与光标的距离
             
             preview.style.left = `${e.clientX + offset}px`;
-            if (project.situate.y > 0) {
+            if (project.situate.y < 0) {  // 如果点在坐标系下半部分
                 preview.style.top = `${e.clientY + offset}px`;
             } else {
                 preview.style.top = `${e.clientY - previewHeight - offset}px`;
@@ -384,14 +340,14 @@ function createProjectPoints() {
             document.body.appendChild(preview);
         });
 
-        wrapper.addEventListener('mouseleave', () => {
+        pointWrapper.addEventListener('mouseleave', () => {
             const preview = document.querySelector('.point-preview');
             if (preview) {
                 preview.remove();
             }
         });
         
-        container.appendChild(wrapper);
+        container.appendChild(pointWrapper);
     });
 }
 
@@ -462,4 +418,10 @@ initViewSwitch();
 // 添加过滤器点击事件监听
 buttonSection.querySelectorAll('button').forEach(button => {
     button.addEventListener('click', handleFilterClick);
+});
+
+// 当页面加载完成时初始化
+document.addEventListener('DOMContentLoaded', () => {
+    initFilterScroll();
+    addFilterHoverEffects();
 });

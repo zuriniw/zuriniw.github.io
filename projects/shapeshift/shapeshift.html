@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading... - Ziru Wei</title>
+    <title>Shapeshift Playground</title>
     <link rel="icon" type="image/png" href="../../images/kitten.png">
     <link rel="stylesheet" href="../../style.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="../../styles/toc.css">
+    <link rel="stylesheet" href="../../styles/markdown.css">
     <script src="../../components/load_components.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div class="project-page"></div>
@@ -69,10 +71,15 @@
             .then(mdContent => {
                 // 将 markdown 转换为 HTML 并插入到容器中
                 document.getElementById('markdown-content').innerHTML = marked.parse(mdContent);
+                // 初始化目录
+                const toc = new TableOfContents();
+                toc.init();
             })
             .catch(error => {
                 console.error('Error loading markdown:', error);
             });
     </script>
+
+    <script src="../../scripts/toc.js"></script>
 </body>
 </html>

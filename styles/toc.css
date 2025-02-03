@@ -1,0 +1,85 @@
+/* 字体声明 */
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('../fonts/RobotoMono-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('../fonts/RobotoMono-Italic-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 700;
+    font-style: italic;
+}
+
+
+/* 目录容器样式 */
+.toc-container {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 240px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 10px;
+    opacity: 0;  /* 默认隐藏 */
+    transition: opacity 0.2s ease;  /* 添加过渡效果 */
+}
+
+/* 目录标题样式 */
+/* .toc-title {
+    font-size: 14px;
+    font-weight: 350;
+    margin-bottom: 16px;
+    color: var(--color-text);
+} */
+
+/* 目录列表样式 */
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: -8px;  /* 移除顶部空间 */
+    font-family: "Roboto Mono", monospace !important;  /* 强制应用字体 */
+    letter-spacing: -0.5em;
+}
+
+/* 目录项样式 */
+.toc-item {
+    margin: 8px 0;
+    padding-left: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    transition: all 0.1s ease;
+    background: transparent;  /* 确保没有背景色 */
+}
+
+/* 不同级别的缩进 */
+.toc-item[data-level="2"] { padding-left: 0; }
+.toc-item[data-level="3"] { padding-left: 16px; }
+.toc-item[data-level="4"] { padding-left: 32px; }
+
+/* 目录链接样式 */
+.toc-link {
+    color: var(--color-text-grey);
+    text-decoration: none;
+    transition: all 0.1s ease;
+    font-weight: 350;
+    background: transparent;  /* 确保没有背景色 */
+    padding: 0;  /* 移除任何内边距 */
+    font-family: "Roboto Mono", monospace !important;  /* 强制应用字体 */
+}
+
+/* 目录链接悬停效果 */
+.toc-link:hover {
+    color: var(--color-text);
+    background: transparent;  /* 确保悬停时也没有背景色 */
+}
+
+/* 当前活动的目录项 */
+.toc-item.active .toc-link {
+    color: var(--color-text-darkgrey);
+    font-weight: 600;
+    background: transparent;  /* 确保激活时也没有背景色 */
+} 

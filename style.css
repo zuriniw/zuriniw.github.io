@@ -147,6 +147,15 @@ button:hover {
     height: auto;  /* 让卡片高度自动适应内容 */
     box-sizing: border-box;  /* 确保边框在内边距内 */
     position: relative;  /* 为标签定位 */
+    margin-left: 1.2px;  /* 向右偏移卡片，使其与图片边框对齐 */
+    cursor: pointer;  /* 添加鼠标指针样式 */
+    transition: all 0.2s ease;  /* 添加过渡效果 */
+    transition: opacity 0.3s ease;
+}
+
+/* 卡片悬停效果 */
+.card:hover {
+    background-color: #f4f3f3;
 }
 
 /* 隐藏类 */
@@ -161,7 +170,7 @@ button:hover {
     object-fit: cover;
     border: 1.2px solid var(--color-text);
     transition: opacity 0.2s ease;
-    margin: -1.2px 0;  /* 确保图片没有外边距，并向上和向下移动1.2px */
+    margin: -1.2px 0 -1.2px -1.2px;  /* 调整图片位置，使其边框与卡片边框重叠 */
     display: block;  /* 确保图片是块级元素，消除底部间隙 */
     opacity: 0.85;  /* 默认透明度为80% */
 }
@@ -248,7 +257,7 @@ button:hover {
     font-size: 14px;
     font-weight: 350;
     color: var(--color-text-grey);
-    margin: 2px 0 4px 0;
+    margin: 2px 0 0 0;  /* 减小底部边距 */
 }
 
 /* 卡片描述文字样式 */
@@ -257,7 +266,7 @@ button:hover {
     font-size: 14px;
     font-weight: 350;
     color: var(--color-text);
-    margin: 12px 0 12px 0;
+    margin: 2px 0 12px 0;  /* 减小顶部边距 */
 }
 
 /* 过滤按钮区域样式 */
@@ -404,23 +413,25 @@ button:hover {
 
 /* 卡片标签容器样式 */
 .card-labels {
-    margin: 0;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    position: absolute;
-    bottom: 8px;  /* 设置底部间距 */
+    margin-top: 12px;
 }
 
 /* 卡片标签样式 */
-.card-label {
+.label {
     font-family: "Roboto Mono", monospace;
-    font-size: 12px;
-    padding: 2px 8px;
-    border: 1.2px solid var(--color-text);
-    border-radius: 12px;
+    font-size: 14px;
     color: var(--color-text);
-    transition: all 0.2s ease;  /* 添加过渡效果 */
+    padding-bottom: 3px;
+    padding-top: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: 1.2px solid var(--color-text);
+    font-weight: 350;
+    border-radius: 12px;
+    transition: all 0.1s ease;
 }
 
 /* 卡片标签悬停状态 */
@@ -460,7 +471,7 @@ button:hover {
 
 /* 当卡片被淡出且图片被悬停时的样式 */
 .card:has(.card-fade) .card-image-link:hover img {
-    opacity: 0.3;  /* 即使在悬停时也保持30%的透明度 */
+    opacity: 0.1;  /* 即使在悬停时也保持30%的透明度 */
 }
 
 /* Filter wrapper 样式 */
@@ -468,7 +479,7 @@ button:hover {
     width: 100%;
     background-color: var(--color-background);
     padding: 48px 0 16px 0;  /* 减小上边距 */
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
 }
 
 /* 固定状态的样式 */
@@ -577,6 +588,7 @@ button:hover {
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    transition: opacity 0.3s ease;
 }
 
 /* 项目点样式 */
@@ -586,7 +598,7 @@ button:hover {
     background-color: var(--color-text);
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
     /* 添加模糊效果的准备 */
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
 }
@@ -732,7 +744,7 @@ button:hover {
 .project-title {
     font-family: "Roboto Mono", monospace;
     font-size: 48px;
-    margin-bottom: 12px;  /* 减小标题和副标题之间的间距 */
+    margin-bottom: 0px;  /* 减小标题和副标题之间的间距 */
     font-weight: 350;
 }
 
@@ -745,12 +757,12 @@ button:hover {
 }
 
 .project-meta {
-    margin-top: 32px;  /* 减小副标题和链接之间的间距 */
+    margin-top: 20px;  /* 减小副标题和链接之间的间距 */
     letter-spacing: 0.4px;
 }
 
 .meta-item {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
     letter-spacing: 0.3px;
@@ -765,7 +777,6 @@ button:hover {
 /* 链接容器样式 */
 .meta-links {
     display: flex;
-    margin-bottom: 40px;
     margin-top: 2px;  /* 增加与上方标签的间距 */
     flex-direction: row;
     gap: 24px;  /* 链接之间的间距 */
@@ -776,18 +787,23 @@ button:hover {
 .meta-link {
     color: var(--color-text);
     text-decoration: none;
-    transition: color 0.3s ease;
-    background-color: var(--color-text);
-    color: var(--color-white);
+    transition: color 0.1s ease;
+    color: var(--color-text);
     padding: 2px 10px;
-    border-radius: 16px;
-    transition: all 0.3s ease;
+    border-radius: 0px;
+    transition: all 0.1s ease;
     font-size: 14px;
+    border: 1.2px solid var(--color-text);
+    margin-bottom: 20px;
+
 }
 
 .meta-link:hover {
-    background-color: var(--color-text-hover);
+    background-color: var(--color-text);
     color: var(--color-white);
+    border: 1.2px solid var(--color-text);
+    margin-bottom: 20px;
+
 }
 
 .meta-text {
@@ -836,7 +852,7 @@ button:hover {
 .intro-link {
     color: var(--color-text);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.1s ease;
 }
 
 .intro-link:hover {
@@ -1030,7 +1046,7 @@ button:hover {
     color: var(--color-text);
     text-decoration: none;
     border-bottom: 1.2px solid var(--color-text);
-    transition: color 0.3s ease;
+    transition: color 0.1s ease;
     font-weight: 320;
 }
 
@@ -1128,7 +1144,7 @@ button:hover {
     padding: 16px;
     padding-right: 64px;  /* 增加右侧内边距，为星号留出更多空间 */
     border: 1.2px solid var(--color-text);
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
     position: relative;  /* 为星号定位 */
 }
 
@@ -1168,7 +1184,7 @@ button:hover {
     border-bottom: 1.2px solid transparent;
     text-decoration: none;
     color: var(--color-text);
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
 }
 
 .news-link:hover {
@@ -1232,4 +1248,42 @@ button:hover {
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
     color: var(--color-text);
+}
+
+/* 当卡片被淡出时的样式 */
+.card-fade-hover {
+    opacity: 0.3;
+    transition: opacity 0.1s ease;
+}
+
+/* 当卡片被淡出时的样式 */
+.card-fade-hover .label {
+    opacity: 0.3;
+    transition: opacity 0.1s ease;
+}
+
+/* 淡出效果 */
+.fade-out {
+    opacity: 0.3;
+}
+
+/* 确保标签也跟随卡片的透明度变化 */
+.fade-out .label {
+    opacity: 0.3;
+}
+
+/* 确保点的标签也有过渡效果 */
+.point-wrapper {
+    transition: opacity 0.1s ease;
+}
+
+/* 点的标签淡出效果 */
+.point-wrapper.fade-out {
+    opacity: 0.1;
+}
+
+/* 标签高亮样式 */
+.label-highlight {
+    color: var(--color-red);
+    border-color: var(--color-red);
 }
