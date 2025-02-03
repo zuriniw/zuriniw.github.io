@@ -90,8 +90,8 @@ const projects = [
     }),
     new Project({
         name: "seeingsaw",
-        title: "Seeing-Saw",
-        subtitle: "Paired Device for Telepresence",
+        title: "SEEINGSAW",
+        subtitle: "Peripheral and expressive awareness in lovable devices",
         labels: ["Embodied"],
         time: "2024",
         ispage: true,
@@ -102,7 +102,7 @@ const projects = [
         myContribution: "paired device background research, ideating, electrical wiring, coding",
         tools: "Particle Cloud, Photon2, Woodworking Tools",
         briefDescription: `Build peripheral and expressive awareness in lovable devices, to foster emotive communication through low-fidelity information`,
-        youtubeLink: "https://www.youtube.com/watch?v=KNwp1Vy8hrg",
+        youtubeLink: "https://www.youtube.com/watch?v=KNwp1Vy8hrg&feature=youtu.be",
         otherLink1: "https://github.com/zuriniw/SEEINGSAW",
         weight: 8.9,
         situate: { x: -23, y: 89 }
@@ -249,7 +249,7 @@ const projects = [
     new Project({
         name: "intdesign",
         title: "Interior Design",
-        subtitle: "Spatial design work",
+        subtitle: "Modern residential apartment design",
         labels: ["Spatial"],
         time: "2023",
         isteam: false,

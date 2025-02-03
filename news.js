@@ -23,12 +23,11 @@ function parseTime(timeStr) {
 const newsItems = [
     new NewsItem({
         time: "2025.01",
-        event: `Best Academic Contribution Award in The 9th Cross-strait Youth Maker Competition, 2024. See the <a href="projects/poi/poi.html" class="news-link">project↗</a>.`,
-        isstar: true
+        event: `Best Academic Contribution Award in The 9th Cross-strait Youth Maker Competition, 2024. See the <a href="projects/poi/poi.html" class="news-link">project↗</a>`,
     }),
     new NewsItem({
         time: "2024.12",
-        event: `1st Prize in <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112↗</a> Term Project. See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project↗</a>.`,
+        event: `1st Prize in <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112↗</a> Term Project. See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project↗</a>`,
     }),
     new NewsItem({
         time: "2025.01",

@@ -1,5 +1,3 @@
-[![pATDErR.jpg](https://s21.ax1x.com/2024/12/06/pATDErR.jpg)](https://imgse.com/i/pATDErR)
-
 
 ShapeShift Playground is designed to make graphic and motion design accessible and enjoyable for all. Beyond just drawing, you can use it to construct personalized calculators or simulate mathematical function graphs, expanding the realms of design and calculation to suit your creative needs.
 
