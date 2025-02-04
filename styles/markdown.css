@@ -192,7 +192,7 @@
 
 /* 添加图片样式 */
 .markdown-content img {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
     display: block;  /* 使图片变成块级元素 */
     margin: 24px auto;  /* 上下间距和水平居中 */
