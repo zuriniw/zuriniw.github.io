@@ -126,7 +126,7 @@ const projects = [
         youtubeLink: "https://www.youtube.com/watch?v=J2h9kxWUWH4",
         otherLink2: null,
         prize: "1st Prize in CMU 15-112 Term Project",
-        weight: 7.1,
+        weight: 6.1,
         situate: { x: 50, y: -90 },
         ismarkdown: true,
         isflipped: false
@@ -309,6 +309,39 @@ const projects = [
         briefDescription: "What if data can flows among the real world and MR scene?",
         weight: 4,
         situate: { x: 10, y: 10 }
+    }),
+    new Project({
+        name: "wastemachine",
+        title: "WasteMachine",
+        subtitle: "Build scanner from abandoned DVD drivers",
+        labels: ["Digital"],
+        time: "2024",
+        collaborator: "Carla Flores Travez",
+        tutor: "Daragh Bryne",
+        myContribution: "Researching, Disassembling, Assambling",
+        isteam: true,
+        tools: "Rasp pi, soldering tools",
+        briefDescription: "Linking invention and disposal",
+        otherLink2: "https://ziruw.notion.site/waste-machines-input-output-103f6c956a3280d7bc93d368a16e2498?pvs=74",
+        situate: { x: 60, y: 70 },
+        ispage: true,
+        weight: 6,
+        ismarkdown: true
+    }),
+    new Project({
+        name: "dataresonate",
+        title: "DataResonate",
+        subtitle: "A immersive data discussion toolkit for public urban discourse",
+        labels: ["Embodied", "XR"],
+        time: "2023",
+        isteam: false,
+        tools: "Unity | C# | HoloLens 2 | Arduino | Rhino | ArcGIS | Figma | Procreate | laser cut",
+        briefDescription: "between distant information and sensible responses",
+        youtubeLink: "https://youtu.be/Nbk9Z47OTQQ",
+        situate: { x: -30, y: 30 },
+        ispage: true,
+        weight: 7,
+        ismarkdown: true
     })
 ];
 
