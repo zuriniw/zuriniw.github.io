@@ -112,4 +112,20 @@ function createMetaLink(label, url) {
     link.target = '_blank';
     link.textContent = label;
     return link;
+}
+
+export class ProjectPage {
+    static getCurrentProjectName() {
+        return window.location.pathname.split('/').slice(-2)[0];
+    }
+    
+    constructor() {
+        this.name = ProjectPage.getCurrentProjectName();
+        this.project = projects.find(p => p.name === this.name);
+        
+        if (!this.project) {
+            console.error('Project not found');
+            return;
+        }
+    }
 } 

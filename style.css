@@ -1281,7 +1281,7 @@ body.project-page {
 .project-section {
     max-width: 760px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
     position: relative;
 }
 
@@ -1397,4 +1397,18 @@ body.project-page {
 
 .extension-line.vertical {
     width: 0.6px;  /* 直接使用更细的宽度，不使用 transform */
+}
+
+/* 视频容器样式 */
+.video-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    margin-top: 60px;  /* 增加与上方内容的间距 */
+    padding: 0 20px;
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: none;
 }
