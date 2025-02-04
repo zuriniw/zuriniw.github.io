@@ -467,6 +467,38 @@ function initViewSwitch() {
     });
 }
 
+// 添加固定过滤器功能
+function initFixedFilter() {
+    const filterWrapper = document.querySelector('.filter-wrapper');
+    const filterRect = filterWrapper.getBoundingClientRect();
+    const originalTop = window.pageYOffset + filterRect.top;  // 获取原始位置
+    
+    // 创建占位元素
+    const placeholder = document.createElement('div');
+    placeholder.className = 'filter-wrapper-placeholder';
+    placeholder.style.height = `${filterRect.height}px`;
+    filterWrapper.parentNode.insertBefore(placeholder, filterWrapper);
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop >= originalTop) {
+            filterWrapper.classList.add('fixed');
+            placeholder.classList.add('active');
+        } else {
+            filterWrapper.classList.remove('fixed');
+            placeholder.classList.remove('active');
+        }
+    });
+    
+    // 监听窗口大小变化
+    window.addEventListener('resize', () => {
+        const newRect = filterWrapper.getBoundingClientRect();
+        placeholder.style.height = `${newRect.height}px`;
+    });
+}
+
 // 初始化页面
 createFilterButtons();
 createProjectCards();
@@ -483,4 +515,5 @@ buttonSection.querySelectorAll('button').forEach(button => {
 document.addEventListener('DOMContentLoaded', () => {
     initFilterScroll();
     addFilterHoverEffects();
+    initFixedFilter();
 });

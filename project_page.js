@@ -143,6 +143,11 @@ function getCurrentProjectName() {
 
 // 初始化页面
 function initProjectPage() {
+    // 确保页面有项目页面标识
+    if (!document.body.classList.contains('project-page')) {
+        document.body.classList.add('project-page');
+    }
+    
     const projectName = getCurrentProjectName();
     const project = projects.find(p => p.name === projectName);
     
@@ -153,5 +158,5 @@ function initProjectPage() {
     }
 }
 
-// 当页面加载完成时初始化
+// 确保在 DOM 加载完成后立即执行
 document.addEventListener('DOMContentLoaded', initProjectPage); 

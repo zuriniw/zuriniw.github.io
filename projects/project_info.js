@@ -210,7 +210,7 @@ const projects = [
         otherLink2: "https://www.bilibili.com/video/BV1jT411g7Xf/",
         prize: "Award of Excellence & Award of New Talent on Bilibili 'Gamify Everything'",
         weight: 5,
-        situate: { x: -80, y: -30 }
+        situate: { x: -80, y: -10 }
     }),
     new Project({
         name: "zijin",

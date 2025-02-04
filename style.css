@@ -325,7 +325,7 @@ button:hover {
 .intro-section {
     max-width: 1350px;
     width: 100%;
-    margin: 120px auto 0;  /* 增加顶部边距 */
+    margin: 20px auto 0;  /* 增加顶部边距 */
     max-width: 760px;  /* 匹配新的卡片宽度 */
     font-family: "Barlow", sans-serif;
     font-weight: 350;
@@ -478,16 +478,30 @@ button:hover {
 .filter-wrapper {
     width: 100%;
     background-color: var(--color-background);
-    padding: 48px 0 16px 0;  /* 减小上边距 */
-    transition: all 0.1s ease;
+    padding: 48px 0 16px 0;
+    transition: all 0.1s ease;  /* 移除这个过渡效果 */
 }
 
-/* 固定状态的样式 */
+/* 过滤器容器固定样式 */
 .filter-wrapper.fixed {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    right: 0;
+    z-index: 100;
+    padding-top: 16px;  /* 固定时减少上边距 */
+    background-color: var(--color-background);
+}
+
+/* 当过滤器固定时，为内容添加 padding 以防止跳动 */
+.filter-wrapper-placeholder {
+    display: none;
+    width: 100%;
+    background-color: var(--color-background);  /* 添加背景色 */
+}
+
+.filter-wrapper-placeholder.active {
+    display: block;
 }
 
 /* 当 filter 固定时，为内容添加 padding-top */
@@ -1237,12 +1251,37 @@ button:hover {
 
 /* 页眉样式 */
 #header {
-    position: fixed; /* 固定定位 */
+    width: 100%;
+    background-color: transparent !important; /* 始终保持透明 */
+    z-index: 1000;
+}
+
+/* 项目页面的固定页眉样式 */
+body.project-page #header {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0) !important; /* 透明背景，调整 alpha 值以控制透明度 */
-    z-index: 1000; /* 确保在其他元素之上 */
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent !important;
+}
+
+/* 为固定导航栏下的内容添加空间 */
+body.project-page {
+    padding-top: 60px;  /* 根据导航栏高度调整 */
+    height: auto;  /* 移除固定高度 */
+    min-height: 100vh;  /* 确保至少有一个视口高度 */
+    position: relative;  /* 修改定位方式 */
+    overflow-y: auto;  /* 允许垂直滚动 */
+}
+
+/* 项目内容区域样式 */
+.project-section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
 }
 
 /* 页脚样式 */
@@ -1257,7 +1296,7 @@ button:hover {
     text-align: right;
     font-weight: 320;
     padding-right: -1px;
-    margin-top: 8px;
+    margin-top: 16px;
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
     color: var(--color-text);
@@ -1333,12 +1372,12 @@ button:hover {
 }
 
 .y-label.top {
-    left: 49%;  /* 对齐y轴 */
+    left: 51%;  /* 对齐y轴 */
     top: -2px;   /* 靠近顶部 */
 }
 
 .y-label.bottom {
-    left: 49%;  /* 对齐y轴 */
+    left: 51%;  /* 对齐y轴 */
     bottom: 52px;  /* 调整位置，避免超出matrix */
 }
 
