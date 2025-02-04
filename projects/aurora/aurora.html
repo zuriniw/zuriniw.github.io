@@ -32,7 +32,9 @@
             <p class="project-context"></p>
         </div>
     </div>
-
+        
+    <!-- 视频容器 -->
+    <div class="video-wrapper"></div>
     <!-- 添加 markdown 内容容器 -->
     <div id="markdown-content" class="markdown-content">
         <!-- Markdown 内容将被动态加载到这里 -->
@@ -43,20 +45,44 @@
 
     <script type="module" src="../project_page.js"></script>
     <!-- 添加加载 markdown 的脚本 -->
-    <script>
-        // 获取 markdown 文件内容
-        fetch('aurora.md')
-            .then(response => response.text())
-            .then(mdContent => {
-                // 将 markdown 转换为 HTML 并插入到容器中
-                document.getElementById('markdown-content').innerHTML = marked.parse(mdContent);
-                // 初始化目录
-                const toc = new TableOfContents();
-                toc.init();
-            })
-            .catch(error => {
-                console.error('Error loading markdown:', error);
-            });
+    <script type="module">
+        import { ProjectPage } from '../project_page.js';
+        import { projects } from '../project_info.js';
+        
+        // 获取当前项目信息
+        const projectName = ProjectPage.getCurrentProjectName();
+        const currentProject = projects.find(p => p.name === projectName);
+        
+        // 如果项目有 YouTube 链接，创建并插入视频
+        if (currentProject && currentProject.youtubeLink) {
+            const videoWrapper = document.querySelector('.video-wrapper');
+            const iframe = document.createElement('iframe');
+            iframe.width = "560";
+            iframe.height = "315";
+            iframe.src = currentProject.youtubeLink;
+            iframe.title = "YouTube video player";
+            iframe.frameBorder = "0";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            iframe.referrerPolicy = "strict-origin-when-cross-origin";
+            iframe.allowFullscreen = true;
+            videoWrapper.appendChild(iframe);
+        }
+        
+        // 只有当项目的 ismarkdown 为 true 时才加载 markdown 内容
+        if (currentProject && currentProject.ismarkdown) {
+            fetch(`${ProjectPage.getCurrentProjectName()}.md`)
+                .then(response => response.text())
+                .then(mdContent => {
+                    // 将 markdown 转换为 HTML 并插入到容器中
+                    document.getElementById('markdown-content').innerHTML = marked.parse(mdContent);
+                    // 初始化目录
+                    const toc = new TableOfContents();
+                    toc.init();
+                })
+                .catch(error => {
+                    console.error('Error loading markdown:', error);
+                });
+        }
     </script>
 
     <script src="../../scripts/toc.js"></script>
