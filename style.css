@@ -743,8 +743,9 @@ button:hover {
 /* 项目页面样式 */
 .project-section {
     max-width: 760px;
-    margin: 120px auto 0;
+    margin: 0 auto;
     padding: 0 20px;
+    position: relative;
 }
 
 /* 项目页面背景 */
@@ -765,23 +766,24 @@ button:hover {
 }
 
 .project-header {
-    margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 40px;
 }
 
 .project-title {
     font-family: "Roboto Mono", monospace;
-    font-size: 48px;
-    margin-bottom: 0px;  /* 减小标题和副标题之间的间距 */
-    margin-top: 40px;
-    font-weight: 350;
+    font-size: 56px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }
 
 .project-subtitle {
     font-family: "Roboto Mono", monospace;
     font-size: 20px;
-    line-height: 1.4;
-    font-weight: 350;
-    letter-spacing: -0.2px;
+    font-weight: 320;
+    margin: 8px 0 0 0;
+    padding: 0;
 }
 
 .project-meta {
