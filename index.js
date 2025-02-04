@@ -75,11 +75,26 @@ function createProjectCards() {
             });
         }
 
-        // 创建图片部分（根据 ispage 决定是否添加链接）
-        const imageContent = `<img src="${project.getGifPath()}" alt="${project.title}">`;
+        // 创建图片链接
+        const imageLink = document.createElement('a');
+        imageLink.className = 'card-image-link';
+        imageLink.href = project.getHtmlPath();
+        
+        // 创建图片容器
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'card-image-container';
+        
+        // 创建图片元素
+        const image = document.createElement('img');
+        image.src = project.getGifPath();
+        image.alt = project.title;
+        
+        imageContainer.appendChild(image);
+        imageLink.appendChild(imageContainer);
+        card.appendChild(imageLink);
 
         card.innerHTML = `
-            ${imageContent}
+            ${imageLink.outerHTML}
             <div class="card-body">
                 <div class="card-title-container">
                     <h3 class="card-title">${project.title}</h3>

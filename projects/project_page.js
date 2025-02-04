@@ -91,6 +91,23 @@ if (project) {
         const narrativeItem = createMetaItem('Narrative', project.narrative);
         metaSection.appendChild(narrativeItem);
     }
+
+    // 添加视频部分（在项目描述之后）
+    if (project.youtubeLink) {
+        const videoSection = document.createElement('div');
+        videoSection.className = 'video-wrapper';
+        
+        const iframe = document.createElement('iframe');
+        iframe.src = project.youtubeLink;
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allowfullscreen', '');
+        
+        videoSection.appendChild(iframe);
+        
+        // 将视频插入到项目描述后面
+        const projectContext = document.querySelector('.project-context');
+        projectContext.parentNode.insertBefore(videoSection, projectContext.nextSibling);
+    }
 }
 
 // 辅助函数：创建元数据项

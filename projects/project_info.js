@@ -100,6 +100,7 @@ const projects = [
         time: "2024",
         ispage: true,
         isteam: true,
+        ismarkdown: true,
         collaborator: "Leslie Liu",
         tutor: "Daragh Byrne",
         ta: "Zhenfang Chen",
@@ -164,6 +165,7 @@ const projects = [
         youtubeLink: "https://www.dropbox.com/scl/fi/ajuzkeolpeorpc0979q8t/HolographicConstruction.mp4?rlkey=7s31yppucptg6rdk8dkhffny0&e=1&dl=0",
         paperLink: "https://papers.cumincad.org/cgi-bin/works/paper/caadria2022_157",
         weight: 8.1,
+        ismarkdown: true,
         situate: { x: 80, y: -80 }
     }),
     new Project({

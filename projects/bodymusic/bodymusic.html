@@ -53,21 +53,6 @@
         const projectName = ProjectPage.getCurrentProjectName();
         const currentProject = projects.find(p => p.name === projectName);
         
-        // 如果项目有 YouTube 链接，创建并插入视频
-        if (currentProject && currentProject.youtubeLink) {
-            const videoWrapper = document.querySelector('.video-wrapper');
-            const iframe = document.createElement('iframe');
-            iframe.width = "560";
-            iframe.height = "315";
-            iframe.src = currentProject.youtubeLink;
-            iframe.title = "YouTube video player";
-            iframe.frameBorder = "0";
-            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-            iframe.referrerPolicy = "strict-origin-when-cross-origin";
-            iframe.allowFullscreen = true;
-            videoWrapper.appendChild(iframe);
-        }
-        
         // 只有当项目的 ismarkdown 为 true 时才加载 markdown 内容
         if (currentProject && currentProject.ismarkdown) {
             fetch(`${ProjectPage.getCurrentProjectName()}.md`)
