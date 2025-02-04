@@ -76,5 +76,9 @@ It had been confirmed that Responsive Interaction significantly enhances visuali
 ![test_21.png](test_21.png)
 ![test_22.png](test_22.png)
 
+## Design Result
+### Interaction Sequence
+![interaction.png](interaction.png)
 
+### Scenario
 ![effect.png](effect.png)

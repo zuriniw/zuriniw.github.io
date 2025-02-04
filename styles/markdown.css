@@ -152,7 +152,7 @@
 .markdown-content ul,
 .markdown-content ol {
     margin: 12px 0;
-    padding-left: 60px;  /* 增加左侧缩进，为项目符号腾出空间 */
+    padding-left: 40px;  /* 增加左侧缩进，为项目符号腾出空间 */
     font-family: "Barlow", sans-serif;
     font-size: 18px;
     line-height: 1.6;
@@ -163,13 +163,14 @@
 /* 调整项目符号的位置 */
 .markdown-content ul {
     list-style-position: outside;  /* 确保项目符号在文本外部 */
-    list-style-type: disc;  /* 使用实心圆点 */
+    list-style-type: circle;  /* 使用空心圆点 */
     font-weight: 320;
+    margin-right: -16px;
 }
 
 .markdown-content li {
     margin: 4px 0;
-    padding-left: 12px;  /* 减少列表项的内部缩进 */
+    padding-left: 4px;  /* 减少列表项的内部缩进 */
     font-family: "Barlow", sans-serif;
     font-size: 18px;
     line-height: 1.6;

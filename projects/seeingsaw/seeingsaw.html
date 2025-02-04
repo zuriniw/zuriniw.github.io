@@ -6,6 +6,8 @@
     <title>Loading... - Ziru Wei</title>
     <link rel="icon" type="image/png" href="../../images/kitten.png">
     <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../styles/toc.css">
+    <link rel="stylesheet" href="../../styles/markdown.css">
     <script src="../../components/load_components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -37,9 +39,32 @@
         </div>
     </div>
 
+    <!-- 添加 markdown 内容容器 -->
+    <div id="markdown-content" class="markdown-content">
+        <!-- Markdown 内容将被动态加载到这里 -->
+    </div>
+
     <!-- 页脚容器 -->
     <div id="footer"></div>
 
     <script type="module" src="../project_page.js"></script>
+    <!-- 添加加载 markdown 的脚本 -->
+    <script>
+        // 获取 markdown 文件内容
+        fetch('seeingsaw.md')
+            .then(response => response.text())
+            .then(mdContent => {
+                // 将 markdown 转换为 HTML 并插入到容器中
+                document.getElementById('markdown-content').innerHTML = marked.parse(mdContent);
+                // 初始化目录
+                const toc = new TableOfContents();
+                toc.init();
+            })
+            .catch(error => {
+                console.error('Error loading markdown:', error);
+            });
+    </script>
+
+    <script src="../../scripts/toc.js"></script>
 </body>
 </html> 
