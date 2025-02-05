@@ -43,6 +43,12 @@
     text-align: center;
     padding-left: 0;  /* 移除标题的左侧缩进 */
     width: 100%;  /* 确保标题占据整个宽度 */
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
 }
 
 .markdown-content h1,
@@ -51,6 +57,7 @@
     margin: 48px 0 24px;  /* 增加标题的间距 */
     font-weight: 600;
     line-height: 1.4;
+    max-width: 100%;  /* 确保标题不会超出容器 */
 }
 
 /* 第一个标题不需要顶部边距 */
@@ -196,7 +203,7 @@
     max-width: 100%;
     height: auto;
     display: block;  /* 使图片变成块级元素 */
-    margin: 24px auto;  /* 上下间距和水平居中 */
+    margin: 24px auto;  /* 使用 margin: auto 实现水平居中 */
 }
 
 /* 添加图片说明样式 */
@@ -213,9 +220,9 @@
 
 /* 确保 figure 容器也居中 */
 .markdown-content figure {
-    margin: 32px auto;
     text-align: center;
-    margin-top: 120px;
+    margin: 120px auto 32px;
+    max-width: 100%;  /* 使用 max-width 而不是 width */
 }
 
 /* 添加引用样式 */
@@ -256,5 +263,7 @@
 /* 确保包含图片的段落居中 */
 .markdown-content p:has(img) {
     text-align: center;
-    margin: 32px -20px;  /* 增加图片段落的上下间距 */
+    margin: 32px auto;  /* 使用 auto 实现水平居中 */
+    width: 100%;  /* 确保段落占据全宽 */
+    padding: 0;  /* 移除内边距 */
 }

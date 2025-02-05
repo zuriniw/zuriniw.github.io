@@ -1,4 +1,5 @@
-## Cybernetic Rule
+## Cybernetic System
+Guided by cybernetic theory, first proposed by Norbert Wiener in 1948, our team re-evaluated the relationship between the body and space, focusing on body preference and gaze direction in exhibition environments. We developed an interactive demo and conducted a behavioral experiment using MR headsets (HoloLens 2) and AI Stereo Cameras (ZED 2) to gather human factors data in the environment. Through Unity-Grasshopper communication, environment changes are computed, digitalized, and manually physicalized, finally embracing back to the human body. In this feedback loop, the constant mutual influence, change, and adaptation of people and the environment leads to co-evolution for both parties.
 
 ### Initial Setup
 
