@@ -168,14 +168,12 @@ function drawHull(points) {
         console.log('Drawing a line between two points');
         // 两点情况：直接连线
         d = `M ${points[0].x} ${points[0].y} L ${points[1].x} ${points[1].y}`;
-        path.setAttribute('fill', 'none');  // 两点时不需要填充
     } else if (points.length === 3) {
         console.log('Drawing a triangle');
         // 三点情况：直接画三角形
         d = `M ${points[0].x} ${points[0].y} 
              L ${points[1].x} ${points[1].y} 
              L ${points[2].x} ${points[2].y} Z`;
-        path.setAttribute('fill', 'rgba(0, 0, 0, 0.1)');
     } else {
         console.log('Computing concave hull');
         // 更多点的情况：使用凹包算法
@@ -189,14 +187,10 @@ function drawHull(points) {
             d += ` L ${x} ${y}`;
         }
         d += ' Z';
-        path.setAttribute('fill', 'rgba(0, 0, 0, 0.1)');
     }
     
     console.log('Path data:', d);
     path.setAttribute('d', d);
-    path.setAttribute('stroke', 'var(--color-text)');
-    path.setAttribute('stroke-width', '1');
-    path.setAttribute('stroke-dasharray', '4,4');
     
     svg.appendChild(path);
 }
@@ -419,6 +413,58 @@ function addFilterHoverEffects() {
         svg.style.width = '100%';
         svg.style.height = '100%';
         svg.style.pointerEvents = 'none';
+        
+        // 添加噪点滤镜定义
+        const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+        const filter = document.createElementNS("http://www.w3.org/2000/svg", "filter");
+        filter.setAttribute("id", "noiseFilter");
+        // 设置滤镜范围与路径边界一致
+        filter.setAttribute("x", "0");
+        filter.setAttribute("y", "0");
+        filter.setAttribute("width", "100%");
+        filter.setAttribute("height", "100%");
+        filter.setAttribute("filterUnits", "objectBoundingBox");
+        filter.setAttribute("primitiveUnits", "userSpaceOnUse");
+        
+        // 基础噪点生成
+        const turbulence = document.createElementNS("http://www.w3.org/2000/svg", "feTurbulence");
+        turbulence.setAttribute("type", "fractalNoise");
+        turbulence.setAttribute("baseFrequency", "0.9");
+        turbulence.setAttribute("numOctaves", "8");
+        turbulence.setAttribute("result", "noise");
+        
+        // 颜色混合
+        const colorMatrix = document.createElementNS("http://www.w3.org/2000/svg", "feColorMatrix");
+        colorMatrix.setAttribute("in", "noise");
+        colorMatrix.setAttribute("type", "matrix");
+        colorMatrix.setAttribute("values", `
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 1 0
+        `);
+        colorMatrix.setAttribute("result", "coloredNoise");
+        
+        // 添加合成操作
+        const composite = document.createElementNS("http://www.w3.org/2000/svg", "feComposite");
+        composite.setAttribute("in", "coloredNoise");
+        composite.setAttribute("in2", "SourceGraphic");
+        composite.setAttribute("operator", "in");
+        composite.setAttribute("result", "maskedNoise");
+        
+        // 与原图混合
+        const blend = document.createElementNS("http://www.w3.org/2000/svg", "feBlend");
+        blend.setAttribute("in", "SourceGraphic");
+        blend.setAttribute("in2", "maskedNoise");
+        blend.setAttribute("mode", "overlay");
+        
+        filter.appendChild(turbulence);
+        filter.appendChild(colorMatrix);
+        filter.appendChild(composite);
+        filter.appendChild(blend);
+        defs.appendChild(filter);
+        
+        svg.appendChild(defs);
         container.appendChild(svg);
     }
 

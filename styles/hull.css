@@ -1,0 +1,52 @@
+:root {
+  --noise-color: rgba(0, 0, 0, 0.9);  /* 噪点颜色 */
+  --noise-size: px;                       /* 噪点颗粒密度 */
+  --noise-speed: 0.8s;                       /* 动画速度 */
+}
+
+/* 凹包 SVG 路径样式 */
+.coordinate-container svg path {
+    fill: rgb(255, 255, 255);  /* 基础填充颜色 */
+    filter: url(#noiseFilter);  /* 应用噪点滤镜 */
+    stroke: var(--color-text);  /* 边框颜色 */
+    stroke-width: 1;  /* 边框宽度 */
+    stroke-dasharray: 4, 4;  /* 虚线样式 */
+    transition: all 0.3s ease;  /* 平滑过渡效果 */
+    mix-blend-mode: multiply;
+}
+
+/* 悬停效果 */
+.coordinate-container svg path:hover {
+    opacity: 0.8;  /* 使用透明度实现悬停效果 */
+}
+
+/* 噪点效果 */
+.coordinate-container svg path {
+    position: relative;
+    overflow: hidden;
+}
+
+.coordinate-container svg path::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    background-image: 
+        radial-gradient(var(--noise-color) 15%, transparent 30%),
+        repeating-linear-gradient(
+            45deg,
+            transparent 0 5px,
+            var(--noise-color) 5px 10px
+        );
+    background-size: 
+        var(--noise-size) var(--noise-size),
+        10px 10px;
+    animation: noise var(--noise-speed) infinite linear;
+    opacity: 0.8;
+    z-index: 1;
+    mix-blend-mode: overlay;  /* 添加混合模式以更好地融合噪点 */
+}
+
+@keyframes noise {
+    0% { background-position: 0 0, 0 0 }
+    100% { background-position: var(--noise-size) var(--noise-size), 10px 10px }
+}
