@@ -428,9 +428,9 @@ function addFilterHoverEffects() {
         
         // 基础噪点生成
         const turbulence = document.createElementNS("http://www.w3.org/2000/svg", "feTurbulence");
-        turbulence.setAttribute("type", "turbulence");
-        turbulence.setAttribute("baseFrequency", "0.7");
-        turbulence.setAttribute("numOctaves", "4");
+        turbulence.setAttribute("type", "fractalNoise");
+        turbulence.setAttribute("baseFrequency", "0.9");
+        turbulence.setAttribute("numOctaves", "8");
         turbulence.setAttribute("result", "noise");
         
         // 颜色混合
