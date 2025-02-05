@@ -1,6 +1,7 @@
 console.log('Script is running');
 
 import { projects, availableLabels } from './projects/project_info.js';
+import { Delaunay } from 'https://cdn.jsdelivr.net/npm/d3-delaunay@6/+esm';
 
 console.log('Available labels:', availableLabels);
 console.log('Projects:', projects);
@@ -23,56 +24,140 @@ function getPointCoordinates(point) {
     const rect = point.getBoundingClientRect();
     const container = document.querySelector('.coordinate-container');
     const containerRect = container.getBoundingClientRect();
-    return {
-        x: rect.left - containerRect.left + rect.width / 2,
-        y: rect.top - containerRect.top + rect.height / 2
-    };
+    // 使用相对于容器的坐标
+    const x = rect.left - containerRect.left + rect.width / 2;
+    const y = rect.top - containerRect.top + rect.height / 2;
+    
+    // 添加调试信息
+    console.log('Point coordinates:', { x, y });
+    return { x, y };
 }
 
-function calculateConcaveHull(points) {
+function computeConcaveHull(points, alpha = 100) {
     if (points.length < 3) return points;
     
-    // Graham扫描法计算凸包
-    const start = points.reduce((min, p) => 
-        p.y < min.y || (p.y === min.y && p.x < min.x) ? p : min, points[0]);
+    const coords = points.map(p => [p.x, p.y]);
+    const delaunay = Delaunay.from(coords);
     
-    const sorted = points
-        .filter(p => p !== start)
-        .sort((a, b) => {
-            const angleA = Math.atan2(a.y - start.y, a.x - start.x);
-            const angleB = Math.atan2(b.y - start.y, b.x - start.x);
-            return angleA - angleB;
-        });
+    const edgeCounts = new Map();
     
-    const hull = [start];
-    for (const point of sorted) {
-        while (hull.length > 1 && !isLeftTurn(
-            hull[hull.length - 2], 
-            hull[hull.length - 1], 
-            point
-        )) {
-            hull.pop();
+    for (let i = 0; i < delaunay.triangles.length; i += 3) {
+        const a = delaunay.triangles[i];
+        const b = delaunay.triangles[i + 1];
+        const c = delaunay.triangles[i + 2];
+        
+        const ax = coords[a][0], ay = coords[a][1];
+        const bx = coords[b][0], by = coords[b][1];
+        const cx = coords[c][0], cy = coords[c][1];
+        const radius = circumradius(ax, ay, bx, by, cx, cy);
+        
+        if (radius <= alpha) {
+            processEdge(a, b, edgeCounts);
+            processEdge(b, c, edgeCounts);
+            processEdge(c, a, edgeCounts);
         }
-        hull.push(point);
     }
-    hull.push(start);
-    return hull;
+    
+    const contourEdges = [];
+    for (const [key, count] of edgeCounts) {
+        if (count === 1) {
+            const [a, b] = key.split(',').map(Number);
+            contourEdges.push({ a, b });
+        }
+    }
+    
+    return edgesToContour(contourEdges, points);
 }
 
-function isLeftTurn(p1, p2, p3) {
-    return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x) > 0;
+function circumradius(ax, ay, bx, by, cx, cy) {
+    const d = 2 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by));
+    if (d === 0) return Infinity;
+    
+    const ux = ((ax * ax + ay * ay) * (by - cy) + (bx * bx + by * by) * (cy - ay) + (cx * cx + cy * cy) * (ay - by)) / d;
+    const uy = ((ax * ax + ay * ay) * (cx - bx) + (bx * bx + by * by) * (ax - cx) + (cx * cx + cy * cy) * (bx - ax)) / d;
+    return Math.hypot(ax - ux, ay - uy);
+}
+
+function processEdge(a, b, edgeCounts) {
+    const key = a < b ? `${a},${b}` : `${b},${a}`;
+    edgeCounts.set(key, (edgeCounts.get(key) || 0) + 1);
+}
+
+function edgesToContour(edges, points) {
+    if (edges.length === 0) return [];
+    
+    const adjacency = {};
+    edges.forEach(({ a, b }) => {
+        adjacency[a] = adjacency[a] || [];
+        adjacency[a].push(b);
+        adjacency[b] = adjacency[b] || [];
+        adjacency[b].push(a);
+    });
+    
+    const contours = [];
+    const visited = new Set();
+    
+    Object.keys(adjacency).forEach(startStr => {
+        const start = parseInt(startStr, 10);
+        if (visited.has(start)) return;
+        
+        let current = start;
+        const contour = [];
+        let prev = -1;
+        
+        while (true) {
+            contour.push(current);
+            visited.add(current);
+            
+            const neighbors = adjacency[current];
+            if (!neighbors || neighbors.length === 0) break;
+            
+            let next = neighbors.find(n => n !== prev);
+            if (next === undefined) next = neighbors[0];
+            
+            adjacency[current] = neighbors.filter(n => n !== next);
+            adjacency[next] = adjacency[next].filter(n => n !== current);
+            
+            prev = current;
+            current = next;
+            
+            if (current === start) {
+                contour.push(current);
+                break;
+            }
+        }
+        
+        contours.push(contour);
+    });
+    
+    const mainContour = contours.reduce((max, c) => c.length > max.length ? c : max, []);
+    const uniqueIndices = [...new Set(mainContour)];
+    const contourPoints = uniqueIndices.map(i => points[i]);
+    
+    if (contourPoints.length > 0 && !pointsEqual(contourPoints[0], contourPoints[contourPoints.length - 1])) {
+        contourPoints.push(contourPoints[0]);
+    }
+    
+    return contourPoints;
+}
+
+function pointsEqual(p1, p2) {
+    return p1.x === p2.x && p1.y === p2.y;
 }
 
 function drawHull(points) {
     if (!svg || points.length < 3) return;
     
-    // 移除现有的路径
+    // 添加调试信息
+    console.log('Drawing hull for points:', points);
+    
     const existingPath = svg.querySelector('path');
     if (existingPath) existingPath.remove();
     
-    const hull = calculateConcaveHull(points);
+    // 调整 alpha 值以适应坐标系的尺度
+    const alpha = 5250;  // 增大 alpha 值使凹包更平滑
+    const hull = computeConcaveHull(points, alpha);
     
-    // 创建平滑的路径
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     let d = `M ${hull[0].x} ${hull[0].y}`;
     
@@ -81,8 +166,11 @@ function drawHull(points) {
         d += ` L ${x} ${y}`;
     }
     
+    // 闭合路径
+    d += ' Z';
+    
     path.setAttribute('d', d);
-    path.setAttribute('fill', 'rgba(var(--color-text-rgb), 0.1)');
+    path.setAttribute('fill', 'rgba(0, 0, 0, 0.1)');  // 使用固定的透明度
     path.setAttribute('stroke', 'var(--color-text)');
     path.setAttribute('stroke-width', '1');
     path.setAttribute('stroke-dasharray', '4,4');
