@@ -10,7 +10,7 @@
   <figcaption>Disassembled Disk Drives</figcaption>
 </figure>
 
-## WasteMachine Database
+## WasteStation
 We build a notion database for mapping out all the possibilities and finding connections in between waste parts and potential new borns.
 ![archive.png](archive.png)
 

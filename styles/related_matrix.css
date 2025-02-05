@@ -32,18 +32,20 @@
     left: 0;
     top: 0;
     display: block;
-    width: 6px;  /* 缩小点的尺寸 */
-    height: 6px;
-    background-color: var(--color-text);
-    border-radius: 50%;
+    width: 10px;  /* 点的尺寸 */
+    height: 10px;
+    background-color: transparent;  /* 移除背景色 */
+    border: 1.2px solid var(--color-text);  /* 添加边框 */
+    border-radius: 70%;
     transition: all 0.1s ease;
     transform: translate(-50%, -50%);
 }
 
 /* 当前项目点的样式 */
 .point.current {
-    background-color: var(--color-red);
-    pointer-events: none;  /* 禁用当前项目的点击 */
+    border-color: var(--color-red);  /* 边框改为红色 */
+    background-color: transparent;  /* 保持空心 */
+    pointer-events: none;
     cursor: default;
 }
 
@@ -130,7 +132,7 @@
 .point-preview {
     position: fixed;
     z-index: 1000;
-    background: white;
+    background: var(--color-background);
     border: 1.2px solid var(--color-text);
     padding: 6px;
     pointer-events: none;

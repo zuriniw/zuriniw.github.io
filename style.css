@@ -617,24 +617,22 @@ button:hover {
 .project-point {
     width: 8px;
     height: 8px;
-    background-color: var(--color-text);
-    border-radius: 50%;
-    cursor: pointer;
+    border: 1.2px solid var(--color-text);  /* 添加边框 */
+    border-radius: 50%;  /* 保持圆形 */
+    background-color: var(--color-background);  /* 使用背景色，让内部透明 */
     transition: all 0.1s ease;
-    margin: 0;  /* 添加这行确保没有额外的边距 */
 }
 
-/* 点包装器悬停效果 */
+/* 当点被淡出时的样式 */
+.point-wrapper.point-fade .project-point {
+    border-color: var(--color-light-grey);  /* 淡出时改变边框颜色 */
+    background-color: var(--color-background);  /* 保持内部透明 */
+}
+
+/* 可以添加悬停效果 */
 .point-wrapper:hover .project-point {
-    transform: scale(2);
-    /* 增加模糊效果 */
-    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
-    filter: blur(4px);
-}
-
-/* 移除原有的点悬停效果 */
-.project-point:hover {
-    transform: none;
+    transform: scale(1.5);  /* 悬停时放大 */
+    background-color: var(--color-text);  /* 悬停时填充 */
 }
 
 /* 点标签悬停效果 */
@@ -682,9 +680,9 @@ button:hover {
     z-index: 1000;
     background: var(--color-background);
     border: 1.2px solid var(--color-text);
-    padding: 6px;
+    padding: px;
     pointer-events: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.1s ease;
 }
 
 .point-preview img {
@@ -692,6 +690,7 @@ button:hover {
     aspect-ratio: 4.8/3;
     object-fit: cover;
     display: block;
+    background: var(--color-background);
 }
 
 /* 项目点淡出效果 */
