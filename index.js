@@ -34,7 +34,11 @@ function getPointCoordinates(point) {
 }
 
 function computeConcaveHull(points, alpha = 100) {
-    if (points.length < 3) return points;
+    // 确保只处理 4 个或更多点的情况
+    if (points.length < 4) {
+        console.warn('computeConcaveHull should only be called with 4 or more points');
+        return points;
+    }
     
     const coords = points.map(p => [p.x, p.y]);
     const delaunay = Delaunay.from(coords);
@@ -146,31 +150,50 @@ function pointsEqual(p1, p2) {
 }
 
 function drawHull(points) {
-    if (!svg || points.length < 3) return;
+    if (!svg || points.length < 2) return;  // 至少需要两个点
     
-    // 添加调试信息
-    console.log('Drawing hull for points:', points);
+    console.log(`Drawing hull with ${points.length} points:`);
+    points.forEach((p, i) => {
+        console.log(`Point ${i + 1}: x=${p.x.toFixed(2)}, y=${p.y.toFixed(2)}`);
+    });
     
     const existingPath = svg.querySelector('path');
     if (existingPath) existingPath.remove();
     
-    // 调整 alpha 值以适应坐标系的尺度
-    const alpha = 5250;  // 增大 alpha 值使凹包更平滑
-    const hull = computeConcaveHull(points, alpha);
-    
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    let d = `M ${hull[0].x} ${hull[0].y}`;
+    let d;
     
-    for (let i = 1; i < hull.length; i++) {
-        const { x, y } = hull[i];
-        d += ` L ${x} ${y}`;
+    // 根据点的数量选择不同的绘制方式
+    if (points.length === 2) {
+        console.log('Drawing a line between two points');
+        // 两点情况：直接连线
+        d = `M ${points[0].x} ${points[0].y} L ${points[1].x} ${points[1].y}`;
+        path.setAttribute('fill', 'none');  // 两点时不需要填充
+    } else if (points.length === 3) {
+        console.log('Drawing a triangle');
+        // 三点情况：直接画三角形
+        d = `M ${points[0].x} ${points[0].y} 
+             L ${points[1].x} ${points[1].y} 
+             L ${points[2].x} ${points[2].y} Z`;
+        path.setAttribute('fill', 'rgba(0, 0, 0, 0.1)');
+    } else {
+        console.log('Computing concave hull');
+        // 更多点的情况：使用凹包算法
+        const alpha = 5250;
+        const hull = computeConcaveHull(points, alpha);
+        console.log('Concave hull points:', hull.length);
+        d = `M ${hull[0].x} ${hull[0].y}`;
+        
+        for (let i = 1; i < hull.length; i++) {
+            const { x, y } = hull[i];
+            d += ` L ${x} ${y}`;
+        }
+        d += ' Z';
+        path.setAttribute('fill', 'rgba(0, 0, 0, 0.1)');
     }
     
-    // 闭合路径
-    d += ' Z';
-    
+    console.log('Path data:', d);
     path.setAttribute('d', d);
-    path.setAttribute('fill', 'rgba(0, 0, 0, 0.1)');  // 使用固定的透明度
     path.setAttribute('stroke', 'var(--color-text)');
     path.setAttribute('stroke-width', '1');
     path.setAttribute('stroke-dasharray', '4,4');
@@ -403,7 +426,7 @@ function addFilterHoverEffects() {
         button.addEventListener('mouseenter', () => {
             const filter = button.textContent.trim();
             if (filter === 'All') return;
-
+            
             // 保持现有的卡片和点的淡出效果
             cards.forEach(card => {
                 if (!card.hasAttribute(`data-${filter.toLowerCase()}`)) {
@@ -416,12 +439,30 @@ function addFilterHoverEffects() {
                     point.classList.add('fade-out');
                 }
             });
-
+            
+            // 获取当前可见的点（未被其他过滤器隐藏的点）
+            const visiblePoints = Array.from(points).filter(point => 
+                !point.classList.contains('fade-out') && 
+                !point.classList.contains('hide')
+            );
+            
+            console.log('Currently visible points:', visiblePoints.length);
+            
             // 获取匹配的点的坐标并绘制凹包
-            const matchingPoints = Array.from(points)
+            const matchingPoints = visiblePoints
                 .filter(point => point.hasAttribute(`data-${filter.toLowerCase()}`))
                 .map(point => getPointCoordinates(point));
-
+            
+            console.log(`Points matching ${filter}:`, matchingPoints.length);
+            console.log('Matching points coordinates:');
+            matchingPoints.forEach((p, i) => {
+                console.log(`Point ${i + 1}: x=${p.x.toFixed(2)}, y=${p.y.toFixed(2)}, 
+                            labels=${visiblePoints[i].getAttributeNames()
+                            .filter(attr => attr.startsWith('data-'))
+                            .map(attr => attr.slice(5))
+                            .join(', ')}`);
+            });
+            
             drawHull(matchingPoints);
         });
 
