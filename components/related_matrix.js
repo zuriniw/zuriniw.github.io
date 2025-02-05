@@ -74,6 +74,12 @@ class RelatedMatrix {
         const pointWrapper = document.createElement('div');
         pointWrapper.className = 'point-wrapper';
         
+        // 添加标题元素
+        const title = document.createElement('div');
+        title.className = 'point-title';
+        title.textContent = project.title;
+        pointWrapper.appendChild(title);
+        
         // 创建链接包装器
         const linkWrapper = document.createElement('a');
         linkWrapper.href = `../${project.name}/${project.name}.html`;

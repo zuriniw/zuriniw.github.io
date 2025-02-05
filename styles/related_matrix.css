@@ -15,7 +15,7 @@
 
 .matrix-container {
     position: relative;
-    width: 60%;  /* 进一步缩小矩阵宽度 */
+    width: 50%;  /* 进一步缩小矩阵宽度 */
     max-width: 400px;  /* 减小最大宽度 */
     aspect-ratio: 1;  /* 确保是正方形 */
     border: 1.2px solid var(--color-text);
@@ -25,6 +25,31 @@
 .point-wrapper {
     position: absolute;
     transform: translate(-50%, -50%);
+    /* 为标题提供定位上下文 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 项目标题样式 */
+.point-title {
+    position: absolute;
+    bottom: 100%;  /* 放置在点的上方 */
+    margin-bottom: 8px;  /* 与点的间距 */
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+    color: var(--color-text);
+    white-space: nowrap;  /* 防止标题换行 */
+    opacity: 0;  /* 默认隐藏 */
+    transform: translateY(10px);  /* 初始位置略低 */
+    transition: all 0.1s ease;  /* 平滑过渡效果 */
+    pointer-events: none;  /* 防止标题影响鼠标事件 */
+}
+
+/* 悬停时显示标题 */
+.point-wrapper:hover .point-title {
+    opacity: 1;
+    transform: translateY(0);  /* 向上移动到最终位置 */
 }
 
 .point {
@@ -32,11 +57,11 @@
     left: 0;
     top: 0;
     display: block;
-    width: 10px;  /* 点的尺寸 */
-    height: 10px;
+    width: 12px;  /* 点的尺寸 */
+    height: 12px;
     background-color: transparent;  /* 移除背景色 */
     border: 1.2px solid var(--color-text);  /* 添加边框 */
-    border-radius: 70%;
+    border-radius: 100%;
     transition: all 0.1s ease;
     transform: translate(-50%, -50%);
 }

@@ -33,7 +33,7 @@
 .markdown-content p,
 .markdown-content ul,
 .markdown-content ol {
-    padding-left: 40px;  /* 统一的左侧缩进 */
+    padding-left: 36px;  /* 统一的左侧缩进 */
 }
 
 /* 标题居中样式 */
@@ -121,7 +121,7 @@
     font-size: 18px;
     font-weight: 320;
     line-height: 1.6;
-    margin-left: 8px;
+    margin-left: -36px;
 }
 
 /* 段落后的代码块减少顶部边距 */

@@ -1,4 +1,10 @@
 /* 字体声明 */
+@font-face {
+    font-family: 'Questrial';
+    src: url('../fonts/Questrial-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
 
 @font-face {
     font-family: 'Roboto Mono';
@@ -61,7 +67,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Barlow", sans-serif;  /* 设置为 Barlow 字体 */
-    letter-spacing: 0.16px;  /* 字间距 */
+    letter-spacing: 0.4px;  /* 字间距 */
 }
 
 /* 页面背景设置 */
@@ -331,14 +337,6 @@ button:hover {
     color: var(--color-text-hover);
 }
 
-/* 介绍部分名字样式 */
-.intro-name {
-    font-family: "Roboto Mono", monospace;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: var(--color-text);
-    letter-spacing: 0.8px;
-}
 
 /* 介绍部分样式 */
 .intro-section {
@@ -615,8 +613,8 @@ button:hover {
 
 /* 项目点样式 */
 .project-point {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     border: 1.2px solid var(--color-text);  /* 添加边框 */
     border-radius: 50%;  /* 保持圆形 */
     background-color: var(--color-background);  /* 使用背景色，让内部透明 */
@@ -631,13 +629,18 @@ button:hover {
 
 /* 可以添加悬停效果 */
 .point-wrapper:hover .project-point {
-    transform: scale(1.5);  /* 悬停时放大 */
+    transform: scale(1.2);  /* 悬停时放大 */
     background-color: var(--color-text);  /* 悬停时填充 */
+    filter: blur(8px);
+    opacity: 0.8;
+    border: 1.2px solid var(--color-text);  /* 添加边框 */
+
 }
 
 /* 点标签悬停效果 */
 .point-wrapper:hover .point-label {
     color: var(--color-text);
+    font-weight: 500;
 }
 
 /* 淡出状态下的悬停效果 */
@@ -680,9 +683,9 @@ button:hover {
     z-index: 1000;
     background: var(--color-background);
     border: 1.2px solid var(--color-text);
-    padding: px;
+    padding: 6px;
     pointer-events: none;
-    transition: opacity 0.1s ease;
+    transition: opacity 0.2s ease;
 }
 
 .point-preview img {
@@ -690,7 +693,6 @@ button:hover {
     aspect-ratio: 4.8/3;
     object-fit: cover;
     display: block;
-    background: var(--color-background);
 }
 
 /* 项目点淡出效果 */
@@ -805,6 +807,7 @@ button:hover {
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
     letter-spacing: 0.6px;
+    border-bottom: 1.2px solid var(--color-text);
 }
 
 .meta-label {
@@ -861,7 +864,6 @@ button:hover {
 /* 只有当 project-context 有内容时才显示上边框 */
 .project-footer:has(.project-context:not(:empty)) {
     padding-top: 40px;
-    border-top: 1.2px solid var(--color-text);
 }
 
 .project-context {
@@ -1296,4 +1298,57 @@ body.project-page {
 /* 博客文章页面的项目区域样式 */
 .blog-post .project-section {
     max-width: 860px !important;  /* 增加容器宽度 */
+}
+
+/* 项目元数据网格布局 */
+.project-metadata {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 0;
+    position: relative;  /* 为垂直线提供定位上下文 */
+    max-width: 800px;  /* 限制最大宽度 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 垂直分隔线 */
+.project-metadata::before {
+    content: '';
+    position: absolute;
+    left: 100px;  /* 固定位置 */
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--color-text);
+    opacity: 0.15;
+}
+
+/* 单个元数据项容器 */
+.metadata-item {
+    display: flex;
+    margin-bottom: 12px;  /* 减小项目间距 */
+    position: relative;  /* 为内容定位提供上下文 */
+}
+
+/* 元数据标签样式 */
+.metadata-label {
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    color: var(--color-text);
+    text-align: right;  /* 标签右对齐 */
+    width: 85px;  /* 调整固定宽度 */
+    padding-right: 20px;  /* 与垂直线的间距 */
+    flex-shrink: 0;  /* 防止标签被压缩 */
+}
+
+/* 元数据内容样式 */
+.metadata-content {
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    color: var(--color-text);
+    text-align: left;  /* 内容左对齐 */
+    padding-left: 20px;  /* 与垂直线的间距 */
+    flex: 1;  /* 占据剩余空间 */
+    margin-left: 15px;  /* 确保内容从垂直线右侧开始 */
+    max-width: calc(100% - 100px);  /* 防止内容过长 */
 }

@@ -67,6 +67,7 @@ class Project {
     getMdPath() {
         return `projects/${this.name}/${this.name}.md`;
     }
+
 }
 
 // 项目实例
