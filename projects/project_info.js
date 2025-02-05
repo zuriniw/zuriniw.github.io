@@ -323,7 +323,7 @@ const projects = [
         myContribution: "Researching, Disassembling, Assambling",
         isteam: true,
         tools: "Rasp pi, soldering tools",
-        briefDescription: "Linking invention and disposal",
+        briefDescription: "Linking invention and disposal by researching, disassembling, and re-assambling————hold funeral, surgey, and Neonatal surgery for disk drives",
         otherLink2: "https://ziruw.notion.site/waste-machines-input-output-103f6c956a3280d7bc93d368a16e2498?pvs=74",
         situate: { x: 60, y: 70 },
         ispage: true,

@@ -68,24 +68,25 @@
 }
 
 .markdown-content h2 {
-    font-size: 30px;
+    font-size: 16px;
     font-family: "Roboto Mono", monospace;
-    font-weight: 200;
+    font-weight: 480;
     margin-top: 200px;  /* 增加二级标题上方的空间 */
     margin-bottom: 40px;  /* 增加二级标题下方的空间 */
     position: relative;  /* 为下方横线提供定位上下文 */
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-/* 二级标题下方的横线 */
+/* 添加向右延伸的直线 */
 .markdown-content h2::after {
     content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;  /* 横线长度 */
-    height: 1.2px;
+    flex: 1;
+    height: 1.5px;
     background-color: var(--color-text);
+    margin-left: -10px;  /* 文字和线之间的间距 */
+    transform: scaleY(0.5);  /* 让线条更细 */
 }
 
 .markdown-content h3 {

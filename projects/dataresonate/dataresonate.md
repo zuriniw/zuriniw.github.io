@@ -81,4 +81,6 @@ It had been confirmed that Responsive Interaction significantly enhances visuali
 ![interaction.png](interaction.png)
 
 ### Scenario
-![effect.png](effect.png)
+<figure>
+  <img src=effect.png>
+</figure>

@@ -8,13 +8,17 @@ ShapeShift Playground is designed to make graphic and motion design accessible a
 
 ## Features
 → Components
-- 🔷 Geometry: Circle, Rectangle
-- 🔢 Math: Slider 1D, Slider 2D, Add, Subtract, Multiply, Divide, Square, Square Root, Pi, Absolute
-- ➡️ Vector: Point, Vector, VectorPreview
-- 🔄 Manipulation: Move
-- 🧐 Analyze: Panel, Distance
+- 〓 Geometry: Circle, Rectangle
+- 〓 Math: Slider 1D, Slider 2D, Add, Subtract, Multiply, Divide, Square, Square Root, Pi, Absolute
+- 〓 Vector: Point, Vector, VectorPreview
+- 〓 Manipulation: Move
+- 〓 Analyze: Panel, Distance
 
-🏗 more under construction...
+more under construction...
+
+<figure>
+  <img src=csj.gif>
+</figure>
 
 → Interaction
 - Drag & drop to create components
