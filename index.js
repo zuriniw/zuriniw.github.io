@@ -15,6 +15,81 @@ let activeFilters = JSON.parse(localStorage.getItem('activeFilters')) || [];  //
 let lastClickTime = 0;
 let lastClickedFilter = null;
 
+// 添加在文件开头的全局变量
+let svg = null;
+
+// 添加凹包算法相关的辅助函数
+function getPointCoordinates(point) {
+    const rect = point.getBoundingClientRect();
+    const container = document.querySelector('.coordinate-container');
+    const containerRect = container.getBoundingClientRect();
+    return {
+        x: rect.left - containerRect.left + rect.width / 2,
+        y: rect.top - containerRect.top + rect.height / 2
+    };
+}
+
+function calculateConcaveHull(points) {
+    if (points.length < 3) return points;
+    
+    // Graham扫描法计算凸包
+    const start = points.reduce((min, p) => 
+        p.y < min.y || (p.y === min.y && p.x < min.x) ? p : min, points[0]);
+    
+    const sorted = points
+        .filter(p => p !== start)
+        .sort((a, b) => {
+            const angleA = Math.atan2(a.y - start.y, a.x - start.x);
+            const angleB = Math.atan2(b.y - start.y, b.x - start.x);
+            return angleA - angleB;
+        });
+    
+    const hull = [start];
+    for (const point of sorted) {
+        while (hull.length > 1 && !isLeftTurn(
+            hull[hull.length - 2], 
+            hull[hull.length - 1], 
+            point
+        )) {
+            hull.pop();
+        }
+        hull.push(point);
+    }
+    hull.push(start);
+    return hull;
+}
+
+function isLeftTurn(p1, p2, p3) {
+    return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x) > 0;
+}
+
+function drawHull(points) {
+    if (!svg || points.length < 3) return;
+    
+    // 移除现有的路径
+    const existingPath = svg.querySelector('path');
+    if (existingPath) existingPath.remove();
+    
+    const hull = calculateConcaveHull(points);
+    
+    // 创建平滑的路径
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    let d = `M ${hull[0].x} ${hull[0].y}`;
+    
+    for (let i = 1; i < hull.length; i++) {
+        const { x, y } = hull[i];
+        d += ` L ${x} ${y}`;
+    }
+    
+    path.setAttribute('d', d);
+    path.setAttribute('fill', 'rgba(var(--color-text-rgb), 0.1)');
+    path.setAttribute('stroke', 'var(--color-text)');
+    path.setAttribute('stroke-width', '1');
+    path.setAttribute('stroke-dasharray', '4,4');
+    
+    svg.appendChild(path);
+}
+
 // 生成过滤器按钮
 function createFilterButtons() {
     console.log('Creating filter buttons');
@@ -222,23 +297,29 @@ function addFilterHoverEffects() {
     const buttons = document.querySelectorAll('.buttons-section button');
     const cards = document.querySelectorAll('.card');
     const points = document.querySelector('.coordinate-view').querySelectorAll('.point-wrapper');
+    const container = document.querySelector('.coordinate-container');
+    
+    // 创建 SVG 元素
+    if (!svg) {
+        svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.style.position = 'absolute';
+        svg.style.top = '0';
+        svg.style.left = '0';
+        svg.style.width = '100%';
+        svg.style.height = '100%';
+        svg.style.pointerEvents = 'none';
+        container.appendChild(svg);
+    }
 
     buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
             const filter = button.textContent.trim();
             if (filter === 'All') return;
 
+            // 保持现有的卡片和点的淡出效果
             cards.forEach(card => {
                 if (!card.hasAttribute(`data-${filter.toLowerCase()}`)) {
                     card.classList.add('fade-out');
-                } else {
-                    // 找到匹配的标签并添加高亮效果
-                    const labels = card.querySelectorAll('.label');
-                    labels.forEach(label => {
-                        if (label.textContent === filter) {
-                            label.classList.add('label-highlight');
-                        }
-                    });
                 }
             });
 
@@ -247,21 +328,28 @@ function addFilterHoverEffects() {
                     point.classList.add('fade-out');
                 }
             });
+
+            // 获取匹配的点的坐标并绘制凹包
+            const matchingPoints = Array.from(points)
+                .filter(point => point.hasAttribute(`data-${filter.toLowerCase()}`))
+                .map(point => getPointCoordinates(point));
+
+            drawHull(matchingPoints);
         });
 
         button.addEventListener('mouseleave', () => {
+            // 保持现有的淡出效果移除逻辑
             cards.forEach(card => {
                 card.classList.remove('fade-out');
-                // 移除所有标签的高亮效果
-                const labels = card.querySelectorAll('.label');
-                labels.forEach(label => {
-                    label.classList.remove('label-highlight');
-                });
             });
 
             points.forEach(point => {
                 point.classList.remove('fade-out');
             });
+
+            // 移除凹包路径
+            const path = svg.querySelector('path');
+            if (path) path.remove();
         });
     });
 }

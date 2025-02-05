@@ -2,7 +2,7 @@
 ![teardown.gif](teardown.gif)
 <figure>
   <img src=ps3_2.jpg>
-  <figcaption>A PS3's funeral. Hoster: Carla, Ziru</figcaption>
+  <figcaption>A PS3's funeral. Hosted by Carla, Ziru</figcaption>
 </figure>
 
 <figure>
