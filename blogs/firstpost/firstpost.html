@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading... - Ziru Wei</title>
+    <link rel="icon" type="image/png" href="../../images/kitten.png">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../styles/markdown.css">
+    <script src="../../components/load_components.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="project-page blog-post">
+    <!-- 页眉容器 -->
+    <div id="header"></div>
+
+    <!-- 博客内容 -->
+    <div class="project-section">
+        <div class="project-header">
+            <h1 class="blog-title"></h1>
+            <span class="blog-time"></span>
+            <p class="blog-description"></p>
+        </div>
+
+        <!-- Markdown 内容将被插入这里 -->
+        <div id="markdown-content" class="blog-article-content markdown-content"></div>
+    </div>
+
+    <!-- 页脚容器 -->
+    <div id="footer"></div>
+
+    <script type="module" src="../blog_post.js"></script>
+</body>
+</html>
