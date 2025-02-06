@@ -70,7 +70,9 @@ Based on the legend that **all carrot roots on Earth are connected**, pulling on
 
 ![Remote Carrot Concept Sketch](https://static.wixstatic.com/media/6a062f_b87d386b97944e50875a7943fadfd6f0~mv2.png/v1/fill/w_1200,h_968,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/6a062f_b87d386b97944e50875a7943fadfd6f0~mv2.png)
 
-#### Remote Seesaw Concept
+Remote Seesaw Concept：
+
+
 This concept **evokes childhood memories** of playing on seesaws. The up-and-down interaction remains engaging, even remotely.
 
 Ultimately, we chose the **seesaw concept** for its **feasibility, fun, and intuitiveness**.
