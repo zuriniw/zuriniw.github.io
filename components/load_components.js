@@ -22,12 +22,3 @@ function initComponents() {
 
 // 当 DOM 加载完成时初始化组件
 document.addEventListener('DOMContentLoaded', initComponents);
-
-// 加载页脚
-fetch('components/footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer').innerHTML = data;
-        // 加载完页脚后初始化邮箱功能
-        initFooterEmail();
-    }); 

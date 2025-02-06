@@ -42,14 +42,14 @@ function createBlogPosts() {
         
         blogElement.innerHTML = content;
         
-        // 添加悬停效果
-        blogElement.addEventListener('mouseenter', () => {
+        // 使用 mouseover 事件
+        blogElement.addEventListener('mouseover', () => {
             const contentSpan = blogElement.querySelector('.blog-list-content');
             contentSpan.textContent = contentSpan.dataset.content;
         });
         
-        // 添加移出效果
-        blogElement.addEventListener('mouseleave', () => {
+        // 使用 mouseout 事件
+        blogElement.addEventListener('mouseout', (e) => {
             const contentSpan = blogElement.querySelector('.blog-list-content');
             contentSpan.textContent = contentSpan.dataset.title;
         });

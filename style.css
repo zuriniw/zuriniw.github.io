@@ -1140,8 +1140,9 @@ body.project-page {
 /* 博客容器样式 */
 .blogs-container {
     border: 1.2px solid var(--color-text);
-    margin-left: 1.2px;  /* 补偿边框宽度 */
+    margin-left: 1.2px;
     max-width: 860px;
+    position: relative;
 }
 
 .blog-item {
@@ -1154,6 +1155,7 @@ body.project-page {
     position: relative;
     transition: background-color 0.2s ease;
     cursor: pointer;
+    z-index: 1;  /* 确保每个项目都有自己的层叠上下文 */
 }
 
 /* 移除最后一个项目的底部边框 */
@@ -1164,6 +1166,12 @@ body.project-page {
 /* 当悬停在博客项目上时，背景变浅灰色 */
 .blog-item:hover {
     background-color: var(--color-light-grey);
+    z-index: 2;  /* 悬停时提升层级 */
+}
+
+.blog-time,
+.blog-list-content {
+    pointer-events: none;  /* 防止子元素干扰事件 */
 }
 
 .blog-time {
@@ -1171,7 +1179,7 @@ body.project-page {
     color: var(--color-text);
     font-size: 14px;
     font-family: "GeistMono", monospace;
-    padding-top: 6px;  /* 调整时间的垂直对齐 */
+    padding-top: 6px;
 }
 
 .blog-list-content {
