@@ -36,6 +36,7 @@ if (project) {
     // 添加时间
     if (project.time) {
         const timeItem = createMetaItem('Time', project.time);
+        timeItem.classList.add('time-item');  // 添加特定类名
         metaSection.appendChild(timeItem);
     }
 

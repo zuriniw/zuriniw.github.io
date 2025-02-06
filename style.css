@@ -1342,3 +1342,16 @@ body.project-page {
 .blog-post .project-section {
     max-width: 860px !important;  /* 增加容器宽度 */
 }
+
+/* Time 元数据项的特殊样式 */
+.metadata-item.time-item {
+    border-top: 1.2px solid var(--color-text);
+}
+
+/* 保持原有的底部边框样式 */
+.metadata-item {
+    display: flex;
+    min-height: 1px;
+    align-items: baseline;
+    border-bottom: 1.2px solid var(--color-text);
+}
