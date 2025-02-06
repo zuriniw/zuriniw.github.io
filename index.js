@@ -749,7 +749,7 @@ function initViewSwitch() {
 function initFixedFilter() {
     const filterWrapper = document.querySelector('.filter-wrapper');
     const filterRect = filterWrapper.getBoundingClientRect();
-    const originalTop = window.pageYOffset + filterRect.top;  // 获取原始位置
+    const originalTop = filterRect.top + window.pageYOffset;  // 获取原始位置
     
     // 创建占位元素
     const placeholder = document.createElement('div');
@@ -761,19 +761,27 @@ function initFixedFilter() {
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        if (scrollTop >= originalTop) {
+        // 检查滚动位置是否超过原始位置
+        if (scrollTop > originalTop) {
             filterWrapper.classList.add('fixed');
             placeholder.classList.add('active');
         } else {
             filterWrapper.classList.remove('fixed');
             placeholder.classList.remove('active');
+            // 重置 filter wrapper 的位置
+            filterWrapper.style.top = '';
         }
     });
     
     // 监听窗口大小变化
     window.addEventListener('resize', () => {
+        // 重新计算原始位置和高度
         const newRect = filterWrapper.getBoundingClientRect();
         placeholder.style.height = `${newRect.height}px`;
+        // 如果不是固定状态，更新原始位置
+        if (!filterWrapper.classList.contains('fixed')) {
+            originalTop = newRect.top + window.pageYOffset;
+        }
     });
 }
 

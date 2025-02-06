@@ -83,7 +83,8 @@ body {
     max-width: 1350px;
     width: 100%;
     padding: 0;
-    margin: 180px auto 100px;  /* 调整上下边距，为页眉和页脚留出空间 */
+    margin: 80px auto 100px;  /* 调整上下边距，为页眉和页脚留出空间 */
+    margin-top: px;
     display: flex;
     flex-direction: column;
 }
@@ -114,15 +115,15 @@ body {
 
 /* 按钮基础样式 */
 button {
-    border: 1.2px solid var(--color-border);
+    border: 1.6px solid var(--color-border);
     cursor: pointer;
-    padding: 4px 8px;  /* 增大按钮 */
-    font-size: 16px;  /* 增大字体 */
+    padding: 4px 8px;
+    font-size: 14px; 
     background: transparent;
     transition: all 0.1s ease;
     margin: 0;
     font-family: "Roboto Mono", monospace;
-    font-weight: 320;
+    font-weight: 360;
 }
 
 /* 按钮悬停效果 */
@@ -147,7 +148,7 @@ button:hover {
     display: flex;
     gap: 30px;
     align-items: flex-start;
-    height: 180px;  /* 设置固定高度 */
+    height: 180px; 
     order: 0;
     margin: 0;
     border: 1.2px solid var(--color-text);
@@ -304,42 +305,6 @@ button:hover {
 }
 
 
-/* 介绍部分样式 */
-.intro-section {
-    max-width: 1350px;
-    width: 100%;
-    margin: 60px auto 0;  /* 增加顶部边距 */
-    max-width: 760px;  /* 匹配新的卡片宽度 */
-    font-family: "Barlow", sans-serif;
-    font-weight: 350;
-    line-height: 1.6;
-    text-align: left;
-}
-
-.intro-text {
-    margin-bottom: 20px;  /* 减小下边距 */
-    font-size: 18px;
-    letter-spacing: 0.7px;
-}
-
-.intro-topics {
-    font-size: 16px;
-    display: inline;
-}
-
-/* CodeLab 链接样式 */
-.lab-link {
-    text-decoration: underline;
-    color: var(--color-text);
-    transition: color 0.3s ease;
-}
-
-.lab-link:hover {
-    color: var(--color-text-hover);
-}
-
-
-
 /* 卡片标签容器样式 */
 .card-labels {
     display: flex;
@@ -397,7 +362,9 @@ button:hover {
 .filter-wrapper {
     width: 100%;
     background-color: var(--color-background);
-    padding: 48px 0 16px 0;
+    padding: 20px 0 16px 0;
+    padding-top: 120px;
+    padding-bottom: 0px;
     transition: all 0.1s ease;  /* 移除这个过渡效果 */
 }
 
@@ -409,6 +376,7 @@ button:hover {
     right: 0;
     z-index: 100;
     padding-top: 40px;  /* 固定时减少上边距 */
+    padding-bottom: 20px;
     background-color: var(--color-background);
 }
 
@@ -1006,13 +974,42 @@ body.project-page {
 /* 矩阵说明文本样式 */
 .matrix-caption {
     text-align: right;
-    font-weight: 320;
-    padding-right: -1px;
-    margin-top: 16px;
+    margin-top: 32px;
     font-family: "Roboto Mono", monospace;
+    font-style: italic;
     font-size: 14px;
     color: var(--color-text);
-    font-weight: 450;
+    font-weight: 550;
+}
+
+.matrix-caption a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.1s ease;
+}
+
+.matrix-caption a:hover {
+    color: var(--color-text-hover);
+}
+
+/* 介绍文本样式 */
+.intro {
+    font-size: 14px;
+    color: var(--color-text);
+    margin-top: 6px;
+    line-height: 1.6;
+    font-weight: 400;
+    text-align: right;
+}
+
+.intro a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.1s ease;
+}
+
+.intro a:hover {
+    color: var(--color-text-hover);
 }
 
 /* 当卡片被淡出时的样式 */
@@ -1118,7 +1115,7 @@ body.project-page {
 
 /* 视频容器样式 */
 .video-wrapper {
-    max-width: 760px;    /* 最大宽度 */
+    max-width: 800px;    /* 最大宽度 */
     margin: 0 auto;      /* 居中对齐 */
     margin-top: 60px;    /* 与上方内容的间距 */
     padding: 0 20px;     /* 左右内边距 */

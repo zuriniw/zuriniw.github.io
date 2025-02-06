@@ -9,6 +9,7 @@
     z-index: 1000;
     padding: 40px 60px;  /* 与页脚保持一致 */
     padding-bottom: 0%;
+    pointer-events: none;  /* 让整个导航栏默认不接收鼠标事件 */
 }
 
 .nav-container {
@@ -32,6 +33,7 @@
     display: flex;
     align-items: center;
     gap: 12px;  /* 方块和文字之间的间距 */
+    pointer-events: auto;  /* 恢复链接的鼠标事件 */
 }
 
 /* 导航栏黑色方块样式 */
@@ -49,12 +51,17 @@
     font-weight: 600;
     line-height: 1.5;      /* 调整行高 */
     transition: color 0.2s ease;
+    pointer-events: auto;  /* 恢复链接的鼠标事件 */
 }
 
 .nav-item:hover {
     color: var(--color-text-hover);
 }
 
+/* 确保导航栏右侧的链接也能接收鼠标事件 */
+.nav-right {
+    pointer-events: auto;
+}
 
 .footer {
     max-width: 1350px;
