@@ -1,4 +1,5 @@
 import { projects } from './project_info.js';
+import { VisitTracker } from './visit_tracker.js';
 
 // 从 URL 获取当前项目名称
 const projectName = window.location.pathname.split('/')[2];  // projects/name/name.html -> name
@@ -141,6 +142,20 @@ function createMetaLink(label, url) {
 }
 
 export class ProjectPage {
+    static init() {
+        // 检查并记录项目访问
+        VisitTracker.checkAndRecordCurrentProject();
+
+        // 获取当前项目信息
+        const projectName = this.getCurrentProjectName();
+        const currentProject = projects.find(p => p.name === projectName);
+        
+        if (!currentProject) {
+            console.error('Project not found');
+            return;
+        }
+    }
+
     static getCurrentProjectName() {
         return window.location.pathname.split('/').slice(-2)[0];
     }
@@ -154,4 +169,7 @@ export class ProjectPage {
             return;
         }
     }
-} 
+}
+
+// 初始化页面
+ProjectPage.init(); 

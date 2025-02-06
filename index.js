@@ -251,6 +251,13 @@ function createProjectCards() {
         // 添加点击事件
         if (project.ispage) {
             card.addEventListener('click', () => {
+                // 检查项目是否已经被记录
+                if (!visitedProjects.includes(project.name)) {
+                    visitedProjects.push(project.name);
+                    // 更新 sessionStorage
+                    sessionStorage.setItem('visitedProjects', JSON.stringify(visitedProjects));
+                    console.log(`${project.name} visited`);
+                }
                 window.location.href = `projects/${project.name}/${project.name}.html`;
             });
         }
@@ -745,8 +752,8 @@ function initViewSwitch() {
     const switchButton = document.querySelector('.switch-view');
     const cardsSection = document.querySelector('.cards-section');
     const coordinateView = document.querySelector('.coordinate-view');
-    // 从 localStorage 获取上次的视图状态，默认为 false（数轴视图）
-    let isGalleryView = localStorage.getItem('isGalleryView') === 'true';
+    // 从 sessionStorage 获取视图状态
+    let isGalleryView = sessionStorage.getItem('isGalleryView') === 'true';
     let pointsCreated = false;
 
     // 初始化按钮文字
@@ -792,8 +799,8 @@ function initViewSwitch() {
             switchButton.textContent = '⌘';
         }
         isGalleryView = !isGalleryView;
-        // 保存视图状态到 localStorage
-        localStorage.setItem('isGalleryView', isGalleryView);
+        // 保存视图状态到 sessionStorage
+        sessionStorage.setItem('isGalleryView', isGalleryView);
     });
 }
 
