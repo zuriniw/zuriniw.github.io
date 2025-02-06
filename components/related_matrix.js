@@ -1,5 +1,6 @@
 import { projects } from '../projects/project_info.js';
 import { availableLabels } from '../projects/project_info.js';
+import { VisitTracker } from '../projects/visit_tracker.js';
 
 class RelatedMatrix {
     constructor() {
@@ -28,6 +29,7 @@ class RelatedMatrix {
         
         // 获取当前项目名称
         this.currentProject = window.location.pathname.split('/').slice(-2)[0];
+        this.visitedProjects = VisitTracker.getVisitedProjects();
     }
 
     init() {
@@ -35,7 +37,7 @@ class RelatedMatrix {
         const allProjects = projects;
         
         // 创建项目点
-        allProjects.forEach(project => {
+        allProjects.filter(project => project.ispage).forEach(project => {
             const point = this.createProjectPoint(project);
             this.matrixContainer.appendChild(point);
         });
@@ -87,6 +89,11 @@ class RelatedMatrix {
         
         const point = document.createElement('div');
         point.className = 'point';
+        
+        // 检查是否是已访问的项目
+        if (this.visitedProjects.includes(project.name)) {
+            point.classList.add('visited');
+        }
         
         // 如果是当前项目，添加标签
         if (project.name === this.currentProject) {

@@ -241,15 +241,16 @@ function createProjectCards() {
         console.log('Creating card for:', project.title);
         const card = document.createElement('div');
         card.className = 'card';
-        card.style.cursor = 'pointer';  // 添加鼠标指针样式
+        // card.style.cursor = 'pointer';  // 添加鼠标指针样式
         
         // 添加标签数据属性
         project.labels.forEach(label => {
             card.setAttribute(`data-${label.toLowerCase()}`, '');
         });
 
-        // 添加点击事件
+        // 只有 ispage 为 true 的项目才添加点击事件和指针样式
         if (project.ispage) {
+            card.style.cursor = 'pointer';
             card.addEventListener('click', () => {
                 // 检查项目是否已经被记录
                 if (!visitedProjects.includes(project.name)) {
@@ -260,12 +261,20 @@ function createProjectCards() {
                 }
                 window.location.href = `projects/${project.name}/${project.name}.html`;
             });
+        } else {
+            card.style.cursor = 'url(images/closedhand.svg) 10 10, auto';
+
         }
 
         // 创建图片链接
         const imageLink = document.createElement('a');
         imageLink.className = 'card-image-link';
-        imageLink.href = project.getHtmlPath();
+        // 只有 ispage 为 true 的项目才添加链接
+        if (project.ispage) {
+            imageLink.href = project.getHtmlPath();
+        } else {
+            imageLink.style.pointerEvents = 'none';  // 禁用链接点击
+        }
         
         // 创建图片容器
         const imageContainer = document.createElement('div');
@@ -632,15 +641,13 @@ function createProjectPoints() {
 
         // 添加点击事件
         if (project.ispage) {
-            pointWrapper.style.cursor = 'pointer';
+            pointWrapper.style.cursor = 'url(images/cross.svg) 10 10, auto';
+            // pointWrapper.style.cursor = 'crosshair';
             pointWrapper.addEventListener('click', () => {
                 window.location.href = `projects/${project.name}/${project.name}.html`;
             });
-        } else if (project.youtubeLink) {
-            pointWrapper.style.cursor = 'pointer';
-            pointWrapper.addEventListener('click', () => {
-                window.open(project.youtubeLink, '_blank');
-            });
+        } else if (true) {
+            pointWrapper.style.cursor = 'url(images/closedhand.svg) 10 10, auto';
         }
 
         // 计算点的位置
@@ -843,6 +850,23 @@ function initFixedFilter() {
         }
     });
 }
+
+// 添加点击效果
+function addClickEffect(e) {
+    const effect = document.createElement('div');
+    effect.className = 'click-effect';
+    effect.style.left = `${e.clientX}px`;
+    effect.style.top = `${e.clientY}px`;
+    document.body.appendChild(effect);
+
+    // 动画结束后移除元素
+    effect.addEventListener('animationend', () => {
+        effect.remove();
+    });
+}
+
+// 添加点击事件监听
+document.addEventListener('click', addClickEffect);
 
 // 初始化页面
 createFilterButtons();

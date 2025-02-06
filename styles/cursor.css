@@ -1,0 +1,26 @@
+/* 点击效果容器 */
+.click-effect {
+    position: fixed;
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+    border: 1.2px solid var(--color-text);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: clickRipple 0.1s ease-out forwards;
+    z-index: 9999;
+}
+
+/* 点击动画 */
+@keyframes clickRipple {
+    0% {
+        opacity: 1;
+        width: 36px;
+        height: 36px;
+    }
+    100% {
+        opacity: 0;
+        width: 38px;
+        height: 38px;
+    }
+}

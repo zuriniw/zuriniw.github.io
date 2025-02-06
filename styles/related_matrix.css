@@ -58,13 +58,12 @@
     left: 0;
     top: 0;
     display: block;
-    width: 12px;  /* 点的尺寸 */
-    height: 12px;
-    background-color: transparent;  /* 移除背景色 */
-    border: 1.2px solid var(--color-text);  /* 添加边框 */
-    border-radius: 100%;
-    transition: all 0.1s ease;
-    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border: 1.2px solid var(--color-text);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 /* 当前项目点的样式 */
@@ -80,6 +79,32 @@
     transform: scale(2);
     filter: blur(4px);
     box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 已访问项目点的样式 */
+.point.visited {
+    border: none;
+    background-image: url('../images/footprint.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 12px;  /* 调整大小以适应图标 */
+    height: 12px;
+    opacity: 0.7;  /* 稍微调整透明度 */
+}
+
+/* 保持已访问项目点的悬停效果 */
+.point.visited:hover {
+    transform: scale(1.4);
+    opacity: 1;
+}
+
+/* 确保当前项目点的样式优先级更高 */
+.point.current.visited {
+    background-image: none;  /* 当前项目不显示足迹图标 */
+    border: 1.2px solid var(--color-red);
+    width: 8px;
+    height: 8px;
 }
 
 /* 坐标轴样式 */

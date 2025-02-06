@@ -243,7 +243,8 @@ const projects = [
         tools: "Grasshopper",
         weight: 4,
         situate: { x: 60, y: -31 },
-        isflipped: true
+        isflipped: true,
+        // ispage: true
     }),
     new Project({
         name: "mobius",
@@ -254,7 +255,7 @@ const projects = [
         collaborator: "fabrication team",
         myContribution: "designing, modeling",
         isteam: true,
-        ispage: true,
+        // ispage: true,
         tools: "Rhino, Grasshopper",
         prize: "Patent",
         weight: 5,
@@ -267,7 +268,7 @@ const projects = [
         labels: ["Spatial"],
         time: "2023",
         isteam: false,
-        ispage: true,
+        // ispage: true,
         weight: 1,
         isflipped: true,
         situate: { x: -6, y: -64 }
@@ -282,7 +283,8 @@ const projects = [
         tools: "JLC EDA, Arduino, Rhino",
         weight: 1,
         situate: { x: 85, y: -70 },
-        isflipped: false
+        isflipped: false,
+        ispage: false
     }),
     new Project({
         name: "mrintdesign",
@@ -292,7 +294,7 @@ const projects = [
         time: "2021",
         myContribution: "documentation, experiment design",
         isteam: true,
-        ispage: true,
+        // ispage: true,
         tools: "Rhino, Fologram, Unity",
         weight: 4,
         situate: { x: 75, y: -67 },
@@ -307,7 +309,7 @@ const projects = [
         collaborator: "Haoxuan Li, Yueying Chen",
         myContribution: "coding, game design, modeling",
         isteam: true,
-        ispage: true,
+        // ispage: true,
         tools: "Unity, Arduino",
         briefDescription: "What if data can flows among the real world and MR scene?",
         weight: 4,
