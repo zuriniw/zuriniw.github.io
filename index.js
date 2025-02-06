@@ -440,18 +440,24 @@ function addFilterHoverEffects() {
 
     buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
-            const filter = button.textContent.trim();
-            if (filter === 'All') return;
+            const label = button.textContent.trim();
             
-            // 保持现有的卡片和点的淡出效果
             cards.forEach(card => {
-                if (!card.hasAttribute(`data-${filter.toLowerCase()}`)) {
+                if (!card.hasAttribute(`data-${label.toLowerCase()}`)) {
                     card.classList.add('fade-out');
+                } else {
+                    // 找到匹配的标签并添加高亮样式
+                    const labels = card.querySelectorAll('.label');
+                    labels.forEach(labelSpan => {
+                        if (labelSpan.textContent.trim() === label) {
+                            labelSpan.classList.add('label-highlight');
+                        }
+                    });
                 }
             });
 
             points.forEach(point => {
-                if (!point.hasAttribute(`data-${filter.toLowerCase()}`)) {
+                if (!point.hasAttribute(`data-${label.toLowerCase()}`)) {
                     point.classList.add('fade-out');
                 }
             });
@@ -466,10 +472,10 @@ function addFilterHoverEffects() {
             
             // 获取匹配的点的坐标并绘制凹包
             const matchingPoints = visiblePoints
-                .filter(point => point.hasAttribute(`data-${filter.toLowerCase()}`))
+                .filter(point => point.hasAttribute(`data-${label.toLowerCase()}`))
                 .map(point => getPointCoordinates(point));
             
-            console.log(`Points matching ${filter}:`, matchingPoints.length);
+            console.log(`Points matching ${label}:`, matchingPoints.length);
             console.log('Matching points coordinates:');
             matchingPoints.forEach((p, i) => {
                 console.log(`Point ${i + 1}: x=${p.x.toFixed(2)}, y=${p.y.toFixed(2)}, 
@@ -483,9 +489,13 @@ function addFilterHoverEffects() {
         });
 
         button.addEventListener('mouseleave', () => {
-            // 保持现有的淡出效果移除逻辑
             cards.forEach(card => {
                 card.classList.remove('fade-out');
+                // 移除所有标签的高亮样式
+                const labels = card.querySelectorAll('.label');
+                labels.forEach(labelSpan => {
+                    labelSpan.classList.remove('label-highlight');
+                });
             });
 
             points.forEach(point => {

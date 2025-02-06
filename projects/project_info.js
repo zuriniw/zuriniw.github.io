@@ -97,7 +97,7 @@ const projects = [
         name: "seeingsaw",
         title: "SEEINGSAW",
         subtitle: "Peripheral and expressive awareness in lovable devices",
-        labels: ["Embodied"],
+        labels: ["Embodied","Bits"],
         time: "2024",
         ispage: true,
         isteam: true,
@@ -119,7 +119,7 @@ const projects = [
         name: "shapeshift",
         title: "Shapeshift Playground",
         subtitle: "Node-based drawing tool development",
-        labels: ["Digital"],
+        labels: ["Bits"],
         time: "2024",
         ispage: true,
         isteam: false,
@@ -155,7 +155,7 @@ const projects = [
         name: "aurora",
         title: "Holographic Design2Construction",
         subtitle: "A case study of the full-scale building：AURORA",
-        labels: ["XR"],
+        labels: ["XR", "Spatial"],
         time: "2021",
         ispage: true,
         isteam: true,
@@ -189,7 +189,7 @@ const projects = [
         name: "gazeknitting",
         title: "Gaze-Knitting",
         subtitle: "Gaze visualization in non-streamlined reading",
-        labels: ["Embodied", "Digital"],
+        labels: ["Embodied", "Bits"],
         time: "2024",
         ispage: true,
         isteam: false,
@@ -204,7 +204,7 @@ const projects = [
         name: "fadingroses",
         title: "Fading Roses",
         subtitle: "text-space-exploration narrative game",
-        labels: ["Digital"],
+        labels: ["Bits"],
         time: "2022",
         isteam: false,
         ispage: true,
@@ -219,7 +219,7 @@ const projects = [
         name: "zijin",
         title: "Island Landscaping",
         subtitle: "Urban renewal design and modeling",
-        labels: ["Spatial", "Digital"],
+        labels: ["Spatial", "Bits"],
         time: "2022",
         myContribution: "Storystelling, modeling, rendering",
         isteam: false,
@@ -236,7 +236,7 @@ const projects = [
         name: "taihustone",
         title: "Generative TAIHUSHI",
         subtitle: "Computational design and interface design",
-        labels: ["Digital"],
+        labels: ["Bits"],
         time: "2022",
         myContribution: "Computational design, interface design",
         isteam: true,
@@ -276,7 +276,7 @@ const projects = [
         name: "keyboard",
         title: "Mini-Keyboard",
         subtitle: "PCB making, electronic assembling, and 3D printing",
-        labels: ["Digital"],
+        labels: ["Bits"],
         time: "2022",
         isteam: false,
         tools: "JLC EDA, Arduino, Rhino",
@@ -317,7 +317,7 @@ const projects = [
         name: "wastemachine",
         title: "WasteMachine",
         subtitle: "Build scanner from abandoned DVD drivers",
-        labels: ["Digital"],
+        labels: ["Bits"],
         time: "2024",
         collaborator: "Carla Flores Travez",
         tutor: "Daragh Bryne",
@@ -350,7 +350,7 @@ const projects = [
 
 // 导出所有可用的标签
 const availableLabels = [
-    "Digital", "Spatial", "XR", "Embodied"
+    "Bits", "Spatial", "XR", "Embodied"
 ];
 
 export { Project, projects, availableLabels };
