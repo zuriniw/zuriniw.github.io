@@ -9,8 +9,8 @@ console.log('Projects:', projects);
 const buttonSection = document.querySelector('.buttons-section');
 const cardSection = document.querySelector('.cards-section');
 
-// 存储选中的过滤条件
-let activeFilters = JSON.parse(localStorage.getItem('activeFilters')) || [];  // 从 localStorage 恢复过滤器状态
+// 从 sessionStorage 读取过滤器状态
+let activeFilters = JSON.parse(sessionStorage.getItem('activeFilters')) || [];
 
 // 存储上次点击的时间和按钮
 let lastClickTime = 0;
@@ -305,9 +305,7 @@ function handleFilterClick(e) {
     const clickedFilter = e.target.getAttribute('data-name');
     const currentTime = new Date().getTime();
     
-    // 检查是否是双击（同一个按钮在300ms内被点击两次）
     if (lastClickedFilter === clickedFilter && currentTime - lastClickTime < 300) {
-        // 双击操作：只保留当前过滤器
         activeFilters = [clickedFilter];
         // 更新所有按钮状态
         buttonSection.querySelectorAll('button').forEach(btn => {
@@ -318,13 +316,12 @@ function handleFilterClick(e) {
             }
         });
     } else {
-        // 单击操作：正常的切换逻辑
         if (activeFilters.includes(clickedFilter)) {
             activeFilters = activeFilters.filter(filter => filter !== clickedFilter);
             e.target.classList.remove('active');
         } else {
             activeFilters.push(clickedFilter);
-    e.target.classList.add('active');
+            e.target.classList.add('active');
         }
     }
     
@@ -332,8 +329,8 @@ function handleFilterClick(e) {
     lastClickTime = currentTime;
     lastClickedFilter = clickedFilter;
     
-    // 保存过滤器状态到 localStorage
-    localStorage.setItem('activeFilters', JSON.stringify(activeFilters));
+    // 保存过滤器状态到 sessionStorage
+    sessionStorage.setItem('activeFilters', JSON.stringify(activeFilters));
     
     updateCards();
 }
