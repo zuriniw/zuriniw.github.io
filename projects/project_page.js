@@ -53,7 +53,7 @@ if (project) {
 
     // 添加合作者
     if (project.collaborator) {
-        const collaboratorItem = createMetaItem('Collaborator', project.collaborator);
+        const collaboratorItem = createMetaItem('WorkWith', project.collaborator);
         metaSection.appendChild(collaboratorItem);
     }
 

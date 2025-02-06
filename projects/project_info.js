@@ -105,7 +105,7 @@ const projects = [
         collaborator: "Leslie Liu",
         tutor: "Daragh Byrne",
         ta: "Zhenfang Chen",
-        myContribution: "paired device background research, ideating, electrical wiring, coding",
+        myContribution: "researching, ideating, electrical wiring, coding",
         tools: "Particle Cloud, Photon2, Woodworking Tools",
         briefDescription: `Build peripheral and expressive awareness in lovable devices, to foster emotive communication through low-fidelity information`,
         youtubeLink: "https://www.youtube.com/embed/KNwp1Vy8hrg?si=GnxYe-9l1eCnve2S&amp;controls=0",

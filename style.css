@@ -306,7 +306,7 @@ button:hover {
 .navbar {
     width: 100%;
     padding: 16px 0;
-    border-bottom: 1.2px solid var(--color-border);  /* 添加底部边框 */
+    /* border-bottom: 1.2px solid var(--color-border);  添加底部边框 */
     background: transparent;
 }
 
@@ -331,6 +331,7 @@ button:hover {
     text-decoration: none;
     color: var(--color-text);
     transition: color 0.3s ease;
+    font-weight: 550;
 }
 
 .nav-item:hover {
@@ -712,7 +713,7 @@ button:hover {
     display: none;
 }
 
-/* 关于页面样式 */
+/* 关于页面样式 ////////////////////////////////////////////////////////////////// */
 .about-section {
     max-width: 760px;
     margin: 120px auto 0;
@@ -750,7 +751,7 @@ button:hover {
     font-weight: 350;
 }
 
-/* 项目页面样式 */
+/* 项目页面样式 ////////////////////////////////////////////////////////////////// */
 .project-section {
     max-width: 760px;
     margin: 0 auto;
@@ -797,24 +798,6 @@ button:hover {
     padding: 0;
 }
 
-.project-meta {
-    margin-top: 20px;  /* 减小副标题和链接之间的间距 */
-    letter-spacing: 0.4px;
-}
-
-.meta-item {
-    margin-bottom: 2px;
-    font-family: "Roboto Mono", monospace;
-    font-size: 16px;
-    letter-spacing: 0.6px;
-    border-bottom: 1.2px solid var(--color-text);
-}
-
-.meta-label {
-    color: var(--color-text);
-    letter-spacing: 0.6px;
-    margin-left: 0px;
-}
 
 /* 链接容器样式 */
 .meta-links {
@@ -823,6 +806,7 @@ button:hover {
     flex-direction: row;
     gap: 24px;  /* 链接之间的间距 */
     flex-wrap: wrap;  /* 如果空间不够，允许换行 */
+    border-bottom: 0px solid var(--color-text) !important;
 }
 
 /* 项目链接样式 */
@@ -848,22 +832,81 @@ button:hover {
 
 }
 
-.meta-text {
+/* 项目元数据容器 */
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 0;
+    position: relative;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: -76px;  /* 调整为更合适的负间距 */
+}
+
+/* 垂直分隔线 */
+.project-meta::before {
+    display: none;  /* 隐藏竖线 */
+}
+
+/* 单个元数据项容器 */
+.metadata-item {
+    display: flex;
+    min-height: 1px;
+    align-items: baseline;
+    border-bottom: 1.2px solid var(--color-text);
+}
+
+/* 第一个元数据项的上边框 */
+.metadata-item:first-child {
+    border-top: 1.2px solid var(--color-text);
+}
+
+.meta-label {
+    width: 85px;
+    padding-right: -40px;
+    text-align: right;
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
     color: var(--color-text);
-    letter-spacing: 0.4px;
-    margin-top: 20px;  /* 增加与上方标签的间距 */
-    margin-left: 12px;
+    flex-shrink: 0;
+    line-height: 20px;  /* 调整行高 */
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    font-weight: 500;
+    margin: 0 !important;
+}
+
+/* 为标签添加冒号 */
+.meta-label::after {
+    content: '';
+}
+
+
+.meta-text {
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    color: var(--color-text);
+    flex: 1;
+    line-height: 20px;  /* 调整行高 */
+    min-height: 20px;  /* 调整最小高度 */
+    display: inline-block;
+    margin-left: 0;
+    margin-top: 0 !important;
+    padding-left: 30px;
     font-weight: 350;
+}
+
+/* 处理多行内容 */
+.meta-text {
+    white-space: pre-wrap;  /* 保留换行和空格 */
+    word-wrap: break-word;  /* 长单词换行 */
 }
 
 /* 项目页脚样式 */
 .project-footer {
     margin-top: 40px;
-}
-
-/* 只有当 project-context 有内容时才显示上边框 */
-.project-footer:has(.project-context:not(:empty)) {
-    padding-top: 40px;
 }
 
 .project-context {
@@ -1298,67 +1341,4 @@ body.project-page {
 /* 博客文章页面的项目区域样式 */
 .blog-post .project-section {
     max-width: 860px !important;  /* 增加容器宽度 */
-}
-
-/* 项目元数据容器 */
-.project-meta {
-    display: flex;
-    flex-direction: column;
-    margin: 40px 0;
-    position: relative;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 0;  /* 移除 gap */
-}
-
-/* 垂直分隔线 */
-.project-meta::before {
-    display: none;  /* 隐藏竖线 */
-}
-
-/* 单个元数据项容器 */
-.metadata-item {
-    display: flex;
-    min-height: 16px;
-    align-items: baseline;
-    margin: 2px 0;  /* 使用更小的外边距控制间距 */
-}
-
-/* 元数据标签样式 */
-.meta-label {
-    width: 85px;
-    padding-right: 20px;
-    text-align: right;
-    font-family: "Roboto Mono", monospace;
-    font-size: 14px;
-    color: var(--color-text);
-    flex-shrink: 0;
-    line-height: 1;  /* 使用最小行高 */
-    display: flex;
-    align-items: baseline;
-    justify-content: flex-end;
-}
-
-/* 为标签添加冒号 */
-.meta-label::after {
-    content: ':';
-}
-
-/* 元数据内容样式 */
-.meta-text {
-    font-family: "Roboto Mono", monospace;
-    font-size: 14px;
-    color: var(--color-text);
-    flex: 1;
-    line-height: 1;  /* 使用最小行高 */
-    min-height: 16px;
-    display: inline-block;
-    margin-left: 0;
-}
-
-/* 处理多行内容 */
-.meta-text {
-    white-space: pre-wrap;  /* 保留换行和空格 */
-    word-wrap: break-word;  /* 长单词换行 */
 }
