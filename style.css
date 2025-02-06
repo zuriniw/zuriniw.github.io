@@ -161,7 +161,8 @@ button {
 
 /* 按钮悬停效果 */
 button:hover {
-    background-color: var(--color-text) !important;
+    background-color: hsl(0, 0%, 45%);
+    filter: url(#noiseFilter);
     color: var(--color-white);
 }
 
@@ -171,7 +172,7 @@ button:hover {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 38px;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -188,7 +189,7 @@ button:hover {
     height: 345px;  /* 固定卡片高度 */
     order: 0;
     margin: 0;
-    border: 1.2px solid var(--color-text);
+    border: 1.5px solid var(--color-border);
     padding: 0;
     box-sizing: border-box;
     position: relative;
@@ -199,7 +200,7 @@ button:hover {
 
 /* 卡片悬停效果 */
 .card:hover {
-    background-color: #f4f3f3;}
+    background-color: #ffffff;}
 
 /* 隐藏类 */
 .hide {
@@ -216,7 +217,7 @@ button:hover {
     transition: opacity 0.2s ease;
     text-decoration: none;
     color: inherit;
-    border-bottom: 1.2px solid var(--color-text);
+    border-bottom: 1.5px solid var(--color-text);
 }
 
 /* 卡片图片容器样式 */
@@ -296,10 +297,9 @@ button:hover {
     bottom: -6px;
     left: -20px;
     right: -20px;
-    height: 1.5px;
+    height: 1.1px;
     background-color: var(--color-text);
     width: calc(100% + 40px);
-    transform: scaleY(0.5);
     transform-origin: center;
 }
 
@@ -350,7 +350,6 @@ button:hover {
     color: var(--color-text);
     margin: 2px 0 8px 0;
     display: -webkit-box;
-    -webkit-line-clamp: 2;  /* 限制为两行 */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -452,15 +451,6 @@ button:hover {
 /* 当 filter 固定时，为内容添加 padding-top */
 .cards-section.filter-fixed {
     padding-top: 60px;  /* 根据 filter 高度调整 */
-}
-
-/* 奖项样式 */
-.card-prize {
-    font-family: "Roboto Mono", monospace;
-    font-size: 14px;
-    font-weight: 350;
-    color: var(--color-text-grey);
-    margin: 2px 0 4px 0;
 }
 
 /* 切换按钮容器样式 */
