@@ -70,13 +70,14 @@
 /* 页脚包装器样式 */
 .footer-wrapper {
     position: fixed;
-    padding: 40px 60px;  /* 与导航栏保持一致 */
+    padding: 40px 60px;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
     background-color: transparent;
-    z-index: 1000;
+    z-index: 1000;  /* 确保足够高的层级 */
+    pointer-events: auto;  /* 确保可以接收鼠标事件 */
 }
 
 /* 其他页脚样式保持不变 */
@@ -89,14 +90,45 @@
     font-size: 16px;
 }
 
+/* 页脚左侧容器样式 */
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: auto;  /* 确保可以接收鼠标事件 */
+}
+
 /* 页脚方块样式 */
 .footer-box {
     width: 12px;
     height: 12px;
     background-color: var(--color-text);
+    cursor: pointer;
+    position: relative;  /* 添加相对定位 */
+    z-index: 1;  /* 确保在邮箱文本之上 */
+    pointer-events: auto;  /* 确保可以接收鼠标事件 */
 }
 
 /* 版权信息样式 */
 .copyright {
     text-align: right;
+    pointer-events: none;
+}
+
+/* 邮箱样式 */
+.footer-email {
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-darkgrey);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    visibility: hidden;
+    pointer-events: none;  /* 防止邮箱文本影响方块的点击 */
+}
+
+/* 显示邮箱的状态 */
+.footer-left.show-email .footer-email {
+    opacity: 1;
+    visibility: visible;
 }

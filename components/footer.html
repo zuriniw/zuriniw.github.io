@@ -1,15 +1,29 @@
 <footer class="footer-wrapper" style="background: transparent;">
     <div class="footer">
-        <div class="footer-box-container">
-            <div class="footer-box">
-                <span class="box-content">■</span>
-                <span class="box-hover">@</span>
-            </div>
-            <div class="email-text">ziruw@andrew.cmu.edu</div>
+        <div class="footer-left">
+            <div class="footer-box"></div>
+            <span class="footer-email">ziruw@andrew.cmu.edu</span>
         </div>
         <div class="copyright">
             <p>© Ziru Wei</p>
         </div>
     </div>
 </footer>
-<script src="scripts/footer.js"></script> 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const footerBox = document.querySelector('.footer-box');
+        const footerEmail = document.querySelector('.footer-email');
+        
+    // Initially hide the email
+    footerEmail.style.display = 'none';
+    
+    // Add click event listener to the box
+    footerBox.addEventListener('click', function() {
+        if (footerEmail.style.display === 'none') {
+            footerEmail.style.display = 'inline';
+        } else {
+            footerEmail.style.display = 'none';
+        }
+    });
+});
+</script> 
