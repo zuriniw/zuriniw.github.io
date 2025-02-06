@@ -75,7 +75,7 @@
     --color-white: #fff;
     --color-text-grey: #7f7f7f;
     --color-text-darkgrey: #333;
-    --color-red: #818181d1;
+    --color-red: #27b3b3d1;
     --color-light-grey: #c5c5c5;  /* 添加更浅的灰色 */
 }
 
@@ -162,7 +162,7 @@ button {
 /* 按钮悬停效果 */
 button:hover {
     background-color: hsl(0, 0%, 32%);
-    color: #e4e4e4;
+    color: #ffffff;
 }
 
 /* 卡片网格区域样式 */
