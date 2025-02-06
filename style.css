@@ -1014,6 +1014,7 @@ body.project-page {
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
     color: var(--color-text);
+    font-weight: 450;
 }
 
 /* 当卡片被淡出时的样式 */
