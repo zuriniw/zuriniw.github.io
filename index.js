@@ -284,7 +284,6 @@ function createProjectCards() {
                     ${project.time}
                     ${project.isteam ? ' -- Team' : ' -- Solo Work'}
                 </p>
-                <p class="card-description">${project.subtitle}</p>
                 <div class="card-labels">
                     ${project.labels.map(label => `<span class="label">${label}</span>`).join('')}
                 </div>

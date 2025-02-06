@@ -154,23 +154,27 @@ button:hover {
 .cards-section {
     margin-top: 10px;
     display: flex;
-    flex-direction: column;
-    gap: 40px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
     align-items: center;
     width: 100%;
+    max-width: 1144px;  /* (360px * 3) + (32px * 2) gaps */
+    margin: 10px auto;
+    padding: 0 20px;
 }
 
 /* 卡片基础样式 */
 .card {
-    width: 760px;
+    width: 360px;
     display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    height: 180px; 
+    flex-direction: column;
+    height: 345px;  /* 固定卡片高度 */
     order: 0;
     margin: 0;
     border: 1.2px solid var(--color-text);
-    padding: 0 30px 0 0;
+    padding: 0;
     box-sizing: border-box;
     position: relative;
     margin-left: 1.2px;
@@ -190,15 +194,14 @@ button:hover {
 /* 卡片图片链接样式 */
 .card-image-link {
     display: block;
-    width: 280px;  /* 固定宽度 */
-    height: 100%;  /* 继承卡片高度 */
-    aspect-ratio: 4.8/3;
+    width: 100%;
+    height: 240px;  /* 固定图片高度 */
     overflow: hidden;
     cursor: pointer;
     transition: opacity 0.2s ease;
     text-decoration: none;
     color: inherit;
-    border-right: 1.2px solid var(--color-text);  /* 添加右边框 */
+    border-bottom: 1.2px solid var(--color-text);
 }
 
 /* 卡片图片容器样式 */
@@ -207,8 +210,7 @@ button:hover {
     height: 100%;
     position: relative;
     overflow: hidden;
-    filter: url(#noiseFilter2);  /* 将滤镜移到实际容器上 */
-
+    filter: url(#noiseFilter2);
 }
 
 .card-image-container::before {
@@ -225,13 +227,13 @@ button:hover {
 .card-image-link img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;  /* 确保图片填充容器 */
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     mix-blend-mode: multiply;
-    filter:brightness(1.1);
+    filter: brightness(1.1);
 }
 
 @keyframes noise {
@@ -254,13 +256,13 @@ button:hover {
 
 /* 卡片内容区域样式 */
 .card-body {
-    padding: 0;
+    padding: 12px 16px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
     font-family: "Roboto Mono", monospace;
-    margin-top: 4px;
-    padding-bottom: 40px;
-    position: relative;  /* 为横线提供定位上下文 */
-    overflow: visible;  /* 确保横线可以超出内容区域 */
+    position: relative;
+    overflow: hidden;  /* 防止内容溢出 */
 }
 
 /* 卡片标题容器样式 */
@@ -277,22 +279,22 @@ button:hover {
     content: '';
     position: absolute;
     bottom: -6px;
-    left: -30px;  /* 从标题容器左边开始 */
-    right: 0px;  /* 延伸到卡片右边缘 */
-    height: 1.5px;  /* 增加横线粗细，使其更稳定 */
+    left: -20px;
+    right: -20px;
+    height: 1.5px;
     background-color: var(--color-text);
-    width: calc(100% + 60px);  /* 确保横线延伸到卡片右边缘 */
-    transform: scaleY(0.5);  /* 使用 transform 来确保横线粗细的一致性 */
-    transform-origin: center;  /* 确保缩放是从中心开始的 */
+    width: calc(100% + 40px);
+    transform: scaleY(0.5);
+    transform-origin: center;
 }
 
 /* 卡片标题样式 */
 .card-title {
-    font-size: 16px;  /* 更大的标题 */
-    font-family: "Roboto Mono", monospace;
-    letter-spacing: 0.10px;
-    font-weight: 350;
-    color: var(--color-text-darkgrey);
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    font-weight: 400;
+
+    color: var(--color-text);
     transition: all 0.2s ease;
 }
 
@@ -322,6 +324,7 @@ button:hover {
     font-weight: 350;
     color: var(--color-text-grey);
     margin: 2px 0 0 0;  /* 减小底部边距 */
+    padding-bottom: 2px;
 }
 
 /* 卡片描述文字样式 */
@@ -330,7 +333,12 @@ button:hover {
     font-size: 14px;
     font-weight: 350;
     color: var(--color-text);
-    margin: 2px 0 12px 0;  /* 减小顶部边距 */
+    margin: 2px 0 8px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;  /* 限制为两行 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* 过滤按钮区域样式 */
@@ -346,20 +354,19 @@ button:hover {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    margin-top: 12px;
+    margin-top: 4px;
 }
 
 /* 卡片标签样式 */
 .label {
     font-family: "Roboto Mono", monospace;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--color-text);
-    padding-bottom: 3px;
-    padding-top: 1px;
+    padding-top: 0px;
     padding-left: 8px;
     padding-right: 8px;
-    border: 1.2px solid var(--color-text);
-    font-weight: 350;
+    border: 1.3px solid var(--color-text);
+    font-weight: 420;
     border-radius: 12px;
     transition: all 0.1s ease;
 }
@@ -379,7 +386,6 @@ button:hover {
 
 /* 确保所有卡片元素都有过渡效果 */
 .card-title,
-.card-description,
 .card-label {
     transition: all 0.2s ease;
 }
