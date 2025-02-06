@@ -43,7 +43,7 @@ const blogPosts = [
     new BlogPost({
         time: "2025.02.04",
         content: "<About this site, and my Statement of Interest>",
-        title: "Finally I Build It",
+        title: "A Dump/Matrix/Map",
         name: "firstpost"
     }),
 ];

@@ -83,6 +83,7 @@ body {
     width: 100%;
     padding: 0;
     margin: 120px auto;  /* 增加与上方文字的距离 */
+    margin-bottom: 100px;  /* 为固定页脚留出空间 */
     display: flex;
     flex-direction: column;
 }
@@ -375,58 +376,63 @@ button:hover {
 
 /* 页脚包装器样式 */
 .footer-wrapper {
+    position: fixed;  /* 固定定位 */
+    bottom: 0;  /* 固定在底部 */
+    left: 0;
+    right: 0;
     width: 100%;
-    padding: 60px 0 20px 0;
-    border-top: 1.2px solid var(--color-border);
-    margin-top: 200px;
+    padding: 20px 0;  /* 上下内边距 */
+    background-color: var(--color-background);  /* 确保背景色与页面一致 */
+    z-index: 1000;  /* 确保在其他内容之上 */
 }
 
 /* 页脚内容样式 */
 .footer {
     max-width: 1350px;
-    width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
 }
 
 /* 其他页脚样式保持不变 */
 .footer,
 .footer p,
-.contact-info,
 .copyright,
 .footer-link {
     font-family: "Roboto Mono", monospace;
-}
-
-.social-links {
-    margin-bottom: 60px;
-    display: flex;
-    justify-content: center;
-    gap: 120px;
-}
-
-.footer-link {
-    text-decoration: none;
-    color: var(--color-text);
     font-size: 14px;
-    transition: color 0.3s ease;
+    font-weight: 650;
+}
+
+/* 社交链接容器 */
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* 页脚链接样式 */
+.footer-link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-    color: var(--color-text-hover);
+    color: var(--color-text-grey);
 }
 
+/* 联系信息样式 */
 .contact-info {
-    margin-bottom: 40px;
-    font-size: 14px;
     text-align: center;
 }
 
+/* 版权信息样式 */
 .copyright {
-    font-size: 14px;
-    line-height: 1.6;
-    text-align: center;
+    text-align: right;
 }
 
 /* 卡片标签容器样式 */
