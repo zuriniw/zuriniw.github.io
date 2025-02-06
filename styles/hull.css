@@ -20,7 +20,7 @@
     opacity: 0.8;  /* 使用透明度实现悬停效果 */
 }
 
-/* 噪点效果 */
+/* 噪点效果
 .coordinate-container svg path {
     position: relative;
     overflow: hidden;
@@ -44,9 +44,9 @@
     opacity: 0.8;
     z-index: 1;
     mix-blend-mode: overlay;  /* 添加混合模式以更好地融合噪点 */
-}
+/* }
 
 @keyframes noise {
     0% { background-position: 0 0, 0 0 }
     100% { background-position: var(--noise-size) var(--noise-size), 10px 10px }
-}
+} */ 

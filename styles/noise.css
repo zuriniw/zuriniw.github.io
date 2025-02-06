@@ -1,7 +1,6 @@
 :root {
     --noise-color: rgba(0, 0, 0, 0.9);
-    --noise-size: 100px;
-    --noise-speed: 0.8s;
+    --noise-speed: 5s;
   }
   
   /* 噪点滤镜 */
@@ -15,23 +14,20 @@
     position: absolute;
     inset: -100%;
     background-image: 
-      radial-gradient(var(--noise-color) 15%, transparent 30%),
-      repeating-linear-gradient(
-        45deg,
-        transparent 0 5px,
-        var(--noise-color) 5px 10px
+      radial-gradient(
+        var(--noise-color) 0.5px,
+        transparent 1px
       );
     background-size: 
-      var(--noise-size) var(--noise-size),
-      10px 10px;
+      3px 3px;
     animation: noise var(--noise-speed) infinite linear;
-    opacity: 0.04;
+    opacity: 0.03;
     z-index: 1;
     mix-blend-mode: overlay;
     pointer-events: none;
   }
   
   @keyframes noise {
-    0% { background-position: 0 0, 0 0 }
-    100% { background-position: var(--noise-size) var(--noise-size), 10px 10px }
+    0% { background-position: 0 0 }
+    100% { background-position: 100px 100px }
   }
