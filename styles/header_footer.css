@@ -1,44 +1,53 @@
-/* 页眉样式 */
-.header-wrapper {
+
+/* 导航栏样式 */
+.navbar {
     width: 100%;
-    padding: 20px 0;
-    border-bottom: 1.2px solid var(--color-text);
-    position: sticky;
-    top: 0;
-    background-color: var(--color-background);
-    z-index: 100;
+    padding: 16px 0;
+    background-color: var(--color-background);  /* 确保有背景色 */
 }
 
-.header {
+.nav-container {
     max-width: 1350px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
-.header-left {
+.nav-left, .nav-right {
     display: flex;
-    align-items: center;
-    gap: 40px;
+    flex-direction: column;  /* 改为竖向排列 */
+    align-items: flex-end;   /* 右对齐 */
+    gap: 4px;               /* 减小间距 */
 }
 
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.nav-item {
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;      /* 调整行高 */
+    transition: color 0.2s ease;
 }
+
+.nav-item:hover {
+    color: var(--color-text-hover);
+}
+
 
 /* 页脚样式 */
 .footer-wrapper {
     width: 100%;
-    padding: 60px 0 20px 0;
-    position: sticky;
+    padding: 40px 0;
+    position: fixed;
     bottom: 0;
-    background-color: var(--color-background);
-    z-index: 10;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 1000;
 }
 
 .footer {
@@ -46,5 +55,65 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
-    text-align: center;
-} 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* 页脚包装器样式 */
+.footer-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px 0;
+    background-color: transparent;
+    z-index: 1000;
+}
+
+/* 页脚内容样式 */
+.footer {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+/* 其他页脚样式保持不变 */
+.footer,
+.footer p,
+.copyright,
+.footer-link {
+    font-family: "Roboto Mono", monospace;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* 社交链接容器 */
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* 页脚链接样式 */
+.footer-link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--color-text-grey);
+}
+
+
+/* 版权信息样式 */
+.copyright {
+    text-align: right;
+}

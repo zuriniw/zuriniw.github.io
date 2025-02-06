@@ -74,6 +74,7 @@
 body {
     min-height: 100vh;
     background: var(--color-background);  /* 米白色背景 */
+    padding-bottom: 100px;  /* 增加底部内边距，为固定页脚留出更多空间 */
 }
 
 /* 主容器样式 */
@@ -82,8 +83,7 @@ body {
     max-width: 1350px;
     width: 100%;
     padding: 0;
-    margin: 120px auto;  /* 增加与上方文字的距离 */
-    margin-bottom: 100px;  /* 为固定页脚留出空间 */
+    margin: 180px auto 100px;  /* 调整上下边距，为页眉和页脚留出空间 */
     display: flex;
     flex-direction: column;
 }
@@ -303,42 +303,6 @@ button:hover {
     justify-content: flex-start;
 }
 
-/* 导航栏样式 */
-.navbar {
-    width: 100%;
-    padding: 16px 0;
-    /* border-bottom: 1.2px solid var(--color-border);  添加底部边框 */
-    background: transparent;
-}
-
-.nav-container {
-    max-width: 1350px;  /* 与主容器宽度相同 */
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-left, .nav-right {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-item {
-    font-family: "Roboto Mono", monospace;
-    font-size: 16px;
-    text-decoration: none;
-    color: var(--color-text);
-    transition: color 0.3s ease;
-    font-weight: 550;
-}
-
-.nav-item:hover {
-    color: var(--color-text-hover);
-}
-
 
 /* 介绍部分样式 */
 .intro-section {
@@ -374,66 +338,7 @@ button:hover {
     color: var(--color-text-hover);
 }
 
-/* 页脚包装器样式 */
-.footer-wrapper {
-    position: fixed;  /* 固定定位 */
-    bottom: 0;  /* 固定在底部 */
-    left: 0;
-    right: 0;
-    width: 100%;
-    padding: 20px 0;  /* 上下内边距 */
-    background-color: var(--color-background);  /* 确保背景色与页面一致 */
-    z-index: 1000;  /* 确保在其他内容之上 */
-}
 
-/* 页脚内容样式 */
-.footer {
-    max-width: 1350px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: "Roboto Mono", monospace;
-    font-size: 14px;
-}
-
-/* 其他页脚样式保持不变 */
-.footer,
-.footer p,
-.copyright,
-.footer-link {
-    font-family: "Roboto Mono", monospace;
-    font-size: 14px;
-    font-weight: 650;
-}
-
-/* 社交链接容器 */
-.social-links {
-    display: flex;
-    gap: 20px;
-}
-
-/* 页脚链接样式 */
-.footer-link {
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.footer-link:hover {
-    color: var(--color-text-grey);
-}
-
-/* 联系信息样式 */
-.contact-info {
-    text-align: center;
-}
-
-/* 版权信息样式 */
-.copyright {
-    text-align: right;
-}
 
 /* 卡片标签容器样式 */
 .card-labels {
@@ -776,12 +681,6 @@ button:hover {
     z-index: -1;
 }
 
-/* 项目页面的导航栏和页脚背景 */
-.project-page ~ .navbar,
-.project-page ~ .footer-wrapper {
-    background: var(--color-white);
-}
-
 .project-header {
     width: 100%;
     margin-bottom: 40px;
@@ -1069,8 +968,11 @@ button:hover {
 
 /* 页眉样式 */
 #header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    background-color: transparent !important; /* 始终保持透明 */
+    background-color: transparent !important;
     z-index: 1000;
 }
 
@@ -1102,12 +1004,6 @@ body.project-page {
     position: relative;
 }
 
-/* 页脚样式 */
-#footer {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-}
 
 /* 矩阵说明文本样式 */
 .matrix-caption {
