@@ -308,7 +308,7 @@ button:hover {
 .intro-section {
     max-width: 1350px;
     width: 100%;
-    margin: 20px auto 0;  /* 增加顶部边距 */
+    margin: 60px auto 0;  /* 增加顶部边距 */
     max-width: 760px;  /* 匹配新的卡片宽度 */
     font-family: "Barlow", sans-serif;
     font-weight: 350;
@@ -408,7 +408,7 @@ button:hover {
     left: 0;
     right: 0;
     z-index: 100;
-    padding-top: 16px;  /* 固定时减少上边距 */
+    padding-top: 40px;  /* 固定时减少上边距 */
     background-color: var(--color-background);
 }
 

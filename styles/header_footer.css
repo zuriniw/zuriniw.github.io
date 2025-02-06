@@ -1,16 +1,19 @@
-
 /* 导航栏样式 */
 .navbar {
     width: 100%;
-    padding: 16px 0;
     background-color: var(--color-background);  /* 确保有背景色 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 40px 60px;  /* 与页脚保持一致 */
 }
 
 .nav-container {
     max-width: 1350px;
     width: 100%;
     margin: 0 auto;
-    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -23,13 +26,27 @@
     gap: 4px;               /* 减小间距 */
 }
 
+/* 导航栏方块容器样式 */
+.nav-box-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;  /* 方块和文字之间的间距 */
+}
+
+/* 导航栏黑色方块样式 */
+.nav-box {
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-text);
+}
+
 .nav-item {
     text-decoration: none;
     color: var(--color-text);
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
     font-weight: 600;
-    line-height: 1.2;      /* 调整行高 */
+    line-height: 1.5;      /* 调整行高 */
     transition: color 0.2s ease;
 }
 
@@ -38,23 +55,10 @@
 }
 
 
-/* 页脚样式 */
-.footer-wrapper {
-    width: 100%;
-    padding: 40px 0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: transparent;
-    z-index: 1000;
-}
-
 .footer {
     max-width: 1350px;
     width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 0 auto;  /* 添加这行使 footer 内容居中 */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -66,23 +70,13 @@
 /* 页脚包装器样式 */
 .footer-wrapper {
     position: fixed;
+    padding: 40px 60px;  /* 与导航栏保持一致 */
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    padding: 20px 0;
     background-color: transparent;
     z-index: 1000;
-}
-
-/* 页脚内容样式 */
-.footer {
-    max-width: 1350px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;    
 }
 
 /* 其他页脚样式保持不变 */
@@ -95,23 +89,51 @@
     font-size: 16px;
 }
 
-/* 社交链接容器 */
-.social-links {
-    display: flex;
-    gap: 20px;
+/* 菜单触发器样式 */
+.menu-trigger {
+    position: relative;
+    cursor: pointer;
 }
 
-/* 页脚链接样式 */
-.footer-link {
+/* 黑色小方块样式 */
+.menu-box {
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-text);
+    transition: transform 0.2s ease;
+}
+
+/* 菜单内容样式 */
+.menu-content {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-text);
+    padding: 8px 0;
+    display: none;
+}
+
+/* 显示菜单 */
+.menu-trigger:hover + .menu-content,
+.menu-content:hover {
+    display: block;
+}
+
+/* 菜单链接样式 */
+.menu-link {
+    display: block;
+    padding: 8px 16px;
     color: var(--color-text);
     text-decoration: none;
     transition: color 0.2s ease;
+    white-space: nowrap;
+    font-size: 14px;
 }
 
-.footer-link:hover {
+.menu-link:hover {
     color: var(--color-text-grey);
 }
-
 
 /* 版权信息样式 */
 .copyright {
