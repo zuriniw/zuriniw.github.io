@@ -227,7 +227,7 @@ const projects = [
         tools: "Rhino, Grasshopper, D5 Render",
         otherLink2: 'https://ziruw.notion.site/the-Ark-the-construction-of-green-space-in-the-canal-community-based-on-ecological-restoration-and-2713ed7644ff46c2a4fef6125f90cacb',
         briefDescription: `The design site, Hengtang Station, an ancient canal post, preserves its original texture through a concise oblique grid composition and narrative techniques. Integrating ecological restoration, wetland construction, and canal culture, it balances ecology, city, and history, fostering a shared community and sustainable landscape that embodies harmony between people, nature, and the city.`,
-        prize: "1st Prize, Top 10/613 in Architectural Design Competition 'Zijin Award'",
+        prize: "1st Prize, Top 10/613 in Architectural & Landscape Design Competition 'Zijin Award'",
         weight: 4,
         isflipped: false,
         situate: { x: -60, y: -80 }

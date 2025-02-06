@@ -50,7 +50,7 @@
 
 /* 颜色定义 */
 :root {
-    --color-background: #f5f1f0;
+    --color-background: #f6f4f3;
     --color-text: #000;
     --color-text-hover: #9f9f9f;
     --color-border: #000;
@@ -127,7 +127,7 @@ button {
 
 /* 按钮悬停效果 */
 button:hover {
-    background-color: var(--color-text-grey) !important;
+    background-color: var(--color-text) !important;
     color: var(--color-white);
 }
 
@@ -487,7 +487,7 @@ button:hover {
     position: relative;
     width: 100%;
     height: 100%;
-    border: 1.2px solid var(--color-text);
+    border: 1.5px solid var(--color-text);
 }
 
 .axis {
@@ -498,7 +498,6 @@ button:hover {
 .x-axis {
     width: 100%;
     height: 1.2px;
-    transform: scaleY(0.5);
     transform-origin: center;  /* 确保缩放是从中心开始的 */
     top: 50%;
     left: 0;
@@ -506,7 +505,6 @@ button:hover {
 
 .y-axis {
     width: 1.2px;
-    transform: scaleX(0.5);
     height: 100%;
     transform-origin: center;  /* 确保缩放是从中心开始的 */
     top: 0;
@@ -1058,24 +1056,27 @@ body.project-page {
 /* 轴标注基础样式 */
 .axis-label {
     position: absolute;
-    font-family: "Roboto Mono", monospace;
+    font-family: "Roboto Mono";
+    font-style: italic;
     font-size: 10px;
     color: var(--color-text);
-    font-weight: 320;
+    font-weight: 700 !important;  /* 增加字重 */
 }
 
 /* X轴标注样式 */
 .x-label {
-    top: 49%;  /* 将标注移动到容器中间（y=0的位置） */
-    transform: translateY(-50%);  /* 微调位置使其对齐中线 */
+    top: 49%;
+    transform: translateY(-50%);
 }
 
 .x-label.left {
     left: 2px;
+
 }
 
 .x-label.right {
     right: 2px;
+
 }
 
 /* Y轴标注样式 */
@@ -1089,11 +1090,13 @@ body.project-page {
 .y-label.top {
     left: 51%;  /* 对齐y轴 */
     top: -2px;   /* 靠近顶部 */
+
 }
 
 .y-label.bottom {
     left: 51%;  /* 对齐y轴 */
     bottom: 52px;  /* 调整位置，避免超出matrix */
+
 }
 
 /* 延伸线样式 */
