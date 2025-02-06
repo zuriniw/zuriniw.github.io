@@ -211,7 +211,7 @@ const projects = [
         tools: "Procreate, Adobe Suite",
         briefDescription: "It is a story starting from a rose, a home, and a place.",
         otherLink2: "https://www.bilibili.com/video/BV1jT411g7Xf/",
-        prize: "Award of Excellence & Award of New Talent on Bilibili 'Gamify Everything'",
+        prize: "[Award of Excellence] & [Award of New Talent] on Bilibili 'Gamify Everything' Competition",
         weight: 5,
         situate: { x: -80, y: -10 }
     }),

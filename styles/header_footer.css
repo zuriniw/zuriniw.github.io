@@ -1,0 +1,50 @@
+/* 页眉样式 */
+.header-wrapper {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1.2px solid var(--color-text);
+    position: sticky;
+    top: 0;
+    background-color: var(--color-background);
+    z-index: 100;
+}
+
+.header {
+    max-width: 1350px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 页脚样式 */
+.footer-wrapper {
+    width: 100%;
+    padding: 60px 0 20px 0;
+    position: sticky;
+    bottom: 0;
+    background-color: var(--color-background);
+    z-index: 10;
+}
+
+.footer {
+    max-width: 1350px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+} 
