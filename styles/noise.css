@@ -1,53 +1,37 @@
 :root {
-  --noise-color: rgba(150, 150, 150, 0.15);
-  --noise-size: 200px;
-  --noise-speed: 0.8s;
-}
-
-/* 基础噪点混合类 */
-.noise-blend {
-  position: relative;
-  overflow: hidden;
-}
-
-.noise-blend::before {
-  content: "";
-  position: absolute;
-  inset: -100%;
-  background-image: 
-    radial-gradient(var(--noise-color) 15%, transparent 30%),
-    repeating-linear-gradient(
-      45deg,
-      transparent 0 5px,
-      var(--noise-color) 5px 10px
-    );
-  background-size: 
-    var(--noise-size) var(--noise-size),
-    10px 10px;
-  animation: noise var(--noise-speed) infinite linear;
-  opacity: 0.8;
-  z-index: 1;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
-/* 噪点动画 */
-@keyframes noise {
-  0% { background-position: 0 0, 0 0 }
-  100% { background-position: var(--noise-size) var(--noise-size), 10px 10px }
-}
-
-/* 提供不同的混合模式选项 */
-.noise-multiply { mix-blend-mode: multiply; }
-.noise-overlay { mix-blend-mode: overlay; }
-.noise-screen { mix-blend-mode: screen; }
-
-/* 提供不同的噪点密度选项 */
-.noise-dense { --noise-size: 100px; }
-.noise-medium { --noise-size: 200px; }
-.noise-sparse { --noise-size: 300px; }
-
-/* 提供不同的动画速度选项 */
-.noise-fast { --noise-speed: 0.5s; }
-.noise-normal { --noise-speed: 0.8s; }
-.noise-slow { --noise-speed: 1.2s; } 
+    --noise-color: rgba(0, 0, 0, 0.9);
+    --noise-size: 100px;
+    --noise-speed: 0.8s;
+  }
+  
+  /* 噪点滤镜 */
+  .noise-filter {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .noise-filter::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    background-image: 
+      radial-gradient(var(--noise-color) 15%, transparent 30%),
+      repeating-linear-gradient(
+        45deg,
+        transparent 0 5px,
+        var(--noise-color) 5px 10px
+      );
+    background-size: 
+      var(--noise-size) var(--noise-size),
+      10px 10px;
+    animation: noise var(--noise-speed) infinite linear;
+    opacity: 0.04;
+    z-index: 1;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  
+  @keyframes noise {
+    0% { background-position: 0 0, 0 0 }
+    100% { background-position: var(--noise-size) var(--noise-size), 10px 10px }
+  }
