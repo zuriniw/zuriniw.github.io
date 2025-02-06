@@ -414,56 +414,27 @@ function addFilterHoverEffects() {
         svg.style.height = '100%';
         svg.style.pointerEvents = 'none';
         
-        // 添加噪点滤镜定义
         const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-        const filter = document.createElementNS("http://www.w3.org/2000/svg", "filter");
-        filter.setAttribute("id", "noiseFilter");
-        // 设置滤镜范围与路径边界一致
-        filter.setAttribute("x", "0");
-        filter.setAttribute("y", "0");
-        filter.setAttribute("width", "100%");
-        filter.setAttribute("height", "100%");
-        filter.setAttribute("filterUnits", "objectBoundingBox");
-        filter.setAttribute("primitiveUnits", "userSpaceOnUse");
         
-        // 基础噪点生成
-        const turbulence = document.createElementNS("http://www.w3.org/2000/svg", "feTurbulence");
-        turbulence.setAttribute("type", "fractalNoise");
-        turbulence.setAttribute("baseFrequency", "0.9");
-        turbulence.setAttribute("numOctaves", "8");
-        turbulence.setAttribute("result", "noise");
+        // 创建第一个滤镜 (noiseFilter)
+        const filter1 = createNoiseFilter("noiseFilter");
         
-        // 颜色混合
-        const colorMatrix = document.createElementNS("http://www.w3.org/2000/svg", "feColorMatrix");
-        colorMatrix.setAttribute("in", "noise");
-        colorMatrix.setAttribute("type", "matrix");
-        colorMatrix.setAttribute("values", `
-            0 0 0 0 0
-            0 0 0 0 0
-            0 0 0 0 0
-            0 0 0 1 0
-        `);
-        colorMatrix.setAttribute("result", "coloredNoise");
+        // 创建第二个滤镜 (noiseFilter2)
+        const filter2 = createNoiseFilter("noiseFilter2", {
+            baseFrequency: 0.7,        // 更高的频率会产生更细腻的噪点
+            numOctaves: 5,             // 更少的叠加次数会产生更简单的纹理
+            type: "turbulence",        // 使用湍流而不是分形噪声
+            blendMode: "multiply",     // 使用不同的混合模式
+            colorMatrix: `
+                0 0 0 0 0.5
+                0 0 0 0 0.45
+                0 0 0 0 0.47
+                0 0 0 0.7 0
+            `                          // 调整颜色矩阵以改变噪点的外观
+        });
         
-        // 添加合成操作
-        const composite = document.createElementNS("http://www.w3.org/2000/svg", "feComposite");
-        composite.setAttribute("in", "coloredNoise");
-        composite.setAttribute("in2", "SourceGraphic");
-        composite.setAttribute("operator", "in");
-        composite.setAttribute("result", "maskedNoise");
-        
-        // 与原图混合
-        const blend = document.createElementNS("http://www.w3.org/2000/svg", "feBlend");
-        blend.setAttribute("in", "SourceGraphic");
-        blend.setAttribute("in2", "maskedNoise");
-        blend.setAttribute("mode", "overlay");
-        
-        filter.appendChild(turbulence);
-        filter.appendChild(colorMatrix);
-        filter.appendChild(composite);
-        filter.appendChild(blend);
-        defs.appendChild(filter);
-        
+        defs.appendChild(filter1);
+        defs.appendChild(filter2);
         svg.appendChild(defs);
         container.appendChild(svg);
     }
@@ -527,6 +498,66 @@ function addFilterHoverEffects() {
             if (path) path.remove();
         });
     });
+}
+
+// 修改 createNoiseFilter 函数以接受参数配置
+function createNoiseFilter(id, config = {}) {
+    // 设置默认值
+    const {
+        baseFrequency = 0.9,
+        numOctaves = 8,
+        type = "fractalNoise",
+        blendMode = "overlay",
+        colorMatrix = `
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 1 0
+        `
+    } = config;
+    
+    const filter = document.createElementNS("http://www.w3.org/2000/svg", "filter");
+    filter.setAttribute("id", id);
+    filter.setAttribute("x", "0");
+    filter.setAttribute("y", "0");
+    filter.setAttribute("width", "100%");
+    filter.setAttribute("height", "100%");
+    filter.setAttribute("filterUnits", "objectBoundingBox");
+    filter.setAttribute("primitiveUnits", "userSpaceOnUse");
+    
+    // 基础噪点生成
+    const turbulence = document.createElementNS("http://www.w3.org/2000/svg", "feTurbulence");
+    turbulence.setAttribute("type", type);
+    turbulence.setAttribute("baseFrequency", baseFrequency);
+    turbulence.setAttribute("numOctaves", numOctaves);
+    turbulence.setAttribute("result", "noise");
+    
+    // 颜色混合
+    const colorMatrixElement = document.createElementNS("http://www.w3.org/2000/svg", "feColorMatrix");
+    colorMatrixElement.setAttribute("in", "noise");
+    colorMatrixElement.setAttribute("type", "matrix");
+    colorMatrixElement.setAttribute("values", colorMatrix);
+    colorMatrixElement.setAttribute("result", "coloredNoise");
+    
+    // 添加合成操作
+    const composite = document.createElementNS("http://www.w3.org/2000/svg", "feComposite");
+    composite.setAttribute("in", "coloredNoise");
+    composite.setAttribute("in2", "SourceGraphic");
+    composite.setAttribute("operator", "in");
+    composite.setAttribute("result", "maskedNoise");
+    
+    // 与原图混合
+    const blend = document.createElementNS("http://www.w3.org/2000/svg", "feBlend");
+    blend.setAttribute("in", "SourceGraphic");
+    blend.setAttribute("in2", "maskedNoise");
+    blend.setAttribute("mode", blendMode);
+    
+    filter.appendChild(turbulence);
+    filter.appendChild(colorMatrixElement);
+    filter.appendChild(composite);
+    filter.appendChild(blend);
+    
+    return filter;
 }
 
 // 初始化过滤器滚动效果
