@@ -532,7 +532,7 @@ function addFilterHoverEffects() {
 // 初始化过滤器滚动效果
 function initFilterScroll() {
     const buttonSection = document.querySelector('.buttons-section');
-    const filterRect = buttonSection.getBoundingClientRect();
+    let filterRect = buttonSection.getBoundingClientRect();  // 改用 let 声明
     let originalTop = filterRect.top + window.pageYOffset;
 
     window.addEventListener('scroll', () => {
