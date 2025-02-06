@@ -71,7 +71,7 @@ if (project) {
 
     // 添加我的贡献
     if (project.myContribution) {
-        const contributionItem = createMetaItem('My Contribution', project.myContribution);
+        const contributionItem = createMetaItem('Work', project.myContribution);
         metaSection.appendChild(contributionItem);
     }
 
@@ -113,11 +113,19 @@ if (project) {
 // 辅助函数：创建元数据项
 function createMetaItem(label, content) {
     const item = document.createElement('div');
-    item.className = 'meta-item';
-    item.innerHTML = `
-        <span class="meta-label">${label}:</span>
-        <span class="meta-text">${content}</span>
-    `;
+    item.className = 'metadata-item';
+    
+    const labelSpan = document.createElement('div');
+    labelSpan.className = 'meta-label';
+    labelSpan.textContent = label;
+    
+    const contentSpan = document.createElement('div');
+    contentSpan.className = 'meta-text';
+    contentSpan.textContent = content;
+    
+    item.appendChild(labelSpan);
+    item.appendChild(contentSpan);
+    
     return item;
 }
 

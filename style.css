@@ -1300,55 +1300,65 @@ body.project-page {
     max-width: 860px !important;  /* 增加容器宽度 */
 }
 
-/* 项目元数据网格布局 */
-.project-metadata {
+/* 项目元数据容器 */
+.project-meta {
     display: flex;
     flex-direction: column;
     margin: 40px 0;
-    position: relative;  /* 为垂直线提供定位上下文 */
-    max-width: 800px;  /* 限制最大宽度 */
+    position: relative;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    gap: 0;  /* 移除 gap */
 }
 
 /* 垂直分隔线 */
-.project-metadata::before {
-    content: '';
-    position: absolute;
-    left: 100px;  /* 固定位置 */
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-color: var(--color-text);
-    opacity: 0.15;
+.project-meta::before {
+    display: none;  /* 隐藏竖线 */
 }
 
 /* 单个元数据项容器 */
 .metadata-item {
     display: flex;
-    margin-bottom: 12px;  /* 减小项目间距 */
-    position: relative;  /* 为内容定位提供上下文 */
+    min-height: 16px;
+    align-items: baseline;
+    margin: 2px 0;  /* 使用更小的外边距控制间距 */
 }
 
 /* 元数据标签样式 */
-.metadata-label {
+.meta-label {
+    width: 85px;
+    padding-right: 20px;
+    text-align: right;
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
     color: var(--color-text);
-    text-align: right;  /* 标签右对齐 */
-    width: 85px;  /* 调整固定宽度 */
-    padding-right: 20px;  /* 与垂直线的间距 */
-    flex-shrink: 0;  /* 防止标签被压缩 */
+    flex-shrink: 0;
+    line-height: 1;  /* 使用最小行高 */
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+}
+
+/* 为标签添加冒号 */
+.meta-label::after {
+    content: ':';
 }
 
 /* 元数据内容样式 */
-.metadata-content {
+.meta-text {
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
     color: var(--color-text);
-    text-align: left;  /* 内容左对齐 */
-    padding-left: 20px;  /* 与垂直线的间距 */
-    flex: 1;  /* 占据剩余空间 */
-    margin-left: 15px;  /* 确保内容从垂直线右侧开始 */
-    max-width: calc(100% - 100px);  /* 防止内容过长 */
+    flex: 1;
+    line-height: 1;  /* 使用最小行高 */
+    min-height: 16px;
+    display: inline-block;
+    margin-left: 0;
+}
+
+/* 处理多行内容 */
+.meta-text {
+    white-space: pre-wrap;  /* 保留换行和空格 */
+    word-wrap: break-word;  /* 长单词换行 */
 }
