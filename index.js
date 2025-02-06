@@ -403,6 +403,12 @@ function addFilterHoverEffects() {
     const points = document.querySelector('.coordinate-view').querySelectorAll('.point-wrapper');
     const container = document.querySelector('.coordinate-container');
     
+    // 确保初始状态下所有点都是可见的
+    points.forEach(point => {
+        point.classList.remove('fade-out');
+        point.classList.remove('hide');
+    });
+    
     // 创建 SVG 元素
     if (!svg) {
         svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -441,6 +447,15 @@ function addFilterHoverEffects() {
     buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
             const label = button.textContent.trim();
+            
+            // 如果点击的是 "All" 按钮，显示所有点
+            if (label === 'All') {
+                points.forEach(point => {
+                    point.classList.remove('fade-out');
+                    point.classList.remove('hide');
+                });
+                return;
+            }
             
             cards.forEach(card => {
                 if (!card.hasAttribute(`data-${label.toLowerCase()}`)) {
