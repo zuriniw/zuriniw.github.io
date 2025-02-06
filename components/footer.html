@@ -9,21 +9,47 @@
         </div>
     </div>
 </footer>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const footerBox = document.querySelector('.footer-box');
-        const footerEmail = document.querySelector('.footer-email');
-        
-    // Initially hide the email
-    footerEmail.style.display = 'none';
+
+<script type="module">
+    console.log('Footer script initializing...');
     
-    // Add click event listener to the box
-    footerBox.addEventListener('click', function() {
-        if (footerEmail.style.display === 'none') {
-            footerEmail.style.display = 'inline';
-        } else {
-            footerEmail.style.display = 'none';
+    function initFooter() {
+        const footerBox = document.querySelector('.footer-box');
+        const footerLeft = document.querySelector('.footer-left');
+        
+        if (!footerBox || !footerLeft) {
+            console.warn('Footer elements not found, retrying...');
+            setTimeout(initFooter, 100);
+            return;
         }
-    });
-});
+        
+        console.log('Found footer elements:', { footerBox, footerLeft });
+        
+        // 移除可能存在的旧事件监听器
+        footerBox.replaceWith(footerBox.cloneNode(true));
+        const newFooterBox = document.querySelector('.footer-box');
+        
+        // 添加新的事件监听器
+        newFooterBox.addEventListener('click', (e) => {
+            console.log('Footer box clicked');
+            e.stopPropagation(); // 阻止事件冒泡
+            footerLeft.classList.toggle('show-email');
+        });
+        
+        // 添加调试用的hover事件
+        newFooterBox.addEventListener('mouseenter', () => {
+            console.log('Mouse entered footer box');
+        });
+        
+        newFooterBox.addEventListener('mouseleave', () => {
+            console.log('Mouse left footer box');
+        });
+    }
+
+    // 确保在DOM加载完成后执行
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFooter);
+    } else {
+        initFooter();
+    }
 </script> 
