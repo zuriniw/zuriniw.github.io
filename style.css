@@ -1036,7 +1036,7 @@ body.project-page {
     margin-top: 32px;
     font-family: "Roboto Mono", monospace;
     font-style: italic;
-    font-size: 14px;
+    font-size: 18px;
     color: var(--color-text);
     font-weight: 550;
 }
@@ -1057,7 +1057,7 @@ body.project-page {
     font-size: 14px;
     color: var(--color-text);
     margin-top: 6px;
-    line-height: 1.6;
+    line-height: 1.2;
     font-weight: 400;
     text-align: right;
 }
@@ -1461,29 +1461,30 @@ body.project-page {
         bottom: 48px;
     }
     
-    /* 调整矩阵说明文字 */
-    .matrix-caption {
-        padding: 0 20px;
-        font-size: 13px;
-    }
-    
-    /* 调整简介文字 */
-    .intro {
-        padding: 0 20px;
-        font-size: 13px;
-        line-height: 1.5;
-    }
 
     button {
-        color: var(--color-text) !important;  /* 强制使用定义的文字颜色 */
-        background: transparent !important;  /* 强制使用透明背景 */
-        -webkit-tap-highlight-color: transparent;  /* 移除点击高亮 */
+        color: var(--color-text) !important;
+        background: transparent !important;
+        -webkit-tap-highlight-color: transparent;
     }
 
-    /* 确保激活状态的按钮样式正确 */
+    /* 修改长按按钮的样式 */
+    button.long-press {
+        color: var(--color-white) !important;
+        background-color: var(--color-text-grey) !important;  /* 使用文本颜色作为背景 */
+        transition: background-color 0.1s ease;  /* 添加过渡效果 */
+    }
+
+    /* 确保普通状态下按钮样式正确 */
+    button {
+        -webkit-tap-highlight-color: transparent;  /* 移除默认的点击高亮 */
+        transition: background-color 0.1s ease;    /* 添加过渡效果 */
+    }
+    
+    /* 按钮激活状态样式 */
     button.active {
         color: var(--color-white) !important;
-        background: var(--color-text) !important;
+        background-color: var(--color-text) !important;
     }
 
     /* 移动端触摸行为 */

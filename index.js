@@ -329,7 +329,7 @@ function handleFilterClick(e) {
             e.target.classList.remove('active');
         } else {
             activeFilters.push(clickedFilter);
-            e.target.classList.add('active');
+    e.target.classList.add('active');
         }
     }
     
@@ -449,75 +449,148 @@ function addFilterHoverEffects() {
         container.appendChild(svg);
     }
 
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', () => {
-            const label = button.textContent.trim();
-            
+    // 添加长按处理
+    let pressTimer;
+    let isLongPress = false;
+    let preventClick = false;
+
+    // 跟踪当前激活的按钮
+    let activeButtons = new Set();
+
+    // 处理点按的函数
+    const handleTap = (button) => {
+        if (!isLongPress) {
+            // 处理多选逻辑
+            if (activeButtons.has(button)) {
+                activeButtons.delete(button);
+                button.classList.remove('active');
+            } else {
+                activeButtons.add(button);
+                button.classList.add('active');
+            }
+
+            // 更新所有卡片和点的显示状态
+            updateFilteredItems();
+        }
+    };
+
+    // 更新过滤后的项目显示
+    const updateFilteredItems = () => {
+        const selectedLabels = Array.from(activeButtons).map(btn => btn.textContent.trim().toLowerCase());
+
+        cards.forEach(card => {
+            const hasAllLabels = selectedLabels.every(label => 
+                card.hasAttribute(`data-${label}`)
+            );
+            card.classList.toggle('hide', selectedLabels.length > 0 && !hasAllLabels);
+        });
+
+        points.forEach(point => {
+            const hasAllLabels = selectedLabels.every(label => 
+                point.hasAttribute(`data-${label}`)
+            );
+            point.classList.toggle('hide', selectedLabels.length > 0 && !hasAllLabels);
+        });
+    };
+
+    // 处理按钮效果的函数
+    const handleButtonEffect = (button, isActive) => {
+        const label = button.textContent.trim();
+        
+        // 添加或移除长按样式类
+        button.classList.toggle('long-press', isActive);
+
             cards.forEach(card => {
-                if (!card.hasAttribute(`data-${label.toLowerCase()}`)) {
-                    card.classList.add('fade-out');
+            if (!card.hasAttribute(`data-${label.toLowerCase()}`)) {
+                card.classList.toggle('fade-out', isActive);
                 } else {
-                    // 找到匹配的标签并添加高亮样式
                     const labels = card.querySelectorAll('.label');
-                    labels.forEach(labelSpan => {
-                        if (labelSpan.textContent.trim() === label) {
-                            labelSpan.classList.add('label-highlight');
+                labels.forEach(labelSpan => {
+                    if (labelSpan.textContent.trim() === label) {
+                        labelSpan.classList.toggle('label-highlight', isActive);
                         }
                     });
                 }
             });
 
             points.forEach(point => {
-                if (!point.hasAttribute(`data-${label.toLowerCase()}`)) {
-                    point.classList.add('fade-out');
-                }
-            });
-            
-            // 获取当前可见的点（未被其他过滤器隐藏的点）
-            const visiblePoints = Array.from(points).filter(point => 
-                !point.classList.contains('fade-out') && 
-                !point.classList.contains('hide')
-            );
-            
-            console.log('Currently visible points:', visiblePoints.length);
-            
-            // 获取匹配的点的坐标并绘制凹包
-            const matchingPoints = visiblePoints
-                .filter(point => point.hasAttribute(`data-${label.toLowerCase()}`))
-                .map(point => getPointCoordinates(point));
-            
-            console.log(`Points matching ${label}:`, matchingPoints.length);
-            console.log('Matching points coordinates:');
-            matchingPoints.forEach((p, i) => {
-                console.log(`Point ${i + 1}: x=${p.x.toFixed(2)}, y=${p.y.toFixed(2)}, 
-                            labels=${visiblePoints[i].getAttributeNames()
-                            .filter(attr => attr.startsWith('data-'))
-                            .map(attr => attr.slice(5))
-                            .join(', ')}`);
-            });
-            
+            if (!point.hasAttribute(`data-${label.toLowerCase()}`)) {
+                point.classList.toggle('fade-out', isActive);
+            }
+        });
+
+        // 获取当前可见的点
+        const visiblePoints = Array.from(points).filter(point => 
+            !point.classList.contains('fade-out') && 
+            !point.classList.contains('hide')
+        );
+
+        // 获取匹配的点的坐标并绘制凹包
+        const matchingPoints = visiblePoints
+            .filter(point => point.hasAttribute(`data-${label.toLowerCase()}`))
+            .map(point => getPointCoordinates(point));
+
+        if (isActive) {
             drawHull(matchingPoints);
+        } else {
+            clearHull();
+        }
+    };
+
+    buttons.forEach(button => {
+        // 移动端长按处理
+        button.addEventListener('touchstart', (e) => {
+            // 只阻止按钮的默认行为，不影响页面滚动
+            e.stopPropagation();
+            pressTimer = setTimeout(() => {
+                isLongPress = true;
+                preventClick = true;
+                handleButtonEffect(button, true);
+                // 触发震动反馈
+                if (window.navigator && window.navigator.vibrate) {
+                    window.navigator.vibrate(20);
+                }
+            }, 200);
+        });
+
+        button.addEventListener('touchend', (e) => {
+            // 只阻止按钮的默认行为，不影响页面滚动
+            e.stopPropagation();
+            clearTimeout(pressTimer);
+            if (isLongPress) {
+                handleButtonEffect(button, false);
+                isLongPress = false;
+                setTimeout(() => {
+                    preventClick = false;
+                }, 100);
+            } else {
+                handleTap(button);  // 处理点按
+            }
+        });
+
+        button.addEventListener('touchcancel', () => {
+            clearTimeout(pressTimer);
+            if (isLongPress) {
+                handleButtonEffect(button, false);
+                isLongPress = false;
+            }
+        });
+
+        // 桌面端悬停处理
+        button.addEventListener('mouseenter', () => {
+            handleButtonEffect(button, true);
         });
 
         button.addEventListener('mouseleave', () => {
-            cards.forEach(card => {
-                card.classList.remove('fade-out');
-                // 移除所有标签的高亮样式
-                const labels = card.querySelectorAll('.label');
-                labels.forEach(labelSpan => {
-                    labelSpan.classList.remove('label-highlight');
-                });
-            });
-
-            points.forEach(point => {
-                point.classList.remove('fade-out');
-            });
-
-            // 移除凹包路径
-            const path = svg.querySelector('path');
-            if (path) path.remove();
+            handleButtonEffect(button, false);
         });
     });
+}
+
+// 清除凹包的辅助函数
+function clearHull() {
+    const existingPaths = svg.querySelectorAll('path');
+    existingPaths.forEach(path => path.remove());
 }
 
 // 修改 createNoiseFilter 函数以接受参数配置
@@ -640,11 +713,11 @@ function createProjectPoints() {
             const containerHeight = container.offsetHeight;
             
             // 计算点的位置（考虑容器的实际大小）
-            const x = (project.situate.x + 100) * containerWidth / 200;
+        const x = (project.situate.x + 100) * containerWidth / 200;
             const y = (-project.situate.y + 100) * containerHeight / 200;
-            
-            pointWrapper.style.left = `${x}px`;
-            pointWrapper.style.top = `${y}px`;
+        
+        pointWrapper.style.left = `${x}px`;
+        pointWrapper.style.top = `${y}px`;
         };
         
         // 初始设置位置
