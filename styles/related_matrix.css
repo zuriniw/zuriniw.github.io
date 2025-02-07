@@ -361,36 +361,3 @@
     opacity: 1;
     border-bottom-width: 1.2px;
 }
-
-/* 移动端适配 */
-@media screen and (max-width: 768px) {
-    /* 调整矩阵容器大小 */
-    .matrix-container {
-        width: 80%;  /* 增加宽度 */
-        height: 80vw;  /* 保持正方形比例 */
-        margin: 0 auto;  /* 保持居中 */
-    }
-
-    /* 调整整个相关矩阵容器的大小 */
-    .related-matrix-container {
-        width: 100%;
-        padding: 0 20px;
-        margin: 60px auto;  /* 调整上下边距 */
-    }
-
-    /* 调整点的大小以匹配更大的矩阵 */
-    .project-point {
-        width: 14px;
-        height: 14px;
-    }
-
-    /* 调整点标签的大小 */
-    .point-label {
-        font-size: 13px;
-    }
-
-    /* 调整轴标签的大小和位置 */
-    .axis-labels {
-        font-size: 11px;
-    }
-}
