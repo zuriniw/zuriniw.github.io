@@ -361,3 +361,33 @@
     opacity: 1;
     border-bottom-width: 1.2px;
 }
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    .related-matrix-container {
+        max-width: 760px;
+        width: calc(100% - 20px);  /* 减小左右边距 */
+        margin: 80px auto;
+        padding: 0;
+    }
+    
+    .matrix-container {
+        position: relative;
+        width: 70%;  /* 增加矩阵宽度 */
+        max-width: 500px;  /* 设置最大宽度限制 */
+        aspect-ratio: 1;
+        border: 1.5px solid var(--color-text);
+        margin: 0 auto;
+    }
+    
+    /* 调整点的大小 */
+    .project-point {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* 调整标签大小 */
+    .point-label {
+        font-size: 13px;  /* 稍微增加字体大小 */
+    }
+}

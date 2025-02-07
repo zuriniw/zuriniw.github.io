@@ -134,7 +134,11 @@ body::-webkit-scrollbar {
 .filter-container {
     width: 100%;
     margin: 0 auto;
-    max-width: 760px;  /* 匹配新的卡片宽度 */
+    max-width: 760px;
+    position: sticky;
+    top: 120px;
+    background-color: var(--color-background);
+    z-index: 99;
 }
 
 /* 过滤器内容样式 */
@@ -445,7 +449,7 @@ button:hover {
     left: 0;
     right: 0;
     z-index: 100;
-    padding-top: 40px;  /* 固定时减少上边距 */
+    padding-top: 80px;  /* 固定时减少上边距 */
     padding-bottom: 20px;
     background-color: var(--color-background);
 }
@@ -1358,12 +1362,28 @@ body.project-page {
         margin-left: auto;
         margin-right: auto;
     }
+    .filter-wrapper {
+        margin-top: 0px;
+        background-color: var(--color-background);
+
+    }
 
     /* 调整过滤器容器 */
+    .filter-container {
+        top: 120px;  /* 调整移动端下与导航栏的距离 */
+        padding: 40px 0;  /* 添加一些内边距 */
+        position: sticky;
+        background-color: var(--color-background);
+        z-index: 99;
+    }
+
+    /* 确保过滤器内容在移动端正确显示 */
     .filter-content {
         width: 100%;
-        max-width: 100%;
         padding: 0;
+        background-color: var(--color-background);
+        position: relative;
+        z-index: 99;
     }
 
     .coordinate-view {
@@ -1381,6 +1401,7 @@ body.project-page {
     .cards-section {
         justify-content: center;  /* 确保卡片居中 */
         gap: 20px;  /* 调整卡片间距 */
+        margin-top: 20px;  /* 添加一些顶部间距 */
     }
     
     /* 调整卡片大小 */
@@ -1406,13 +1427,12 @@ body.project-page {
         height: 10px;
     }
     
-    /* 调整轴标签的位置和大小 */
     .axis-label {
-        font-size: 9px;  /* 稍微减小字体大小 */
+        font-size: 9px; 
     }
     
     .x-label.left {
-        left: 4px;  /* 微调位置 */
+        left: 4px; 
     }
     
     .x-label.right {
@@ -1440,7 +1460,6 @@ body.project-page {
         line-height: 1.5;
     }
 
-    /* 确保按钮样式在移动端保持一致 */
     button {
         color: var(--color-text) !important;  /* 强制使用定义的文字颜色 */
         background: transparent !important;  /* 强制使用透明背景 */
@@ -1452,6 +1471,90 @@ body.project-page {
         color: var(--color-white) !important;
         background: var(--color-text) !important;
     }
+
+    /* 移动端触摸行为 */
+    .card:active .card-image-link {
+        filter: saturate(1.0) brightness(1.02) !important;
+        opacity: 0.9;
+    }
+
+    .card-image-link:active img {
+        opacity: 0.9;
+        filter: saturate(0.95) brightness(1.02) !important;
+    }
+
+    .point:active,
+    .point-wrapper:active .point:not(.current) {
+        transform: scale(2);
+        filter: blur(4px);
+        box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 已访问项目点的按压效果 */
+    .point.visited:active {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+
+    /* 移除所有悬停效果 */
+    .card:hover .card-image-link,
+    .card-image-link:hover img,
+    .point:hover,
+    .point-wrapper:hover .point:not(.current),
+    .point.visited:hover {
+        transform: none;
+        filter: none;
+        opacity: 1;
+        box-shadow: none;
+    }
+
+    /* 调整按钮按压效果 */
+    button:active {
+        background-color: hsl(0, 0%, 32%);
+        color: #ffffff;
+    }
+
+    /* 移除按钮悬停效果 */
+    button:hover {
+        background-color: transparent;
+        color: inherit;
+    }
+
+    /* 调整链接按压效果 */
+    .dots-link:active,
+    .response-link:active {
+        opacity: 0.75;
+    }
+
+    /* 移除链接悬停效果 */
+    .dots-link:hover,
+    .response-link:hover {
+        opacity: 1;
+    }
+
+    .reward-link:active {
+        opacity: 1;
+        border-bottom-width: 1.2px;
+    }
+
+    .reward-link:hover {
+        opacity: 0.7;
+        border-bottom-width: 1px;
+    }
+
+    .matrix-caption a,
+    .intro a {
+        font-family: "Roboto Mono", monospace !important;
+        -webkit-font-feature-settings: "liga" 0;
+        font-feature-settings: "liga" 0;
+        font-variant-emoji: none;  /* 防止符号转换为emoji */
+        -webkit-font-variant-emoji: none;
+    }
+
+    /* 调整主容器布局 */
+    .container {
+        margin-top: 120px;  /* 为固定导航栏留出空间 */
+    }
 }
 
 /* 特别处理可能会被转换为 emoji 的元素 */
@@ -1459,9 +1562,13 @@ body.project-page {
 .video-icon,
 button,
 .nav-item,
-.footer-item {
+.footer-item,
+.matrix-caption a,
+.intro a {
     font-family: "Roboto Mono", monospace !important;
     -webkit-font-feature-settings: "liga" 0;
     font-feature-settings: "liga" 0;
+    font-variant-emoji: none;  /* 防止符号转换为emoji */
+    -webkit-font-variant-emoji: none;
 }
 

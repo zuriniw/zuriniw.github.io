@@ -7,15 +7,17 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 40px 60px;  /* 与页脚保持一致 */
-    padding-bottom: 0%;
+    padding: 20px 60px;  /* 与页脚保持一致 */
     pointer-events: none;  /* 让整个导航栏默认不接收鼠标事件 */
+    /* 确保导航栏始终固定 */
+    position: fixed !important;
 }
 
 .nav-container {
     max-width: 1350px;
     width: 100%;
     margin: 0 auto;
+    padding: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -85,7 +87,7 @@
     left: 0;
     right: 0;
     width: 100%;
-    background-color: transparent;
+    background-color: var(--color-background);
     z-index: 1000;  /* 确保足够高的层级 */
     pointer-events: auto;  /* 确保可以接收鼠标事件 */
 }
@@ -145,18 +147,67 @@
 
 /* 移动端适配 */
 @media screen and (max-width: 768px) {
-    /* 确保导航栏始终固定显示 */
     .navbar {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        background-color: var(--color-background);  /* 确保背景色 */
-        z-index: 1000;  /* 保持在最上层 */
+        width: 100%;
+        padding:  20px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        z-index: 1000;
+        position: fixed !important;
     }
 
-    /* 为固定导航栏腾出空间 */
-    body {
-        padding-top: 120px;  /* 根据导航栏高度调整 */
+    /* 项目页面特殊处理 */
+    .project-page .navbar {
+        background-color: white;  /* 项目页面使用白色背景 */
+    }
+
+    /* 非项目页面的导航栏背景 */
+    body:not(.project-page) .navbar {
+        background-color: var(--color-background);
+    }
+
+    .nav-container {
+        width: calc(100% - 40px);
+        padding: 20px 0;
+        margin: 0 auto;
+        box-sizing: border-box;
+        background-color: inherit;  /* 继承父元素的背景色 */
+    }
+
+    /* 在项目页面隐藏页脚 */
+    .project-page .footer-wrapper {
+        display: none;
+    }
+
+    .matrix-view,
+    .cards-view {
+        padding-top: 120px;
+    }
+
+    .footer-wrapper {
+        padding: 20px;
+        margin: 0 auto!important;
+        background-color: var(--color-background);
+    }
+
+    /* 统一所有视图的页脚样式 */
+    .footer {
+        max-width: 1350px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* 确保矩阵视图中的内容不被导航栏和页脚遮挡 */
+    .matrix-view {
+        padding-top: 100px;
+        padding-bottom: 100px;
     }
 }
