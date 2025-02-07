@@ -102,7 +102,7 @@
 body {
     min-height: 100vh;
     background: var(--color-background);  /* 米白色背景 */
-    padding-bottom: 100px;  /* 增加底部内边距，为固定页脚留出更多空间 */
+    padding-bottom: 100px;  /* 为固定页脚留出空间 */
     overflow-y: scroll;  /* 允许滚动但隐藏滚动条 */
     scrollbar-width: none;  /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
@@ -1332,6 +1332,7 @@ body.project-page {
         align-items: center;
         width: 100%;
         overflow-x: hidden;
+        padding-bottom: 60px;  /* 减小移动端下的底部内边距 */
     }
 
     /* 隐藏箭头图标 */
@@ -1344,12 +1345,23 @@ body.project-page {
         gap: 0;  /* 移除箭头后不需要间距 */
     }
 
-    /* 调整过滤器内容布局 */
-    .filter-content {
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-        gap: 12px;  /* 减小组件间距 */
+    .buttons-section {
+        gap: 4px;  /* 减小组件间距 */
+    }
+    .intro {
+        font-size: 12px !important;
+        padding: 0 !important;
+        line-height: 1.1 !important;
+    }
+    .matrix-caption {
+        font-size: 18px !important;
+        padding: 0 !important;
+        line-height: 1.1 !important;
+    }
+    .point-label {
+        font-size: 12px !important;
+        font-family: "Barlow", sans-serif !important;
+        font-weight: 400 !important;
     }
 
     /* 确保所有主要容器都居中 */
@@ -1371,7 +1383,9 @@ body.project-page {
     /* 调整过滤器容器 */
     .filter-container {
         top: 120px;  /* 调整移动端下与导航栏的距离 */
-        padding: 40px 0;  /* 添加一些内边距 */
+        padding-top: 40px;
+        padding-bottom: 0px;
+
         position: sticky;
         background-color: var(--color-background);
         z-index: 99;

@@ -390,4 +390,14 @@
     .point-label {
         font-size: 13px;  /* 稍微增加字体大小 */
     }
+    
+    .thanks-message {
+        margin-top: 100px;
+    }
+
+    .achievement-message {
+        width: 100%;
+    }
+    
 }
+

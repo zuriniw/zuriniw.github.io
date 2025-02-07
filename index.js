@@ -882,3 +882,32 @@ document.addEventListener('DOMContentLoaded', () => {
     addFilterHoverEffects();
     initFixedFilter();
 });
+
+// 添加震动反馈功能到切换按钮
+function addVibrationToSwitchButton() {
+    const switchButton = document.querySelector('.switch-view');
+    if (!switchButton) return;
+
+    // 检查设备是否支持震动
+    const canVibrate = window.navigator && window.navigator.vibrate;
+
+    // 保存原始的点击处理函数
+    const originalClick = switchButton.onclick;
+
+    // 添加新的点击处理函数
+    switchButton.onclick = (e) => {
+        // 触发震动反馈（如果支持）
+        if (canVibrate) {
+            window.navigator.vibrate(20);  // 20ms 的短震动
+        }
+        // 执行原有的点击处理
+        if (originalClick) {
+            originalClick.call(switchButton, e);
+        }
+    };
+}
+
+// 在页面加载完成时初始化震动功能
+document.addEventListener('DOMContentLoaded', () => {
+    addVibrationToSwitchButton();
+});
