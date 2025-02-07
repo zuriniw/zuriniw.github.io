@@ -16,14 +16,20 @@
 /* Markdown 内容样式 */
 .markdown-content {
     margin: 20px auto;
-    width: 60%;
-    max-width: 320px;
+    width: 840px;  /* 固定宽度 */
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
     line-height: 1.6;
     color: var(--color-text);
-    padding: 80px 20px;
-    max-width: 100%;
+    padding: 80px 60px;
+}
+
+/* 添加媒体查询以确保在小屏幕上的响应式布局 */
+@media screen and (max-width: 880px) {  /* 840px + 左右padding 40px */
+    .markdown-content {
+        width: 100%;
+        padding: 80px 20px;
+    }
 }
 
 /* 内容缩进样式 */
