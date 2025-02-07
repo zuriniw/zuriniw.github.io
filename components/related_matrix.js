@@ -27,6 +27,9 @@ class RelatedMatrix {
         
         this.container.appendChild(this.matrixContainer);
         
+        // 检查是否访问了所有可访问的项目，在矩阵后面添加感谢信息
+        this.checkAllProjectsVisited();
+        
         // 获取当前项目名称
         this.currentProject = window.location.pathname.split('/').slice(-2)[0];
         this.visitedProjects = VisitTracker.getVisitedProjects();
@@ -161,6 +164,24 @@ class RelatedMatrix {
         });
         
         return pointWrapper;
+    }
+
+    checkAllProjectsVisited() {
+        const visitableProjects = projects.filter(p => p.ispage);
+        const visitedProjects = VisitTracker.getVisitedProjects();
+        
+        // 检查是否所有可访问的项目都被访问过
+        const allVisited = visitableProjects.every(p => visitedProjects.includes(p.name));
+        
+        if (allVisited) {
+            // 创建感谢信息
+            const thanksMessage = document.createElement('div');
+            thanksMessage.className = 'thanks-message';
+            thanksMessage.textContent = 'Thanks for visiting';
+            
+            // 将感谢信息添加到矩阵容器后面
+            this.container.appendChild(thanksMessage);
+        }
     }
 }
 
