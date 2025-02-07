@@ -142,3 +142,21 @@
     opacity: 1;
     visibility: visible;
 }
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    /* 确保导航栏始终固定显示 */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color-background);  /* 确保背景色 */
+        z-index: 1000;  /* 保持在最上层 */
+    }
+
+    /* 为固定导航栏腾出空间 */
+    body {
+        padding-top: 120px;  /* 根据导航栏高度调整 */
+    }
+}

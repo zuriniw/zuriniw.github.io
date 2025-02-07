@@ -77,6 +77,9 @@
     --color-text-darkgrey: #333;
     --color-red: #27b3b3d1;
     --color-light-grey: #c5c5c5;  /* 添加更浅的灰色 */
+    /* 防止符号转换为 emoji */
+    font-variant-emoji: none;
+    -webkit-font-variant-emoji: none;
 }
 
 /* 全局样式重置和基础设置 */
@@ -103,6 +106,11 @@ body {
     overflow-y: scroll;  /* 允许滚动但隐藏滚动条 */
     scrollbar-width: none;  /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
+    /* 确保所有文字和符号使用指定字体 */
+    -webkit-font-feature-settings: "liga" 0;
+    font-feature-settings: "liga" 0;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
 }
 
 /* 隐藏 body 的滚动条 */
@@ -157,6 +165,10 @@ button {
     margin: 0;
     font-family: "Roboto Mono", monospace;
     font-weight: 360;
+    color: var(--color-text);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 /* 按钮悬停效果 */
@@ -1427,5 +1439,29 @@ body.project-page {
         font-size: 13px;
         line-height: 1.5;
     }
+
+    /* 确保按钮样式在移动端保持一致 */
+    button {
+        color: var(--color-text) !important;  /* 强制使用定义的文字颜色 */
+        background: transparent !important;  /* 强制使用透明背景 */
+        -webkit-tap-highlight-color: transparent;  /* 移除点击高亮 */
+    }
+
+    /* 确保激活状态的按钮样式正确 */
+    button.active {
+        color: var(--color-white) !important;
+        background: var(--color-text) !important;
+    }
+}
+
+/* 特别处理可能会被转换为 emoji 的元素 */
+.arrow-icon,
+.video-icon,
+button,
+.nav-item,
+.footer-item {
+    font-family: "Roboto Mono", monospace !important;
+    -webkit-font-feature-settings: "liga" 0;
+    font-feature-settings: "liga" 0;
 }
 
