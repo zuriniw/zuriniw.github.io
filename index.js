@@ -633,12 +633,25 @@ function createProjectPoints() {
             pointWrapper.style.cursor = 'url(images/closedhand.svg) 10 10, auto';
         }
 
-        // 计算点的位置
-        const x = (project.situate.x + 100) * containerWidth / 200;
-        const y = (-project.situate.y + 100) * containerHeight / 200;
+        // 添加一个函数来更新点的位置
+        const updatePosition = () => {
+            const container = document.querySelector('.coordinate-container');
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+            
+            // 计算点的位置（考虑容器的实际大小）
+            const x = (project.situate.x + 100) * containerWidth / 200;
+            const y = (-project.situate.y + 100) * containerHeight / 200;
+            
+            pointWrapper.style.left = `${x}px`;
+            pointWrapper.style.top = `${y}px`;
+        };
         
-        pointWrapper.style.left = `${x}px`;
-        pointWrapper.style.top = `${y}px`;
+        // 初始设置位置
+        updatePosition();
+        
+        // 监听窗口大小变化
+        window.addEventListener('resize', updatePosition);
 
         // 创建标签和点的元素
         const label = document.createElement('div');
