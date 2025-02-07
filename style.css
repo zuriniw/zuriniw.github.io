@@ -171,28 +171,28 @@ button:hover {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 38px;
+    gap: 15px;
+    row-gap: 28px;
     justify-content: center;
-    align-items: center;
+    align-items: left;
     width: 100%;
-    max-width: 1144px;  /* (360px * 3) + (32px * 2) gaps */
-    margin: 10px auto;
-    padding: 0 20px;
+    max-width: 760px;
+    margin: 12px auto;
+    padding: 0 0px;
 }
 
 /* 卡片基础样式 */
 .card {
-    width: 360px;
+    width: 243.2px;
     display: flex;
     flex-direction: column;
-    height: 345px;  /* 固定卡片高度 */
+    height: 280px;
     order: 0;
     margin: 0;
     border: 1.5px solid var(--color-border);
     padding: 0;
     box-sizing: border-box;
     position: relative;
-    margin-left: 1.2px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -210,7 +210,7 @@ button:hover {
 .card-image-link {
     display: block;
     width: 100%;
-    height: 240px;  /* 固定图片高度 */
+    height: 180px;  /* 按比例缩小图片高度 */
     overflow: hidden;
     cursor: pointer;
     transition: opacity 0.1s ease;
@@ -218,6 +218,12 @@ button:hover {
     color: inherit;
     border-bottom: 1.5px solid var(--color-text);
     filter: saturate(0.0) brightness(1.1) !important;
+}
+
+/* 当卡片被悬浮时的图片样式 */
+.card:hover .card-image-link {
+    filter: saturate(1.0) brightness(1.05) !important;
+    opacity: 0.9;
 }
 
 /* 卡片图片容器样式 */
@@ -305,7 +311,7 @@ button:hover {
 
 /* 卡片标题样式 */
 .card-title {
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 0.8px;
     font-weight: 400;
 
@@ -335,7 +341,7 @@ button:hover {
 /* 时间样式 */
 .card-time {
     font-family: "Roboto Mono", monospace;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 350;
     color: var(--color-text-grey);
     margin: 2px 0 0 0;  /* 减小底部边距 */
@@ -374,7 +380,7 @@ button:hover {
 /* 卡片标签样式 */
 .label {
     font-family: "Roboto Mono", monospace;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--color-text);
     padding-top: 0px;
     padding-left: 8px;
@@ -407,7 +413,7 @@ button:hover {
 /* 卡片图片链接样式 */
 .card-image-link:hover img {
     opacity: 0.9;
-    filter: saturate(0.9) brightness(1.1) !important;
+    filter: saturate(0.9) brightness(1.4) !important;
 }
 
 /* 当卡片被淡出且图片被悬停时的样式 */

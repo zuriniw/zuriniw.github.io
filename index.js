@@ -241,25 +241,17 @@ function createProjectCards() {
         console.log('Creating card for:', project.title);
         const card = document.createElement('div');
         card.className = 'card';
-        // card.style.cursor = 'pointer';  // 添加鼠标指针样式
-        
         // 添加标签数据属性
         project.labels.forEach(label => {
             card.setAttribute(`data-${label.toLowerCase()}`, '');
         });
-
         // 只有 ispage 为 true 的项目才添加点击事件和指针样式
         if (project.ispage) {
             card.style.cursor = 'pointer';
             card.addEventListener('click', () => {
-                // 检查项目是否已经被记录
-                if (!visitedProjects.includes(project.name)) {
-                    visitedProjects.push(project.name);
-                    // 更新 sessionStorage
-                    sessionStorage.setItem('visitedProjects', JSON.stringify(visitedProjects));
-                    console.log(`${project.name} visited`);
-                }
-                window.location.href = `projects/${project.name}/${project.name}.html`;
+                const projectPath = project.getHtmlPath();
+                window.location.href = projectPath;
+                console.log('Opening project at:', projectPath);  
             });
         } else {
             card.style.cursor = 'url(images/closedhand.svg) 10 10, auto';

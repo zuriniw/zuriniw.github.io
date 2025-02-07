@@ -153,7 +153,7 @@ const projects = [
     }),
     new Project({
         name: "aurora",
-        title: "Holographic Design2Construction",
+        title: "Holo-Design2Fabr",
         subtitle: "A case study of the full-scale building：AURORA",
         labels: ["XR", "Spatial"],
         time: "2021",
