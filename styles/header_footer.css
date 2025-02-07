@@ -24,8 +24,8 @@
 .nav-left, .nav-right {
     display: flex;
     flex-direction: column;  /* 改为竖向排列 */
-    align-items: flex-end;   /* 右对齐 */
-    gap: 4px;               /* 减小间距 */
+    align-items: flex-end;   
+    gap: 8px;               /* 减小间距 */
 }
 
 /* 导航栏方块容器样式 */
@@ -49,13 +49,15 @@
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
     font-weight: 600;
-    line-height: 1.5;      /* 调整行高 */
-    transition: color 0.2s ease;
+    line-height: 1.1;      /* 调整行高 */
+    transition: color 0.05s ease;
     pointer-events: auto;  /* 恢复链接的鼠标事件 */
 }
 
 .nav-item:hover {
-    color: var(--color-text-hover);
+    color: white;
+    background-color: black;
+    transition: color 0.05s ease;
 }
 
 /* 确保导航栏右侧的链接也能接收鼠标事件 */

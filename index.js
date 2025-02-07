@@ -453,15 +453,6 @@ function addFilterHoverEffects() {
         button.addEventListener('mouseenter', () => {
             const label = button.textContent.trim();
             
-            // 如果点击的是 "All" 按钮，显示所有点
-            if (label === 'All') {
-                points.forEach(point => {
-                    point.classList.remove('fade-out');
-                    point.classList.remove('hide');
-                });
-                return;
-            }
-            
             cards.forEach(card => {
                 if (!card.hasAttribute(`data-${label.toLowerCase()}`)) {
                     card.classList.add('fade-out');

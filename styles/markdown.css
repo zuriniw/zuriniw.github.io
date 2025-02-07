@@ -20,7 +20,7 @@
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
     line-height: 1.6;
-    color: var(--color-text);
+    font-weight: 450;
     padding: 80px 60px;
 }
 
@@ -126,7 +126,7 @@
     letter-spacing: 0.6px;
     font-family: "Barlow", sans-serif;
     font-size: 18px;
-    font-weight: 320;
+    font-weight: 360;
     line-height: 1.6;
     margin-left: -36px;
 }
@@ -179,7 +179,7 @@
 .markdown-content ul {
     list-style-position: outside;  /* 确保项目符号在文本外部 */
     list-style-type: circle;  /* 使用空心圆点 */
-    font-weight: 320;
+    font-weight: 360;
     margin-right: -16px;
 }
 
@@ -190,7 +190,7 @@
     font-size: 18px;
     line-height: 1.6;
     margin-left: 8px;
-    font-weight: 320;
+    font-weight: 360;
 }
 
 .markdown-content a {
@@ -198,7 +198,7 @@
     text-decoration: none;
     border-bottom: 1.2px solid var(--color-text);
     transition: color 0.3s ease;
-    font-weight: 320;
+    font-weight: 360;
 }
 
 .markdown-content a:hover {
@@ -223,7 +223,7 @@
     margin-bottom: 120px;
     font-family: "Barlow", sans-serif;
     font-size: 16px;
-    font-weight: 320;
+    font-weight: 360;
 }
 
 /* 确保 figure 容器也居中 */

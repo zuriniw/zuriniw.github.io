@@ -194,7 +194,7 @@ button:hover {
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.7s ease;
 }
 
 /* 卡片悬停效果 */
@@ -615,7 +615,7 @@ button:hover {
     border: 1.2px solid var(--color-text);
     padding: 6px;
     pointer-events: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.1s ease;
 }
 
 .point-preview img {
@@ -891,12 +891,12 @@ button:hover {
 .news-container {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 8px;
 }
 
 .news-item {
     display: flex;
-    gap: 32px;
+    gap: 8px;
     align-items: baseline;
     font-family: "Roboto Mono", monospace;
     padding: 16px;
@@ -907,7 +907,7 @@ button:hover {
 }
 
 .news-item:hover {
-    background-color: var(--color-light-grey);
+    background-color: transparent;
 }
 
 /* 添加星号样式 */
@@ -946,8 +946,8 @@ button:hover {
 }
 
 .news-link:hover {
-    color: var(--color-red);
-    font-weight: 550;
+    color: white;
+    background-color: black;
 }
 
 /* YouTube 视频部分样式 */
@@ -1032,11 +1032,12 @@ body.project-page {
 .matrix-caption a {
     color: var(--color-text);
     text-decoration: none;
-    transition: color 0.1s ease;
+    transition: color 0.05s ease;
 }
 
 .matrix-caption a:hover {
-    color: var(--color-text-hover);
+    color: white;
+    background-color: black;
 }
 
 /* 介绍文本样式 */
@@ -1095,7 +1096,7 @@ body.project-page {
 .label-highlight {
     color: var(--color-red);
     border-color: var(--color-red);
-    transition: all 0.2s ease;
+    transition: all 0.05s ease;
 }
 
 /* 轴标注基础样式 */
@@ -1194,7 +1195,7 @@ body.project-page {
     padding: 16px 30px;
     border-bottom: 1.2px solid var(--color-border);
     position: relative;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.05s ease;
     cursor: pointer;
     z-index: 1;  /* 确保每个项目都有自己的层叠上下文 */
 }

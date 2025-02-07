@@ -10,7 +10,7 @@ class RelatedMatrix {
         // 添加标题
         const title = document.createElement('div');
         title.className = 'related-matrix-title';
-        title.textContent = 'Choose your next destination...';
+        title.textContent = 'Choose your next destination';
         this.container.appendChild(title);
         
         // 添加向下箭头
