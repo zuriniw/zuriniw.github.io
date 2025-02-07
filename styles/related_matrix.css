@@ -247,10 +247,9 @@
     text-align: left;
     margin-top: 20px;
     font-size: 14px;
-    font-family: "Questrial", sans-serif;
     font-weight: 450;
-    color: var(--color-text);
     opacity: 0.7;
+    color: var(--color-text);
     min-height: 1.2em;
     width: 50%;
     margin-left: auto;
@@ -262,10 +261,10 @@
     text-align: right;
     margin-top: 8px;
     font-size: 14px;
-    font-family: "Questrial", sans-serif;
     font-weight: 450;
     color: var(--color-text);
     opacity: 0.7;
+    min-height: 1.2em;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -284,8 +283,7 @@
 }
 
 .dots-link:hover {
-    opacity: 1;
-    border-bottom-width: 1.2px;
+    opacity: 0.75;
 }
 
 /* 合作信息样式 */
@@ -293,7 +291,6 @@
     text-align: left;
     margin-top: 8px;
     font-size: 14px;
-    font-family: "Questrial", sans-serif;
     font-weight: 450;
     color: var(--color-text);
     opacity: 0.7;
@@ -301,4 +298,66 @@
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* 回应信息样式 */
+.response-message {
+    text-align: right;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 450;
+    letter-spacing: 0.5px;
+    color: var(--color-text);
+    opacity: 0.7;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 回应链接样式 */
+.response-link {
+    text-align: right;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 450;
+    color: var(--color-text);
+    opacity: 0.7;
+    min-height: 1.2em;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.response-link:hover {
+    opacity: 0.75;
+}
+
+/* 成就信息样式 */
+.achievement-message {
+    text-align: center;
+    margin-top: 64px;
+    font-size: 14px;
+    font-weight: 450;
+    opacity: 0.7;
+    color: var(--color-text);
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 奖励链接样式 */
+.reward-link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 450;
+    opacity: 0.7;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    cursor: help;
+    transition: all 0.2s ease;
+}
+
+.reward-link:hover {
+    opacity: 1;
+    border-bottom-width: 1.2px;
 }

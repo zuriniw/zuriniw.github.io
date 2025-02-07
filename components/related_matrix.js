@@ -217,6 +217,61 @@ class RelatedMatrix {
                         index++;
                     } else {
                         clearInterval(typeInterval);
+                        // 创建回应文字容器
+                        const responseMessage = document.createElement('div');
+                        responseMessage.className = 'response-message';
+                        responseMessage.style.opacity = '0';
+                        
+                        // 创建可点击的回应链接
+                        const responseLink = document.createElement('a');
+                        responseLink.href = '#';
+                        responseLink.className = 'response-link';
+                        responseLink.textContent = 'I guess I wouldn\'t mind.';
+                        responseLink.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            // 移除点击事件防止重复触发
+                            responseLink.style.pointerEvents = 'none';
+                            
+                            // 创建成就文字容器
+                            const achievementMessage = document.createElement('div');
+                            achievementMessage.className = 'achievement-message';
+                            achievementMessage.style.opacity = '0';
+                            
+                            // 方法1：创建两个独立的span元素
+                            const line1 = document.createElement('span');
+                            line1.textContent = '★ Achievement unlocked: [A New Friend]';
+                            const line2 = document.createElement('span');
+                            line2.textContent = '--> Claim your reward here: ';
+                            
+                            achievementMessage.appendChild(line1);
+                            achievementMessage.appendChild(document.createElement('br')); // 添加换行
+                            achievementMessage.appendChild(line2);
+                            
+                            // 创建链接
+                            const rewardLink = document.createElement('a');
+                            rewardLink.href = 'https://www.are.na/ziru-wei';  // 替换为实际链接
+                            rewardLink.className = 'reward-link';
+                            rewardLink.textContent = '█████';
+                            rewardLink.target = '_blank';  // 在新标签页打开
+                            
+                            achievementMessage.appendChild(rewardLink);
+                            this.container.appendChild(achievementMessage);
+                            
+                            // 延迟显示成就文字
+                            setTimeout(() => {
+                                achievementMessage.style.opacity = '1';
+                                achievementMessage.style.transition = 'opacity 0.5s ease';
+                            }, 500);
+                        });
+                        
+                        responseMessage.appendChild(responseLink);
+                        this.container.appendChild(responseMessage);
+                        
+                        // 延迟显示回应文字
+                        setTimeout(() => {
+                            responseMessage.style.opacity = '1';
+                            responseMessage.style.transition = 'opacity 0.5s ease';
+                        }, 500);
                     }
                 }, 100);
             });
@@ -228,7 +283,7 @@ class RelatedMatrix {
             this.container.appendChild(dotsContainer);
             
             // 实现打字机效果
-            const text = '?:  Thanks you...';
+            const text = '?:  Thank you...';
             let index = 0;
             const typeInterval = setInterval(() => {
                 if (index < text.length) {

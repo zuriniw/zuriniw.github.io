@@ -217,12 +217,12 @@ button:hover {
     text-decoration: none;
     color: inherit;
     border-bottom: 1.5px solid var(--color-text);
-    filter: saturate(0.0) brightness(1.1) !important;
+    filter: saturate(0.0) brightness(1.02) !important;
 }
 
 /* 当卡片被悬浮时的图片样式 */
 .card:hover .card-image-link {
-    filter: saturate(1.0) brightness(1.05) !important;
+    filter: saturate(1.0) brightness(1.02) !important;
     opacity: 0.9;
 }
 
@@ -255,7 +255,6 @@ button:hover {
     top: 0;
     left: 0;
     mix-blend-mode: multiply;
-    filter: brightness(1.1);
 }
 
 @keyframes noise {
@@ -413,7 +412,7 @@ button:hover {
 /* 卡片图片链接样式 */
 .card-image-link:hover img {
     opacity: 0.9;
-    filter: saturate(0.9) brightness(1.4) !important;
+    filter: saturate(0.9) brightness(1.02) !important;
 }
 
 /* 当卡片被淡出且图片被悬停时的样式 */
