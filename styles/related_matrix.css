@@ -244,10 +244,61 @@
 
 /* 感谢信息样式 */
 .thanks-message {
-    text-align: center;
+    text-align: left;
     margin-top: 20px;
-    font-size: 12px;
-    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    font-family: "Questrial", sans-serif;
+    font-weight: 450;
     color: var(--color-text);
     opacity: 0.7;
-} 
+    min-height: 1.2em;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 省略号样式 */
+.dots-message {
+    text-align: right;
+    margin-top: 8px;
+    font-size: 14px;
+    font-family: "Questrial", sans-serif;
+    font-weight: 450;
+    color: var(--color-text);
+    opacity: 0.7;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 省略号链接样式 */
+.dots-link {
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+    font-weight: 450;
+    padding-bottom: 2px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.2s ease;
+}
+
+.dots-link:hover {
+    opacity: 1;
+    border-bottom-width: 1.2px;
+}
+
+/* 合作信息样式 */
+.collaborate-message {
+    text-align: left;
+    margin-top: 8px;
+    font-size: 14px;
+    font-family: "Questrial", sans-serif;
+    font-weight: 450;
+    color: var(--color-text);
+    opacity: 0.7;
+    min-height: 1.2em;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}

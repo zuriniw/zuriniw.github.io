@@ -174,13 +174,75 @@ class RelatedMatrix {
         const allVisited = visitableProjects.every(p => visitedProjects.includes(p.name));
         
         if (allVisited) {
-            // 创建感谢信息
+            // 创建感谢信息容器
             const thanksMessage = document.createElement('div');
             thanksMessage.className = 'thanks-message';
-            thanksMessage.textContent = 'Thanks for visiting';
+            
+            // 创建一个空的 span 用于打字效果
+            const textSpan = document.createElement('span');
+            thanksMessage.appendChild(textSpan);
+            
+            // 创建省略号容器
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'dots-message';
+            dotsContainer.style.opacity = '0';  // 初始隐藏
+            
+            // 创建可点击的省略号链接
+            const dotsLink = document.createElement('a');
+            dotsLink.href = '#';
+            dotsLink.className = 'dots-link';
+            dotsLink.textContent = '......';
+            dotsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                // 移除点击事件防止重复触发
+                dotsLink.style.pointerEvents = 'none';
+                
+                // 创建第三行文字容器
+                const collaborateMessage = document.createElement('div');
+                collaborateMessage.className = 'collaborate-message';
+                
+                // 创建一个空的 span 用于打字效果
+                const collaborateSpan = document.createElement('span');
+                collaborateMessage.appendChild(collaborateSpan);
+                
+                // 将新消息添加到容器中
+                this.container.appendChild(collaborateMessage);
+                
+                // 实现打字机效果
+                const collaborateText = '?:  I mean... why not be friends?';
+                let index = 0;
+                const typeInterval = setInterval(() => {
+                    if (index < collaborateText.length) {
+                        collaborateSpan.textContent += collaborateText[index];
+                        index++;
+                    } else {
+                        clearInterval(typeInterval);
+                    }
+                }, 100);
+            });
+            
+            dotsContainer.appendChild(dotsLink);
             
             // 将感谢信息添加到矩阵容器后面
             this.container.appendChild(thanksMessage);
+            this.container.appendChild(dotsContainer);
+            
+            // 实现打字机效果
+            const text = '?:  Thanks you...';
+            let index = 0;
+            const typeInterval = setInterval(() => {
+                if (index < text.length) {
+                    textSpan.textContent += text[index];
+                    index++;
+                } else {
+                    clearInterval(typeInterval);
+                    // 文字打完后显示省略号
+                    setTimeout(() => {
+                        dotsContainer.style.opacity = '1';
+                        dotsContainer.style.transition = 'opacity 0.5s ease';
+                    }, 500);  // 等待500ms后显示省略号
+                }
+            }, 100);
         }
     }
 }
