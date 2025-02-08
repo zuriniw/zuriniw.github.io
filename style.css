@@ -1688,6 +1688,10 @@ body.project-page {
         display: none;
     }
 
+    .point-wrapper:hover .project-point {
+        display: none;
+    }
+
     /* 已访问项目点的按压效果 */
     .point.visited:active {
         transform: scale(1.4);
@@ -1903,14 +1907,6 @@ body.project-page {
 }
 
 /* 特别处理可能会被转换为 emoji 的元素 */
-.coordinate-container::before {
-    font-family: "Barlow" !important;
-    -webkit-font-feature-settings: "liga" 0;
-    font-feature-settings: "liga" 0;
-    font-variant-emoji: none;  /* 防止符号转换为emoji */
-    -webkit-font-variant-emoji: none;
-}
-/* 特别处理可能会被转换为 emoji 的元素 */
 .arrow-icon,
 .video-icon,
 .nav-item,
@@ -1919,7 +1915,7 @@ body.project-page {
 .meta-link,
 .intro a,
 .coordinate-container::before{
-    font-family: "Barlow" !important;
+    font-family: "Roboto Mono" !important;
     -webkit-font-feature-settings: "liga" 0;
     font-feature-settings: "liga" 0;
 }
