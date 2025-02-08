@@ -1795,10 +1795,12 @@ body.project-page {
         position: fixed;
         width: 50px;
         height: 50px;
+        border-radius: 100%;
         pointer-events: none;
         transform: translate(-50%, -50%);
         z-index: 1000;
-        border: var(--color-red);
+        border: 1.6px solid var(--color-red);
+        background-color: #c5c5c587;
     }
 
     /* 移动端上移除悬停效果 */
