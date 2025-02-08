@@ -439,6 +439,10 @@
     
     .markdown-content a {
         color: var(--color-text);
+        font-family: "Roboto Mono", monospace;
+        letter-spacing: -0.05em;
+        opacity: 0.5;
+        font-style: italic;
         text-decoration: none;
         border-bottom: 1.2px solid var(--color-text);
         transition: color 0.3s ease;
@@ -509,8 +513,8 @@
     .markdown-content th {
         background-color: var(--color-text-darkgrey);
         color: var(--color-white);
-        font-weight: 600;
-        font-size: 14px;
+        font-weight: 500;
+        font-size: 11px;
     }
     
     /* 确保包含图片的段落居中 */
