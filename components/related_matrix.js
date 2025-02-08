@@ -145,12 +145,12 @@ class RelatedMatrix {
                 
                 const img = document.createElement('img');
                 img.src = `../../${project.getGifPath()}`;
-                img.alt = project.title;
+                img.alt = project.subtitle;
                 preview.appendChild(img);
                 
                 const previewTitle = document.createElement('div');
                 previewTitle.className = 'preview-title';
-                previewTitle.textContent = project.title;
+                previewTitle.textContent = project.subtitle;
                 preview.appendChild(previewTitle);
                 
                 const previewHeight = 160;
