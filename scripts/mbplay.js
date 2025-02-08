@@ -106,7 +106,7 @@
                         if (isVisible) {
                             // 如果有之前激活的点且不是当前点，清除其背景色
                             if (currentActivePoint && currentActivePoint !== projectPoint) {
-                                currentActivePoint.style.backgroundColor = 'transparent';
+                                currentActivePoint.style.backgroundColor = 'var(--color-background)';
                             }
                             // 更新当前激活点的引用并设置背景色
                             currentActivePoint = projectPoint;

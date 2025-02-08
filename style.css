@@ -1470,6 +1470,9 @@ body.project-page {
         font-family: "Barlow", sans-serif !important;
         font-weight: 400 !important;
     }
+    .intro {
+        margin-top: 1px;
+    }
 
     /* 确保所有主要容器都居中 */
     .container,

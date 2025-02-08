@@ -79,16 +79,27 @@ class RelatedMatrix {
         const pointWrapper = document.createElement('div');
         pointWrapper.className = 'point-wrapper';
         
+        const linkWrapper = document.createElement(project.ispage ? 'a' : 'div');
+        linkWrapper.className = 'link-wrapper';
+        if (project.ispage) {
+            linkWrapper.href = `../../projects/${project.name}/${project.name}.html`;
+        }
+        
+        // 添加移动端触摸事件处理
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            linkWrapper.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                if (project.ispage) {
+                    window.location.href = `../../projects/${project.name}/${project.name}.html`;
+                }
+            });
+        }
+        
         // 添加标题元素
         const title = document.createElement('div');
         title.className = 'point-title';
         title.textContent = project.title;
         pointWrapper.appendChild(title);
-        
-        // 创建链接包装器
-        const linkWrapper = document.createElement('a');
-        linkWrapper.href = `../${project.name}/${project.name}.html`;
-        linkWrapper.className = 'link-wrapper';
         
         const point = document.createElement('div');
         point.className = 'point';
