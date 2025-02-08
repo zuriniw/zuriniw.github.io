@@ -85,21 +85,10 @@ class RelatedMatrix {
             linkWrapper.href = `../../projects/${project.name}/${project.name}.html`;
         }
         
-        // 添加移动端触摸事件处理
-        if (window.matchMedia('(max-width: 768px)').matches) {
-            linkWrapper.addEventListener('touchend', (e) => {
-                e.preventDefault();
-                if (project.ispage) {
-                    window.location.href = `../../projects/${project.name}/${project.name}.html`;
-                }
-            });
-        }
-        
         // 添加标题元素
         const title = document.createElement('div');
         title.className = 'point-title';
         title.textContent = project.title;
-        pointWrapper.appendChild(title);
         
         const point = document.createElement('div');
         point.className = 'point';
@@ -109,70 +98,76 @@ class RelatedMatrix {
             point.classList.add('visited');
         }
         
-        // 如果是当前项目，添加标签
+        // 如果是当前项目，添加标签和样式
         if (project.name === this.currentProject) {
             const label = document.createElement('div');
             label.className = 'current-label';
             label.textContent = project.title;
             linkWrapper.appendChild(label);
-        }
-        
-        // 如果是当前项目，添加特殊样式
-        if (project.name === this.currentProject) {
             point.classList.add('current');
             linkWrapper.classList.add('current');
         }
         
-        // 根据项目的 situate 属性设置位置
+        // 先构建DOM结构
+        linkWrapper.appendChild(point);
+        pointWrapper.appendChild(title);
+        pointWrapper.appendChild(linkWrapper);
+        
+        // 设置位置
         if (project.situate) {
             const { x, y } = project.situate;
-            // 确保坐标在 -100 到 100 的范围内
             const clampedX = Math.max(-100, Math.min(100, x));
             const clampedY = Math.max(-100, Math.min(100, y));
-            
-            // 将 -100~100 的坐标映射到 0~100 的百分比位置
             const percentX = (clampedX + 100) / 2;
             const percentY = (clampedY + 100) / 2;
-            
             pointWrapper.style.left = `${percentX}%`;
             pointWrapper.style.top = `${100 - percentY}%`;
         }
         
-        linkWrapper.appendChild(point);
-        pointWrapper.appendChild(linkWrapper);
-        
-        // 添加悬停效果
-        pointWrapper.addEventListener('mouseenter', (e) => {
-            // 如果是当前项目，不添加悬停效果
-            if (project.name === this.currentProject) return;
+        // 在DOM结构完成后添加事件监听
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            // 移动端：保持点击事件，移除其他效果
+            linkWrapper.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (project.ispage && project.name !== this.currentProject) {
+                    window.location.href = `../../projects/${project.name}/${project.name}.html`;
+                }
+            });
+        } else {
+            // 桌面端：添加预览效果
+            pointWrapper.addEventListener('mouseenter', (e) => {
+                if (project.name === this.currentProject) return;
+                
+                const preview = document.createElement('div');
+                preview.className = 'point-preview';
+                
+                // 创建预览内容
+                const img = document.createElement('img');
+                img.src = `../../${project.getGifPath()}`;
+                img.alt = project.subtitle;
+                preview.appendChild(img);
+                
+                // 添加标题
+                const title = document.createElement('div');
+                title.className = 'preview-title';
+                title.textContent = project.subtitle;
+                preview.appendChild(title);
+                
+                const previewHeight = 160;
+                const offset = 20;
+                preview.style.left = `${e.clientX + offset}px`;
+                preview.style.top = project.situate.y > 0 
+                    ? `${e.clientY + offset}px`
+                    : `${e.clientY - previewHeight - offset}px`;
+                
+                document.body.appendChild(preview);
+            });
             
-            // 创建预览框
-            const preview = document.createElement('div');
-            preview.className = 'point-preview';
-            preview.innerHTML = `
-                <img src="../../${project.getGifPath()}" alt="${project.title}">
-            `;
-            
-            // 设置预览框位置
-            const previewHeight = 160;
-            const offset = 20;
-            preview.style.left = `${e.clientX + offset}px`;
-            if (project.situate.y > 0) {
-                preview.style.top = `${e.clientY + offset}px`;
-            } else {
-                preview.style.top = `${e.clientY - previewHeight - offset}px`;
-            }
-            
-            document.body.appendChild(preview);
-        });
-        
-        // 移除悬停效果
-        pointWrapper.addEventListener('mouseleave', () => {
-            const preview = document.querySelector('.point-preview');
-            if (preview) {
-                preview.remove();
-            }
-        });
+            pointWrapper.addEventListener('mouseleave', () => {
+                const preview = document.querySelector('.point-preview');
+                if (preview) preview.remove();
+            });
+        }
         
         return pointWrapper;
     }

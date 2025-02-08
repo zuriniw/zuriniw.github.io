@@ -117,7 +117,7 @@ const projects = [
     }),
     new Project({
         name: "shapeshift",
-        title: "Shape -shift Playground",
+        title: "Shapeshift Playground",
         subtitle: "Node-based drawing tool development",
         labels: ["Bits"],
         time: "2024",
@@ -153,7 +153,7 @@ const projects = [
     }),
     new Project({
         name: "aurora",
-        title: "Holo- Design2Fabr",
+        title: "Holo Design2Fabr",
         subtitle: "A case study of the full-scale building：AURORA",
         labels: ["XR", "Spatial"],
         time: "2021",
@@ -217,7 +217,7 @@ const projects = [
     }),
     new Project({
         name: "zijin",
-        title: "Island Landscaping",
+        title: "IsLand -scaping",
         subtitle: "Urban renewal design and modeling",
         labels: ["Spatial", "Bits"],
         time: "2022",

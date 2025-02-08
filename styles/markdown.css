@@ -510,18 +510,19 @@
     .markdown-content table {
         width: 60%;
         border-collapse: collapse;
-        margin: 24px 0;
+        margin: 12px 0;
         font-family: "Roboto Mono", monospace;
-        font-size: 14px;
-        line-height: 1.6;
+        font-size: 12px;
+        line-height: 1.2;
         margin-left: 50px;
         margin-right: 50px;
         width: calc(80%);
+        opacity: 0.8;
     }
     
     .markdown-content th,
     .markdown-content td {
-        padding: 8px 12px;
+        padding: 4px 8px;
         border: 1.2px solid var(--color-text);
         text-align: left;
     }

@@ -78,9 +78,7 @@
 
 .point:hover,
 .point-wrapper:hover .point:not(.current) {
-    transform: scale(2);
-    filter: blur(4px);
-    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.5);
 }
 
 /* 已访问项目点的样式 */
@@ -149,7 +147,7 @@
 /* 坐标轴标签样式 */
 .x-label {
     position: absolute;
-    top: 49%;
+    top: 48%;
     transform: translateY(-50%);
 
 }
@@ -171,12 +169,12 @@
 }
 
 .y-label.top {
-    left: 51%;
+    left: 52%;
     top: -2px;
 }
 
 .y-label.bottom {
-    left: 51%;
+    left: 52%;
     bottom: 52px;
 }
 
@@ -365,7 +363,7 @@
 }
 
 /* 移动端适配 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (hover: none) {
     .related-matrix-container {
         max-width: 760px;
         width: calc(100% - 20px);  /* 减小左右边距 */
@@ -382,6 +380,7 @@
         margin: 0 auto;
     }
     
+
     /* 调整点的大小 */
     .project-point {
         width: 16px;

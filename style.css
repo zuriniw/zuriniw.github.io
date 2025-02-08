@@ -630,7 +630,7 @@ button:hover {
 .point-preview {
     position: fixed;
     z-index: 1000;
-    background: var(--color-background);
+    background: white !important;
     border: 1.2px solid var(--color-text);
     padding: 6px;
     pointer-events: none;
@@ -1344,7 +1344,7 @@ body.project-page {
 }
 
 /* 移动端适配 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (hover: none) {
     body {
         display: flex;
         flex-direction: column;
@@ -1791,8 +1791,8 @@ body.project-page {
         line-height: 1.2;
     }
     .project-title {
-        font-size: 56px;
-        line-height: 1.2;
+        font-size: 44px;
+        line-height: 1.1;
     }
 
     .news-event {
@@ -1883,7 +1883,7 @@ body.project-page {
 }
 
 /* 移动端特定样式 */
-@media screen and (max-width: 768px)  {
+@media screen and (max-width: 768px) and (hover: none) {
     .matrix-player {
         display: block !important;
         width: 100%;
