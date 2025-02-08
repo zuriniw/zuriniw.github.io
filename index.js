@@ -847,6 +847,8 @@ function createProjectPoints() {
             }
             
             document.body.appendChild(preview);
+            // 存储预览引用以便移除
+            pointWrapper.preview = preview;
             
             // 添加延伸线
             const container = document.querySelector('.coordinate-container');
@@ -895,15 +897,34 @@ function createProjectPoints() {
         });
 
         pointWrapper.addEventListener('mouseleave', () => {
-            const preview = document.querySelector('.point-preview');
-            if (preview) {
-                preview.remove();
-            }
-            
             // 移除延伸线
             if (pointWrapper.extensionLines) {
                 pointWrapper.extensionLines.forEach(line => line.remove());
                 pointWrapper.extensionLines = null;
+            }
+            
+            // 移除预览
+            if (pointWrapper.preview) {
+                pointWrapper.preview.remove();
+                pointWrapper.preview = null;
+            }
+        });
+        
+        // 添加触摸结束事件处理
+        pointWrapper.addEventListener('touchend', () => {
+            // 移除预览
+            if (pointWrapper.preview) {
+                pointWrapper.preview.remove();
+                pointWrapper.preview = null;
+            }
+        });
+
+        // 添加触摸取消事件处理
+        pointWrapper.addEventListener('touchcancel', () => {
+            // 移除预览
+            if (pointWrapper.preview) {
+                pointWrapper.preview.remove();
+                pointWrapper.preview = null;
             }
         });
         
