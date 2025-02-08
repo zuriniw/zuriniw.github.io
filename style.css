@@ -1441,6 +1441,7 @@ body.project-page {
     }
     .coordinate-container {
         margin-top: 10px;
+        height: 400px!important;
     }
     .coordinate-container::before {
         content: "longPress: check range, doubleTap: single-elect-- ↑ ";
