@@ -1685,9 +1685,7 @@ body.project-page {
 
     .point:active,
     .point-wrapper:active .point:not(.current) {
-        transform: scale(2);
-        filter: blur(4px);
-        box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
+        display: none;
     }
 
     /* 已访问项目点的按压效果 */
@@ -1807,9 +1805,8 @@ body.project-page {
     /* 拖拽指示器样式 */
     .drag-indicator {
         position: fixed;
-        width: 20px;
-        height: 20px;
-        background-color: var(--color-text);
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         pointer-events: none;
         transform: translate(-50%, -50%);
@@ -1817,7 +1814,7 @@ body.project-page {
         opacity: 0.5;
         transition: opacity 0.2s ease;
         mix-blend-mode: multiply;
-        filter: blur(2px);
+        border: var(--color-red);
     }
 
     /* 移动端上移除悬停效果 */
