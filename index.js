@@ -756,6 +756,7 @@ function initFilterScroll() {
 // 修改项目点生成功能
 function createProjectPoints() {
     const container = document.querySelector('.coordinate-container');
+    if (!container) return;
     
     projects.forEach(project => {
         if (!project.situate) return;
@@ -822,12 +823,13 @@ function createProjectPoints() {
 
         // 触摸开始事件
         pointWrapper.addEventListener('touchstart', (e) => {
-            e.preventDefault();  // 防止默认行为
-            touchStartTime = Date.now();  // 记录触摸开始时间
+            e.preventDefault();
+            touchStartTime = Date.now();
             
             pressTimer = setTimeout(() => {
                 isLongPress = true;
-                
+                const pressX = e.touches[0].clientX;
+                const pressY = e.touches[0].clientY;
                 // 创建预览
                 const preview = document.createElement('div');
                 preview.className = 'point-preview';
@@ -837,19 +839,21 @@ function createProjectPoints() {
                 `;
                 
                 // 设置预览位置
-                const touch = e.touches[0];
                 const previewHeight = 160;
+                const previewWidth = 214;
                 const offset = 20;
-                
-                if (project.situate.y > 0) {
-                    preview.style.top = `${touch.clientY + offset}px`;
+
+                // 根据 project.situate.x 决定预览框的水平位置
+                if (project.situate.x < 0) {
+                    preview.style.left = `${pressX + offset}px`;  // 点在左侧，预览显示在右边
                 } else {
-                    preview.style.top = `${touch.clientY - previewHeight - offset}px`;
+                    preview.style.left = `${pressX - previewWidth - offset}px`;  // 点在右侧，预览显示在左边
                 }
-                preview.style.left = `${touch.clientX + offset}px`;
+
+                // 预览框始终显示在点的上方
+                preview.style.top = `${pressY - previewHeight - offset}px`;
                 
                 document.body.appendChild(preview);
-                // 使用 requestAnimationFrame 确保 DOM 更新后再添加 show 类
                 requestAnimationFrame(() => {
                     preview.classList.add('show');
                 });
