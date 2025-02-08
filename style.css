@@ -1825,11 +1825,13 @@ body.project-page {
         opacity: 0;
     }
 
+
     .point:hover,
     .point-wrapper:hover .point:not(.current) {
         transform: none;
         filter: none;
         box-shadow: none;
+        display: none;
     }
 
     /* 移动端上的基本样式 */
