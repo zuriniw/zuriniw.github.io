@@ -1355,26 +1355,24 @@ body.project-page {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         user-select: none;
-        touch-action: pan-y;  /* 允许垂直滚动 */
+        touch-action: manipulation;  /* 优化触摸操作 */
     }
 
-    /* 允许滚动的容器 */
-    .cards-section,
-    .coordinate-view {
-        touch-action: auto;  /* 允许所有触摸操作 */
-    }
-
-    /* 禁用按钮的默认触摸行为 */
-    button,
+    /* 只在需要特殊触摸处理的元素上禁用默认行为 */
     .point-wrapper,
-    .project-point {
-        touch-action: none;  /* 完全控制按钮的触摸行为 */
+    .project-point,
+    button {
+        touch-action: none;
     }
 
-    /* 确保其他元素不会阻止滚动 */
-    .filter-wrapper,
-    .coordinate-container {
-        touch-action: auto;
+    /* 确保主要容器可以滚动 */
+    .container,
+    .cards-section,
+    .coordinate-view,
+    .coordinate-container,
+    .filter-wrapper {
+        touch-action: pan-y;  /* 允许垂直滚动 */
+        -webkit-overflow-scrolling: touch;  /* 平滑滚动 */
     }
 
     /* 允许特定元素的文字选择 */
@@ -1409,6 +1407,7 @@ body.project-page {
         font-size: 18px !important;
         padding: 0 !important;
         line-height: 1.1 !important;
+        margin-top: 16px;
     }
     .point-label {
         font-size: 12px !important;
@@ -1435,7 +1434,7 @@ body.project-page {
         margin-top: 10px;
     }
     .coordinate-container::before {
-        content: "longPress to check range";
+        content: "longPress: check range, doubleTap: single-elect-- ↑ ";
         position: absolute;
         display: block;
         top: -22px;
@@ -1665,8 +1664,10 @@ button,
 .nav-item,
 .footer-item,
 .matrix-caption a,
-.intro a {
-    font-family: "Roboto Mono", monospace !important;
+.meta-link,
+.intro a,
+.coordinate-container::before{
+    /* font-family: "Roboto Mono", monospace !important; */
     -webkit-font-feature-settings: "liga" 0;
     font-feature-settings: "liga" 0;
     font-variant-emoji: none;  /* 防止符号转换为emoji */

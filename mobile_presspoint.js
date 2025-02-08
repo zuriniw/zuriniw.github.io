@@ -131,21 +131,34 @@ export function initMobilePressPoint() {
     points.forEach(point => {
         let pressTimer;
         let isPressing = false;
-        let isLongPress = false;  // 添加标记来区分长按和点击
+        let isLongPress = false;
 
         // 触摸开始
         point.addEventListener('touchstart', (e) => {
             e.preventDefault();
             isPressing = true;
-            isLongPress = false;  // 重置长按状态
+            isLongPress = false;
+            
+            // 添加短按光标效果
+            const cursor = document.createElement('div');
+            cursor.className = 'touch-cursor';
+            cursor.style.left = `${e.touches[0].clientX - 10}px`;
+            cursor.style.top = `${e.touches[0].clientY - 10}px`;
+            document.body.appendChild(cursor);
+            point.cursor = cursor;
             
             pressTimer = setTimeout(() => {
                 if (isPressing) {
                     point.classList.add('press-active');
-                    isLongPress = true;  // 标记为长按
+                    isLongPress = true;
                     // 触发震动反馈
                     if (window.navigator && window.navigator.vibrate) {
                         window.navigator.vibrate(20);
+                    }
+                    // 长按时移除光标
+                    if (point.cursor) {
+                        point.cursor.remove();
+                        point.cursor = null;
                     }
                 }
             }, 200);
@@ -154,6 +167,11 @@ export function initMobilePressPoint() {
         // 触摸结束
         point.addEventListener('touchend', (e) => {
             clearTimeout(pressTimer);
+            // 移除光标
+            if (point.cursor) {
+                point.cursor.remove();
+                point.cursor = null;
+            }
             if (isPressing) {
                 point.classList.remove('press-active');
                 point.classList.add('press-feedback');
@@ -174,11 +192,21 @@ export function initMobilePressPoint() {
             clearTimeout(pressTimer);
             point.classList.remove('press-active');
             isPressing = false;
+            // 移除光标
+            if (point.cursor) {
+                point.cursor.remove();
+                point.cursor = null;
+            }
         });
 
         // 触摸移动
         point.addEventListener('touchmove', (e) => {
             if (isPressing) {
+                // 更新光标位置
+                if (point.cursor) {
+                    point.cursor.style.left = `${e.touches[0].clientX - 10}px`;
+                    point.cursor.style.top = `${e.touches[0].clientY - 10}px`;
+                }
                 const touch = e.touches[0];
                 const pointRect = point.getBoundingClientRect();
                 const isOutside = 
@@ -191,6 +219,11 @@ export function initMobilePressPoint() {
                     clearTimeout(pressTimer);
                     point.classList.remove('press-active');
                     isPressing = false;
+                    // 移除光标
+                    if (point.cursor) {
+                        point.cursor.remove();
+                        point.cursor = null;
+                    }
                 }
             }
         });
