@@ -124,7 +124,7 @@ function clearLongPressEffects(wrapper) {
 // 移动端长按处理
 export function initMobilePressPoint() {
     // 只在移动端执行
-    if (window.innerWidth > 768) return;
+    if (window.matchMedia('(hover: hover)').matches) return;
 
     const points = document.querySelectorAll('.point-wrapper');
     

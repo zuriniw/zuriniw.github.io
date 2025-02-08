@@ -1667,7 +1667,7 @@ button,
 .meta-link,
 .intro a,
 .coordinate-container::before{
-    /* font-family: "Roboto Mono", monospace !important; */
+    font-family: "Barlow", sans-serif !important;
     -webkit-font-feature-settings: "liga" 0;
     font-feature-settings: "liga" 0;
     font-variant-emoji: none;  /* 防止符号转换为emoji */
