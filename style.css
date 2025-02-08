@@ -1814,7 +1814,8 @@ body.project-page {
     }
 
     /* 移动端上移除悬停效果 */
-    .point-wrapper:hover .point-title {
+    .point-wrapper:hover .point-title,
+    .point.point-preview {
         opacity: 0;
         display: none;
     }
