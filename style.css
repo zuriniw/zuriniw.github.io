@@ -1760,13 +1760,34 @@ body.project-page {
     -webkit-font-variant-emoji: none;
 }
 
-/* 特别处理可能会被转换为 emoji 的元素 */
-button{
-    font-family: "Roboto Mono", monospace !important;
-    -webkit-font-feature-settings: "liga" 0;
-    font-feature-settings: "liga" 0;
-    font-variant-emoji: none;  /* 防止符号转换为emoji */
-    -webkit-font-variant-emoji: none;
 }
 
+/* Player 基础样式 */
+.matrix-player {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 0 20px;
+}
+
+.player-container {
+    width: 100%;
+    border: 1.2px solid var(--color-text);
+    height: 60px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* 移动端特定样式 */
+@media screen and (max-width: 768px) {
+    .matrix-player {
+        margin-top: 20px;
+        padding: 0 16px;
+        height: 120px;
+        border: 1.5px solid var(--color-text);
+    }
+    
 }
