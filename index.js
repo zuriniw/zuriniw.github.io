@@ -756,12 +756,10 @@ function initFilterScroll() {
 // 修改项目点生成功能
 function createProjectPoints() {
     const container = document.querySelector('.coordinate-container');
-    const containerWidth = container.offsetWidth;
-    const containerHeight = container.offsetHeight;
-
+    
     projects.forEach(project => {
         if (!project.situate) return;
-
+        
         const pointWrapper = document.createElement('div');
         pointWrapper.className = 'point-wrapper';
         
@@ -818,116 +816,139 @@ function createProjectPoints() {
             pointWrapper.appendChild(label);
         }
 
-        // 添加悬停预览和延伸线
-        pointWrapper.addEventListener('mouseenter', (e) => {
-            const preview = document.createElement('div');
-            preview.className = 'point-preview';
-            preview.innerHTML = `
-                <img src="${project.getGifPath()}" alt="${project.title}">
-                <div class="preview-title">${project.subtitle}</div>
-            `;
+        let pressTimer;
+        let isLongPress = false;
+        let touchStartTime = 0;  // 添加触摸开始时间记录
+
+        // 触摸开始事件
+        pointWrapper.addEventListener('touchstart', (e) => {
+            e.preventDefault();  // 防止默认行为
+            touchStartTime = Date.now();  // 记录触摸开始时间
             
-            // 根据 y 坐标决定预览框的位置
-            const previewHeight = 160; // 预览框的大致高度
-            const previewWidth = 214;  // 预览框的宽度
-            const offset = 20; // 与光标的距离
+            pressTimer = setTimeout(() => {
+                isLongPress = true;
+                
+                // 创建预览
+                const preview = document.createElement('div');
+                preview.className = 'point-preview';
+                preview.innerHTML = `
+                    <img src="${project.getGifPath()}" alt="${project.title}">
+                    <div class="preview-title">${project.subtitle}</div>
+                `;
+                
+                // 设置预览位置
+                const touch = e.touches[0];
+                const previewHeight = 160;
+                const offset = 20;
+                
+                if (project.situate.y > 0) {
+                    preview.style.top = `${touch.clientY + offset}px`;
+                } else {
+                    preview.style.top = `${touch.clientY - previewHeight - offset}px`;
+                }
+                preview.style.left = `${touch.clientX + offset}px`;
+                
+                document.body.appendChild(preview);
+                // 使用 requestAnimationFrame 确保 DOM 更新后再添加 show 类
+                requestAnimationFrame(() => {
+                    preview.classList.add('show');
+                });
+                pointWrapper.preview = preview;
+
+                // 添加点的模糊效果
+                const point = pointWrapper.querySelector('.project-point');
+                point.style.transition = 'all 0.2s ease';
+                point.style.transform = 'scale(2)';
+                point.style.filter = 'blur(4px)';
+                point.style.boxShadow = '0 0 20px 8px rgba(0, 0, 0, 0.2)';
+
+                // 添加延伸线
+                const container = document.querySelector('.coordinate-container');
+                const containerWidth = container.offsetWidth;
+                const containerHeight = container.offsetHeight;
+                const x = (project.situate.x + 100) * containerWidth / 200;
+                const pointRect = pointWrapper.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+                const y = pointRect.top - containerRect.top;
+                
+                // 创建横向延伸线
+                const horizontalLine = document.createElement('div');
+                horizontalLine.className = 'extension-line horizontal';
+                horizontalLine.style.top = `${y}px`;
+                horizontalLine.style.transform = 'translateY(-50%)';
+                horizontalLine.style.transition = 'opacity 0.1s ease';
+                
+                if (project.situate.x > 0) {
+                    horizontalLine.style.left = `${containerWidth/2}px`;
+                    horizontalLine.style.width = `${x - containerWidth/2}px`;
+                } else {
+                    horizontalLine.style.left = `${x}px`;
+                    horizontalLine.style.width = `${containerWidth/2 - x}px`;
+                }
+                
+                // 创建竖向延伸线
+                const verticalLine = document.createElement('div');
+                verticalLine.className = 'extension-line vertical';
+                verticalLine.style.left = `${x}px`;
+                verticalLine.style.transform = 'translateX(-50%)';
+                verticalLine.style.transition = 'opacity 0.1s ease';
+                
+                if (project.situate.y > 0) {
+                    verticalLine.style.top = `${y}px`;
+                    verticalLine.style.height = `${containerHeight/2 - y}px`;
+                } else {
+                    verticalLine.style.top = `${containerHeight/2}px`;
+                    verticalLine.style.height = `${y - containerHeight/2}px`;
+                }
+                
+                container.appendChild(horizontalLine);
+                container.appendChild(verticalLine);
+                pointWrapper.extensionLines = [horizontalLine, verticalLine];
+
+                // 触发震动反馈
+                if (window.navigator && window.navigator.vibrate) {
+                    window.navigator.vibrate(20);
+                }
+            }, 200);
+        }, { passive: false });
+
+        // 触摸结束事件
+        pointWrapper.addEventListener('touchend', (e) => {
+            const touchDuration = Date.now() - touchStartTime;
+            clearTimeout(pressTimer);
             
-            // 根据点的 x 坐标决定预览框的水平位置
-            if (project.situate.x > 0) {
-                preview.style.left = `${e.clientX - previewWidth - offset}px`;  // 显示在左边
-            } else {
-                preview.style.left = `${e.clientX + offset}px`;  // 显示在右边
+            if (!isLongPress && touchDuration < 200) {
+                // 短按处理 - 跳转到项目页面
+                if (project.ispage) {
+                    const projectPath = `projects/${project.name}/${project.name}.html`;
+                    window.location.href = projectPath;
+                }
             }
             
-            // 根据点的 y 坐标决定预览框的垂直位置
-            if (project.situate.y > 0) {  // 如果点在坐标系上半部分
-                preview.style.top = `${e.clientY + offset}px`;
-            } else {
-                preview.style.top = `${e.clientY - previewHeight - offset}px`;
+            if (isLongPress) {
+                clearLongPressEffects(pointWrapper);
+                isLongPress = false;
             }
-            
-            document.body.appendChild(preview);
-            // 存储预览引用以便移除
-            pointWrapper.preview = preview;
-            
-            // 添加延伸线
-            const container = document.querySelector('.coordinate-container');
-            const containerWidth = container.offsetWidth;
-            const containerHeight = container.offsetHeight;
-            const x = (project.situate.x + 100) * containerWidth / 200;
-            const pointRect = pointWrapper.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-            const y = pointRect.top - containerRect.top;
-            
-            // 创建横向延伸线（到y轴）
-            const horizontalLine = document.createElement('div');
-            horizontalLine.className = 'extension-line horizontal';
-            horizontalLine.style.top = `${y}px`;
-            horizontalLine.style.transform = 'translateY(-50%)';
-            
-            // 如果点在y轴右边
-            if (project.situate.x > 0) {
-                horizontalLine.style.left = `${containerWidth/2}px`;
-                horizontalLine.style.width = `${x - containerWidth/2}px`;
-            } else {
-                horizontalLine.style.left = `${x}px`;
-                horizontalLine.style.width = `${containerWidth/2 - x}px`;
-            }
-            
-            // 创建竖向延伸线（到x轴）
-            const verticalLine = document.createElement('div');
-            verticalLine.className = 'extension-line vertical';
-            verticalLine.style.left = `${x}px`;
-            verticalLine.style.transform = 'translateX(-50%)';
-            
-            // 如果点在x轴上方
-            if (project.situate.y > 0) {
-                verticalLine.style.top = `${y}px`;
-                verticalLine.style.height = `${containerHeight/2 - y}px`;
-            } else {
-                verticalLine.style.top = `${containerHeight/2}px`;
-                verticalLine.style.height = `${y - containerHeight/2}px`;
-            }
-            
-            container.appendChild(horizontalLine);
-            container.appendChild(verticalLine);
-            
-            // 存储延伸线引用以便移除
-            pointWrapper.extensionLines = [horizontalLine, verticalLine];
         });
 
-        pointWrapper.addEventListener('mouseleave', () => {
-            // 移除延伸线
-            if (pointWrapper.extensionLines) {
-                pointWrapper.extensionLines.forEach(line => line.remove());
-                pointWrapper.extensionLines = null;
-            }
-            
-            // 移除预览
-            if (pointWrapper.preview) {
-                pointWrapper.preview.remove();
-                pointWrapper.preview = null;
-            }
-        });
-        
-        // 添加触摸结束事件处理
-        pointWrapper.addEventListener('touchend', () => {
-            // 移除预览
-            if (pointWrapper.preview) {
-                pointWrapper.preview.remove();
-                pointWrapper.preview = null;
-            }
-        });
-
-        // 添加触摸取消事件处理
+        // 触摸取消事件
         pointWrapper.addEventListener('touchcancel', () => {
-            // 移除预览
-            if (pointWrapper.preview) {
-                pointWrapper.preview.remove();
-                pointWrapper.preview = null;
+            clearTimeout(pressTimer);
+            if (isLongPress) {
+                clearLongPressEffects(pointWrapper);
+                isLongPress = false;
             }
         });
-        
+
+        // 触摸移动事件
+        pointWrapper.addEventListener('touchmove', (e) => {
+            clearTimeout(pressTimer);
+            if (isLongPress) {
+                clearLongPressEffects(pointWrapper);
+                isLongPress = false;
+            }
+        });
+
         container.appendChild(pointWrapper);
     });
 }
@@ -1093,3 +1114,40 @@ function addVibrationToSwitchButton() {
 document.addEventListener('DOMContentLoaded', () => {
     addVibrationToSwitchButton();
 });
+
+// 清除长按效果的辅助函数
+function clearLongPressEffects(wrapper) {
+    // 移除预览
+    const preview = document.querySelector('.point-preview');
+    if (preview) {
+        preview.classList.add('hide');  // 添加 hide 类以触发淡出动画
+        setTimeout(() => preview.remove(), 100);  // 等待动画完成后移除
+    }
+    
+    // 移除延伸线
+    const extensionLines = document.querySelectorAll('.extension-line');
+    extensionLines.forEach(line => {
+        line.style.opacity = '0';  // 淡出效果
+        setTimeout(() => line.remove(), 100);
+    });
+    
+    // 恢复点的原始样式
+    const point = wrapper.querySelector('.project-point');
+    if (point) {
+        point.style.transition = 'all 0.2s ease';  // 添加过渡效果
+        point.style.transform = '';
+        point.style.filter = '';
+        point.style.boxShadow = '';
+    }
+
+    // 移除所有存储的引用
+    if (wrapper.longPressEffects) {
+        wrapper.longPressEffects = null;
+    }
+    if (wrapper.preview) {
+        wrapper.preview = null;
+    }
+    if (wrapper.extensionLines) {
+        wrapper.extensionLines = null;
+    }
+}

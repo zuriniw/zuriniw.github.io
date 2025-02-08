@@ -1638,6 +1638,38 @@ body.project-page {
         margin-left: 5%!important;
         padding-left: 5%!important;
     }
+
+    /* 点预览的移动端样式 */
+    .point-preview {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.1s ease, visibility 0s linear 0.1s;
+        pointer-events: none;
+        will-change: opacity, visibility;  /* 优化性能 */
+    }
+
+    /* 显示预览时的样式 */
+    .point-preview.show {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.1s ease, visibility 0s linear;
+    }
+
+    /* 确保长按结束后预览完全消失 */
+    .point-preview.hide {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: opacity 0.1s ease, visibility 0s linear 0.1s !important;
+        pointer-events: none !important;
+        display: none !important;  /* 强制隐藏 */
+    }
+
+    /* 防止预览图在触摸事件结束后残留 */
+    .point-wrapper:not(:active) .point-preview {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        display: none !important;
+    }
 }
 
 /* 特别处理可能会被转换为 emoji 的元素 */
