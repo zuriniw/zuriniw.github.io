@@ -3,6 +3,7 @@ console.log('Script is running');
 import { projects, availableLabels } from './projects/project_info.js';
 import { Delaunay } from 'https://cdn.jsdelivr.net/npm/d3-delaunay@6/+esm';
 import { initMobilePressPoint } from './mobile_presspoint.js';
+import { initMobilePlayer } from './scripts/mbplay.js';
 
 console.log('Available labels:', availableLabels);
 console.log('Projects:', projects);
@@ -915,6 +916,9 @@ function createProjectPoints() {
         
         container.appendChild(pointWrapper);
     });
+
+    // 初始化移动端播放器
+    initMobilePlayer();
 }
 
 // 修改视图切换功能

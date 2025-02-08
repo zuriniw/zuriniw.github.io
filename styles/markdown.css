@@ -369,7 +369,7 @@
         margin: 24px 0;  /* 增加段落间距 */
         letter-spacing: 0.6px;
         font-family: "Barlow", sans-serif;
-        font-size: 14px;
+        font-size: 14.5px;
         font-weight: 320;
         line-height: 1.2;
         margin-left: -36px;
@@ -413,7 +413,7 @@
         margin: 12px 0;
         padding-left: 40px;  /* 增加左侧缩进，为项目符号腾出空间 */
         font-family: "Barlow", sans-serif;
-        font-size: 14px;
+        font-size: 14.5px;
         line-height: 1.2;
         margin-left: 8px;
         font-weight: 320;
@@ -431,7 +431,7 @@
         margin: 4px 0;
         padding-left: 4px;  /* 减少列表项的内部缩进 */
         font-family: "Barlow", sans-serif;
-        font-size: 14px;
+        font-size: 14.5px;
         line-height: 1.2;
         margin-left: 8px;
         font-weight: 320;
