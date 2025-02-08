@@ -1804,6 +1804,43 @@ body.project-page {
     font-feature-settings: "liga" 0;
 }
 
+    
+}
+
+/* Player 基础样式 */
+.matrix-player {
+    display: none !important; /* 确保在非移动端时完全隐藏 */
+}
+
+/* 移动端特定样式 */
+@media screen and (max-width: 768px)  {
+    .matrix-player {
+        display: block !important;
+        width: 100%;
+        max-width: 860px;
+        margin: 0 auto;
+        margin-top: 20px;
+        padding: 0 0px;
+    }
+
+    .player-container {
+        width: 100%;
+        display: flex;
+        align-items: stretch;  /* 确保左右两边高度一致 */
+    }
+
+    .player-left, 
+    .player-right {
+        height: 80px;
+        border: 1.6px solid var(--color-text);
+        flex: 1;  /* 平均分配宽度 */
+    }
+
+    /* 移除右边框的左边框以避免双边框 */
+    .player-right {
+        border-left: none;
+    }
+
     /* Player 右侧信息样式 */
     .player-right {
         position: relative;
@@ -1835,61 +1872,4 @@ body.project-page {
         opacity: 0.8;
     }
 
-    .player-labels {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px;
-        margin-top: 2px;
-    }
-
-    .player-label {
-        font-family: "Barlow", sans-serif;
-        font-size: 11px;
-        color: var(--color-text);
-        opacity: 0.6;
-    }
-
-    /* 清除拖拽结束时的信息 */
-    .player-right.clear {
-        padding: 0;
-    }
-}
-
-/* Player 基础样式 */
-.matrix-player {
-    display: none;
-
-}
-
-
-
-/* 移除右边框的左边框以避免双边框 */
-.player-right {
-    border-left: none;
-}
-
-/* 移动端特定样式 */
-@media screen and (max-width: 768px) {
-    .matrix-player {
-        display: block;
-        width: 100%;
-        max-width: 860px;
-        margin: 0 auto;
-        margin-top: 20px;
-        padding: 0 0px;
-    }
-    .player-container {
-        width: 100%;
-        display: flex;
-        align-items: stretch;  /* 确保左右两边高度一致 */
-    }
-    .player-left, 
-    .player-right {
-        height: 60px;
-        border: 1.6px solid var(--color-text);
-        flex: 0.5;  /* 平均分配宽度 */
-    }
-    .player-left {
-        border-right: none;
-    }
 }

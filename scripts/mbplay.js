@@ -88,9 +88,6 @@ export function initMobilePlayer() {
                         <div class="player-info">
                             <div class="player-title">${project.title}</div>
                             <div class="player-subtitle">${project.subtitle}</div>
-                            <div class="player-labels">
-                                ${project.labels.map(label => `<span class="player-label">${label}</span>`).join('')}
-                            </div>
                         </div>
                     `;
                 }
