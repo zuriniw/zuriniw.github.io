@@ -124,34 +124,36 @@ class RelatedMatrix {
             pointWrapper.style.top = `${100 - percentY}%`;
         }
         
-        // 在DOM结构完成后添加事件监听
-        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-            // 移动端：保持点击事件，移除其他效果
-            linkWrapper.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (project.ispage && project.name !== this.currentProject) {
+        // 简化的事件处理
+        if (window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(hover: none)').matches) {
+            console.log('移动端');
+            // 移动端：简单的点击跳转
+            if (project.ispage && project.name !== this.currentProject) {
+                console.log('should can be clicked');
+
+                pointWrapper.addEventListener('click', () => {
+                    console.log('has been clicked');
+
                     window.location.href = `../../projects/${project.name}/${project.name}.html`;
-                }
-            });
+                });
+            }
         } else {
-            // 桌面端：添加预览效果
+            // 桌面端的预览效果保持不变
             pointWrapper.addEventListener('mouseenter', (e) => {
                 if (project.name === this.currentProject) return;
                 
                 const preview = document.createElement('div');
                 preview.className = 'point-preview';
                 
-                // 创建预览内容
                 const img = document.createElement('img');
                 img.src = `../../${project.getGifPath()}`;
-                img.alt = project.subtitle;
+                img.alt = project.title;
                 preview.appendChild(img);
                 
-                // 添加标题
-                const title = document.createElement('div');
-                title.className = 'preview-title';
-                title.textContent = project.subtitle;
-                preview.appendChild(title);
+                const previewTitle = document.createElement('div');
+                previewTitle.className = 'preview-title';
+                previewTitle.textContent = project.title;
+                preview.appendChild(previewTitle);
                 
                 const previewHeight = 160;
                 const offset = 20;
