@@ -766,6 +766,11 @@ function createProjectPoints() {
         const pointWrapper = document.createElement('div');
         pointWrapper.className = 'point-wrapper';
         
+        // 添加项目链接数据
+        if (project.ispage) {
+            pointWrapper.dataset.href = `projects/${project.name}/${project.name}.html`;
+        }
+        
         // 为每个点添加标签数据属性
         project.labels.forEach(label => {
             pointWrapper.setAttribute(`data-${label.toLowerCase()}`, '');

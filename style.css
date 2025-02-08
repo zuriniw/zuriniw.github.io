@@ -1351,25 +1351,30 @@ body.project-page {
         width: 100%;
         overflow-x: hidden;
         padding-bottom: 60px;
-        /* 修改触摸操作设置 */
+        /* 禁用文字选择但保持滚动 */
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         user-select: none;
         touch-action: pan-y;  /* 允许垂直滚动 */
-        -webkit-overflow-scrolling: touch;  /* 添加平滑滚动 */
     }
 
-    /* 确保主要容器也允许滚动 */
-    .container,
-    .cards-section {
-        touch-action: pan-y;  /* 允许垂直滚动 */
-        -webkit-overflow-scrolling: touch;
-        overflow-y: auto;  /* 确保可以滚动 */
+    /* 允许滚动的容器 */
+    .cards-section,
+    .coordinate-view {
+        touch-action: auto;  /* 允许所有触摸操作 */
     }
 
     /* 禁用按钮的默认触摸行为 */
-    button {
+    button,
+    .point-wrapper,
+    .project-point {
         touch-action: none;  /* 完全控制按钮的触摸行为 */
+    }
+
+    /* 确保其他元素不会阻止滚动 */
+    .filter-wrapper,
+    .coordinate-container {
+        touch-action: auto;
     }
 
     /* 允许特定元素的文字选择 */
@@ -1637,7 +1642,22 @@ body.project-page {
         margin-left: 5%!important;
         padding-left: 5%!important;
     }
-
+    .meta-text,
+    .meta-label {
+        line-height: 1.0;
+    }
+    .project-context {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+    .project-subtitle {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+    .project-title {
+        font-size: 56px;
+        line-height: 1.2;
+    }
 /* 特别处理可能会被转换为 emoji 的元素 */
 .arrow-icon,
 .video-icon,

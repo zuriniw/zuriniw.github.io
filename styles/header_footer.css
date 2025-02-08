@@ -149,7 +149,7 @@
 @media screen and (max-width: 768px) {
     .navbar {
         position: fixed;
-        top: 0;
+        top: -30px;
         left: 0;
         right: 0;
         width: 100%;
@@ -179,6 +179,7 @@
         max-width: 1350px;
         width: 100%;
         margin: 0 auto;
+        margin-bottom: 0%;
         padding: 0 8px;
         display: flex;
         justify-content: space-between;
@@ -186,6 +187,7 @@
     }
     .footer-wrapper {
         padding: 40px 40px;
+        padding-bottom: 4px;
     }
 
 }

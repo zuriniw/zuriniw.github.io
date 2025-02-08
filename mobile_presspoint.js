@@ -131,15 +131,18 @@ export function initMobilePressPoint() {
     points.forEach(point => {
         let pressTimer;
         let isPressing = false;
+        let isLongPress = false;  // 添加标记来区分长按和点击
 
         // 触摸开始
         point.addEventListener('touchstart', (e) => {
             e.preventDefault();
             isPressing = true;
+            isLongPress = false;  // 重置长按状态
             
             pressTimer = setTimeout(() => {
                 if (isPressing) {
                     point.classList.add('press-active');
+                    isLongPress = true;  // 标记为长按
                     // 触发震动反馈
                     if (window.navigator && window.navigator.vibrate) {
                         window.navigator.vibrate(20);
@@ -149,7 +152,7 @@ export function initMobilePressPoint() {
         });
 
         // 触摸结束
-        point.addEventListener('touchend', () => {
+        point.addEventListener('touchend', (e) => {
             clearTimeout(pressTimer);
             if (isPressing) {
                 point.classList.remove('press-active');
@@ -157,6 +160,11 @@ export function initMobilePressPoint() {
                 setTimeout(() => {
                     point.classList.remove('press-feedback');
                 }, 200);
+                
+                // 如果不是长按，且点有 data-href 属性，则跳转
+                if (!isLongPress && point.dataset.href) {
+                    window.location.href = point.dataset.href;
+                }
             }
             isPressing = false;
         });

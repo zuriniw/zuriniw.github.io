@@ -20,17 +20,11 @@
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
     line-height: 1.6;
+    color: rgba(0, 0, 0, 0.901);
     font-weight: 450;
     padding: 80px 60px;
 }
 
-/* 添加媒体查询以确保在小屏幕上的响应式布局 */
-@media screen and (max-width: 880px) {  /* 840px + 左右padding 40px */
-    .markdown-content {
-        width: 100%;
-        padding: 80px 20px;
-    }
-}
 
 /* 内容缩进样式 */
 .markdown-content h2,
@@ -126,7 +120,7 @@
     letter-spacing: 0.6px;
     font-family: "Barlow", sans-serif;
     font-size: 18px;
-    font-weight: 360;
+    font-weight: 320;
     line-height: 1.6;
     margin-left: -36px;
 }
@@ -179,7 +173,7 @@
 .markdown-content ul {
     list-style-position: outside;  /* 确保项目符号在文本外部 */
     list-style-type: circle;  /* 使用空心圆点 */
-    font-weight: 360;
+    font-weight: 320;
     margin-right: -16px;
 }
 
@@ -190,7 +184,7 @@
     font-size: 18px;
     line-height: 1.6;
     margin-left: 8px;
-    font-weight: 360;
+    font-weight: 320;
 }
 
 .markdown-content a {
@@ -198,7 +192,7 @@
     text-decoration: none;
     border-bottom: 1.2px solid var(--color-text);
     transition: color 0.3s ease;
-    font-weight: 360;
+    font-weight: 320;
 }
 
 .markdown-content a:hover {
@@ -223,7 +217,7 @@
     margin-bottom: 120px;
     font-family: "Barlow", sans-serif;
     font-size: 16px;
-    font-weight: 360;
+    font-weight: 320;
 }
 
 /* 确保 figure 容器也居中 */
@@ -275,3 +269,256 @@
     width: 100%;  /* 确保段落占据全宽 */
     padding: 0;  /* 移除内边距 */
 }
+
+/* 添加媒体查询以确保在小屏幕上的响应式布局 */
+@media screen and (max-width: 880px) {  /* 840px + 左右padding 40px */
+    .markdown-content {
+        width: 100%;
+        padding: 80px 20px;
+    }    
+    /* 内容缩进样式 */
+    .markdown-content h2,
+    .markdown-content h3,
+    .markdown-content h4,
+    .markdown-content p,
+    .markdown-content ul,
+    .markdown-content ol {
+        padding-left: 36px;  /* 统一的左侧缩进 */
+    }
+    
+    /* 标题居中样式 */
+    .markdown-content h2,
+    .markdown-content h3,
+    .markdown-content h4 {
+        text-align: center;
+        padding-left: 0;  /* 移除标题的左侧缩进 */
+        width: 100%;  /* 确保标题占据整个宽度 */
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        display: block;
+    }
+    
+    .markdown-content h1,
+    .markdown-content h2,
+    .markdown-content h3 {
+        margin: 48px 0 24px;  /* 增加标题的间距 */
+        font-weight: 600;
+        line-height: 1.4;
+        max-width: 100%;  /* 确保标题不会超出容器 */
+    }
+    
+    /* 第一个标题不需要顶部边距 */
+    .markdown-content h1:first-child,
+    .markdown-content h2:first-child,
+    .markdown-content h3:first-child {
+        margin-top: 0;
+    }
+    
+    .markdown-content h2 {
+        font-size: 14px;
+        font-family: "Roboto Mono", monospace;
+        font-style: italic;
+        font-weight: 580;
+        margin-top: 200px;  /* 增加二级标题上方的空间 */
+        margin-bottom: 40px;  /* 增加二级标题下方的空间 */
+        position: relative;  /* 为下方横线提供定位上下文 */
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    /* 添加向右延伸的直线 */
+    .markdown-content h2::after {
+        content: '';
+        flex: 1;
+        height: 1.5px;
+        background-color: var(--color-text);
+        margin-left: -10px;  /* 文字和线之间的间距 */
+        transform: scaleY(0.5);  /* 让线条更细 */
+    }
+    
+    .markdown-content h3 {
+        font-size: 12px;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 400;
+        margin-bottom: 40px;  /* 调整三级标题上方的空间 */
+        margin-top: 120px;  /* 调整三级标题上方的空间 */
+    }
+    
+    /* 为三级标题添加尖括号 */
+    .markdown-content h3::before {
+        content: '<';
+        margin-right: 8px;
+    }
+    
+    .markdown-content h3::after {
+        content: '>';
+        margin-left: 8px;
+    }
+    
+    .markdown-content h4 {
+        font-size: 12px;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 300;
+    }
+    
+    .markdown-content p {
+        margin: 24px 0;  /* 增加段落间距 */
+        letter-spacing: 0.6px;
+        font-family: "Barlow", sans-serif;
+        font-size: 12px;
+        font-weight: 320;
+        line-height: 1.2;
+        margin-left: -36px;
+    }
+    
+    /* 段落后的代码块减少顶部边距 */
+    .markdown-content p + pre {
+        margin-top: -8px;
+    }
+    
+    .markdown-content code {
+        background-color: var(--color-text-darkgrey);
+        color: var(--color-white);
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: "Roboto Mono", monospace;
+        font-size: 14px;
+        width: 60%;
+    }
+    
+    .markdown-content pre {
+        background-color: var(--color-text-darkgrey);
+        padding: 16px 20px;
+        border-radius: 4px;
+        overflow-x: auto;
+        margin: 32px 0;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        padding: 24px 40px;  /* 与其他内容的缩进保持一致 */
+    }
+    
+    .markdown-content pre code {
+        background-color: transparent;
+        padding: 0;
+        white-space: pre;
+    }
+    
+    .markdown-content ul,
+    .markdown-content ol {
+        margin: 12px 0;
+        padding-left: 40px;  /* 增加左侧缩进，为项目符号腾出空间 */
+        font-family: "Barlow", sans-serif;
+        font-size: 12px;
+        line-height: 1.2;
+        margin-left: 8px;
+        font-weight: 320;
+    }
+    
+    /* 调整项目符号的位置 */
+    .markdown-content ul {
+        list-style-position: outside;  /* 确保项目符号在文本外部 */
+        list-style-type: circle;  /* 使用空心圆点 */
+        font-weight: 320;
+        margin-right: -16px;
+    }
+    
+    .markdown-content li {
+        margin: 4px 0;
+        padding-left: 4px;  /* 减少列表项的内部缩进 */
+        font-family: "Barlow", sans-serif;
+        font-size: 12px;
+        line-height: 1.2;
+        margin-left: 8px;
+        font-weight: 320;
+    }
+    
+    .markdown-content a {
+        color: var(--color-text);
+        text-decoration: none;
+        border-bottom: 1.2px solid var(--color-text);
+        transition: color 0.3s ease;
+        font-weight: 320;
+    }
+    
+    .markdown-content a:hover {
+        color: var(--color-text-hover);
+        border-bottom-color: var(--color-text-hover);
+    }
+    
+    /* 添加图片样式 */
+    .markdown-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;  /* 使图片变成块级元素 */
+        margin: 24px auto;  /* 使用 margin: auto 实现水平居中 */
+        margin-bottom: 2px;
+    }
+    
+    /* 添加图片说明样式 */
+    .markdown-content figcaption {
+        text-align: center;
+        color: var(--color-text-grey);
+        font-style: italic;
+        margin-top: 0px;
+        margin-bottom: 12px;
+        font-family: "Barlow", sans-serif;
+        font-size: 10px;
+        font-weight: 320;
+    }
+    
+    /* 确保 figure 容器也居中 */
+    .markdown-content figure {
+        text-align: center;
+        margin: 48px auto 32px;
+        max-width: 100%;  /* 使用 max-width 而不是 width */
+    }
+    
+    /* 添加引用样式 */
+    .markdown-content blockquote {
+        margin: 20px 0;
+        padding-left: 16px;
+        border-left: 2px solid var(--color-text);
+        font-style: italic;
+    }
+    
+    /* 添加表格样式 */
+    .markdown-content table {
+        width: 60%;
+        border-collapse: collapse;
+        margin: 24px 0;
+        font-family: "Roboto Mono", monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-left: 50px;
+        margin-right: 50px;
+        width: calc(80%);
+    }
+    
+    .markdown-content th,
+    .markdown-content td {
+        padding: 8px 12px;
+        border: 1.2px solid var(--color-text);
+        text-align: left;
+    }
+    
+    .markdown-content th {
+        background-color: var(--color-text-darkgrey);
+        color: var(--color-white);
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    /* 确保包含图片的段落居中 */
+    .markdown-content p:has(img) {
+        text-align: center;
+        margin: 32px auto;  /* 使用 auto 实现水平居中 */
+        width: 100%;  /* 确保段落占据全宽 */
+        padding: 0;  /* 移除内边距 */
+    }
+}
+
