@@ -1358,11 +1358,20 @@ body.project-page {
         touch-action: manipulation;  /* 优化触摸操作 */
     }
 
-    /* 只在需要特殊触摸处理的元素上禁用默认行为 */
-    .point-wrapper,
+    /* 移动端触摸行为控制 */
     .project-point,
-    button {
-        touch-action: none;
+    .point-wrapper {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: manipulation;  /* 改为 manipulation 允许基本的点击行为 */
+        -webkit-tap-highlight-color: transparent;
+        cursor: url(images/cross.svg) 10 10, auto !important;  /* 确保 cursor 样式优先级 */
+    }
+
+    /* 确保点击状态下的 cursor 样式 */
+    .point-wrapper:active {
+        cursor: url(images/cross.svg) 10 10, auto !important;
     }
 
     /* 确保主要容器可以滚动 */
@@ -1426,7 +1435,7 @@ body.project-page {
         margin-right: auto;
     }
     .filter-wrapper {
-        margin-top: 0px;
+        padding-top: 80px;
         background-color: var(--color-background);
         position: relative;  /* 为提示文字提供定位上下文 */
     }
@@ -1660,14 +1669,23 @@ body.project-page {
 /* 特别处理可能会被转换为 emoji 的元素 */
 .arrow-icon,
 .video-icon,
-button,
+
 .nav-item,
-.footer-item,
+.footer,
 .matrix-caption a,
 .meta-link,
 .intro a,
 .coordinate-container::before{
     font-family: "Barlow", sans-serif !important;
+    -webkit-font-feature-settings: "liga" 0;
+    font-feature-settings: "liga" 0;
+    font-variant-emoji: none;  /* 防止符号转换为emoji */
+    -webkit-font-variant-emoji: none;
+}
+
+/* 特别处理可能会被转换为 emoji 的元素 */
+button{
+    font-family: "Roboto Mono", monospace !important;
     -webkit-font-feature-settings: "liga" 0;
     font-feature-settings: "liga" 0;
     font-variant-emoji: none;  /* 防止符号转换为emoji */
