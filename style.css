@@ -1402,7 +1402,7 @@ body.project-page {
         z-index: 99;
     }
 
-    .coordinate-view {
+    /* .coordinate-view {
         height: 400px;
     }
     
@@ -1411,7 +1411,7 @@ body.project-page {
         height: 100%;
         position: relative;
         margin: 0 auto;
-    }
+    } */
     
     /* 调整卡片布局 */
     .cards-section {

@@ -617,15 +617,7 @@ function addFilterHoverEffects() {
             preventClick = false;
         }, { passive: false });
 
-        button.addEventListener('touchcancel', () => {
-            clearTimeout(pressTimer);
-            if (isLongPress) {
-                handleButtonEffect(button, false);
-                isLongPress = false;
-            }
-        });
-
-        // 添加 touchmove 处理
+        // 添加 touchmove 处理，确保手指移出按钮区域时取消长按
         button.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
             const buttonRect = button.getBoundingClientRect();
@@ -642,6 +634,14 @@ function addFilterHoverEffects() {
                     handleButtonEffect(button, false);
                     isLongPress = false;
                 }
+            }
+        });
+
+        button.addEventListener('touchcancel', () => {
+            clearTimeout(pressTimer);
+            if (isLongPress) {
+                handleButtonEffect(button, false);
+                isLongPress = false;
             }
         });
 
