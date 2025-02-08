@@ -211,6 +211,22 @@ function createFilterButtons() {
     });
     // 初始化时应用过滤器
     updateCards();
+
+    const filterWrapper = document.createElement('div');
+    filterWrapper.className = 'filter-wrapper';
+
+    // 添加移动端提示文字
+    const tips = document.createElement('div');
+    tips.className = 'mobile-tips';
+    tips.innerHTML = `
+        //longPress to check range<br>
+        //doubleClick to single select<br>
+        //shortClick to toggle select
+    `;
+    filterWrapper.appendChild(tips);
+
+    const filterContainer = document.createElement('div');
+    filterContainer.className = 'filter-container';
 }
 
 // 项目排序比较函数
@@ -329,7 +345,7 @@ function handleFilterClick(e) {
             e.target.classList.remove('active');
         } else {
             activeFilters.push(clickedFilter);
-    e.target.classList.add('active');
+            e.target.classList.add('active');
         }
     }
     
@@ -453,95 +469,125 @@ function addFilterHoverEffects() {
     let pressTimer;
     let isLongPress = false;
     let preventClick = false;
+    let lastTapTime = 0;
+    let lastTapButton = null;
 
-    // 跟踪当前激活的按钮
-    let activeButtons = new Set();
+    // 跟踪触摸开始时间
+    let touchStartTime = 0;
 
-    // 处理点按的函数
+    // 处理点按的函数 - 实现单击切换和双击单选
     const handleTap = (button) => {
-        if (!isLongPress) {
-            // 处理多选逻辑
-            if (activeButtons.has(button)) {
-                activeButtons.delete(button);
-                button.classList.remove('active');
-            } else {
-                activeButtons.add(button);
-                button.classList.add('active');
-            }
-
-            // 更新所有卡片和点的显示状态
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTapTime;
+        
+        if (tapLength < 300 && button === lastTapButton) {
+            // 双击 - 单选该过滤器
+            const buttons = document.querySelectorAll('.buttons-section button');
+            buttons.forEach(btn => {
+                if (btn !== button) {
+                    btn.classList.remove('active');
+                    // 确保移除其他按钮的长按样式
+                    btn.classList.remove('long-press');
+                }
+            });
+            button.classList.add('active');
+            // 确保添加正确的样式
+            button.classList.remove('long-press');
+            updateFilteredItems();
+        } else {
+            // 单击 - 切换该过滤器
+            button.classList.toggle('active');
+            // 确保移除长按样式
+            button.classList.remove('long-press');
             updateFilteredItems();
         }
-    };
-
-    // 更新过滤后的项目显示
-    const updateFilteredItems = () => {
-        const selectedLabels = Array.from(activeButtons).map(btn => btn.textContent.trim().toLowerCase());
-
-        cards.forEach(card => {
-            const hasAllLabels = selectedLabels.every(label => 
-                card.hasAttribute(`data-${label}`)
-            );
-            card.classList.toggle('hide', selectedLabels.length > 0 && !hasAllLabels);
-        });
-
-        points.forEach(point => {
-            const hasAllLabels = selectedLabels.every(label => 
-                point.hasAttribute(`data-${label}`)
-            );
-            point.classList.toggle('hide', selectedLabels.length > 0 && !hasAllLabels);
-        });
+        
+        lastTapTime = currentTime;
+        lastTapButton = button;
     };
 
     // 处理按钮效果的函数
     const handleButtonEffect = (button, isActive) => {
         const label = button.textContent.trim();
         
-        // 添加或移除长按样式类
-        button.classList.toggle('long-press', isActive);
-
+        // 只在长按时或桌面端悬停时添加效果
+        if (isLongPress || window.matchMedia('(hover: hover)').matches) {
+            button.classList.toggle('long-press', isActive);
+            
+            // 视觉效果
             cards.forEach(card => {
-            if (!card.hasAttribute(`data-${label.toLowerCase()}`)) {
-                card.classList.toggle('fade-out', isActive);
+                if (!card.hasAttribute(`data-${label.toLowerCase()}`)) {
+                    card.classList.toggle('fade-out', isActive);
                 } else {
                     const labels = card.querySelectorAll('.label');
-                labels.forEach(labelSpan => {
-                    if (labelSpan.textContent.trim() === label) {
-                        labelSpan.classList.toggle('label-highlight', isActive);
+                    labels.forEach(labelSpan => {
+                        if (labelSpan.textContent.trim() === label) {
+                            labelSpan.classList.toggle('label-highlight', isActive);
                         }
                     });
                 }
             });
 
             points.forEach(point => {
-            if (!point.hasAttribute(`data-${label.toLowerCase()}`)) {
-                point.classList.toggle('fade-out', isActive);
+                if (!point.hasAttribute(`data-${label.toLowerCase()}`)) {
+                    point.classList.toggle('fade-out', isActive);
+                }
+            });
+
+            // 获取当前可见的点
+            const visiblePoints = Array.from(points).filter(point => 
+                !point.classList.contains('fade-out') && 
+                !point.classList.contains('hide')
+            );
+
+            // 获取匹配的点的坐标并绘制凹包
+            const matchingPoints = visiblePoints
+                .filter(point => point.hasAttribute(`data-${label.toLowerCase()}`))
+                .map(point => getPointCoordinates(point));
+
+            if (isActive) {
+                drawHull(matchingPoints);
+            } else {
+                clearHull();
             }
-        });
-
-        // 获取当前可见的点
-        const visiblePoints = Array.from(points).filter(point => 
-            !point.classList.contains('fade-out') && 
-            !point.classList.contains('hide')
-        );
-
-        // 获取匹配的点的坐标并绘制凹包
-        const matchingPoints = visiblePoints
-            .filter(point => point.hasAttribute(`data-${label.toLowerCase()}`))
-            .map(point => getPointCoordinates(point));
-
-        if (isActive) {
-            drawHull(matchingPoints);
-        } else {
-            clearHull();
         }
     };
 
+    // 更新过滤后的项目显示
+    const updateFilteredItems = () => {
+        const activeFilters = Array.from(document.querySelectorAll('.buttons-section button.active'))
+            .map(button => button.textContent.trim().toLowerCase());
+        
+        cards.forEach(card => {
+            const hasAllFilters = activeFilters.every(filter => 
+                card.hasAttribute(`data-${filter}`));
+            card.classList.toggle('hide', activeFilters.length > 0 && !hasAllFilters);
+        });
+        
+        points.forEach(point => {
+            const hasAllFilters = activeFilters.every(filter => 
+                point.hasAttribute(`data-${filter}`));
+            point.classList.toggle('hide', activeFilters.length > 0 && !hasAllFilters);
+        });
+    };
+
     buttons.forEach(button => {
+        // 禁用默认的文本选择和上下文菜单
+        button.style.webkitUserSelect = 'none';
+        button.style.userSelect = 'none';
+        button.style.webkitTouchCallout = 'none';
+
+        // 禁用上下文菜单
+        button.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
         // 移动端长按处理
         button.addEventListener('touchstart', (e) => {
-            // 只阻止按钮的默认行为，不影响页面滚动
             e.stopPropagation();
+            touchStartTime = Date.now();
+            isLongPress = false;  // 重置长按状态
+            
             pressTimer = setTimeout(() => {
                 isLongPress = true;
                 preventClick = true;
@@ -551,28 +597,51 @@ function addFilterHoverEffects() {
                     window.navigator.vibrate(20);
                 }
             }, 200);
-        });
+        }, { passive: false });
 
         button.addEventListener('touchend', (e) => {
-            // 只阻止按钮的默认行为，不影响页面滚动
             e.stopPropagation();
             clearTimeout(pressTimer);
+            const touchDuration = Date.now() - touchStartTime;
+            
+            if (touchDuration < 200) {
+                // 短按处理
+                handleTap(button);
+            }
+            
+            // 只有在之前处于长按状态时才清除效果
             if (isLongPress) {
                 handleButtonEffect(button, false);
                 isLongPress = false;
-                setTimeout(() => {
-                    preventClick = false;
-                }, 100);
-            } else {
-                handleTap(button);  // 处理点按
             }
-        });
+            preventClick = false;
+        }, { passive: false });
 
         button.addEventListener('touchcancel', () => {
             clearTimeout(pressTimer);
             if (isLongPress) {
                 handleButtonEffect(button, false);
                 isLongPress = false;
+            }
+        });
+
+        // 添加 touchmove 处理
+        button.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            const buttonRect = button.getBoundingClientRect();
+            
+            // 检查手指是否移出按钮区域
+            if (
+                touch.clientX < buttonRect.left ||
+                touch.clientX > buttonRect.right ||
+                touch.clientY < buttonRect.top ||
+                touch.clientY > buttonRect.bottom
+            ) {
+                clearTimeout(pressTimer);
+                if (isLongPress) {
+                    handleButtonEffect(button, false);
+                    isLongPress = false;
+                }
             }
         });
 
@@ -713,11 +782,11 @@ function createProjectPoints() {
             const containerHeight = container.offsetHeight;
             
             // 计算点的位置（考虑容器的实际大小）
-        const x = (project.situate.x + 100) * containerWidth / 200;
+            const x = (project.situate.x + 100) * containerWidth / 200;
             const y = (-project.situate.y + 100) * containerHeight / 200;
-        
-        pointWrapper.style.left = `${x}px`;
-        pointWrapper.style.top = `${y}px`;
+            
+            pointWrapper.style.left = `${x}px`;
+            pointWrapper.style.top = `${y}px`;
         };
         
         // 初始设置位置

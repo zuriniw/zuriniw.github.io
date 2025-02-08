@@ -440,6 +440,8 @@ button:hover {
     padding-top: 120px;
     padding-bottom: 0px;
     transition: all 0.1s ease;  /* 移除这个过渡效果 */
+    margin-top: 0px;
+    position: relative;  /* 为提示文字提供定位上下文 */
 }
 
 /* 过滤器容器固定样式 */
@@ -1036,7 +1038,7 @@ body.project-page {
     margin-top: 32px;
     font-family: "Roboto Mono", monospace;
     font-style: italic;
-    font-size: 18px;
+    font-size: 14px;
     color: var(--color-text);
     font-weight: 550;
 }
@@ -1057,7 +1059,7 @@ body.project-page {
     font-size: 14px;
     color: var(--color-text);
     margin-top: 6px;
-    line-height: 1.2;
+    line-height: 1.6;
     font-weight: 400;
     text-align: right;
 }
@@ -1377,7 +1379,7 @@ body.project-page {
     .filter-wrapper {
         margin-top: 0px;
         background-color: var(--color-background);
-
+        position: relative;  /* 为提示文字提供定位上下文 */
     }
 
     /* 调整过滤器容器 */
@@ -1468,23 +1470,18 @@ body.project-page {
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* 修改长按按钮的样式 */
-    button.long-press {
-        color: var(--color-white) !important;
-        background-color: var(--color-text-grey) !important;  /* 使用文本颜色作为背景 */
-        transition: background-color 0.1s ease;  /* 添加过渡效果 */
-    }
 
-    /* 确保普通状态下按钮样式正确 */
-    button {
-        -webkit-tap-highlight-color: transparent;  /* 移除默认的点击高亮 */
-        transition: background-color 0.1s ease;    /* 添加过渡效果 */
-    }
-    
-    /* 按钮激活状态样式 */
+    /* 确保激活状态的按钮样式正确 */
     button.active {
         color: var(--color-white) !important;
-        background-color: var(--color-text) !important;
+        background: var(--color-text) !important;
+    }
+
+    /* 长按时的按钮样式 */
+    button.long-press {
+        color: var(--color-white) !important;
+        background-color: var(--color-text-hover) !important;
+        border: 1.6px solid var(--color-text-hover) !important;
     }
 
     /* 移动端触摸行为 */
@@ -1569,6 +1566,24 @@ body.project-page {
     /* 调整主容器布局 */
     .container {
         margin-top: 120px;  /* 为固定导航栏留出空间 */
+    }
+
+    /* 移动端提示文字样式 */
+    .mobile-tips {
+        display: none;  /* 默认隐藏 */
+        position: absolute;
+        top: -80px;  /* 在 filter-wrapper 上方 */
+        right: 0;
+        text-align: right;
+        font-family: "Roboto Mono", monospace;
+        font-size: 12px;
+        color: var(--color-text-grey);
+        line-height: 1.6;
+    }
+
+    /* 移动端显示提示文字 */
+    .mobile-tips {
+        display: block;
     }
 }
 
