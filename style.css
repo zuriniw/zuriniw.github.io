@@ -1797,7 +1797,7 @@ body.project-page {
 .meta-link,
 .intro a,
 .coordinate-container::before{
-    font-family: "Barlow", sans-serif !important;
+    font-family: "Barlow" !important;
     -webkit-font-feature-settings: "liga" 0;
     font-feature-settings: "liga" 0;
 }
@@ -1807,19 +1807,16 @@ body.project-page {
         position: fixed;
         width: 50px;
         height: 50px;
-        border-radius: 50%;
         pointer-events: none;
         transform: translate(-50%, -50%);
         z-index: 1000;
-        opacity: 0.5;
-        transition: opacity 0.2s ease;
-        mix-blend-mode: multiply;
         border: var(--color-red);
     }
 
     /* 移动端上移除悬停效果 */
     .point-wrapper:hover .point-title {
         opacity: 0;
+        display: none;
     }
 
 
@@ -1912,4 +1909,13 @@ body.project-page {
         opacity: 0.8;
     }
 
+}
+
+/* 特别处理可能会被转换为 emoji 的元素 */
+.coordinate-container::before {
+    font-family: "Barlow" !important;
+    -webkit-font-feature-settings: "liga" 0;
+    font-feature-settings: "liga" 0;
+    font-variant-emoji: none;  /* 防止符号转换为emoji */
+    -webkit-font-variant-emoji: none;
 }
