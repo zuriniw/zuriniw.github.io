@@ -1401,32 +1401,14 @@ body.project-page {
         line-height: 1.1 !important;
     }
     .matrix-caption {
-        font-size: 16px !important;
+        font-size: 18px !important;
         padding: 0 !important;
-        margin-top: 4px !important;
         line-height: 1.1 !important;
     }
     .point-label {
         font-size: 12px !important;
         font-family: "Barlow", sans-serif !important;
         font-weight: 400 !important;
-    }
-    .coordinate-container {
-        margin-top: 10px!important;
-    }
-    .coordinate-container::before {
-        content: "longPress to check range, double click to solo-elect";
-        position: absolute;
-        display: block;
-        top: -22px;
-        right: 0;  /* 添加右对齐 */
-        text-align: right;  /* 文本右对齐 */
-        font-size: 11px;
-        color: var(--color-text-grey);  /* 改用灰色使提示不那么显眼 */
-        background: none;  /* 移除背景色 */
-        height: auto;  /* 移除固定高度 */
-        width: auto;  /* 移除固定宽度 */
-        border-radius: 0;
     }
 
     /* 确保所有主要容器都居中 */
@@ -1443,6 +1425,23 @@ body.project-page {
         margin-top: 0px;
         background-color: var(--color-background);
         position: relative;  /* 为提示文字提供定位上下文 */
+    }
+    .coordinate-container {
+        margin-top: 10px;
+    }
+    .coordinate-container::before {
+        content: "longPress to check range";
+        position: absolute;
+        display: block;
+        top: -22px;
+        right: 0;  /* 添加右对齐 */
+        text-align: right;  /* 文本右对齐 */
+        font-size: 10px;
+        color: var(--color-text-grey);  /* 改用灰色使提示不那么显眼 */
+        background: none;  /* 移除背景色 */
+        height: auto;  /* 移除固定高度 */
+        width: auto;  /* 移除固定宽度 */
+        border-radius: 0;
     }
 
     /* 调整过滤器容器 */
@@ -1639,39 +1638,6 @@ body.project-page {
         padding-left: 5%!important;
     }
 
-    /* 点预览的移动端样式 */
-    .point-preview {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.1s ease, visibility 0s linear 0.1s;
-        pointer-events: none;
-        will-change: opacity, visibility;  /* 优化性能 */
-    }
-
-    /* 显示预览时的样式 */
-    .point-preview.show {
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 0.1s ease, visibility 0s linear;
-    }
-
-    /* 确保长按结束后预览完全消失 */
-    .point-preview.hide {
-        opacity: 0 !important;
-        visibility: hidden !important;
-        transition: opacity 0.1s ease, visibility 0s linear 0.1s !important;
-        pointer-events: none !important;
-        display: none !important;  /* 强制隐藏 */
-    }
-
-    /* 防止预览图在触摸事件结束后残留 */
-    .point-wrapper:not(:active) .point-preview {
-        opacity: 0 !important;
-        visibility: hidden !important;
-        display: none !important;
-    }
-}
-
 /* 特别处理可能会被转换为 emoji 的元素 */
 .arrow-icon,
 .video-icon,
@@ -1679,7 +1645,6 @@ button,
 .nav-item,
 .footer-item,
 .matrix-caption a,
-.meta-link,
 .intro a {
     font-family: "Roboto Mono", monospace !important;
     -webkit-font-feature-settings: "liga" 0;
@@ -1688,3 +1653,4 @@ button,
     -webkit-font-variant-emoji: none;
 }
 
+}
