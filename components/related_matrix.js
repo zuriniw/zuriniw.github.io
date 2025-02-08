@@ -130,10 +130,8 @@ class RelatedMatrix {
             // 移动端：简单的点击跳转
             if (project.ispage && project.name !== this.currentProject) {
                 console.log('should can be clicked');
-
-                pointWrapper.addEventListener('click', () => {
-                    console.log('has been clicked');
-
+                pointWrapper.addEventListener('touchstart', (e) => {
+                    console.log('touchstart');
                     window.location.href = `../../projects/${project.name}/${project.name}.html`;
                 });
             }

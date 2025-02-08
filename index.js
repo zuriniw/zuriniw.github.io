@@ -646,10 +646,7 @@ function addFilterHoverEffects() {
                 isLongPress = true;
                 preventClick = true;
                 handleButtonEffect(button, true);
-                // 触发震动反馈
-                if (window.navigator && window.navigator.vibrate) {
-                    window.navigator.vibrate(20);
-                }
+
             }, 200);
         }, { passive: false });
 
@@ -1044,10 +1041,6 @@ function initFixedFilter() {
         // 重新计算原始位置和高度
         const newRect = filterWrapper.getBoundingClientRect();
         placeholder.style.height = `${newRect.height}px`;
-        // 如果不是固定状态，更新原始位置
-        if (!filterWrapper.classList.contains('fixed')) {
-            originalTop = newRect.top + window.pageYOffset;
-        }
     });
 }
 
@@ -1092,18 +1085,14 @@ function addVibrationToSwitchButton() {
     const switchButton = document.querySelector('.switch-view');
     if (!switchButton) return;
 
-    // 检查设备是否支持震动
-    const canVibrate = window.navigator && window.navigator.vibrate;
+    
 
     // 保存原始的点击处理函数
     const originalClick = switchButton.onclick;
 
     // 添加新的点击处理函数
     switchButton.onclick = (e) => {
-        // 触发震动反馈（如果支持）
-        if (canVibrate) {
-            window.navigator.vibrate(20);  // 20ms 的短震动
-        }
+
         // 执行原有的点击处理
         if (originalClick) {
             originalClick.call(switchButton, e);
