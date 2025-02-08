@@ -197,7 +197,28 @@ function drawHull(points) {
 
 // 生成过滤器按钮
 function createFilterButtons() {
-    console.log('Creating filter buttons');
+    
+    // 首先获取或创建 filter-wrapper
+    let filterWrapper = document.querySelector('.filter-wrapper');
+    if (!filterWrapper) {
+        console.error('Filter wrapper not found in DOM');
+        return;
+    }
+
+    // 添加移动端提示文字
+    let tips = document.querySelector('.mobile-tips');
+    if (!tips) {
+        tips = document.createElement('div');
+        tips.className = 'mobile-tips';
+        tips.innerHTML = `
+            //longPress to check range<br>
+            //doubleClick to single select<br>
+            //shortClick to toggle select
+        `;
+        filterWrapper.insertBefore(tips, filterWrapper.firstChild);
+    }
+
+    // 创建过滤器按钮
     availableLabels.forEach(label => {
         console.log('Creating button for:', label);
         const button = document.createElement('button');
@@ -209,24 +230,9 @@ function createFilterButtons() {
         }
         buttonSection.appendChild(button);
     });
+
     // 初始化时应用过滤器
     updateCards();
-
-    const filterWrapper = document.createElement('div');
-    filterWrapper.className = 'filter-wrapper';
-
-    // 添加移动端提示文字
-    const tips = document.createElement('div');
-    tips.className = 'mobile-tips';
-    tips.innerHTML = `
-        //longPress to check range<br>
-        //doubleClick to single select<br>
-        //shortClick to toggle select
-    `;
-    filterWrapper.appendChild(tips);
-
-    const filterContainer = document.createElement('div');
-    filterContainer.className = 'filter-container';
 }
 
 // 项目排序比较函数
@@ -818,13 +824,22 @@ function createProjectPoints() {
             preview.className = 'point-preview';
             preview.innerHTML = `
                 <img src="${project.getGifPath()}" alt="${project.title}">
+                <div class="preview-title">${project.subtitle}</div>
             `;
             
             // 根据 y 坐标决定预览框的位置
             const previewHeight = 160; // 预览框的大致高度
+            const previewWidth = 214;  // 预览框的宽度
             const offset = 20; // 与光标的距离
             
-            preview.style.left = `${e.clientX + offset}px`;
+            // 根据点的 x 坐标决定预览框的水平位置
+            if (project.situate.x > 0) {
+                preview.style.left = `${e.clientX - previewWidth - offset}px`;  // 显示在左边
+            } else {
+                preview.style.left = `${e.clientX + offset}px`;  // 显示在右边
+            }
+            
+            // 根据点的 y 坐标决定预览框的垂直位置
             if (project.situate.y > 0) {  // 如果点在坐标系上半部分
                 preview.style.top = `${e.clientY + offset}px`;
             } else {
@@ -837,35 +852,39 @@ function createProjectPoints() {
             const container = document.querySelector('.coordinate-container');
             const containerWidth = container.offsetWidth;
             const containerHeight = container.offsetHeight;
+            const x = (project.situate.x + 100) * containerWidth / 200;
+            const pointRect = pointWrapper.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            const y = pointRect.top - containerRect.top;
             
             // 创建横向延伸线（到y轴）
             const horizontalLine = document.createElement('div');
             horizontalLine.className = 'extension-line horizontal';
             horizontalLine.style.top = `${y}px`;
             horizontalLine.style.transform = 'translateY(-50%)';
-
-            // 计算横向延伸线
+            
+            // 如果点在y轴右边
             if (project.situate.x > 0) {
-                horizontalLine.style.left = `${containerWidth/2}px`;  // 从y轴开始
-                horizontalLine.style.width = `${x - containerWidth/2}px`;  // 延伸到点
+                horizontalLine.style.left = `${containerWidth/2}px`;
+                horizontalLine.style.width = `${x - containerWidth/2}px`;
             } else {
-                horizontalLine.style.left = `${x}px`;  // 从点开始
-                horizontalLine.style.width = `${containerWidth/2 - x}px`;  // 延伸到y轴
+                horizontalLine.style.left = `${x}px`;
+                horizontalLine.style.width = `${containerWidth/2 - x}px`;
             }
-
+            
             // 创建竖向延伸线（到x轴）
             const verticalLine = document.createElement('div');
             verticalLine.className = 'extension-line vertical';
             verticalLine.style.left = `${x}px`;
             verticalLine.style.transform = 'translateX(-50%)';
             
-            // 计算竖向延伸线
+            // 如果点在x轴上方
             if (project.situate.y > 0) {
-                verticalLine.style.top = `${y}px`;  // 从点开始
-                verticalLine.style.height = `${containerHeight/2 - y}px`;  // 延伸到x轴
+                verticalLine.style.top = `${y}px`;
+                verticalLine.style.height = `${containerHeight/2 - y}px`;
             } else {
-                verticalLine.style.top = `${containerHeight/2}px`;  // 从x轴开始
-                verticalLine.style.height = `${y - containerHeight/2}px`;  // 延伸到点
+                verticalLine.style.top = `${containerHeight/2}px`;
+                verticalLine.style.height = `${y - containerHeight/2}px`;
             }
             
             container.appendChild(horizontalLine);

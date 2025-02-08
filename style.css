@@ -129,6 +129,9 @@ body::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
 }
+.mobile-tips {
+    display:none;
+}
 
 /* 过滤器容器样式 */
 .filter-container {
@@ -177,8 +180,9 @@ button {
 
 /* 按钮悬停效果 */
 button:hover {
-    background-color: hsl(0, 0%, 32%);
+    background-color: var(--color-text-hover);
     color: #ffffff;
+    border-color: var(--color-text);
 }
 
 /* 卡片网格区域样式 */
@@ -599,13 +603,13 @@ button:hover {
 
 /* 点标签基础样式 */
 .point-label {
-    font-family: "Roboto Mono", monospace;
     font-size: 12px;
     color: var(--color-text);
     white-space: nowrap;
-    font-weight: 350;
+    font-weight: 450;
     position: absolute;  /* 修改为绝对定位 */
     left: 50%;  /* 居中 */
+    opacity: 0.8;
     transform: translateX(-50%);  /* 居中 */
 }
 
@@ -629,7 +633,9 @@ button:hover {
     border: 1.2px solid var(--color-text);
     padding: 6px;
     pointer-events: none;
+    font-size: 12px;
     transition: opacity 0.1s ease;
+    width: 214px;  /* 设置固定宽度，与图片宽度相同 */
 }
 
 .point-preview img {
@@ -638,6 +644,16 @@ button:hover {
     object-fit: cover;
     display: block;
 }
+
+/* 预览标题样式 */
+.preview-title {
+    word-wrap: break-word;     /* 允许长单词换行 */
+    overflow-wrap: break-word; /* 确保所有文字都会换行 */
+    white-space: normal;       /* 允许正常换行 */
+    padding: 4px 0;           /* 添加一些内边距 */
+}
+
+
 
 /* 项目点淡出效果 */
 .point-wrapper.point-fade {
@@ -1038,7 +1054,7 @@ body.project-page {
     margin-top: 32px;
     font-family: "Roboto Mono", monospace;
     font-style: italic;
-    font-size: 14px;
+    font-size: 18px;
     color: var(--color-text);
     font-weight: 550;
 }
@@ -1056,10 +1072,10 @@ body.project-page {
 
 /* 介绍文本样式 */
 .intro {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--color-text);
     margin-top: 6px;
-    line-height: 1.6;
+    line-height: 1.2;
     font-weight: 400;
     text-align: right;
 }
@@ -1159,17 +1175,17 @@ body.project-page {
 .extension-line {
     position: absolute;
     background-color: var(--color-text);
-    opacity: 0.95;
-    transition: opacity 0.1s ease;
+    opacity: 0.45;
     pointer-events: none;
+    z-index: 1;
 }
 
 .extension-line.horizontal {
-    height: 0.6px;  /* 直接使用更细的高度，不使用 transform */
+    height: 1px;
 }
 
 .extension-line.vertical {
-    width: 0.6px;  /* 直接使用更细的宽度，不使用 transform */
+    width: 1px;
 }
 
 /* 视频容器样式 */
@@ -1334,7 +1350,22 @@ body.project-page {
         align-items: center;
         width: 100%;
         overflow-x: hidden;
-        padding-bottom: 60px;  /* 减小移动端下的底部内边距 */
+        padding-bottom: 60px;
+        /* 禁用文字选择但保持滚动 */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: pan-y;  /* 只允许垂直滚动 */
+    }
+
+    /* 允许特定元素的文字选择 */
+    .blog-article-content,
+    .project-content,
+    input,
+    textarea {
+        -webkit-touch-callout: default;
+        -webkit-user-select: text;
+        user-select: text;
     }
 
     /* 隐藏箭头图标 */
@@ -1385,7 +1416,7 @@ body.project-page {
     /* 调整过滤器容器 */
     .filter-container {
         top: 120px;  /* 调整移动端下与导航栏的距离 */
-        padding-top: 40px;
+        padding-top: 8px;
         padding-bottom: 0px;
 
         position: sticky;
@@ -1402,17 +1433,6 @@ body.project-page {
         z-index: 99;
     }
 
-    /* .coordinate-view {
-        height: 400px;
-    }
-    
-    .coordinate-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        margin: 0 auto;
-    } */
-    
     /* 调整卡片布局 */
     .cards-section {
         justify-content: center;  /* 确保卡片居中 */
@@ -1570,22 +1590,20 @@ body.project-page {
 
     /* 移动端提示文字样式 */
     .mobile-tips {
-        display: none;  /* 默认隐藏 */
+        display: block;
         position: absolute;
-        top: -80px;  /* 在 filter-wrapper 上方 */
+        top: -80px;
         right: 0;
         text-align: right;
         font-family: "Roboto Mono", monospace;
-        font-size: 12px;
+        font-size: 11px;
         color: var(--color-text-grey);
         line-height: 1.6;
+        padding-right: 20px;
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
     }
-
-    /* 移动端显示提示文字 */
-    .mobile-tips {
-        display: block;
-    }
-}
 
 /* 特别处理可能会被转换为 emoji 的元素 */
 .arrow-icon,

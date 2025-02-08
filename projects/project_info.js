@@ -213,7 +213,7 @@ const projects = [
         otherLink2: "https://www.bilibili.com/video/BV1jT411g7Xf/",
         prize: "[Award of Excellence] & [Award of New Talent] on Bilibili 'Gamify Everything' Competition",
         weight: 5,
-        situate: { x: -80, y: -10 }
+        situate: { x: -80, y: -50 }
     }),
     new Project({
         name: "zijin",
@@ -230,7 +230,7 @@ const projects = [
         prize: "1st Prize, Top 10/613 in Architectural & Landscape Design Competition 'Zijin Award'",
         weight: 4,
         isflipped: false,
-        situate: { x: -60, y: -80 }
+        situate: { x: -60, y: -60 }
     }),
     new Project({
         name: "taihustone",
@@ -259,7 +259,7 @@ const projects = [
         tools: "Rhino, Grasshopper",
         prize: "Patent",
         weight: 5,
-        situate: { x: -30, y: -80 }
+        situate: { x: -30, y: -90 }
     }),
     new Project({
         name: "intdesign",
@@ -343,7 +343,7 @@ const projects = [
         tools: "Unity | C# | HoloLens 2 | Arduino | Rhino | ArcGIS | Figma | Procreate | laser cut",
         briefDescription: "between distant information and sensible responses",
         youtubeLink: "https://www.youtube.com/embed/Nbk9Z47OTQQ?si=e-NE6-3MkLDDQATN",
-        situate: { x: -30, y: 30 },
+        situate: { x: -30, y: -30 },
         ispage: true,
         weight: 7,
         ismarkdown: true
