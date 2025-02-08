@@ -2,6 +2,7 @@ console.log('Script is running');
 
 import { projects, availableLabels } from './projects/project_info.js';
 import { Delaunay } from 'https://cdn.jsdelivr.net/npm/d3-delaunay@6/+esm';
+import { initMobilePressPoint } from './mobile_presspoint.js';
 
 console.log('Available labels:', availableLabels);
 console.log('Projects:', projects);
@@ -1042,6 +1043,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFilterScroll();
     addFilterHoverEffects();
     initFixedFilter();
+    initMobilePressPoint();
 });
 
 // 添加震动反馈功能到切换按钮

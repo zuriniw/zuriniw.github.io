@@ -120,3 +120,71 @@ function clearLongPressEffects(wrapper) {
         wrapper.preview = null;
     }
 }
+
+// 移动端长按处理
+export function initMobilePressPoint() {
+    // 只在移动端执行
+    if (window.innerWidth > 768) return;
+
+    const points = document.querySelectorAll('.point-wrapper');
+    
+    points.forEach(point => {
+        let pressTimer;
+        let isPressing = false;
+
+        // 触摸开始
+        point.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            isPressing = true;
+            
+            pressTimer = setTimeout(() => {
+                if (isPressing) {
+                    point.classList.add('press-active');
+                    // 触发震动反馈
+                    if (window.navigator && window.navigator.vibrate) {
+                        window.navigator.vibrate(20);
+                    }
+                }
+            }, 200);
+        });
+
+        // 触摸结束
+        point.addEventListener('touchend', () => {
+            clearTimeout(pressTimer);
+            if (isPressing) {
+                point.classList.remove('press-active');
+                point.classList.add('press-feedback');
+                setTimeout(() => {
+                    point.classList.remove('press-feedback');
+                }, 200);
+            }
+            isPressing = false;
+        });
+
+        // 触摸取消
+        point.addEventListener('touchcancel', () => {
+            clearTimeout(pressTimer);
+            point.classList.remove('press-active');
+            isPressing = false;
+        });
+
+        // 触摸移动
+        point.addEventListener('touchmove', (e) => {
+            if (isPressing) {
+                const touch = e.touches[0];
+                const pointRect = point.getBoundingClientRect();
+                const isOutside = 
+                    touch.clientX < pointRect.left - 10 ||
+                    touch.clientX > pointRect.right + 10 ||
+                    touch.clientY < pointRect.top - 10 ||
+                    touch.clientY > pointRect.bottom + 10;
+
+                if (isOutside) {
+                    clearTimeout(pressTimer);
+                    point.classList.remove('press-active');
+                    isPressing = false;
+                }
+            }
+        });
+    });
+}

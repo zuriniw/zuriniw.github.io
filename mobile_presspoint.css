@@ -40,4 +40,30 @@
         touch-action: none;
         -webkit-tap-highlight-color: transparent;
     }
+
+    /* 长按时的点样式 */
+    .point-wrapper.press-active .point {
+        transform: scale(2);
+        filter: blur(4px);
+        box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease;
+    }
+
+    /* 长按时的标签样式 */
+    .point-wrapper.press-active .point-label {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.2s ease;
+    }
+
+    /* 长按反馈动画 */
+    @keyframes pressAnimation {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+
+    .point-wrapper.press-feedback .point {
+        animation: pressAnimation 0.2s ease;
+    }
 }
