@@ -1868,6 +1868,22 @@ body.project-page {
         flex: 1;  /* 平均分配宽度 */
     }
 
+    .player-left::after {
+        content: " - Drag a point here - ";
+        position: absolute;
+        top: 0px;
+        left: 9px;
+        width: 100%;
+        height: 100%;
+        font-family: "Roboto Mono", monospace;
+        font-size: 12px;
+        font-weight: 450;
+        color: var(--color-text);
+        line-height: 1.2;
+        z-index: 1;
+    }
+
+
     /* 移除右边框的左边框以避免双边框 */
     .player-right {
         border-left: none;
@@ -1913,8 +1929,7 @@ body.project-page {
 .footer,
 .matrix-caption a,
 .meta-link,
-.intro a,
-.coordinate-container::before{
+.intro a{
     font-family: "Roboto Mono" !important;
     -webkit-font-feature-settings: "liga" 0;
     font-feature-settings: "liga" 0;
