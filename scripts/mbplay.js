@@ -10,7 +10,16 @@
         let dragStartTime = 0;
         const LONG_PRESS_DURATION = 200;  // 长按触发时间
         let dragIndicator = null;
-        let currentActivePoint = null;  // 添加当前激活点的引用
+        let currentActivePoint = null;  // 当前激活的点
+        let currentProject = null;
+
+        // 添加点击事件处理
+        const playerContainer = document.querySelector('.player-container');
+        playerContainer.addEventListener('click', () => {
+            if (currentProject && currentProject.ispage) {
+                window.location.href = `projects/${currentProject.name}/${currentProject.name}.html`;
+            }
+        });
 
         points.forEach(point => {
             let startX, startY;
@@ -44,7 +53,7 @@
 
             point.addEventListener('touchstart', (e) => {
                 console.log('触摸开始');
-                e.preventDefault();  // 防止触发其他事件
+                e.preventDefault();
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 dragStartTime = Date.now();
@@ -56,10 +65,8 @@
                     draggedPoint = point;
                     point.classList.add('dragging');
                     
-                    // 创建拖拽指示器
                     createDragIndicator(e.touches[0].clientX, e.touches[0].clientY);
                     
-                    // 触发震动反馈
                     if (window.navigator && window.navigator.vibrate) {
                         window.navigator.vibrate(20);
                     }
@@ -83,10 +90,8 @@
                     const project = projects.find(p => p.title === projectTitle);
                     
                     if (project) {
-                        // 如果有之前激活的点，恢复其颜色
-                        if (currentActivePoint && currentActivePoint !== point.querySelector('.project-point')) {
-                            currentActivePoint.style.border = '';
-                        }
+                        // 更新当前项目引用
+                        currentProject = project;
 
                         // 检查当前点是否在视图中可见
                         const projectPoint = point.querySelector('.project-point');
@@ -99,9 +104,14 @@
                         );
 
                         if (isVisible) {
-                            // 更新当前激活点的引用并设置颜色
+                            // 如果有之前激活的点且不是当前点，清除其背景色
+                            if (currentActivePoint && currentActivePoint !== projectPoint) {
+                                currentActivePoint.style.backgroundColor = 'transparent';
+                            }
+                            // 更新当前激活点的引用并设置背景色
                             currentActivePoint = projectPoint;
-                            projectPoint.style.border = '1.6px solid var(--color-red)';
+                            projectPoint.style.backgroundColor = 'var(--color-red)';
+                            projectPoint.style.border = '1.6px solid var(--color-red)'; 
                         }
 
                         // 更新左侧预览
@@ -141,13 +151,25 @@
                     point.classList.remove('dragging');
                     playerLeft.classList.remove('drag-over');
                     removeDragIndicator();
-
-                    // 清除当前激活点的引用和颜色
-    
+                    // 不清除 currentActivePoint，保持其引用和背景色
                 }
             };
 
-            point.addEventListener('touchend', endDrag);
-            point.addEventListener('touchcancel', endDrag);
+            // 添加点击处理
+            point.addEventListener('touchend', (e) => {
+                const endTime = Date.now();
+                const touchDuration = endTime - dragStartTime;
+                
+                // 如果是短触摸（点击），且没有拖拽
+                if (touchDuration < LONG_PRESS_DURATION && !isDragging) {
+                    const projectTitle = point.querySelector('.point-label').textContent;
+                    const project = projects.find(p => p.title === projectTitle);
+                    if (project && project.ispage) {
+                        window.location.href = `projects/${project.name}/${project.name}.html`;
+                    }
+                }
+                
+                endDrag();
+            });
         });
     }

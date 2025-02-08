@@ -1819,6 +1819,33 @@ body.project-page {
         mix-blend-mode: multiply;
         filter: blur(2px);
     }
+
+    /* 移动端上移除悬停效果 */
+    .point-wrapper:hover .point-title {
+        opacity: 0;
+    }
+
+    .point:hover,
+    .point-wrapper:hover .point:not(.current) {
+        transform: none;
+        filter: none;
+        box-shadow: none;
+    }
+
+    /* 移动端上的基本样式 */
+    .point-wrapper {
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .point {
+        width: 16px;
+        height: 16px;
+        border: 1.2px solid var(--color-text);
+        border-radius: 50%;
+        transition: none;  /* 移除过渡效果 */
+    }
 }
 
 /* Player 基础样式 */
