@@ -454,10 +454,11 @@ function addFilterHoverEffects() {
         
         // 创建第二个滤镜 (noiseFilter2)
         const filter2 = createNoiseFilter("noiseFilter2", {
-            baseFrequency: 0.7,        // 更高的频率会产生更细腻的噪点
+            baseFrequency: 0.6,        // 更高的频率会产生更细腻的噪点
             numOctaves: 5,             // 更少的叠加次数会产生更简单的纹理
             type: "turbulence",        // 使用湍流而不是分形噪声
             blendMode: "multiply",     // 使用不同的混合模式
+            seed: 2,
             colorMatrix: `
                 0 0 0 0 0.5
                 0 0 0 0 0.45
@@ -465,9 +466,55 @@ function addFilterHoverEffects() {
                 0 0 0 0.7 0
             `                          // 调整颜色矩阵以改变噪点的外观
         });
+        const filter3 = createNoiseFilter("noiseFilter3", {
+            baseFrequency: 0.5,        // 更高的频率会产生更细腻的噪点
+            numOctaves: 4,             // 更少的叠加次数会产生更简单的纹理
+            type: "turbulence",        // 使用湍流而不是分形噪声
+            blendMode: "multiply",     // 使用不同的混合模式
+            seed: 3,
+            colorMatrix: `
+                0 0 0 0 0.5
+                0 0 0 0 0.45
+                0 0 0 0 0.47
+                0 0 0 0.7 0
+            `                          // 调整颜色矩阵以改变噪点的外观
+        });
+        const filter4 = createNoiseFilter("noiseFilter4", {
+            baseFrequency: 0.6,        // 更高的频率会产生更细腻的噪点
+            numOctaves: 6,             // 更少的叠加次数会产生更简单的纹理
+            type: "turbulence",        // 使用湍流而不是分形噪声
+            blendMode: "multiply",     // 使用不同的混合模式
+            seed: 9,
+            colorMatrix: `
+                0 0 0 0 0.5
+                0 0 0 0 0.45
+                0 0 0 0 0.47
+                0 0 0 0.7 0
+            `                          // 调整颜色矩阵以改变噪点的外观
+        });
+
+        const filter5 = createNoiseFilter("noiseFilter5", {
+            baseFrequency: 0.8,        // 更高的频率会产生更细腻的噪点
+            numOctaves: 5,             // 更少的叠加次数会产生更简单的纹理
+            type: "turbulence",        // 使用湍流而不是分形噪声
+            blendMode: "multiply",     // 使用不同的混合模式
+            seed: 5,
+            colorMatrix: `
+                0 0 0 0 0.5
+                0 0 0 0 0.45
+                0 0 0 0 0.47
+                0 0 0 0.7 0
+            `                          // 调整颜色矩阵以改变噪点的外观
+        });
+
+
+
         
         defs.appendChild(filter1);
         defs.appendChild(filter2);
+        defs.appendChild(filter3);
+        defs.appendChild(filter4);
+        defs.appendChild(filter5);
         svg.appendChild(defs);
         container.appendChild(svg);
     }

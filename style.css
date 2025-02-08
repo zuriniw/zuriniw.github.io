@@ -253,6 +253,7 @@ button:hover {
     position: relative;
     overflow: hidden;
     filter: url(#noiseFilter2);
+    
 }
 
 .card-image-container::before {
@@ -428,7 +429,7 @@ button:hover {
 /* 卡片图片链接样式 */
 .card-image-link:hover img {
     opacity: 0.9;
-    filter: saturate(0.95) brightness(1.02) !important;
+    filter: saturate(1.02) brightness(1.02) !important;
 }
 
 /* 当卡片被淡出且图片被悬停时的样式 */
@@ -1376,6 +1377,7 @@ body.project-page {
         position: relative;
         overflow: hidden;
         background: var(--color-background);
+        animation: noiseAnim 0.5s steps(4) infinite;
     }
 
     .player-left.drag-over {
@@ -1747,13 +1749,10 @@ body.project-page {
         border-bottom-width: 1px;
     }
 
-    .matrix-caption a,
-    .intro a {
-        font-family: "Roboto Mono", monospace !important;
-        -webkit-font-feature-settings: "liga" 0;
-        font-feature-settings: "liga" 0;
-        font-variant-emoji: none;  /* 防止符号转换为emoji */
-        -webkit-font-variant-emoji: none;
+    .matrix-caption ,
+    .intro {
+        position: relative;
+        top: 90px;
     }
 
     /* 调整主容器布局 */
@@ -1841,7 +1840,7 @@ body.project-page {
         pointer-events: none;
         transform: translate(-50%, -50%);
         z-index: 1000;
-        border: 1.6px solid var(--color-red);
+        border: 1.4px solid var(--color-red);
         background-color: #c5c5c587;
     }
 
@@ -1892,20 +1891,28 @@ body.project-page {
         margin: 0 auto;
         margin-top: 20px;
         padding: 0 0px;
+        position: relative;
+        top: -90px;
     }
 
     .player-container {
         width: 100%;
-        display: flex;
-        align-items: stretch;  /* 确保左右两边高度一致 */
+        display: grid;  /* 改用grid布局 */
+        grid-template-columns: 1fr 1fr;  /* 等宽两列 */
+        gap: 0;  /* 移除间隙 */
     }
 
     .player-left, 
     .player-right {
         height: 80px;
         border: 1.6px solid var(--color-text);
-        flex: 1;  /* 平均分配宽度 */
+        width: 100%;  /* 确保宽度填满grid单元格 */
     }
+    
+    .noise-effect {
+        animation: noiseAnim 2s infinite linear;
+    }
+    
 
     .player-left::after {
         content: " - Drag a point here - ";
@@ -1972,4 +1979,12 @@ body.project-page {
     font-family: "Roboto Mono" !important;
     -webkit-font-feature-settings: "liga" 0;
     font-feature-settings: "liga" 0;
+}
+
+@keyframes noiseAnim {
+    0% { filter: url(#noiseFilter2); }
+    25% { filter: url(#noiseFilter3); }
+    50% { filter: url(#noiseFilter4); }
+    75% { filter: url(#noiseFilter5); }
+    100% { filter: url(#noiseFilter3); }
 }

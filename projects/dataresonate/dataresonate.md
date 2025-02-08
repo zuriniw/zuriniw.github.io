@@ -2,19 +2,16 @@
 During my 2023 Fall internship at an institute, I worked on urban data storytelling. I discovered that current urban data representation methods lack a human-centric focus, making it difficult for individuals with less data literacy to participate in public data discussions. This hampers both inclusive data discussions and humane decision-making.
 
 ### Interview
-I did some interview on what are the specific challenges in data comprehension among participants from diverse backgrounds. Here are some of the answers:
+I conducted interviews to identify key challenges in data comprehension among individuals from diverse backgrounds. The responses highlighted three main areas of difficulty:  
 
-**1. Challenge on Engaging in Discussions**  
-> "Talking in these discussions is tough for me. The data often feels too complex, leaving me unsure about how to ask questions or share my thoughts."  
-> ———— Mr. Hua, 64Y
+**1. Barriers to Participating in Data Discussions**  
+The complexity of data can create uncertainty about how to engage in discussions, making it difficult for individuals to formulate questions or contribute their perspectives. This suggests a need for more intuitive ways to navigate and interpret data in collaborative settings.  
 
-**2. Challenge on Understanding Data Correlations**  
-> "I feel hard relating data to its real-world impact on our lives and safety. The data feels remote."  
-> ———— Ms. Lee, 25Y
+**2. Difficulty in Recognizing Real-World Implications**  
+Many participants found it challenging to connect data with its tangible impact, particularly in areas like safety and daily life. When data appears abstract or detached from lived experiences, it becomes harder to contextualize its relevance and inform decision-making.  
 
-**3. Challenge on Grasping the Link Between Data and City Life**  
-> "Understanding the links between different data sets is challenging. I need something that makes the data's stories clearer."  
-> ———— Ms. Tang, 42Y
+**3. Challenges in Understanding Data Relationships**  
+Interpreting the connections between different datasets emerged as a significant hurdle. Without clear frameworks or visual representations, identifying patterns and drawing meaningful insights remains difficult. This points to the importance of making data narratives more accessible and interpretable.
 
 I also studied various data representation methods(including vocalization, visualization, and annotation) to capture their strengths for potential enhancements to the data representations in public discussions. These methods indicate strong potential to bolster public discourse by making data more accessible, relatable, and comprehensible.
 
@@ -42,6 +39,8 @@ How might we improve the understanding and empathy with urban data in public dis
 The Probability Density Distribution Map of fire incidents in Fengdong City, Shanxi, China, from 2017-2019, was chosen as the data source for this exploratory design.
 
 ![roadmap.png](roadmap.png)
+
+
 After quickly designing and developing a low-fi prototype with Unity MRTK2 and Arduino, I initiated with a proof of concept test of the idea, which substantiated Responsive Interaction as the most impactful part. This led me to concentrate on its further test and refinement with more modalities.
 
 

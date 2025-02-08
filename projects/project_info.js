@@ -117,7 +117,7 @@ const projects = [
     }),
     new Project({
         name: "shapeshift",
-        title: "Shapeshift Playground",
+        title: "Shape -shift Playground",
         subtitle: "Node-based drawing tool development",
         labels: ["Bits"],
         time: "2024",
@@ -153,7 +153,7 @@ const projects = [
     }),
     new Project({
         name: "aurora",
-        title: "Holo-Design2Fabr",
+        title: "Holo- Design2Fabr",
         subtitle: "A case study of the full-scale building：AURORA",
         labels: ["XR", "Spatial"],
         time: "2021",
@@ -187,7 +187,7 @@ const projects = [
     }),
     new Project({
         name: "gazeknitting",
-        title: "Gaze-Knitting",
+        title: "Gaze Knitting",
         subtitle: "Gaze visualization in non-streamlined reading",
         labels: ["Embodied", "Bits"],
         time: "2024",
@@ -288,7 +288,7 @@ const projects = [
     }),
     new Project({
         name: "mrintdesign",
-        title: "Mixed Interior Design",
+        title: "Mixed Interior",
         subtitle: "MR-aided participatory design experiment",
         labels: ["XR", "Spatial"],
         time: "2021",
@@ -317,7 +317,7 @@ const projects = [
     }),
     new Project({
         name: "wastemachine",
-        title: "WasteMachine",
+        title: "Waste Machine",
         subtitle: "Build scanner from abandoned DVD drivers",
         labels: ["Bits"],
         time: "2024",
@@ -335,7 +335,7 @@ const projects = [
     }),
     new Project({
         name: "dataresonate",
-        title: "DataResonate",
+        title: "Data Resonate",
         subtitle: "A immersive data discussion toolkit for public urban discourse",
         labels: ["Embodied", "XR"],
         time: "2023",
