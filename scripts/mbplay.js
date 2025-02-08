@@ -9,11 +9,37 @@ export function initMobilePlayer() {
     let draggedPoint = null;
     let dragStartTime = 0;
     const LONG_PRESS_DURATION = 200;  // 长按触发时间
+    let dragIndicator = null;  // 添加拖拽指示器变量
 
     points.forEach(point => {
         let startX, startY;
         let isDragging = false;
         let longPressTimer;
+
+        // 创建拖拽指示器
+        function createDragIndicator(x, y) {
+            dragIndicator = document.createElement('div');
+            dragIndicator.className = 'drag-indicator';
+            dragIndicator.style.left = `${x}px`;
+            dragIndicator.style.top = `${y}px`;
+            document.body.appendChild(dragIndicator);
+        }
+
+        // 更新拖拽指示器位置
+        function updateDragIndicator(x, y) {
+            if (dragIndicator) {
+                dragIndicator.style.left = `${x}px`;
+                dragIndicator.style.top = `${y}px`;
+            }
+        }
+
+        // 移除拖拽指示器
+        function removeDragIndicator() {
+            if (dragIndicator) {
+                dragIndicator.remove();
+                dragIndicator = null;
+            }
+        }
 
         point.addEventListener('touchstart', (e) => {
             console.log('触摸开始');
@@ -28,6 +54,9 @@ export function initMobilePlayer() {
                 isDragging = true;
                 draggedPoint = point;
                 point.classList.add('dragging');
+                
+                // 创建拖拽指示器
+                createDragIndicator(e.touches[0].clientX, e.touches[0].clientY);
                 
                 // 触发震动反馈
                 if (window.navigator && window.navigator.vibrate) {
@@ -46,6 +75,9 @@ export function initMobilePlayer() {
                 }
                 return;
             }
+
+            // 更新拖拽指示器位置
+            updateDragIndicator(e.touches[0].clientX, e.touches[0].clientY);
 
             const touch = e.touches[0];
             const playerRect = playerLeft.getBoundingClientRect();
@@ -102,11 +134,9 @@ export function initMobilePlayer() {
                 draggedPoint = null;
                 point.classList.remove('dragging');
                 playerLeft.classList.remove('drag-over');
-                const preview = playerLeft.querySelector('.player-preview');
-                // if (preview) {
-                //     preview.classList.remove('show');
-                //     setTimeout(() => preview.remove(), 200);
-                // }
+                
+                // 移除拖拽指示器
+                removeDragIndicator();
             }
         };
 
