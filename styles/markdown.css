@@ -447,7 +447,7 @@
     
     .markdown-content a {
         color: var(--color-text);
-        font-family: "Roboto Mono", monospace;
+        font-family: "Roboto Mono", monospace!important;
         letter-spacing: -0.05em;
         opacity: 0.5;
         font-style: italic;

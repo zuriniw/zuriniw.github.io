@@ -1800,13 +1800,21 @@ body.project-page {
         margin-left: 5%!important;
         padding-left: 5%!important;
     }
+
+
+
+    .project-section{
+        width: 100%;
+    }
     .meta-text,
     .meta-label {
         line-height: 1.0;
+        font-size: 12px !important;
     }
     .project-context {
         font-size: 12px;
         line-height: 1.2;
+        margin: 0px!important;
     }
     .project-subtitle {
         font-size: 16px;
