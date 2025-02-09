@@ -277,8 +277,9 @@
 /* 添加媒体查询以确保在小屏幕上的响应式布局 */
 @media screen and (max-width: 880px) {  /* 840px + 左右padding 40px */
     .markdown-content {
-        width: 100%;
+        width: 150%;
         padding: 80px 20px;
+        
     }    
     /* 内容缩进样式 */
     .markdown-content h2,
