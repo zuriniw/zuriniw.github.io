@@ -77,6 +77,7 @@
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
     font-weight: 600;
+    letter-spacing: -2px;
 }
 
 /* 页脚包装器样式 */

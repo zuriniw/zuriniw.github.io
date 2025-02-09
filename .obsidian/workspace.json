@@ -1,0 +1,181 @@
+{
+  "main": {
+    "id": "c191fac47d40e238",
+    "type": "split",
+    "children": [
+      {
+        "id": "2362c56e72a689c6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5b4a0f4ae0bef117",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "projects/bodymusic/bodymusic.gif"
+              },
+              "icon": "lucide-image",
+              "title": "bodymusic"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "cce9d3fbf61cbd80",
+    "type": "split",
+    "children": [
+      {
+        "id": "53bc39670ea10811",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f4a0011324433169",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "41a1455949c9c6c7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "796ca465b0151db4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "c4b07c5f65234c5b",
+    "type": "split",
+    "children": [
+      {
+        "id": "859ad0d651987ea8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3bb1328df69098fa",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "projects/bodymusic/bodymusic.gif",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for bodymusic"
+            }
+          },
+          {
+            "id": "61821c71c17b4a35",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "projects/bodymusic/bodymusic.gif",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from bodymusic"
+            }
+          },
+          {
+            "id": "ea5963657348ac4d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "294144f2f7f4619d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "projects/bodymusic/bodymusic.gif",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of bodymusic"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "f4a0011324433169",
+  "lastOpenFiles": [
+    "images/way.png",
+    "images/point.svg",
+    "images/kitten.png",
+    "images/footprint.svg",
+    "images/cross.svg",
+    "images/closedhand.svg",
+    "images/arrow.svg",
+    "data/fakecv.png",
+    "blogs/firstpost/firstpost.md"
+  ]
+}

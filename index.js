@@ -1080,27 +1080,19 @@ document.addEventListener('DOMContentLoaded', () => {
     initFixedFilter();
 });
 
-// 添加震动反馈功能到切换按钮
+// 切换按钮
 function addVibrationToSwitchButton() {
     const switchButton = document.querySelector('.switch-view');
-    if (!switchButton) return;
-
-    
-
-    // 保存原始的点击处理函数
+    if (!switchButton) return; 
     const originalClick = switchButton.onclick;
-
-    // 添加新的点击处理函数
     switchButton.onclick = (e) => {
-
-        // 执行原有的点击处理
         if (originalClick) {
             originalClick.call(switchButton, e);
         }
     };
 }
 
-// 在页面加载完成时初始化震动功能
+// 在页面加载完成时初始化
 document.addEventListener('DOMContentLoaded', () => {
     addVibrationToSwitchButton();
 });

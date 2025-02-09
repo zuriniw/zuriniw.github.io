@@ -168,7 +168,6 @@
     line-height: 1.6;
     margin-left: 8px;
     font-weight: 360;
-    opacity: 0.9;
 }
 
 /* 调整项目符号的位置 */
@@ -187,7 +186,6 @@
     line-height: 1.6;
     margin-left: 8px;
     font-weight: 360;
-    opacity: 0.9;
 }
 
 .markdown-content a {

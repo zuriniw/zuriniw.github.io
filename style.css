@@ -1142,7 +1142,7 @@ body.project-page {
 
 /* X轴标注样式 */
 .x-label {
-    top: 49%;
+    top: 47%;
     transform: translateY(-50%);
 }
 
@@ -1156,6 +1156,7 @@ body.project-page {
 
 /* Y轴标注样式 */
 .y-label {
+    left: 51.5%;  /* 对齐y轴 */
     position: absolute;
     transform-origin: left center;
     transform: rotate(90deg);
@@ -1163,12 +1164,10 @@ body.project-page {
 }
 
 .y-label.top {
-    left: 51%;  /* 对齐y轴 */
     top: -2px;   /* 靠近顶部 */
 }
 
 .y-label.bottom {
-    left: 51%;  /* 对齐y轴 */
     bottom: 52px;  /* 调整位置，避免超出matrix */
 }
 
@@ -1462,7 +1461,7 @@ body.project-page {
         line-height: 1.1 !important;
     }
     .matrix-caption {
-        font-size: 18px !important;
+        font-size: 24px !important;
         padding: 0 !important;
         line-height: 1.1 !important;
         margin-top: 16px;
@@ -1473,7 +1472,7 @@ body.project-page {
         font-weight: 400 !important;
     }
     .intro {
-        margin-top: 1px;
+        margin-top: 0px;
     }
 
     /* 确保所有主要容器都居中 */
