@@ -11,12 +11,14 @@
             "id": "5b4a0f4ae0bef117",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "projects/bodymusic/bodymusic.gif"
+                "file": "projects/aurora/aurora.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "bodymusic"
+              "icon": "lucide-file",
+              "title": "aurora"
             }
           }
         ]
@@ -42,7 +44,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "文件列表"
             }
           },
           {
@@ -158,16 +160,19 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "f4a0011324433169",
+  "active": "5b4a0f4ae0bef117",
   "lastOpenFiles": [
+    "projects/gazeknitting/gazeknitting.gif",
+    "projects/aurora/aurora.md",
+    "projects/bodymusic/bodymusic.gif",
     "images/way.png",
     "images/point.svg",
     "images/kitten.png",

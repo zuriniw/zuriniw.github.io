@@ -568,7 +568,7 @@ button:hover {
     border: 1.2px solid var(--color-text);  /* 添加边框 */
     border-radius: 50%;  /* 保持圆形 */
     background-color: var(--color-background);  /* 使用背景色，让内部透明 */
-    transition: all 0.1s ease;
+    transition: all 0.2s ease;
 }
 
 /* 当点被淡出时的样式 */
@@ -579,11 +579,10 @@ button:hover {
 
 /* 可以添加悬停效果 */
 .point-wrapper:hover .project-point {
-    transform: scale(1.2);  /* 悬停时放大 */
-    background-color: var(--color-text);  /* 悬停时填充 */
-    filter: blur(8px);
-    opacity: 0.8;
-    border: 1.2px solid var(--color-text);  /* 添加边框 */
+    transform: scale(1.8);  /* 悬停时放大 */
+    /* filter: blur(8px); */
+    opacity: 0.6;
+    border: 1px solid var(--color-text);  /* 添加边框 */
 }
 
 /* 点标签悬停效果 */
@@ -764,22 +763,23 @@ button:hover {
 
 /* 项目链接样式 */
 .meta-link {
-    color: var(--color-text);
+    background-color: var(--color-text);
+    color: var(--color-white);
     text-decoration: none;
     transition: color 0.1s ease;
-    color: var(--color-text);
     padding: 2px 10px;
     border-radius: 0px;
     transition: all 0.1s ease;
     font-size: 14px;
-    border: 1.2px solid var(--color-text);
+    border: 1.5px solid var(--color-text);
     margin-bottom: 20px;
+    letter-spacing: -0.4px;
 }
 
 .meta-link:hover {
-    background-color: var(--color-text);
-    color: var(--color-white);
-    border: 1.2px solid var(--color-text);
+    color: var(--color-text);
+    background-color: var(--color-white);
+    border: 1.5px solid var(--color-text);
     margin-bottom: 20px;
 }
 
@@ -1055,7 +1055,7 @@ body.project-page {
     margin-top: 32px;
     font-family: "Roboto Mono", monospace;
     font-style: italic;
-    font-size: 18px;
+    font-size: 24px;
     color: var(--color-text);
     font-weight: 550;
 }
@@ -1130,6 +1130,8 @@ body.project-page {
     transition: all 0.05s ease;
 }
 
+
+
 /* 轴标注基础样式 */
 .axis-label {
     position: absolute;
@@ -1137,12 +1139,12 @@ body.project-page {
     font-style: italic;
     font-size: 10px;
     color: var(--color-text);
-    font-weight: 700 !important;  /* 增加字重 */
+    font-weight: 800 !important;  /* 增加字重 */
 }
 
 /* X轴标注样式 */
 .x-label {
-    top: 47%;
+    top: 49%!important;
     transform: translateY(-50%);
 }
 
@@ -1156,7 +1158,6 @@ body.project-page {
 
 /* Y轴标注样式 */
 .y-label {
-    left: 51.5%;  /* 对齐y轴 */
     position: absolute;
     transform-origin: left center;
     transform: rotate(90deg);
@@ -1164,18 +1165,23 @@ body.project-page {
 }
 
 .y-label.top {
+    left: 51%!important;  /* 对齐y轴 */
     top: -2px;   /* 靠近顶部 */
 }
 
 .y-label.bottom {
+    left: 51%!important;  /* 对齐y轴 */
     bottom: 52px;  /* 调整位置，避免超出matrix */
 }
+
+
+
 
 /* 延伸线样式 */
 .extension-line {
     position: absolute;
     background-color: var(--color-text);
-    opacity: 0.45;
+    opacity: 0;
     pointer-events: none;
     z-index: 1;
 }
@@ -1461,9 +1467,9 @@ body.project-page {
         line-height: 1.1 !important;
     }
     .matrix-caption {
-        font-size: 24px !important;
-        padding: 0 !important;
-        line-height: 1.1 !important;
+        font-size: 18px !important;
+        padding: 1px !important;
+        line-height: 1.2 !important;
         margin-top: 16px;
     }
     .point-label {
