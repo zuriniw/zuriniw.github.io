@@ -953,10 +953,9 @@ button:hover {
     display: flex;
     gap: 8px;
     align-items: baseline;
-    font-family: "Roboto Mono", monospace;
+    font-family: "Roboto Mono", monospace!important;
     padding: 16px;
     padding-right: 64px;  /* 增加右侧内边距，为星号留出更多空间 */
-    border: 1.2px solid var(--color-text);
     transition: all 0.1s ease;
     position: relative;  /* 为星号定位 */
 }
@@ -979,22 +978,26 @@ button:hover {
 .news-time {
     min-width: 80px;
     color: var(--color-text);
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    padding-top: 8px;
     font-family: "GeistMono", monospace;
 }
 
 .news-event {
-    font-size: 16px;
+    font-size: 13px;
     color: var(--color-text);
+    font-family: "Roboto Mono", monospace!important;
     text-decoration: none;
     transition: color 0.3s ease;
-    letter-spacing: 0.6px;
     margin-right: 32px;  /* 增加事件文本右侧的间距 */
-    line-height: 1.6;
+    line-height: 1.2;
 }
 
 .news-link {
     border-bottom: 1.2px solid transparent;
+    font-family: "Roboto Mono", monospace!important;
+    border-bottom: 1.2px solid var(--color-text);
     text-decoration: none;
     color: var(--color-text);
     transition: all 0.1s ease;
@@ -1273,7 +1276,7 @@ body.project-page {
     padding: 12px 6px;
     position: relative;
     text-decoration: none;
-    border: 1.2px solid var(--color-text);
+    border-bottom: 1.4px solid var(--color-text);
 }
 
 
