@@ -644,6 +644,18 @@ button:hover {
     object-fit: cover;
     display: block;
 }
+/* 增加 Safari 专用 CSS 修复 */
+.point-preview {
+    /* 新增修复属性 */
+    transform: translate3d(0, 0, 0);  /* 启用 GPU 加速 */
+    backface-visibility: hidden;      /* 修复渲染残留 */
+    will-change: transform, opacity;  /* 提示浏览器优化 */
+}
+
+/* 添加过渡效果增强平滑性 */
+.point-preview {
+    transition: opacity 0.15s linear;
+}
 
 /* 预览标题样式 */
 .preview-title {
@@ -860,13 +872,25 @@ button:hover {
 }
 
 .project-context {
-    font-family: "Roboto Mono", monospace;
+    font-family: "Barlow", sans-serif;
     font-size: 16px;
     color: var(--color-text);
-    line-height:1.6;  /* 增加行间距 */
-    letter-spacing: -0.2px;
-    font-weight: 350;
+    line-height:1.2;  /* 增加行间距 */
+    letter-spacing: 0.9px;
+    font-weight: 400;
+    width: 320px;
+    margin-left: 320px;
+    margin-top: 100px;
+    text-align: justify;
 }
+.project-context::before {
+    content: '“';
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+}
+
 
 /* 点包装器链接样式 */
 .point-wrapper a {
@@ -1043,7 +1067,7 @@ body.project-page {
 
 /* 项目内容区域样式 */
 .project-section {
-    max-width: 760px;
+    max-width: 680px;
     margin: 0 auto;
     padding: 0 20px;
     position: relative;
@@ -1210,76 +1234,66 @@ body.project-page {
 
 /* 博客部分样式 */
 .blogs-section {
-    max-width: 860px;
-    margin: 120px auto 0;
+    max-width: 760px;
+    margin: 40px auto;
     padding: 0 20px;
 }
 
-/* 博客容器样式 */
+/* 博客列容器 */
 .blogs-container {
-    border: 1.2px solid var(--color-text);
-    margin-left: 1.2px;
-    max-width: 860px;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 250px;
+}
+
+/* 博客列样式 */
+.blog-column {
+    width: 220px;  /* 固定宽度 */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;  /* 为箭头定位提供参考 */
+}
+
+/* 列标题样式 */
+.blog-column h2 {
+    font-family: "Roboto Mono", monospace;
+    font-size: 18px;
+    font-weight: 650;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;  /* 为箭头定位提供参考 */
 }
 
 .blog-item {
-    text-decoration: none;
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    padding: 16px 30px;
-    border-bottom: 1.2px solid var(--color-border);
+    gap: 12px;
+    padding: 12px 6px;
     position: relative;
-    transition: background-color 0.05s ease;
-    cursor: pointer;
-    z-index: 1;  /* 确保每个项目都有自己的层叠上下文 */
+    text-decoration: none;
+    border: 1.2px solid var(--color-text);
 }
 
-/* 移除最后一个项目的底部边框 */
-.blog-item:last-child {
-    border-bottom: none;
-}
-
-/* 当悬停在博客项目上时，背景变浅灰色 */
-.blog-item:hover {
-    background-color: var(--color-light-grey);
-    z-index: 2;  /* 悬停时提升层级 */
-}
-
-.blog-time,
-.blog-list-content {
-    pointer-events: none;  /* 防止子元素干扰事件 */
-}
 
 .blog-time {
-    min-width: 100px;
+    min-width: 60px;
     color: var(--color-text);
-    font-size: 14px;
-    font-family: "GeistMono", monospace;
-    padding-top: 6px;
+    font-size: 12px;
+    font-family:"Roboto Mono", monospace;
+    font-weight: 600;
+}
+.blog-title {
+    min-width: 60px;
+    color: var(--color-text);
+    font-size: 12px;
+    font-family:"Roboto Mono", monospace;
 }
 
-.blog-list-content {
-    font-size: 16px;
-    color: var(--color-text);
-    letter-spacing: 0.6px;
-    margin-right: 48px;
-    line-height: 1.6;
-    padding-top: 0;
-    text-align: left;
-}
 
-.blog-link {
-    border-bottom: 1.2px solid transparent;
-    text-decoration: none;
-    color: var(--color-text);
-}
 
-.blog-link:hover {
-    text-decoration: none;
-    color: var(--color-text);
-}
+
 
 /* 博客文章页面样式 */
 .blog-post .blog-title {  /* 只在博客文章页面应用居中样式 */
@@ -1880,6 +1894,54 @@ body.project-page {
         transition: none;  /* 移除过渡效果 */
     }
 
+    /* 博客容器改为竖向排列 */
+    .blogs-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin-top: 400px;
+    }
+
+    /* 每个类型列占满宽度 */
+    .blog-column {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    /* 类型标题样式 */
+    .blog-column h2 {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1.2px solid var(--color-text);
+    }
+
+    /* 博客条目样式调整 */
+    .blog-item {
+        padding: 12px 0;
+        gap: 16px;
+    }
+
+    /* 时间标签宽度调整 */
+    .blog-time {
+        min-width: 80px;
+        font-size: 12px;
+    }
+
+    /* 内容样式调整 */
+    .blog-title {
+        font-size: 12px;
+        line-height: 1.2;
+        margin-right: 24px;
+    }
+
+    /* 星标位置调整 */
+    .blog-item.starred::after {
+        right: 0;
+        font-size: 14px;
+    }
+
 }
 
 /* Player 基础样式 */
@@ -1992,4 +2054,18 @@ body.project-page {
     50% { filter: url(#noiseFilter4); }
     75% { filter: url(#noiseFilter5); }
     100% { filter: url(#noiseFilter3); }
+}
+
+/* 添加箭头样式 */
+.column-arrow {
+    position: absolute;
+    top: -24px;  /* 调整箭头位置 */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    color: var(--color-text);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;  /* 确保不影响鼠标事件 */
 }

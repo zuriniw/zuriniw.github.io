@@ -1,3 +1,6 @@
+// 博客类型列表
+const BLOG_TYPES = ['Aca', 'Tech', 'Random'];
+
 // 博客类定义
 class BlogPost {
     constructor({
@@ -6,7 +9,8 @@ class BlogPost {
         isstar = false,
         link = null,
         name,
-        title
+        title,
+        type = 2  // 默认为Random的索引值
     }) {
         this.time = time;
         this.content = content;
@@ -14,6 +18,7 @@ class BlogPost {
         this.link = link;
         this.name = name;
         this.title = title;
+        this.type = type;    // 存储类型的索引值
     }
 
     // 新增方法：获取博客的markdown内容
@@ -41,12 +46,13 @@ function parseTime(timeStr) {
 // 博客数据
 const blogPosts = [
     new BlogPost({
-        time: "2025.02.04",
+        time: "25.02.04",
         content: "<About this site, and my Statement of Interest>",
-        title: "A Dump/Matrix/Map",
-        name: "firstpost"
+        title: "Dump/Matrix/Map",
+        name: "firstpost",
+        type: 0    // Aca的索引值
     }),
 ];
 
-// 导出博客数据
-export { blogPosts, BlogPost };
+// 导出博客数据和类型列表
+export { blogPosts, BlogPost, BLOG_TYPES };

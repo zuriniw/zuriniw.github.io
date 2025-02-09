@@ -931,21 +931,15 @@ function createProjectPoints() {
             pointWrapper.extensionLines = [horizontalLine, verticalLine];
         });
 
+        // 修改后的 mouseleave 事件处理（增加强制重绘逻辑）
         pointWrapper.addEventListener('mouseleave', () => {
-            const preview = document.querySelector('.point-preview');
-            if (preview) {
-                preview.remove();
-            }
-            
-            // 移除延伸线
-            if (pointWrapper.extensionLines) {
-                pointWrapper.extensionLines.forEach(line => line.remove());
-                pointWrapper.extensionLines = null;
-            }
+            clearAllPreviews();
         });
-        
+                
         container.appendChild(pointWrapper);
     });
+
+        
 
     // 初始化移动端播放器
     initMobilePlayer();
@@ -1095,4 +1089,32 @@ function addVibrationToSwitchButton() {
 // 在页面加载完成时初始化
 document.addEventListener('DOMContentLoaded', () => {
     addVibrationToSwitchButton();
+});
+
+// 在文件开头添加全局函数
+function clearAllPreviews() {
+    const preview = document.querySelector('.point-preview');
+    if (preview) {
+        preview.remove();
+    }
+    // 清除所有延伸线
+    const extensionLines = document.querySelectorAll('.extension-line');
+    extensionLines.forEach(line => line.remove());
+}
+
+// 添加页面可见性变化监听
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+        clearAllPreviews();
+    }
+});
+
+// 添加鼠标移出容器的监听
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.coordinate-container');
+    if (container) {
+        container.addEventListener('mouseleave', () => {
+            clearAllPreviews();
+        });
+    }
 });
