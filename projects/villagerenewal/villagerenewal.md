@@ -127,14 +127,6 @@ Research at the micro-scale primarily involves on-site investigations, interview
 
 
 
-## Posters
-
-
-<embed src="poster.pdf#toolbar=0" width="100%" height=800px style="border: black 1.3px solid; padding: 20px auto; margin: 20px auto; display: block; padding-bottom: 0px; margin-top: 0px;"></embed>
-
-<p style="text-align: center; padding-top: 4px; padding-bottom: 200px; color: #666; font-style: italic; font-size: 12px;">Scroll vertically to view the slides for presentation</p>
-
-
 ## Postcards
 ![photo](photo.png)
 
