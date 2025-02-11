@@ -141,6 +141,7 @@ const projects = [
         time: "2024",
         ispage: true,
         isteam: false,
+        ismarkdown: true,
         tutor: "Hui Luo",
         myContribution: "Ethnographic surveys, Designing, Drawing",
         tools: "Rhino, Adobe Suite, AutoCAD",

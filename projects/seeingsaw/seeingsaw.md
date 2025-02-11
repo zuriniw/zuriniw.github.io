@@ -31,6 +31,8 @@ Bill of Materials:
 
 ![Bill of Materials](https://static.wixstatic.com/media/6a062f_f56effa23c9f4e9d91483c4a55e5bc24~mv2.png/v1/fill/w_1338,h_638,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/1.png)
 
+
+
 Key Adjustments:
 - Instead of a solenoid, we opted for a **microservo** to maintain a minimalist setup.
 - Considered a **three-axis accelerometer** but chose a **ball tilt sensor** for simplicity and availability.

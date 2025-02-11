@@ -4,12 +4,12 @@ Guided by cybernetic theory, first proposed by Norbert Wiener in 1948, our team 
 ### Initial Setup
 
 <figure>
-  <img src="https://static.wixstatic.com/media/6a062f_edead58bd26e43619ce89b13d6649937~mv2.jpg/v1/fill/w_1502,h_1256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/image_edited.jpg" alt="Cybernetic Rule">
+  <img src="pipeline.png">
   <figcaption>Figure 1: The constant mutual influence, change, and adaptation of people and the built environment lead to co-evolution for both parties.</figcaption>
 </figure>
 
 <figure>
-  <img src="https://static.wixstatic.com/media/6a062f_0032a9a1c0414472be0aeb8c8ea40a5c~mv2.jpg/v1/fill/w_1286,h_1164,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/image_edited.jpg" alt="Initial Setup">
+  <img src="initial.png">
   <figcaption>Figure 2: Initial setup of the experiment.</figcaption>
 </figure>
 
@@ -20,14 +20,14 @@ Guided by cybernetic theory, first proposed by Norbert Wiener in 1948, our team 
 - **vector 1**: The unit vector of the line of sight.
 
 <figure>
-  <img src="https://static.wixstatic.com/media/6a062f_be499ddec77d45adae4e95babe8dba66~mv2.png/v1/fill/w_1802,h_1246,al_c,q_95,usm_0.66_1.00_0.01,enc_avif,quality_auto/Snipaste_2025-01-21_21-50-43.png" alt="Quantifying Visual Attention">
+  <img src="visual.png">
   <figcaption>Figure 3: Diagram illustrating the quantification of visual attention.</figcaption>
 </figure>
 
 ### Iteration in XY-Plane: Quantifying Body Preference
 
 <figure>
-  <img src="https://static.wixstatic.com/media/6a062f_22dd45f8231b41ad9623c2282bc71fac~mv2.png/v1/fill/w_1616,h_1326,al_c,q_95,usm_0.66_1.00_0.01,enc_avif,quality_auto/6a062f_22dd45f8231b41ad9623c2282bc71fac~mv2.png" alt="Quantifying Body Preference">
+  <img src="body.png">
   <figcaption>Figure 4: Diagram illustrating the quantification of body preference.</figcaption>
 </figure>
 

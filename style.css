@@ -876,12 +876,13 @@ button:hover {
     font-size: 16px;
     color: var(--color-text);
     line-height:1.2;  /* 增加行间距 */
+    font-style: italic;
     letter-spacing: 0.9px;
     font-weight: 400;
-    width: 320px;
-    margin-left: 320px;
+    width: 40%;
+    margin-left: 360px;
     margin-top: 100px;
-    text-align: justify;
+    text-align: left;
 }
 .project-context::before {
     content: '“';
@@ -1815,6 +1816,7 @@ body.project-page {
         font-size: 12px;
         line-height: 1.2;
         margin: 0px!important;
+        font-style: italic;
     }
     .project-subtitle {
         font-size: 16px;

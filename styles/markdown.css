@@ -118,13 +118,13 @@
 
 .markdown-content p {
     margin: 24px 0;
-    letter-spacing: 0.1px;
+    letter-spacing: 0.4px;
     font-family: "Barlow", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 360;
     line-height: 1.2;
     margin-left: -36px;
-    opacity: 0.9;
+    opacity: 0.96;
 }
 
 /* 段落后的代码块减少顶部边距 */
@@ -165,7 +165,7 @@
     margin: 12px 0;
     padding-left: 40px;
     font-family: "Barlow", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.2;
     margin-left: 8px;
     font-weight: 360;
@@ -183,7 +183,7 @@
     margin: 4px 0;
     padding-left: 4px;
     font-family: "Barlow", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.2;
     margin-left: 8px;
     font-weight: 360;
@@ -195,7 +195,7 @@
     border-bottom: 1.2px solid var(--color-text);
     transition: color 0.3s ease;
     font-weight: 360;
-    opacity: 0.9;
+    opacity: 0.96;
 }
 
 .markdown-content a:hover {
@@ -372,13 +372,13 @@
     
     .markdown-content p {
         margin: 24px 0;
-        letter-spacing: 0.6px;
+        letter-spacing: 0.4px;
         font-family: "Barlow", sans-serif;
-        font-size: 14.5px;
+        font-size: 13px;
         font-weight: 360;
-        line-height: 1.2;
+        line-height: 1.5;
         margin-left: -36px;
-        opacity: 0.9;
+        opacity: 0.96;
     }
     
     /* 段落后的代码块减少顶部边距 */
@@ -419,12 +419,13 @@
         margin: 0px 0;
         padding-left: 10px;
         padding-right: 10px;
+        letter-spacing: 0.4px;
         font-family: "Barlow", sans-serif;
-        font-size: 14.5px;
-        line-height: 1.2;
-        margin-left: 4px;
+        font-size: 13px;
         font-weight: 360;
-        opacity: 0.9;
+        line-height: 1.5;
+        margin-left: 4px;
+        opacity: 0.96;
     }
     
     /* 调整项目符号的位置 */
@@ -438,12 +439,14 @@
     .markdown-content li {
         margin: 4px 0;
         padding-left: 4px;
-        font-family: "Barlow", sans-serif;
-        font-size: 14.5px;
-        line-height: 1.2;
         margin-left: 8px;
+        letter-spacing: 0.4px;
+        font-family: "Barlow", sans-serif;
+        font-size: 13px;
         font-weight: 360;
-        opacity: 0.9;
+        line-height: 1.5;
+        margin-left: 4px;
+        opacity: 0.96;
     }
     
     .markdown-content a {
@@ -456,7 +459,7 @@
         border-bottom: 1.2px solid var(--color-text);
         transition: color 0.3s ease;
         font-weight: 360;
-        opacity: 0.9;
+        opacity: 0.96;
     }
     
     .markdown-content a:hover {
@@ -465,7 +468,7 @@
     }
 
     .markdown-content code {
-        font-size: 12px;
+        font-size: 1px;
         padding: 0.2px 0.3px;
         letter-spacing: 0px;
     }
@@ -489,7 +492,7 @@
         font-family: "Barlow", sans-serif;
         font-size: 11px;
         font-weight: 360;
-        opacity: 0.9;
+        opacity: 0.96;
     }
     
     /* 确保 figure 容器也居中 */
@@ -545,18 +548,18 @@
 
     .markdown-content p {
         font-weight: 360;
-        opacity: 0.9;
+        opacity: 0.96;
     }
 
     .markdown-content ul,
     .markdown-content ol {
         font-weight: 360;
-        opacity: 0.9;
+        opacity: 0.96;
     }
 
     .markdown-content li {
         font-weight: 360;
-        opacity: 0.9;
+        opacity: 0.96;
     }
 
     .markdown-content figcaption {

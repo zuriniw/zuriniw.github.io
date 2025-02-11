@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "2362c56e72a689c6",
+        "id": "53a8215a2ad7e2e4",
         "type": "tabs",
         "children": [
           {
-            "id": "5b4a0f4ae0bef117",
+            "id": "8e4d20f81c3586ec",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "projects/aurora/aurora.md",
+                "file": "projects/villagerenewal/villagerenewal.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "aurora"
+              "title": "villagerenewal"
             }
           }
         ]
@@ -61,7 +61,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Search"
+              "title": "搜索"
             }
           },
           {
@@ -168,19 +168,27 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "5b4a0f4ae0bef117",
+  "active": "8e4d20f81c3586ec",
   "lastOpenFiles": [
-    "projects/gazeknitting/gazeknitting.gif",
+    "projects/villagerenewal/居所1-室内效果 1.png",
+    "projects/villagerenewal/居所1-室内效果.png",
+    "projects/villagerenewal/chapters.png",
+    "projects/villagerenewal/Pasted image 20250211011836.png",
+    "projects/villagerenewal/Pasted image 20250211011725.png",
+    "projects/villagerenewal/villagerenewal.md",
+    "projects/villagerenewal/Pasted image 20250211011825.png",
+    "projects/villagerenewal/Pasted image 20250211011752.png",
+    "projects/villagerenewal/居所2-爆炸.png",
+    "projects/villagerenewal/居所2-技术图.png",
+    "projects/villagerenewal/居所2-室内效果.png",
+    "projects/villagerenewal/整体手工模型渲染.png",
+    "projects/villagerenewal/wenben.pdf",
+    "projects/villagerenewal/mid_5.pdf",
+    "projects/seeingsaw/seeingsaw.md",
+    "projects/villagerenewal/poster.pdf",
+    "projects/villagerenewal/ppt.pdf",
+    "projects/poi/poi.md",
     "projects/aurora/aurora.md",
-    "projects/bodymusic/bodymusic.gif",
-    "images/way.png",
-    "images/point.svg",
-    "images/kitten.png",
-    "images/footprint.svg",
-    "images/cross.svg",
-    "images/closedhand.svg",
-    "images/arrow.svg",
-    "data/fakecv.png",
     "blogs/firstpost/firstpost.md"
   ]
 }
