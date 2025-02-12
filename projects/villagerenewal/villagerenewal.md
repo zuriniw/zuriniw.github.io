@@ -133,4 +133,4 @@ Research at the micro-scale primarily involves on-site investigations, interview
 ![postcard](postcard.png)
 
 
-## Slides & Book
+## Book

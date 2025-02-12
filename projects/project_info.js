@@ -172,11 +172,12 @@ const projects = [
     }),
     new Project({
         name: "bodymusic",
-        title: "Echos of Motion",
+        title: "Mo-sic",
         subtitle: "Body as an interface for music creation",
         labels: ["Embodied"],
         time: "2024",
         ispage: true,
+        ismarkdown: true,
         isteam: true,
         collaborator: "Xiang Chen, Yiqi Cheng",
         myContribution: "Motion capture and music component implementation, Video editing",
