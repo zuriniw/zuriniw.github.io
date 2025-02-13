@@ -9,7 +9,7 @@ Traditional music performance uses bodily gestures, like a pianist's finger move
 into Grasshopper via the Firefly plugin.
 
 ● Sound Generation: The Firefly Tone Generator, combined with Python scripting,
-generates notes based on the input parameters (joint movements).
+generates notes based on the input parameters (joint movements). We refer the firefly tutorial gh file from [csgen↗](https://mp.weixin.qq.com/s/wXCxsIvpv8ah0z9x7HPaFw)
 
 ● Visual Rendering: Using Grasshopper’s geometric functions, sound frequency, volume,
 and other data are mapped to 3D dynamic visual effects, such as rotating or expanding
@@ -18,6 +18,7 @@ circles and lines.
 ![mosic.gif](mosic.gif)
 
 ![2](2.png)
+
 
 
 ## mo-sic

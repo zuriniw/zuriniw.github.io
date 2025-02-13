@@ -17,6 +17,11 @@ We build a notion database for mapping out all the possibilities and finding con
 ## Ladybug Scanner
 [Ladybug Scanner](https://github.com/yuji3w/ladybug?tab=readme-ov-file) as a precedent.
 <figure>
+  <img src=hands.png>
+  <figcaption>Process</figcaption>
+</figure>
+
+<figure>
   <img src=newborn.JPEG>
   <figcaption>New-borned Disk Drives</figcaption>
 </figure>

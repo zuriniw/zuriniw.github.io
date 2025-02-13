@@ -195,6 +195,7 @@ const projects = [
         time: "2024",
         ispage: true,
         isteam: false,
+        ismarkdown: true,
         tools: "Python, Machine Learning",
         briefDescription: `Create an experimental platform, Knitting Text, that uses gaze position prediction models to explore human-text interaction in a non-streamlined reading scenario. By predicting and visualizing gaze projections and knitting them into a dynamic representation of the reading journey, it emphasizes the importance of human agency and the messiness inherent in reading.`,
         youtubeLink: "https://www.youtube.com/embed/9TzxzTWuwcQ?si=-cG2DBPIb1pkqho0&amp;controls=0",

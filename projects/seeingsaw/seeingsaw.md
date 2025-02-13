@@ -79,21 +79,13 @@ This concept **evokes childhood memories** of playing on seesaws. The up-and-dow
 
 Ultimately, we chose the **seesaw concept** for its **feasibility, fun, and intuitiveness**.
 
-## Prototyping
 
-![Leslie's Hands - Assembling the Mechanical Design](https://static.wixstatic.com/media/6a062f_b9694c0e0387497499cb09a80322dc46~mv2.jpeg/v1/fill/w_1200,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/image_(15)_thumb.jpeg)
-
-This is Leslie's Hands: Thanks to her for designing and assembling such a lovely mechanical design in our project!
-<br>
-<br>
-<br>
-We have open-sourced everything about our project on GitHub (except our Particle tokens). We also use this repo for documenting our technical trials. Feel free to visit!
-
-[SEEINGSAW GitHub Repository](https://github.com/zuriniw/SEEINGSAW/tree/main)
-
-There, you can view all the sketches, our webhook setup, and all legacy tests. This includes testing with various sensors—from ball-tilters to distance sensors—transitioning from button-controlled to sensor-triggered linear actuators, and exploring Particle cloud webhooks.
 
 ### Wiring
+
+Daragh gave us suggestions on choosing the right actuator for our project.
+
+![doodle.JPG](doodle.JPG)
 
 ![BOM Table](https://static.wixstatic.com/media/6a062f_e1378608add244da8b61cccde9019988~mv2.png/v1/fill/w_1856,h_574,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/6a062f_e1378608add244da8b61cccde9019988~mv2.png)
 
@@ -111,6 +103,20 @@ Pin Setup
   - Direction controls (D6, D7)
 
 ![Component Assembly](https://static.wixstatic.com/media/6a062f_9b8702345ea942d49dff754cc687ee4e~mv2.jpeg/v1/fill/w_1200,h_984,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/image_24_thumb.jpeg)
+
+## Prototyping
+
+![Leslie's Hands - Assembling the Mechanical Design](https://static.wixstatic.com/media/6a062f_b9694c0e0387497499cb09a80322dc46~mv2.jpeg/v1/fill/w_1200,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/image_(15)_thumb.jpeg)
+
+This is Leslie's Hands: Thanks to her for designing and assembling such a lovely mechanical design in our project!
+<br>
+<br>
+<br>
+We have open-sourced everything about our project on GitHub (except our Particle tokens). We also use this repo for documenting our technical trials. Feel free to visit!
+
+[SEEINGSAW GitHub Repository](https://github.com/zuriniw/SEEINGSAW/tree/main)
+
+There, you can view all the sketches, our webhook setup, and all legacy tests. This includes testing with various sensors—from ball-tilters to distance sensors—transitioning from button-controlled to sensor-triggered linear actuators, and exploring Particle cloud webhooks.
 
 ### Workflow
 
@@ -150,6 +156,8 @@ Linear actuators can control direction, speed, and timing, but we aim to use the
 <br>
 <br>
 
+![back.JPG](back.JPG)
+![token.jpg](token.jpg)
 ![poster.png](poster.png)
 ![poster-1.png](poster-1.png)
 ![poster-2.png](poster-2.png)
