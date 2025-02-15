@@ -14,6 +14,19 @@
     font-style: italic;
 }
 
+
+@font-face {
+    font-family: 'Libertinus Serif';
+    src: url('../fonts/LibertinusSerif-SemiboldItalic.woff2') format('woff2'),
+         url('../fonts/LibertinusSerif-SemiboldItalic.otf') format('opentype'),
+         url('/Users/ziru/Documents/GitHub/zuriniw.github.io/fonts/LibertinusSerif-SemiboldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+
+
+
 /* Markdown 内容样式 */
 .markdown-content {
     margin: 20px auto;
@@ -237,6 +250,23 @@
     padding-left: 16px;
     border-left: 2px solid var(--color-text);
     font-style: italic;
+}
+.katex .katex-mathml,
+.katex .katex-html {
+    font-family: 'Libertinus Serif'!important;
+    font-style: italic!important;
+    font-weight: 600!important;
+}
+
+/* 确保所有 KaTeX 元素都使用 Libertinus Serif 字体 */
+.katex * {
+    font-family: 'Libertinus Serif'!important;
+}
+
+/* 特别指定数学符号的字体 */
+.katex .mathdefault {
+    font-family: 'Libertinus Serif'!important;
+    font-style: italic!important;
 }
 
 /* 添加表格样式 */
@@ -509,6 +539,15 @@
         border-left: 2px solid var(--color-text);
         font-style: italic;
     }
+    
+
+    .katex .katex-mathml,
+    .katex .katex-html {
+        font-family: 'Libertinus Serif'!important;
+        /* font-style: italic!important; */
+        /* font-weight: 600!important; */
+    }
+
     
     /* 添加表格样式 */
     .markdown-content table {

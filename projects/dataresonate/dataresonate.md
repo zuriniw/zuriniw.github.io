@@ -1,7 +1,6 @@
-## Context & Research
+## Context 
 During my 2023 Fall internship at an institute, I worked on urban data storytelling. I discovered that current urban data representation methods lack a human-centric focus, making it difficult for individuals with less data literacy to participate in public data discussions. This hampers both inclusive data discussions and humane decision-making.
 
-### Interview
 I conducted interviews to identify key challenges in data comprehension among individuals from diverse backgrounds. The responses highlighted three main areas of difficulty:  
 
 **1. Barriers to Participating in Data Discussions**  

@@ -48,6 +48,14 @@
     font-style: normal;
 }
 
+
+@font-face {
+    font-family: 'Libertinus Serif';
+    src: url('../fonts/LibertinusSerif-SemiboldItalic.ttf') format('truetype'); 
+    font-weight: 600;
+    font-style: italic;
+}
+
 /* 在样式表开头添加SVG滤镜定义 */
 @supports (filter: url('#noiseFilter')) {
     body::before {
@@ -1203,7 +1211,12 @@ body.project-page {
 }
 
 
-
+#clustrmaps {
+    position: fixed; /* 将元素固定在页面指定位置 */
+    left: 0;         /* 固定在页面最左侧 */
+    top: 0;          /* 根据需要设置垂直位置 */
+    pointer-events: none; /* 禁用所有鼠标事件 */
+  }
 
 /* 延伸线样式 */
 .extension-line {

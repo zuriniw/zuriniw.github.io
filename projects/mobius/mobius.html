@@ -13,6 +13,20 @@
     <script src="../../components/load_components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="module" src="../../components/related_matrix.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"></script>
+
+    <script>
+        // 删除自动渲染配置，改用精准控制
+        document.addEventListener("DOMContentLoaded", function() {
+            // 不在此处做任何自动渲染
+        });
+
+        
+    </script>
+
 </head>
 
 
@@ -62,7 +76,10 @@
     <script type="module">
         import { ProjectPage } from '../project_page.js';
         import { projects } from '../project_info.js';
-        
+        marked.use({
+            mangle: false,     // 禁用特殊字符转换
+            headerIds: false   // 禁用自动header id生成
+        });
         // 获取当前项目信息
         const projectName = ProjectPage.getCurrentProjectName();
         const currentProject = projects.find(p => p.name === projectName);
@@ -74,6 +91,25 @@
                 .then(mdContent => {
                     // 将 markdown 转换为 HTML 并插入到容器中
                     document.getElementById('markdown-content').innerHTML = marked.parse(mdContent);
+                    
+                        // ▶ 新增的数学公式渲染调用
+                    renderMathInElement(document.getElementById('markdown-content'), {
+                        delimiters: [
+                            { left: '$$', right: '$$', display: true },
+                            { left: '$', right: '$', display: false }
+                        ],
+                        output: 'html',
+                        // 关键配置
+                        fleqn: false,
+                        throwOnError: false,
+                        trust: false,
+                        strict: false,
+                        // ▶ 新增字体配置
+                        macros: {
+                            "\\fontfamily": "\\mathbb{\\text{#1}}"
+                        },
+                    });
+                    
                     // 初始化目录
                     const toc = new TableOfContents();
                     toc.init();
