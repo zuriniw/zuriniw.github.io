@@ -210,6 +210,7 @@ const projects = [
         time: "2022",
         isteam: false,
         ispage: true,
+        ismarkdown: true,
         tools: "Procreate, Adobe Suite",
         briefDescription: "It is a story starting from a rose, a home, and a place.",
         otherLink2: "https://www.bilibili.com/video/BV1jT411g7Xf/",
@@ -246,7 +247,8 @@ const projects = [
         weight: 4,
         situate: { x: 60, y: -31 },
         isflipped: true,
-        // ispage: true
+        ispage: true,
+        ismarkdown: true
     }),
     new Project({
         name: "mobius",

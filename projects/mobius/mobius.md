@@ -1,11 +1,17 @@
 ![view_ppl.PNG](view_ppl.PNG)
 
-![view.png](view.png)
+<!-- ![view.png](view.png) -->
 
 <figure>
   <img src="gh.png">
   <figcaption>Grasshopper model</figcaption>
 </figure>
+
+<figure>
+  <img src="GH.gif">
+  <figcaption>Grasshopper-rhino dynamic tweek</figcaption>
+</figure>
+
 
 ![render.JPG](render.JPG)
 

@@ -17,10 +17,14 @@ The design loosely pays tribute to Apple's Macintosh keyboard.
 <br>
 
 
+![pcb.png](pcb.png)
+![model.png](model.png)
 
-![minikb_-3.png](minikb_-3.png)
-![minikb_1.png](minikb_1.png)
+<figure>
+<img src="power.png">
+<figcaption>test pins with the power supply</figcaption>
+</figure>
 
-![minikb_-2.png](minikb_-2.png)
+![kb.png](kb.png)
 
-![minikb_.png](minikb_.png)
+
