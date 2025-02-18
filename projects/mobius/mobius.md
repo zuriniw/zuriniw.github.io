@@ -1,4 +1,4 @@
-![view_ppl.PNG](view_ppl.PNG)
+![view_ppl.png](view_ppl.png)
 
 <!-- ![view.png](view.png) -->
 
@@ -16,7 +16,7 @@
 ![render.JPG](render.JPG)
 
 <figure>
-  <img src="mr.png">
+  <img src="mr.PNG">
   <figcaption>Holographic projection to see the spacial effect</figcaption>
 </figure>
 
