@@ -147,7 +147,7 @@ const projects = [
         otherLink2: null,
         briefDescription: "Revitalize the village through architectural design and cultural preservation. The project aims to preserve and enhance the unique cultural heritage of the village while improving the living conditions of its residents.",
         prize: "Outstanding Undergraduate Thesis; 1st place in Architecture School",
-        weight: 7,
+        weight: 5,
         situate: { x: -50, y: 50 },
         otherLink2: "https://www.behance.net/gallery/217218343/Village-Renewal-Design-in-Fujian-China",
     }),
@@ -288,7 +288,7 @@ const projects = [
         time: "2022",
         isteam: false,
         tools: "LC EDA, Arduino, Rhino",
-        weight: 1,
+        weight: 4.3,
         situate: { x: 85, y: -70 },
         isflipped: false,
         ispage: true,
@@ -385,6 +385,18 @@ const projects = [
         ispage: true,
         weight: 4,
         ismarkdown: true
+    }),
+    new Project({
+        name: "ADA2D",
+        title: "WidgetsGo",
+        time: "2025",
+        isteam: false,
+        subtitle: "Adaptive 2d UI layout in AR context",
+        labels: ["Bits", "XR"],
+        ispage: true,
+        ismarkdown: true,
+        weight: 9,
+        situate: { x: 90, y: 30 }
     })
 ];
 

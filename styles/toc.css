@@ -12,6 +12,11 @@
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'SarasaMonoCL';
+    src: url('../fonts/SarasaMonoCL-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
 
 /* 目录容器样式 */
 .toc-container {
@@ -33,7 +38,8 @@
     font-weight: 350;
     margin-bottom: 16px;
     color: var(--color-text);
-} */
+    font-family: "SarasaMonoCL", monospace;
+}
 
 /* 目录列表样式 */
 .toc-list {
@@ -41,7 +47,7 @@
     padding: 0;
     margin: 0;
     margin-top: -8px;  /* 移除顶部空间 */
-    font-family: "Roboto Mono" !important;  /* 强制应用字体 */
+    font-family: "Barlow", sans-serif;  /* 强制应用字体 */
     letter-spacing: -8px!important;
 }
 
@@ -83,7 +89,7 @@
     font-weight: 350;
     background: transparent;  /* 确保没有背景色 */
     padding: 0;  /* 移除任何内边距 */
-    font-family: "Roboto Mono", monospace !important;  /* 强制应用字体 */
+    font-family: "Barlow", sans-serif !important;  /* 强制应用字体 */
 }
 
 /* 目录链接悬停效果 */

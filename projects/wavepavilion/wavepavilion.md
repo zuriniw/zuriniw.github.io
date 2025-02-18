@@ -16,19 +16,10 @@ Step 2: Structural Density Optimization
 A force flow analysis is conducted on the form surface obtained from Step 1. Based on the resulting density distribution, ribs are added to the inner side of the surface to meet structural requirements with minimal weight.
 
 
-
-
-
-
-
-
-
-
-
 ## Analysis
 ![ana.png](ana.png)
 
-## Fabrication Process
+## Proposed Fabrication Process
 ![fab.png](fab.png)
 
 ## Technical Drawings

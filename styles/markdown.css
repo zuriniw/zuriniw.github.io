@@ -24,6 +24,13 @@
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'SarasaMonoCL';
+    src: url('../fonts/SarasaMonoCL-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+
 
 
 
@@ -86,8 +93,8 @@
     font-family: "Roboto Mono", monospace;
     font-style: italic;
     font-weight: 580;
-    margin-top: 200px;  /* 增加二级标题上方的空间 */
-    margin-bottom: 40px;  /* 增加二级标题下方的空间 */
+    margin-top: 280px;  /* 增加二级标题上方的空间 */
+    margin-bottom: 10px;  /* 增加二级标题下方的空间 */
     position: relative;  /* 为下方横线提供定位上下文 */
     display: flex;
     align-items: center;
@@ -105,11 +112,11 @@
 }
 
 .markdown-content h3 {
-    font-size: 18px;
+    font-size: 16px;
     font-family: "Roboto Mono", monospace;
-    font-weight: 400;
-    margin-bottom: 40px;  /* 调整三级标题上方的空间 */
-    margin-top: 120px;  /* 调整三级标题上方的空间 */
+    font-weight: 600;
+    margin-bottom: 20px;  /* 调整三级标题上方的空间 */
+    margin-top: 140px;  /* 调整三级标题上方的空间 */
 }
 
 /* 为三级标题添加尖括号 */
@@ -124,11 +131,30 @@
 }
 
 .markdown-content h4 {
-    font-size: 22px;
+    font-size: 16px;
     font-family: "Roboto Mono", monospace;
     font-weight: 300;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+    margin-top: 70px;
+    margin-bottom: 0px;
+    text-align: left;
+    align-items: left;
+
 }
 
+.markdown-content h5 {
+    font-size: 16px;
+    margin-top: 100px;
+    margin-bottom: 10px;
+
+}
+.markdown-content h6 {
+    font-size: 15px;
+    margin-top: 100px;
+    margin-bottom: 10px;
+
+}
 .markdown-content p {
     margin: 24px 0;
     letter-spacing: 0.4px;
@@ -148,10 +174,10 @@
 .markdown-content code {
     background-color: var(--color-text-darkgrey);
     color: var(--color-white);
-    padding: 2px 4px;
+    padding: 1px 2px;
     border-radius: 4px;
     font-family: "Roboto Mono", monospace;
-    font-size: 14px;
+    font-size: 11px;
     width: 60%;
 }
 
@@ -251,23 +277,113 @@
     border-left: 2px solid var(--color-text);
     font-style: italic;
 }
-.katex .katex-mathml,
-.katex .katex-html {
-    font-family: 'Libertinus Serif'!important;
-    font-style: italic!important;
-    font-weight: 600!important;
+/* ---------------------------
+   KaTeX Font Styles
+--------------------------- */
+
+
+/* 基础设置 */
+.katex {
+    font-family: KaTeX_Main;
 }
 
-/* 确保所有 KaTeX 元素都使用 Libertinus Serif 字体 */
-.katex * {
-    font-family: 'Libertinus Serif'!important;
+/* 数学符号 */
+.katex-math {
+    font-family: KaTeX_Math;
 }
 
-/* 特别指定数学符号的字体 */
-.katex .mathdefault {
-    font-family: 'Libertinus Serif'!important;
-    font-style: italic!important;
+/* 数字和运算符 */
+.katex .mathord,
+.katex .mathnum,
+.katex .mbin,
+.katex .mrel,
+.katex .minner {
+    font-family: KaTeX_Main;
 }
+
+/* 定界符（括号等） */
+.katex .delimsizing,
+.katex .delim-size1,
+.katex .delim-size2,
+.katex .delim-size3,
+.katex .delim-size4 {
+    font-family: KaTeX_Size1, KaTeX_Main;
+}
+/* 运算符号（包括max） */
+.katex .mop {
+    font-family: KaTeX_Main;
+}
+
+/* 括号和定界符 */
+.katex .mopen,
+.katex .mclose {
+    font-family: KaTeX_Main;
+}
+
+/* 基础数学符号 */
+.katex .mathord,
+.katex .mathnum {
+    font-family: KaTeX_Main;
+}
+
+/* 所有数字相关类 */
+.katex .mord {
+    font-family: KaTeX_Main !important;
+}
+
+/* 专门处理数字 */
+.katex .mord.text {
+    font-family: KaTeX_Main !important;
+}
+
+/* 数字特定样式 */
+.katex .mord > .mtight {
+    font-family: KaTeX_Main !important;
+}
+
+/* 确保数字不会被其他规则覆盖 */
+.katex .mord > span {
+    font-family: KaTeX_Main !important;
+}
+
+/* 处理MathML部分 */
+.katex-mathml {
+    display: none;
+}
+
+
+/* ---------------------------
+   KaTeX Display Styles
+--------------------------- */
+
+.katex-display > .katex {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* ---------------------------
+   Scrollbar Styles for Webkit Browsers
+--------------------------- */
+.katex-display::-webkit-scrollbar {
+  height: 4px;  /* Scrollbar height */
+}
+
+.katex-display::-webkit-scrollbar-track {
+  background: transparent;  /* Track background */
+}
+
+.katex-display::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-grey);  /* Thumb color */
+  border-radius: 2px;  /* Thumb border radius */
+}
+
+.katex-display::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-text);  /* Hover color */
+}
+
+
+
 
 /* 添加表格样式 */
 .markdown-content table {
@@ -422,7 +538,7 @@
         padding: 2px 4px;
         border-radius: 4px;
         font-family: "Roboto Mono", monospace;
-        font-size: 14px;
+        font-size: 1px;
         width: 60%;
     }
     
@@ -544,8 +660,25 @@
     .katex .katex-mathml,
     .katex .katex-html {
         font-family: 'Libertinus Serif'!important;
-        /* font-style: italic!important; */
-        /* font-weight: 600!important; */
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100%;
+    }
+
+    .katex-display {
+        font-size: 0.9em;  /* 稍微缩小字体 */
+    }
+    
+    .katex-display > .katex {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
+    /* 确保公式容器不会超出屏幕 */
+    .markdown-content .katex-display {
+        margin: 1em -20px;  /* 负边距使公式可以滚动 */
+        padding: 0 20px;
     }
 
     
@@ -606,5 +739,41 @@
         line-height: 1.1;
         padding-top: 2px;
     }
+}
+
+/* 移动端样式 */
+@media screen and (max-width: 768px) {
+    .markdown-content code {
+        background-color: var(--color-text-darkgrey);
+        color: var(--color-white);
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: "Roboto Mono", monospace;
+        font-size: 11px;
+        width: 60%;
+    }
+    
+    .markdown-content pre {
+        background-color: var(--color-text-darkgrey);
+        padding: 16px 20px;
+        border-radius: 4px;
+        overflow-x: auto;
+        margin: 32px 0;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        padding: 16px 20px;  /* 减小内边距 */
+    }
+    
+    .markdown-content pre code {
+        background-color: transparent;
+        padding: 0;
+        white-space: pre;
+        font-size: 11px;  /* 确保代码块内的代码大小一致 */
+        line-height: 1.4;  /* 增加行高提高可读性 */
+        letter-spacing: 0;  /* 移除字间距 */
+    }
+
+
 }
 
