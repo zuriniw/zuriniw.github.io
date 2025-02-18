@@ -387,7 +387,7 @@ const projects = [
         ismarkdown: true
     }),
     new Project({
-        name: "ADA2D",
+        name: "ada2d",
         title: "WidgetsGo",
         time: "2025",
         isteam: false,
