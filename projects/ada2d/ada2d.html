@@ -1,120 +1,973 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading... - Ziru Wei</title>
-    <link rel="icon" type="image/png" href="../../images/kitten.png">
-    <link rel="stylesheet" href="../../style.css">
-    <link rel="stylesheet" href="../../styles/toc.css">
-    <link rel="stylesheet" href="../../styles/markdown.css">
-    <link rel="stylesheet" href="../../styles/related_matrix.css">
-    <link rel="stylesheet" href="../../styles/header_footer.css">
-    <script src="../../components/load_components.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="module" src="../../components/related_matrix.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>-</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <style>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        });
-    </script>
+  /* ---
+   * fixDefault.css - A fix to default Pandoc's CSS to be 
+   *    correctly displayed on a VS Code preview window,
+   *    and nicely printed on [digital] paper
+   *
+   * Ramon Solano <ramon.solano@gmail.com>
+   *
+   * usage: 
+   *    pandoc ... -H fixDefault.css ...
+   *
+   * V 1.0, Jul/2021
+   * --- 
+   */
 
+  body {
+  	font-family: inherit;
+  	font-size: inherit;
+  	color: inherit;
+  }
+
+  @media print {
+  	html,body {
+  		font-size: 10pt;
+  	}
+  	@page  {  
+  		size: auto;
+  	} 
+  }
+
+  </style>
+  <style>
+
+  /* ---
+   * article.css - A beautiful css to complement Pandoc's own
+   *
+   * Provides:
+   *    - Article-style title and headers
+   *    - Images and tables centered
+   *    - New `<aside>` env (right side)
+   *
+   * Ramon Solano <ramon.solano@gmail.com>
+   *
+   * usage: 
+   *    pandoc ... -H article.css ...
+   * 
+   * V1.0, Jul/2021
+   * ---
+   */
+
+  body {
+  	max-width: 40em;
+     word-wrap: break-word; 
+  }
+
+  header p {
+  	text-align: center;
+  }
+  header p.subtitle {
+  	font-size: 1.2em;
+  	line-height: 1.1em;
+  	margin: 0.5em 2em 2em;
+  /* 
+  	 margin-top: 0.5em;
+  	 margin-bottom: 2em;
+   */
+  }
+  header p.author {
+  	font-size: 1.1em;
+  	line-height: 0.5em;
+  	font-variant-caps: small-caps;
+  }
+  header p.date {
+  	font-size: 0.95em;
+  	margin: 3em;
+  }
+
+  header h1 {
+  	 line-height: 1em;
+  	 margin-bottom: 0em;
+  }
+  /* abstract header */
+  h3:first-child, #abstract {
+  	font-size: 1.2em;
+  	text-align: center;
+  	margin: 0.5em ;
+  }
+
+  /* abstract paragraph */
+  h3:first-child + p, #abstract + p {
+  	font-size: 0.9em;
+  	margin: 0em 4em;
+  	margin-bottom: 3em;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+  h2 {
+    font-size: 1.3em;
+  }
+  h3 {
+    font-size: 1.1em;
+    font-style: italic;
+  }
+  h1, h2, h3, h4 {
+    margin-top: 0.95em;
+    margin-bottom: 0.80em;
+  }
+
+  /* Justify and hyphenate all paragraphs */
+  p {
+    text-align: justify;
+  }
+      
+  /* center tables */
+  table {
+  	display: table;
+  	width: auto;
+  	margin-left: auto;
+  	margin-right: auto;
+  }
+  table caption {
+  	font-size: 0.95em;
+  }
+
+  /* centered figures  */
+  figure {
+    text-align: center;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+  figcaption {
+    font-size: 0.95em;
+  }
+
+  /* lists: increase left margins */
+  ul, ol {
+    padding: 0 0 0 3em;
+  }    
+
+  /* new style: objects (figures, text) right side */
+  aside {
+    font-size: 0.9em;
+    width: 33%;
+    padding: 0 0 0 .8em;
+    margin: 1em 0 1em 1em;
+    float: right;
+  }
+  aside > *:first-child {
+    margin-top: 0;
+  }
+  aside > *:last-child {
+    margin-bottom: 0;
+  }
+
+  pre {
+    font-size: 0.87em;
+    line-height: 1.2em;
+    border: 1px solid #cccccc;
+    background: #f5f2f0;
+    padding: .7em;   
+  }
+
+  :not(pre) > code[class*="sourceCode"],
+  pre[class*="sourceCode"] {
+    background: #f5f2f0;
+  }
+
+  code {
+    color: #92000c;
+    font-size: .9em;
+  }
+
+  pre code {
+    color: unset;
+  }
+
+  a {
+    color: #0050a0;
+  }
+
+  </style>
 </head>
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QLERMQJ1BN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QLERMQJ1BN');
-</script>
-
-
-<body class="project-page">
-    <!-- 页眉容器 -->
-    <div id="header"></div>
-
-    <!-- 项目内容 -->
-    <div class="project-section">
-        <div class="project-header">
-            <h1 class="project-title"></h1>
-            <h2 class="project-subtitle"></h2>
-        </div>
-
-        <div class="project-meta">
-            <!-- 元数据将由 JavaScript 动态填充 -->
-        </div>
-
-        <div class="project-footer">
-            <p class="project-context"></p>
-        </div>
-    </div>
-        
-    <!-- 视频容器 -->
-    <div class="video-wrapper"></div>
-    <!-- 添加 markdown 内容容器 -->
-    <div id="markdown-content" class="markdown-content">
-        <!-- Markdown 内容将被动态加载到这里 -->
-    </div>
-
-    <!-- 页脚容器 -->
-    <div id="footer"></div>
-
-    <script type="module" src="../project_page.js"></script>
-    <!-- 添加加载 markdown 的脚本 -->
-    <script type="module">
-        import { ProjectPage } from '../project_page.js';
-        import { projects } from '../project_info.js';
-        marked.use({
-            mangle: false,     // 禁用特殊字符转换
-            headerIds: false   // 禁用自动header id生成
-        });
-        // 获取当前项目信息
-        const projectName = ProjectPage.getCurrentProjectName();
-        const currentProject = projects.find(p => p.name === projectName);
-        
-        // 只有当项目的 ismarkdown 为 true 时才加载 markdown 内容
-        if (currentProject && currentProject.ismarkdown) {
-            fetch(`${ProjectPage.getCurrentProjectName()}.md`)
-                .then(response => response.text())
-                .then(mdContent => {
-                    // 将 markdown 转换为 HTML 并插入到容器中
-                    document.getElementById('markdown-content').innerHTML = marked.parse(mdContent);
-                    
-                        // ▶ 新增的数学公式渲染调用
-                    renderMathInElement(document.getElementById('markdown-content'), {
-                        delimiters: [
-                            { left: '$$', right: '$$', display: true },
-                            { left: '$', right: '$', display: false }
-                        ],
-                        output: 'html',
-                        // 关键配置
-                        fleqn: false,
-                        throwOnError: false,
-                        trust: false,
-                        strict: false,
-                        // ▶ 新增字体配置
-                        macros: {
-                            "\\fontfamily": "\\mathbb{\\text{#1}}"
-                        },
-                    });
-                    
-                    // 初始化目录
-                    const toc = new TableOfContents();
-                    toc.init();
-                })
-                .catch(error => {
-                    console.error('Error loading markdown:', error);
-                });
-        }
-    </script>
-
-    <script src="../../scripts/toc.js"></script>
+<body>
+<h2 id="background-goal-and-workflow">1. Background, Goal, and
+Workflow</h2>
+<p>Augmented Reality promises to transform how we interact with digital
+information. Through blending virtual interface elements into our
+physical environment, it enables a range of applications from in situ
+displays of task instructions for training purposes to immersive
+educational experiences. However, placing interface elements within our
+physical world also makes designing AR applications incredibly difficult
+as they should be “context-sensitive”. For the lack of words, the
+“goodness” of interface designs now depends on the environmental
+conditions (e.g., what objects are around the user) as well as external
+(e.g., task) and internal (e.g., cognitive load) states. Hence, UI
+decisions can no longer be set deterministically at design time, but
+adapt according to their context of use at runtime.</p>
+<h3 id="project-goal">1.1 Project Goal</h3>
+<p>In this project which mimics the AR context in a low-fidelity
+prototype in python, I aim to present the application widgets more
+effectively using an optimization-based approach, taking into
+account:</p>
+<p>〓 Constraints to make the UI placement looks normal: - Non-overlap -
+Place &lt;= 4 elements - Single placement per app</p>
+<p>〓 Objectives to help users to efficiently find the information they
+need: - Proximity to the starting point - App relevance to the question
+- LoD (Levels of Details) of each widget - ROI (Region of Interest) of
+the scene</p>
+<p><code>Gurobipy</code> is used to solve the optimization problem.</p>
+<figure>
+<img src="prompt.png">
+<figcaption>
+The components of the system interface: all the components are placed in
+a 2D plane
+</figcaption>
+</figure>
+<p>Each widget has 3 levels of details (LoD), and the size of the widget
+is determined by the LoD.</p>
+<figure>
+<img src="lod.png">
+<figcaption>
+LoD: levels of details
+</figcaption>
+</figure>
+<h3 id="workflow">1.2 Workflow</h3>
+<figure>
+<p><img src="wf.png"></p>
+<figcaption>
+4 parts one build on another
+</figcaption>
+</figure>
+<h2 id="setup">2. Setup</h2>
+<h3 id="decision-variables">2.1 Decision Variables</h3>
+<p>Binary variable indicating whether app a is placed at grid position
+(i,j) with LoD</p>
+<p><span
+class="math display"><em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub> ∈ {0, 1}</span></p>
+<h3 id="constraints">2.2 Constraints</h3>
+<ol type="1">
+<li>Non-overlap with fixed elements:</li>
+</ol>
+<p><span
+class="math display"><em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub> = 0,  ∀(<em>i</em>, <em>j</em>) ∈ 𝒪</span>
+- where <span class="math inline">𝒪</span> is the set of positions that
+overlap with the question panel or Apps button</p>
+<ul>
+<li>Place &lt;= 4 elements:</li>
+</ul>
+<p><span
+class="math display">∑<sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub><em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub> ≤ 4</span></p>
+<ul>
+<li>Single placement per app:</li>
+</ul>
+<p><span
+class="math display">∀<em>a</em> : ∑<sub><em>l</em>, <em>i</em>, <em>j</em></sub><em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub> ≤ 1</span></p>
+<ul>
+<li>Non-Overlap between widgets
+<ul>
+<li>LoD 0 occupies a 1×1 cell.</li>
+<li>LoD 1 occupies a 1×2 area (extending to the right).</li>
+<li>LoD 2 occupies a 2×2 area (extending to the right and
+downward).</li>
+</ul></li>
+</ul>
+<p><span class="math display">$$
+\sum_{a} ( x_{a,0,i,j} + \sum_{i'=i-1}^i x_{a,1,i',j} + \sum_{i'=i-1}^i
+\sum_{j'=j-1}^j x_{a,2,i',j'} ) \leq 1, \quad \forall i,j
+$$</span></p>
+<h2 id="iterations-before-initial-formulation">3. Iterations Before
+Initial Formulation</h2>
+<h3 id="constrains-iteration">3.1 Constrains Iteration</h3>
+<h4 id="widget-defau1ltcomponents-overlapping">3.1.1
+Widget-Defau1ltComponents Overlapping</h4>
+<ul>
+<li>Before: did not consider the sizes of different widgets.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">### in the loop ##</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pos</span> = np.array<span class="er">(</span><span class="ex">[xIdx*info[</span><span class="st">&quot;block_size&quot;</span><span class="ex">],</span> yIdx<span class="pp">*</span>info<span class="pp">[</span><span class="st">&quot;block_size&quot;</span><span class="pp">]</span>]<span class="kw">)</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Check overlap with questions panel </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check overlap with Apps button</span></span></code></pre></div>
+<ul>
+<li>After: The <code>positions</code> list is categorized and iterated
+through for widgets with various LoDs.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">### in the loop ##</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">positions</span> = []</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="ex">lod</span> == 0:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">positions</span> = [<span class="er">(</span><span class="ex">xIdx,</span> yIdx<span class="kw">)</span><span class="ex">]</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="ex">lod</span> == 1:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">positions</span> = [<span class="er">(</span><span class="ex">xIdx,</span> yIdx<span class="kw">)</span><span class="ex">,</span> <span class="er">(</span><span class="ex">xIdx+1,</span> yIdx<span class="kw">)</span><span class="ex">]</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="ex">lod</span> == 2:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">positions</span> = [<span class="er">(</span><span class="ex">xIdx,</span> yIdx<span class="kw">)</span><span class="ex">,</span> <span class="er">(</span><span class="ex">xIdx+1,</span> yIdx<span class="kw">)</span><span class="ex">,</span><span class="er">(</span><span class="ex">xIdx,</span> yIdx+1<span class="kw">)</span><span class="ex">,</span> <span class="er">(</span><span class="ex">xIdx+1,</span> yIdx+1<span class="kw">)</span><span class="ex">]</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pos_x<span class="ex">,</span> pos_y in positions:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">pos</span> = np.array<span class="er">(</span><span class="ex">[pos_x*grid_a,</span> pos_y<span class="pp">*</span>grid_a]<span class="kw">)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Check overlap with questions panel</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Check overlap with Apps button</span></span></code></pre></div>
+<h3 id="ui-visual-optimization">3.2 UI visual optimization</h3>
+<ul>
+<li><strong>Mimic AR focus zone by blurring the background</strong>
+<ul>
+<li>I used pillow to blur the background scene when keeping the
+attention focus zone clear to mimic the focus in Augmented Reality
+context.</li>
+</ul></li>
+<li><strong>Adaptive Color coding</strong>
+<ul>
+<li>I color coded titles and contents in widgets and add indents to
+organized the information hierarchy. The theme color is adaptive to the
+background scene by calculating the average color of the
+background.</li>
+</ul></li>
+<li><strong>Padding</strong>
+<ul>
+<li>I also added paddings to each widget to make them not stick to each
+other, hoping this can add more clarity.</li>
+</ul></li>
+</ul>
+<h2 id="three-initial-formulations">4. Three Initial Formulations</h2>
+<h3 id="strategy">4.1 Strategy</h3>
+<p>After the iteration and test before, I got 1 base initial
+formulations “Initial Formulation A”, and developed 2 variants of it,
+including “Initial Formulation B” and “Initial Formulation C”.
+Basically, for the 4 terms in objective function, I change the way to
+calculate some of them and apply to the original formulation to check if
+that can make sense.</p>
+<p>For example, for the first term <span
+class="math inline"><em>J</em><sub><em>p</em><em>r</em><em>o</em><em>x</em></sub></span>,
+I developed an alternative way to formulate it and name it “1” to
+distinguish it from the original method in the base initial formulation
+A, and applied it to formulation B. So the Formulation B is coded as
+“1000”</p>
+<figure>
+<p><img src="strategy.gif"></p>
+<figcaption>
+Combinition of term variants in the objective function
+</figcaption>
+</figure>
+<h3 id="variants">4.2 Variants</h3>
+<h4 id="initial-formulation-a-0000">4.2.1 Initial Formulation A:
+0000</h4>
+<p><span class="math display">$$
+\begin{align*}
+\max_{x} \quad &amp; w_{prox}J_{prox} + w_{rel}J_{rel} + w_{lod}J_{LoD}
++ w_{roi}J_{ROI} \\newline
+\text{where:} \newline
+J_{prox} &amp;= -\sum_{a,l,i,j} \gamma_d \cdot d_{l,i,j} \cdot
+x_{a,l,i,j} \\newline
+J_{rel} &amp;= \sum_{a,l,i,j} \gamma_r \cdot r_a \cdot x_{a,l,i,j}
+\\newline
+J_{LoD} &amp;= \sum_{a,l,i,j} \gamma_{lod} \cdot (l + 1) \cdot
+x_{a,l,i,j} \\newline
+J_{ROI} &amp;= -\sum_{a,l,i,j} \gamma_{roi} \cdot x_{a,l,i,j} \cdot
+\mathbb{I}\{overlap(l,i,j)\}
+\end{align*}
+$$</span></p>
+<h6 id="proximity_0">Proximity_0</h6>
+<p><span
+class="math display"><em>J</em><sub><em>p</em><em>r</em><em>o</em><em>x</em></sub> = −∑<sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub><em>γ</em><sub><em>d</em></sub> ⋅ <em>d</em><sub><em>l</em>, <em>i</em>, <em>j</em></sub> ⋅ <em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub></span></p>
+<p>where: - <span
+class="math inline"><em>d</em><sub><em>l</em>, <em>i</em>, <em>j</em></sub> = ∥<strong>p</strong><sub><em>l</em>, <em>i</em>, <em>j</em></sub> − <strong>q</strong><sub><em>c</em></sub>∥<sub>2</sub></span>
+is the distance from widget center to question center - <span
+class="math inline">$\gamma_d = \frac{d - d_{min}}{d_{max} -
+d_{min}}$</span> is the distance normalization factor - <span
+class="math inline"><strong>p</strong><sub><em>l</em>, <em>i</em>, <em>j</em></sub></span>
+is the widget center position: - <span
+class="math inline"><em>l</em> = 0</span>: <span
+class="math inline">[(<em>i</em> + 0.5)<em>a</em>, (<em>j</em> + 0.5)<em>a</em>]</span>
+- <span class="math inline"><em>l</em> = 1</span>: <span
+class="math inline">[(<em>i</em> + 1.0)<em>a</em>, (<em>j</em> + 0.5)<em>a</em>]</span>
+- <span class="math inline"><em>l</em> = 2</span>: <span
+class="math inline">[(<em>i</em> + 1.0)<em>a</em>, (<em>j</em> + 1.0)<em>a</em>]</span></p>
+<p>This term is to make all the widgets surrounded with the question
+panel.</p>
+<h6 id="relevance_0">Relevance_0</h6>
+<p><span
+class="math display"><em>J</em><sub><em>r</em><em>e</em><em>l</em></sub> = ∑<sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub><em>γ</em><sub><em>r</em></sub> ⋅ <em>r</em><sub><em>a</em></sub> ⋅ <em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub></span></p>
+<p>where: - <span
+class="math inline"><em>r</em><sub><em>a</em></sub></span> is the
+relevance score of application <span
+class="math inline"><em>a</em></span> - <span
+class="math inline">$\gamma_r = \frac{r - r_{min}}{r_{max} -
+r_{min}}$</span> is the relevance normalization factor, 1 here</p>
+<p>This term prioritizes apps with higher relevance scores to show
+up.</p>
+<h6 id="lod_0">LoD_0</h6>
+<p><span
+class="math display"><em>J</em><sub><em>L</em><em>o</em><em>D</em></sub> = ∑<sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub><em>γ</em><sub><em>l</em><em>o</em><em>d</em></sub> ⋅ (<em>l</em> + 1) ⋅ <em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub></span></p>
+<p>where : - <span class="math inline"><em>γ</em></span> is the
+normalization factor</p>
+<p>This term is set for using as large levels of details as possible
+when conditions permit.</p>
+<h6 id="roi_0">ROI_0</h6>
+<p><span class="math display">$$
+\begin{align*}
+J_{ROI} = -\sum_{a,l,i,j} &amp; \gamma \cdot x_{a,l,i,j} \cdot
+\mathbb{I}\{overlap(l,i,j)\} \newline
+\end{align*}
+$$</span></p>
+<ul>
+<li><span
+class="math inline"><em>o</em><em>v</em><em>e</em><em>r</em><em>l</em><em>a</em><em>p</em>(<em>l</em>, <em>i</em>, <em>j</em>)</span>
+denotes the detection of rectangular overlap of circular ROIs with grid
+cells <span
+class="math inline">(<em>i</em>, <em>j</em>, <em>l</em>)</span></li>
+<li><span
+class="math inline"><em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub></span>
+is the decision variable</li>
+<li><span class="math inline"><em>γ</em></span> is the normalization
+factor</li>
+</ul>
+<p>This term penalizes placements that fall within a sensitive region
+(ROI). The penalty linearly adds up with the overlapping girds counts
+adding up.</p>
+<h4 id="initial-formulation-b-1000">4.2.2 Initial Formulation B:
+1000</h4>
+<p><span class="math display">$$
+\begin{align*}
+\max_{x} \quad &amp; w_{prox}J_{prox} + w_{rel}J_{rel} + w_{lod}J_{LoD}
++ w_{roi}J_{ROI} \newline
+\text{where:} \newline
+J_{prox} &amp;= \sum_{a,l,i,j} r_a \cdot (1 - \gamma_d \cdot d_{l,i,j})
+\cdot x_{a,l,i,j} \newline
+J_{rel} &amp;= \sum_{a,l,i,j} \gamma_r \cdot r_a \cdot x_{a,l,i,j}
+\newline
+J_{LoD} &amp;= \sum_{a,l,i,j} \gamma_{lod} \cdot (l + 1) \cdot
+x_{a,l,i,j} \newline
+J_{ROI} &amp;= -\sum_{a,l,i,j} \gamma_{roi} \cdot x_{a,l,i,j} \cdot
+\mathbb{I}\{overlap(l,i,j)\}
+\end{align*}
+$$</span></p>
+<h6 id="proximity_1">Proximity_1</h6>
+<p><span
+class="math display"><em>J</em><sub><em>p</em><em>r</em><em>o</em><em>x</em></sub> = ∑<sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub><em>r</em><sub><em>a</em></sub> ⋅ (1 − <em>γ</em><sub><em>d</em></sub> ⋅ <em>d</em><sub><em>l</em>, <em>i</em>, <em>j</em></sub>) ⋅ <em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub></span></p>
+<p>where: - <span
+class="math inline"><em>d</em><sub><em>l</em>, <em>i</em>, <em>j</em></sub> = ∥<strong>p</strong><sub><em>l</em>, <em>i</em>, <em>j</em></sub> − <strong>q</strong><sub><em>c</em></sub>∥<sub>2</sub></span>
+is the distance from widget center to question center - <span
+class="math inline">$\gamma_d = \frac{d - d_{min}}{d_{max} -
+d_{min}}$</span> is the distance normalization factor - <span
+class="math inline"><strong>p</strong><sub><em>l</em>, <em>i</em>, <em>j</em></sub></span>
+is the widget center position: - <span
+class="math inline"><em>l</em> = 0</span>: <span
+class="math inline">[(<em>i</em> + 0.5)<em>a</em>, (<em>j</em> + 0.5)<em>a</em>]</span>
+- <span class="math inline"><em>l</em> = 1</span>: <span
+class="math inline">[(<em>i</em> + 1.0)<em>a</em>, (<em>j</em> + 0.5)<em>a</em>]</span>
+- <span class="math inline"><em>l</em> = 2</span>: <span
+class="math inline">[(<em>i</em> + 1.0)<em>a</em>, (<em>j</em> + 1.0)<em>a</em>]</span></p>
+<ul>
+<li>goal: make questions with higher relevances nearer to the question
+panel</li>
+<li>I use <code>(1 - normalized_dist)</code> multiplied by the relevance
+of the app (<code>rele[app]</code>) to incentivize higher scores for
+apps that are both closer to the question area and have higher
+relevance. In this way, it still measures the negative correlation
+between the distance and the rewards, and also incorporate the
+relationship between relevance and distance.</li>
+</ul>
+<h4 id="initial-formulation-c-0010">4.2.3 Initial Formulation C:
+0010</h4>
+<p><span class="math display">$$
+\begin{align*}
+\max_{x} \quad &amp; w_{prox}J_{prox} + w_{rel}J_{rel} + w_{lod}J_{LoD}
++ w_{roi}J_{ROI} \newline
+\text{where:} \newline
+J_{prox} &amp;= -\sum_{a,l,i,j} \gamma_d \cdot d_{l,i,j} \cdot
+x_{a,l,i,j} \newline
+J_{rel} &amp;= \sum_{a,l,i,j} \gamma_r \cdot r_a \cdot x_{a,l,i,j}
+\newline
+J_{LoD} &amp;= \sum_{a,l,i,j} \gamma_{lod} \cdot \frac{r_a(l + 1)}{L}
+\cdot x_{a,l,i,j} \newline
+J_{ROI} &amp;= -\sum_{a,l,i,j} \gamma_{roi} \cdot x_{a,l,i,j} \cdot
+\mathbb{I}\{overlap(l,i,j)\}
+\end{align*}
+$$</span></p>
+<h6 id="lod_1">LoD_1</h6>
+<p><span class="math display">$$
+J_{LoD} = \sum_{a,l,i,j} \gamma_{lod} \cdot \frac{r_a(l + 1)}{L} \cdot
+x_{a,l,i,j}
+$$</span></p>
+<p>where L is the total number of LoD levels</p>
+<ul>
+<li>context：As the code background shows, Weather is with the highest
+relevance. It appears in the nearest position, which is quiet
+reasonable. But it is with the lowest LoD. This is a failed trade-off
+between proximity and LoD.
+<ul>
+<li>![[viarant_3.webp|547]]</li>
+</ul></li>
+<li>goal: Enhancing the impact of relevance on LoDs</li>
+<li>To make widgets with higher relevance appear with higher LoDs, I
+coupled the relevance to LoD. To normalize, I also made a division of
+3.</li>
+</ul>
+<h4 id="evaluation">4.3 Evaluation</h4>
+<p>I tweaked the weights for each term based on the Formulation A, and
+got a set of stable and balanced weights for the test of each variants:
+- <span
+class="math inline"><em>w</em><sub><em>r</em><em>e</em><em>l</em></sub> = 3</span>
+(relevance weight) - <span
+class="math inline"><em>w</em><sub><em>p</em><em>r</em><em>o</em><em>x</em></sub> = 5</span>
+(proximity weight) - <span
+class="math inline"><em>w</em><sub><em>l</em><em>o</em><em>d</em></sub> = 3</span>
+(LOD level weight) - <span
+class="math inline"><em>w</em><sub><em>r</em><em>o</em><em>i</em></sub> = −100</span>
+(ROI avoidance weight, negative for penalty)</p>
+<p>All the tests are under <code>scenes/scene-3.json</code></p>
+<p>I evaluated the 3 methods above based on the total time and scores.
+Generally, the diagram demonstrated the progress from the base
+Formulation A to B and C.</p>
+<figure>
+<p><img src="usertest.png"></p>
+<figcaption>
+User testing data analysis
+</figcaption>
+</figure>
+<p>Also, during the testing, I found there are some potential to combine
+the Formulation B and C. For example, in this screenshot form the user
+test with Formulation C, “photography” is with the highest relevance,
+but user first noticed other widget which is nearer to the question
+panel. If use Formulation “1010” as the final formulation, it is
+supposed to count into the correlation between relevance and proximity
+better.</p>
+<figure>
+<p><img src="s3.png"></p>
+<figcaption>
+User testing screenshot with Formulation C: Although “photography” is
+marked as the most relevant, the user initially focused on a widget
+positioned closer to the question panel.
+</figcaption>
+</figure>
+<h2 id="auto-relevance-calculation">5. Auto relevance calculation</h2>
+<p>The relevance values are currently manually defined. As a result,
+they may not actually reflect what information is needed for a
+particular scene. Using the scene.questions and scene.apps, can you
+automate relevance calculation? </p>
+<h4 id="method">5.1 method</h4>
+<p>Used the <code>kklearn</code> package to automatically calculate app
+relevance using text mining (TF-IDF, cosine similarity) instead of
+relying on preset values.</p>
+<ul>
+<li>Added a function <code>calculate_automated_relevance(scene)</code> :
+<ul>
+<li>For each app, collects and cleans its description and name and
+combines this into a single text string.</li>
+<li>Combines all questions and associated app names into a single text
+string.</li>
+<li>Uses TF-IDF to convert the app text and questions text into
+numerical vectors. Computes cosine similarity between the app vector and
+questions vector to get a relevance score and normalize it.</li>
+</ul></li>
+<li>Added a toggle: When the flag <code>is_auto_rele</code> is
+<code>True</code>, relevance is calculated automatically; otherwise,
+<code>info["relevance"]</code> is used as before.</li>
+</ul>
+<h4 id="evaluation-1">5.2 evaluation</h4>
+<figure>
+<p><img src="semantic.png"></p>
+<figcaption>
+Comparison between automatically calculated and manually labeled
+relevance assignment
+</figcaption>
+</figure>
+<p>This approach makes sense. I’ve found that besides providing subtle
+scene-specific information, it can also reduce users’ error correction
+costs. For example, as shown in the first diagram above, in the first
+scene, ‘finance’ and ‘stock’ are semantically similar - users sometimes
+confuse them. This semantic-based relevance assignment method means that
+when ‘finance’ appears in a question, ‘stock’ also gets higher relevance
+and is more likely to appear in easily visible positions. So even if
+users click the wrong one, they won’t waste much time searching.</p>
+<p>However, there are also issues. In the scene 1, time is not sensitive
+for semantic algorithm, but in the scene 2, every LoD of the ‘travel’
+app contains the word ‘time’, so the algorithm considers it highly
+relevant to time-related queries, which is incorrect. Yet we can’t
+simply treat ‘time’ as a stopword since it is indeed an important
+semantic term.</p>
+<h2 id="final-formulation">6. Final Formulation</h2>
+<figure>
+<p><img src="ff.png"></p>
+<figcaption>
+Final formulation recipe “1010”
+</figcaption>
+</figure>
+<p>Since Formulation B and C perform better than Formulation A, so I
+combined them together as the final formulation and assumed it is good.
+To validate the assumption, I did a user test and logged the data.</p>
+<figure>
+<p><img src="eva.png"></p>
+<figcaption>
+Comparison between automatically calculated and manually labeled
+relevance assignment
+</figcaption>
+</figure>
+<p>It turned out that the final formulation has a good speed and
+stability. But my experiment is limited, because I found the generated
+plan of the widget often tends to show a really high level of detail,
+which does not violate the constrains neither the rewards and penalty.
+And a high LoD will contribute a lot to the final score since it could
+save a large amount of time by flattening the information to avoid
+hunting and finding required information in foggy jungles. However, real
+life condition is not a “speed competition”, instead, more parameters
+like cognitive load should be considered. In another word, if cognitive
+load which is against LoD, it will be another story.</p>
+<h3 id="objective-function-1010">6.1 Objective function: 1010</h3>
+<p><span class="math display">$$
+\begin{align*}
+\max_{x} \quad &amp; w_{prox}J_{prox} + w_{rel}J_{rel} + w_{lod}J_{LoD}
++ w_{roi}J_{ROI} \newline
+\text{where:} \newline
+J_{prox} &amp;= \sum_{a,l,i,j} r_a \cdot (1 - \gamma_d \cdot d_{l,i,j})
+\cdot x_{a,l,i,j} \newline
+J_{rel} &amp;= \sum_{a,l,i,j} \gamma_r \cdot r_a \cdot x_{a,l,i,j}
+\newline
+J_{LoD} &amp;= \sum_{a,l,i,j} \gamma_{lod} \cdot \frac{r_a(l + 1)}{L}
+\cdot x_{a,l,i,j} \newline
+J_{ROI} &amp;= -\sum_{a,l,i,j} \gamma_{roi} \cdot x_{a,l,i,j} \cdot
+\mathbb{I}\{overlap(l,i,j)\}
+\end{align*}
+$$</span></p>
+<h4 id="proximity_1-1">6.1.1 Proximity_1</h4>
+<p><span
+class="math display"><em>J</em><sub><em>p</em><em>r</em><em>o</em><em>x</em></sub> = ∑<sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub><em>r</em><sub><em>a</em></sub> ⋅ (1 − <em>γ</em><sub><em>d</em></sub> ⋅ <em>d</em><sub><em>l</em>, <em>i</em>, <em>j</em></sub>) ⋅ <em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub></span></p>
+<p>where: - <span
+class="math inline"><em>d</em><sub><em>l</em>, <em>i</em>, <em>j</em></sub> = ∥<strong>p</strong><sub><em>l</em>, <em>i</em>, <em>j</em></sub> − <strong>q</strong><sub><em>c</em></sub>∥<sub>2</sub></span>
+is the distance from widget center to question center - <span
+class="math inline">$\gamma_d = \frac{d - d_{min}}{d_{max} -
+d_{min}}$</span> is the distance normalization factor - <span
+class="math inline"><strong>p</strong><sub><em>l</em>, <em>i</em>, <em>j</em></sub></span>
+is the widget center position: - <span
+class="math inline"><em>l</em> = 0</span>: <span
+class="math inline">[(<em>i</em> + 0.5)<em>a</em>, (<em>j</em> + 0.5)<em>a</em>]</span>
+- <span class="math inline"><em>l</em> = 1</span>: <span
+class="math inline">[(<em>i</em> + 1.0)<em>a</em>, (<em>j</em> + 0.5)<em>a</em>]</span>
+- <span class="math inline"><em>l</em> = 2</span>: <span
+class="math inline">[(<em>i</em> + 1.0)<em>a</em>, (<em>j</em> + 1.0)<em>a</em>]</span></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Reward proximity to question panel with higher rele</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">questionProximityTerm</span> = 0</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> app <span class="kw">in</span> app_ids:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> lod <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.LODS</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> xIdx <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.COLS</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> yIdx <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.ROWS</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                <span class="co"># widget center</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="ex">lod</span> == 0:  <span class="co"># 1x1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                    <span class="ex">pos</span> = np.array<span class="er">(</span><span class="bu">[</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                        <span class="er">(</span>xIdx + 0.5<span class="er">)</span> <span class="er">*</span> <span class="ex">grid_a,</span>  </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">(</span><span class="ex">yIdx</span> + 0.5<span class="kw">)</span> <span class="ex">*</span> grid_a</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                    <span class="ex">]</span><span class="kw">)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> <span class="ex">lod</span> == 1:  <span class="co"># 1x2</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                    <span class="ex">pos</span> = np.array<span class="er">(</span><span class="bu">[</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                        <span class="er">(</span>xIdx + 1.0<span class="er">)</span> <span class="er">*</span> <span class="ex">grid_a,</span>  <span class="co"># center of 2 grids</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">(</span><span class="ex">yIdx</span> + 0.5<span class="kw">)</span> <span class="ex">*</span> grid_a</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                    <span class="ex">]</span><span class="kw">)</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                <span class="ex">else:</span>  <span class="co"># lod 2, 2x2</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                    <span class="ex">pos</span> = np.array<span class="er">(</span><span class="bu">[</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                        <span class="er">(</span>xIdx + 1.0<span class="er">)</span> <span class="er">*</span> <span class="ex">grid_a,</span>  </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">(</span><span class="ex">yIdx</span> + 1.0<span class="kw">)</span> <span class="ex">*</span> grid_a</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                    <span class="ex">]</span><span class="kw">)</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                <span class="ex">dist_to_questions</span> = np.sqrt<span class="er">(</span><span class="ex">np.sum</span><span class="er">((</span><span class="va">pos</span> <span class="op">-</span> <span class="va">q_center</span><span class="kw">)</span><span class="ex">**2</span><span class="kw">))</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                <span class="ex">normalized_dist</span> = <span class="er">(</span><span class="kw">(</span><span class="ex">dist_to_questions</span> <span class="at">-</span> norm_params<span class="pp">[</span><span class="st">&#39;q_min_dist&#39;</span><span class="pp">]</span><span class="kw">)</span> <span class="ex">/</span> </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                                <span class="kw">(</span><span class="va">norm_params</span><span class="op">[</span><span class="st">&#39;q_max_dist&#39;</span><span class="op">]</span> <span class="ex">-</span> norm_params<span class="pp">[</span><span class="st">&#39;q_min_dist&#39;</span><span class="pp">]</span><span class="kw">))</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                <span class="ex">questionProximityTerm</span> += rele<span class="pp">[</span><span class="ss">app</span><span class="pp">]</span> <span class="pp">*</span> <span class="er">(</span><span class="ex">1</span> <span class="at">-</span> normalized_dist<span class="kw">)</span> <span class="ex">*</span> x[app, lod, xIdx, yIdx]</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<h4 id="relevance_0-1">6.1.2 Relevance_0</h4>
+<p><span
+class="math display"><em>J</em><sub><em>r</em><em>e</em><em>l</em></sub> = ∑<sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub><em>γ</em><sub><em>r</em></sub> ⋅ <em>r</em><sub><em>a</em></sub> ⋅ <em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub></span></p>
+<p>where: - <span
+class="math inline"><em>r</em><sub><em>a</em></sub></span> is the
+relevance score of application <span
+class="math inline"><em>a</em></span> - <span
+class="math inline">$\gamma_r = \frac{r - r_{min}}{r_{max} -
+r_{min}}$</span> is the relevance normalization factor, is 1 here</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Relevance term</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">relevanceTerm</span> = sum<span class="er">(</span><span class="va">rele</span><span class="op">[</span>app<span class="op">]</span> <span class="ex">*</span> x[app, lod, xIdx, yIdx]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> app <span class="kw">in</span> app_ids</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> lod <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.LODS</span><span class="kw">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> xIdx <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.COLS</span><span class="kw">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> yIdx <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.ROWS</span><span class="kw">))</span></span></code></pre></div>
+<h4 id="lod_1-1">6.1.3 LoD_1</h4>
+<p><span class="math display">$$
+J_{LoD} = \sum_{a,l,i,j} \gamma_{lod} \cdot \frac{r_a(l + 1)}{L} \cdot
+x_{a,l,i,j}
+$$</span></p>
+<p>where L is the total number of LoD levels</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. add correlation between relevane and lod</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">lodRewardTerm</span> = sum<span class="er">(</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">((</span><span class="va">rele</span><span class="op">[</span>app<span class="op">]</span> <span class="ex">*</span> <span class="er">(</span><span class="ex">lod</span> + 1<span class="kw">)</span> <span class="ex">/</span> 3 <span class="at">-</span> norm_params<span class="pp">[</span><span class="st">&#39;min_lod_reward&#39;</span><span class="pp">]</span><span class="kw">)</span> <span class="ex">/</span> <span class="er">(</span><span class="va">norm_params</span><span class="op">[</span><span class="st">&#39;max_lod_reward&#39;</span><span class="op">]</span> <span class="ex">-norm_params[</span><span class="st">&#39;min_lod_reward&#39;</span><span class="ex">]</span><span class="kw">))</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">*</span> x[app, lod, xIdx, yIdx]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> app <span class="kw">in</span> app_ids</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> lod <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.LODS</span><span class="kw">)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xIdx <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.COLS</span><span class="kw">)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> yIdx <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.ROWS</span><span class="kw">)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
+<h4 id="roi_0-1">6.1.4 ROI_0</h4>
+<p><span class="math display">$$
+\begin{align*}
+J_{ROI} = -\sum_{a,l,i,j} &amp; \gamma \cdot x_{a,l,i,j} \cdot
+\mathbb{I}\{overlap(l,i,j)\} \\
+\end{align*}
+$$</span></p>
+<ul>
+<li><span
+class="math inline"><em>o</em><em>v</em><em>e</em><em>r</em><em>l</em><em>a</em><em>p</em>(<em>l</em>, <em>i</em>, <em>j</em>)</span>
+denotes the detection of rectangular overlap of circular ROIs with grid
+cells <span
+class="math inline">(<em>i</em>, <em>j</em>, <em>l</em>)</span></li>
+<li><span
+class="math inline"><em>x</em><sub><em>a</em>, <em>l</em>, <em>i</em>, <em>j</em></sub></span>
+is the decision variable</li>
+<li><span class="math inline"><em>γ</em></span> is the normalization
+factor</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. ROI avoidance term</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">roiAvoidanceTerm</span> = 0</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> app <span class="kw">in</span> app_ids:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> lod <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.LODS</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> xIdx <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.COLS</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> yIdx <span class="kw">in</span> range<span class="er">(</span><span class="ex">scene_UI.ROWS</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                <span class="co"># rect zone</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                <span class="ex">rect_x,</span> rect_y = xIdx <span class="pp">*</span> grid_a, yIdx <span class="pp">*</span> grid_a</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                <span class="ex">rect_width,</span> rect_height = grid_a, grid_a</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="ex">lod</span> <span class="op">&gt;</span> 0:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                    <span class="ex">rect_width</span> = 2 <span class="pp">*</span> grid_a</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="ex">lod</span> <span class="op">&gt;</span> 1:</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                    <span class="ex">rect_height</span> = 2 <span class="pp">*</span> grid_a  </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                <span class="co"># check overlapping: * use methods in &quot;UI.py&quot; about line 440ish (search: self.overlapping += 1)</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="ex">circle_rectangle_overlap</span><span class="er">(</span><span class="ex">circle_x,</span> circle_y, circle_radius, rect_x, rect_y, rect_width, rect_height<span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                    <span class="ex">roiAvoidanceTerm</span> <span class="at">-</span><span class="op">=</span> <span class="er">(</span><span class="ex">poi_pan</span> <span class="at">-</span> norm_params<span class="pp">[</span><span class="st">&#39;min_roi_penalty&#39;</span><span class="pp">]</span><span class="kw">)</span> <span class="ex">/</span>                    <span class="er">(</span><span class="va">norm_params</span><span class="op">[</span><span class="st">&#39;max_roi_penalty&#39;</span><span class="op">]</span> <span class="ex">-</span> norm_params<span class="pp">[</span><span class="st">&#39;min_roi_penalty&#39;</span><span class="pp">]</span><span class="kw">)</span> <span class="ex">*</span> x[app, lod, xIdx, yIdx]</span></code></pre></div>
 </body>
 </html>
