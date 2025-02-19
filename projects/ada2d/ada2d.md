@@ -1,7 +1,38 @@
 ## 1. Background, Goal, and Workflow
 Augmented Reality promises to transform how we interact with digital information. Through blending virtual interface elements into our physical environment, it enables a range of applications from in situ displays of task instructions for training purposes to immersive educational experiences. However, placing interface elements within our physical world also makes designing AR applications incredibly difficult as they should be "context-sensitive". For the lack of words, the "goodness" of interface designs now depends on the environmental conditions (e.g., what objects are around the user) as well as external (e.g., task) and internal (e.g., cognitive load) states. Hence, UI decisions can no longer be set deterministically at design time, but adapt according to their context of use at runtime. 
 
-In this project, I aim to present the application widgets more effectively using an optimization-based approach.
+### 1.1 Project Goal
+
+
+In this project which mimics the AR context in a low-fidelity prototype in python, I aim to present the application widgets more effectively using an optimization-based approach, taking into account:
+
+〓 Constraints to make the UI placement looks normal:
+- Non-overlap
+- Place <= 4 elements
+- Single placement per app
+
+〓 Objectives to help users to efficiently find the information they need:
+- Proximity to the starting point
+- App relevance to the question
+- LoD (Levels of Details) of each widget
+- ROI (Region of Interest) of the scene
+
+`Gurobipy` is used to solve the optimization problem.
+
+<figure>
+<img src="prompt.png">
+<figcaption>The components of the system interface: all the components are placed in a 2D plane</figcaption>
+</figure>
+
+Each widget has 3 levels of details (LoD), and the size of the widget is determined by the LoD.
+
+<figure>
+<img src="lod.png">
+<figcaption>LoD: levels of details</figcaption>
+</figure>
+
+
+### 1.2 Workflow
 
 <figure>
 
@@ -81,36 +112,15 @@ pos = np.array([pos_x*grid_a, pos_y*grid_a])
 # Check overlap with Apps button
 ```
 
-### 3.2 Objective
-#### 3.2.1 Normalization of each Term
 
-- Before: Directly used raw numerical values for calculations, making it difficult to tweak the weights, as the parameters were not on the same scale.  
+### 3.2 UI visual optimization
 
-- After:  
-     – Introduced a `normalize_terms()` helper function to compute and return normalized parameters.  
-     – After normalization, all terms are ensured to have proper scales.
-
-#### 3.2.2 Term: ROI Overlapping Detectings 
-
-- The original formulation computes a fixed reference point (typically the bottom-left of the grid) and applies a penalty if its distance to the ROI center is less than `roi_rad`, thereby ignoring the full area that the UI element might occupy.
-
-- During testing, I noticed that the console output showed ROI overlaps being penalized cumulatively. 
-
-- So I revised the penalty rule by changing the ROI overlap detection mechanism to use the circle_rectangle_overlap helper function, which iterates through each grid and applies a weighted penalty if the widget overlaps with the ROI.
-
-#### 3.2.3 Term: Question Proximity
-- adjust the  distance calculation method
-	- Before: Directly used the top-left corner coordinates to calculate distances, without considering the actual center position of the widget.  
-	- After: Introduced a more precise definition of the widget's center point for LoD:  
-	     - For **LoD0**, `(xIdx + 0.5) * grid_a, (yIdx + 0.5) * grid_a`
-	     - For **LoD1**, `(xIdx + 1.0) * grid_a, (yIdx + 0.5) * grid_a`
-	     - For **LoD2**,  `(xIdx + 1.0) * grid_a, (yIdx + 1.0) * grid_a`
-
-### 3.3 UI visual optimization
-
-- I used pillow to blur the background scene when keeping the attention focus zone clear to mimic the focus in Augmented Reality context.
-- I color coded different items and add indents to organized the information hierarchy.
-- I also added paddings to each widget to make them not stick to each other, hoping this can add more clarity.
+- **Mimic AR focus zone by blurring the background** 
+    - I used pillow to blur the background scene when keeping the attention focus zone clear to mimic the focus in Augmented Reality context.
+- **Adaptive Color coding** 
+    - I color coded titles and contents in widgets and add indents to organized the information hierarchy. The theme color is adaptive to the background scene by calculating the average color of the background.
+- **Padding** 
+    - I also added paddings to each widget to make them not stick to each other, hoping this can add more clarity.
   
 ## 4. Three Initial Formulations
 
@@ -122,9 +132,9 @@ For example, for the first term $J_{prox}$, I developed an alternative way to fo
 
 <figure>
 
-<img src="strategy.png">
+<img src="strategy.gif">
 
-<figcaption>Variants of terms is the objective function</figcaption>
+<figcaption>Combinition of term variants in the objective function</figcaption>
 
 </figure>
 
@@ -160,36 +170,6 @@ where:
   - $l=1$: $[(i + 1.0)a, (j + 0.5)a]$
   - $l=2$: $[(i + 1.0)a, (j + 1.0)a]$
 
-```bash
-# 1. Reward proximity to question panel
-questionProximityTerm = 0
-for app in app_ids:
-    for lod in range(scene_UI.LODS):
-        for xIdx in range(scene_UI.COLS):
-            for yIdx in range(scene_UI.ROWS):
-                # widget center
-                if lod == 0:  # 1x1
-                    pos = np.array([
-                        (xIdx + 0.5) * grid_a,  
-                        (yIdx + 0.5) * grid_a
-                    ])
-                elif lod == 1:  # 1x2
-                    pos = np.array([
-                        (xIdx + 1.0) * grid_a,
-                        (yIdx + 0.5) * grid_a
-                    ])
-                else:  # lod 2, 2x2
-                    pos = np.array([
-                        (xIdx + 1.0) * grid_a,  
-                        (yIdx + 1.0) * grid_a
-                    ])
-                
-                dist_to_questions = np.sqrt(np.sum((pos - q_center)**2))
-                normalized_dist = ((dist_to_questions - norm_params['q_min_dist']) / 
-                                (norm_params['q_max_dist'] - norm_params['q_min_dist']))
-                questionProximityTerm -= normalized_dist * x[app, lod, xIdx, yIdx]
-
-```
 
 This term is to make all the widgets surrounded with the question panel.
 
@@ -203,14 +183,7 @@ where:
 - $r_a$ is the relevance score of application $a$
 - $\gamma_r = \frac{r - r_{min}}{r_{max} - r_{min}}$ is the relevance normalization factor, 1 here
 
-```bash
-# 2. Relevance term
-relevanceTerm = sum(rele[app] * x[app, lod, xIdx, yIdx]
-					for app in app_ids
-					for lod in range(scene_UI.LODS)
-					for xIdx in range(scene_UI.COLS)
-					for yIdx in range(scene_UI.ROWS))
-```
+
 
 This term prioritizes apps with higher relevance scores to show up.
 
@@ -223,17 +196,6 @@ $$
 where :
 - $γ$ is the normalization factor
 
-```bash
-# 3. LoD reward
-lodRewardTerm = sum(
-    ((lod + 1)  - norm_params['min_lod_reward']) / (norm_params['max_lod_reward'] -norm_params['min_lod_reward'])) 
-    * x[app, lod, xIdx, yIdx]
-    for app in app_ids
-    for lod in range(scene_UI.LODS)
-    for xIdx in range(scene_UI.COLS)
-    for yIdx in range(scene_UI.ROWS)
-)
-```
 
 This term is set for using as large levels of details as possible when conditions permit.
 
@@ -250,24 +212,6 @@ $$
 - $x_{a,l,i,j}$ is the decision variable
 - $γ$ is the normalization factor
 
-```bash
-# 4. ROI avoidance term
-roiAvoidanceTerm = 0
-for app in app_ids:
-    for lod in range(scene_UI.LODS):
-        for xIdx in range(scene_UI.COLS):
-            for yIdx in range(scene_UI.ROWS):
-                # rect zone
-                rect_x, rect_y = xIdx * grid_a, yIdx * grid_a
-                rect_width, rect_height = grid_a, grid_a
-                if lod > 0:
-                    rect_width = 2 * grid_a
-                if lod > 1:
-                    rect_height = 2 * grid_a  
-                # check overlapping: * use methods in "UI.py" about line 440ish (search: self.overlapping += 1)
-                if circle_rectangle_overlap(circle_x, circle_y, circle_radius, rect_x, rect_y, rect_width, rect_height):
-                    roiAvoidanceTerm -= (poi_pan - norm_params['min_roi_penalty']) /                    (norm_params['max_roi_penalty'] - norm_params['min_roi_penalty']) * x[app, lod, xIdx, yIdx]
-```
 
 This term penalizes placements that fall within a sensitive region (ROI). The penalty linearly adds up with the overlapping girds counts adding up.
 
@@ -300,38 +244,23 @@ where:
   - $l=1$: $[(i + 1.0)a, (j + 0.5)a]$
   - $l=2$: $[(i + 1.0)a, (j + 1.0)a]$
 
-```bash
-# 1. Reward proximity to question panel with higher rele
-questionProximityTerm = 0
-for app in app_ids:
-    for lod in range(scene_UI.LODS):
-        for xIdx in range(scene_UI.COLS):
-            for yIdx in range(scene_UI.ROWS):
-                # widget center
-                if lod == 0:  # 1x1
-                    pos = np.array([
-                        (xIdx + 0.5) * grid_a,  
-                        (yIdx + 0.5) * grid_a
-                    ])
-                elif lod == 1:  # 1x2
-                    pos = np.array([
-                        (xIdx + 1.0) * grid_a,  # center of 2 grids
-                        (yIdx + 0.5) * grid_a
-                    ])
-                else:  # lod 2, 2x2
-                    pos = np.array([
-                        (xIdx + 1.0) * grid_a,  
-                        (yIdx + 1.0) * grid_a
-                    ])
-                
-                dist_to_questions = np.sqrt(np.sum((pos - q_center)**2))
-                normalized_dist = ((dist_to_questions - norm_params['q_min_dist']) / 
-                                (norm_params['q_max_dist'] - norm_params['q_min_dist']))
-                questionProximityTerm += rele[app] * (1 - normalized_dist) * x[app, lod, xIdx, yIdx]
-```
 
 - goal: make questions with higher relevances nearer to the question panel
 - I use `(1 - normalized_dist)` multiplied by the relevance of the app (`rele[app]`) to incentivize higher scores for apps that are both closer to the question area and have higher relevance. In this way, it still measures the negative correlation between the distance and the rewards, and also incorporate the relationship between relevance and distance.
+
+#### 4.2.3 Initial Formulation C: 0010
+
+$$ 
+\begin{align*}
+\max_{x} \quad & w_{prox}J_{prox} + w_{rel}J_{rel} + w_{lod}J_{LoD} + w_{roi}J_{ROI} \newline
+\text{where:} \newline
+J_{prox} &= -\sum_{a,l,i,j} \gamma_d \cdot d_{l,i,j} \cdot x_{a,l,i,j} \newline
+J_{rel} &= \sum_{a,l,i,j} \gamma_r \cdot r_a \cdot x_{a,l,i,j} \newline
+J_{LoD} &= \sum_{a,l,i,j} \gamma_{lod} \cdot \frac{r_a(l + 1)}{L} \cdot x_{a,l,i,j} \newline
+J_{ROI} &= -\sum_{a,l,i,j} \gamma_{roi} \cdot x_{a,l,i,j} \cdot \mathbb{I}\{overlap(l,i,j)\}
+\end{align*}
+$$
+
 
 
 ###### LoD_1
@@ -342,17 +271,6 @@ $$
 
 where L is the total number of LoD levels
 
-```bash
-# 3. add correlation between relevane and lod
-lodRewardTerm = sum(
-    ((rele[app] * (lod + 1) / 3 - norm_params['min_lod_reward']) / (norm_params['max_lod_reward'] -norm_params['min_lod_reward'])) 
-    * x[app, lod, xIdx, yIdx]
-    for app in app_ids
-    for lod in range(scene_UI.LODS)
-    for xIdx in range(scene_UI.COLS)
-    for yIdx in range(scene_UI.ROWS)
-)
-```
 
 - context：As the code background shows, Weather is with the highest relevance. It appears in the nearest position, which is quiet reasonable. But it is with the lowest LoD. This is a failed trade-off between proximity and LoD.
 	- ![[viarant_3.webp|547]]
@@ -421,6 +339,14 @@ However, there are also issues. In the scene 1, time is not sensitive for semant
 
 ## 6. Final Formulation
 
+<figure>
+
+<img src="ff.png">
+
+<figcaption>Final formulation recipe "1010"</figcaption>
+
+</figure>
+
 Since Formulation B and C perform better than Formulation A, so I combined them together as the final formulation and assumed it is good. To validate the assumption, I did a user test and logged the data.
 
 <figure>
@@ -447,7 +373,7 @@ J_{ROI} &= -\sum_{a,l,i,j} \gamma_{roi} \cdot x_{a,l,i,j} \cdot \mathbb{I}\{over
 $$
 
 
-#### 6.1.1 Proximity_0
+#### 6.1.1 Proximity_1
 
 $$ 
 J_{prox} = \sum_{a,l,i,j} r_a \cdot (1 - \gamma_d \cdot d_{l,i,j}) \cdot x_{a,l,i,j}
