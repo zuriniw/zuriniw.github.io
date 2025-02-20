@@ -1,12 +1,18 @@
 ## Cybernetic System
-Guided by cybernetic theory, first proposed by Norbert Wiener in 1948, our team re-evaluated the relationship between the body and space, focusing on body preference and gaze direction in exhibition environments. We developed an interactive demo and conducted a behavioral experiment using MR headsets (HoloLens 2) and AI Stereo Cameras (ZED 2) to gather human factors data in the environment. Through Unity-Grasshopper communication, environment changes are computed, digitalized, and manually physicalized, finally embracing back to the human body. In this feedback loop, the constant mutual influence, change, and adaptation of people and the environment leads to co-evolution for both parties.
-
-### Initial Setup
+Guided by cybernetic theory, first proposed by Norbert Wiener in 1948, our team re-evaluated the relationship between the body and space, focusing on body preference and gaze direction in exhibition environments. 
 
 <figure>
   <img src="pipeline.png">
   <figcaption>Figure 1: The constant mutual influence, change, and adaptation of people and the built environment lead to co-evolution for both parties.</figcaption>
 </figure>
+
+We developed an interactive demo and conducted a behavioral experiment using MR headsets (HoloLens 2) and AI Stereo Cameras (ZED 2) to gather human factors data in the environment. Through Unity-Grasshopper communication, environment changes are computed, digitalized, and manually physicalized, finally embracing back to the human body. In this feedback loop, the constant mutual influence, change, and adaptation of people and the environment leads to co-evolution for both parties.
+
+
+
+### Initial Setup
+
+
 
 <figure>
   <img src="initial.png">
@@ -35,7 +41,7 @@ Guided by cybernetic theory, first proposed by Norbert Wiener in 1948, our team 
 
 <figure>
   <img src="https://static.wixstatic.com/media/6a062f_e4d77f2bd64542fda8dd74ec9ec9318c~mv2.jpg/v1/fill/w_717,h_480,al_c,lg_1,q_80,enc_avif,quality_auto/6a062f_e4d77f2bd64542fda8dd74ec9ec9318c~mv2.jpg" alt="Zhong Court, Tongji University">
-  <figcaption>Figure 5: Zhong Court, Tongji University. Photo by Ziru.</figcaption>
+  <figcaption>Figure 5: Zhong Court, Tongji University. Shot by Ziru.</figcaption>
 </figure>
 
 Eight testees sequentially viewed four exhibits through the installation, making a round trip within the space. This process involved experiencing two spatial changes. The final shape of the space incorporated the combined attention and body preference information of all participants, reflecting their collective exhibition experience.

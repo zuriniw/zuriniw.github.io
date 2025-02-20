@@ -1,14 +1,14 @@
 /* 字体声明 */
 
 @font-face {
-    font-family: 'Roboto Mono';
+    font-family: 'JetBrains Mono';
     src: url('../fonts/RobotoMono-VariableFont_wght.ttf') format('truetype-variations');
     font-weight: 100 700;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roboto Mono';
+    font-family: 'JetBrains Mono';
     src: url('../fonts/RobotoMono-Italic-VariableFont_wght.ttf') format('truetype-variations');
     font-weight: 100 700;
     font-style: italic;
@@ -38,7 +38,7 @@
 .markdown-content {
     margin: 20px auto;
     width: 760px;  /* 固定宽度 */
-    font-family: "Roboto Mono", monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 16px;
     line-height: 1.6;
     color: rgba(0, 0, 0, 0.901);
@@ -90,7 +90,7 @@
 
 .markdown-content h2 {
     font-size: 16px;
-    font-family: "Roboto Mono", monospace;
+    font-family: "JetBrains Mono", monospace;
     font-style: italic;
     font-weight: 580;
     margin-top: 280px;  /* 增加二级标题上方的空间 */
@@ -113,7 +113,7 @@
 
 .markdown-content h3 {
     font-size: 16px;
-    font-family: "Roboto Mono", monospace;
+    font-family: "JetBrains Mono", monospace;
     font-weight: 600;
     margin-bottom: 20px;  /* 调整三级标题上方的空间 */
     margin-top: 140px;  /* 调整三级标题上方的空间 */
@@ -132,7 +132,7 @@
 
 .markdown-content h4 {
     font-size: 16px;
-    font-family: "Roboto Mono", monospace;
+    font-family: "JetBrains Mono", monospace;
     font-weight: 300;
     letter-spacing: -0.5px;
     font-weight: 600;
@@ -157,13 +157,13 @@
 }
 .markdown-content p {
     margin: 24px 0;
-    letter-spacing: 0.4px;
     font-family: "Barlow", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 360;
-    line-height: 1.2;
+    line-height: 1.4;
     margin-left: -36px;
-    opacity: 0.96;
+    opacity: 1;
+    color: #424242;
 }
 
 /* 段落后的代码块减少顶部边距 */
@@ -176,7 +176,7 @@
     color: var(--color-white);
     padding: 1px 2px;
     border-radius: 4px;
-    font-family: "Roboto Mono", monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 85%;
     margin: 0;
     hyphens: manual;
@@ -214,7 +214,7 @@
     margin: 12px 0;
     padding-left: 40px;
     font-family: "Barlow", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.2;
     margin-left: 8px;
     font-weight: 360;
@@ -232,7 +232,7 @@
     margin: 4px 0;
     padding-left: 4px;
     font-family: "Barlow", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.2;
     margin-left: 8px;
     font-weight: 360;
@@ -258,6 +258,7 @@
     height: auto;
     display: block;  /* 使图片变成块级元素 */
     margin: 24px auto;  /* 使用 margin: auto 实现水平居中 */
+    opacity: 1 !important;
 }
 
 /* 添加图片说明样式 */
@@ -269,7 +270,7 @@
     margin-bottom: 120px;
     font-family: "Barlow", sans-serif;
     line-height: 1.2;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 390;
 }
 
@@ -400,7 +401,7 @@
     width: 60%;
     border-collapse: collapse;
     margin: 24px 0;
-    font-family: "Roboto Mono", monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 14px;
     line-height: 1.;
     margin-left: 50px;
@@ -480,9 +481,9 @@
     
     .markdown-content h2 {
         font-size: 15px;
-        font-family: "Roboto Mono", monospace;
+        font-family: "JetBrains Mono", monospace;
         font-style: italic;
-        font-weight: 580;
+        font-weight: 600;
         margin-top: 200px;  /* 增加二级标题上方的空间 */
         margin-bottom: 40px;  /* 增加二级标题下方的空间 */
         position: relative;  /* 为下方横线提供定位上下文 */
@@ -503,7 +504,7 @@
     
     .markdown-content h3 {
         font-size: 14px;
-        font-family: "Roboto Mono", monospace;
+        font-family: "JetBrains Mono", monospace;
         font-weight: 400;
         margin-bottom: 40px;  /* 调整三级标题上方的空间 */
         margin-top: 120px;  /* 调整三级标题上方的空间 */
@@ -522,7 +523,7 @@
     
     .markdown-content h4 {
         font-size: 14px;
-        font-family: "Roboto Mono", monospace;
+        font-family: "JetBrains Mono", monospace;
         font-weight: 300;
     }
     
@@ -547,7 +548,7 @@
         color: var(--color-white);
         padding: 2px 4px;
         border-radius: 4px;
-        font-family: "Roboto Mono", monospace;
+        font-family: "JetBrains Mono", monospace;
         font-size: 1px;
         width: 60%;
     }
@@ -607,7 +608,7 @@
     
     .markdown-content a {
         color: var(--color-text);
-        font-family: "Roboto Mono", monospace!important;
+        font-family: "JetBrains Mono", monospace!important;
         letter-spacing: -0.05em;
         opacity: 0.5;
         font-style: italic;
@@ -697,7 +698,7 @@
         width: 60%;
         border-collapse: collapse;
         margin: 12px 0;
-        font-family: "Roboto Mono", monospace;
+        font-family: "JetBrains Mono", monospace;
         font-size: 12px;
         line-height: 1.2;
         margin-left: 50px;
@@ -758,7 +759,7 @@
         color: var(--color-white);
         padding: 2px 4px;
         border-radius: 4px;
-        font-family: "Roboto Mono", monospace;
+        font-family: "JetBrains Mono", monospace;
         font-size: 11px;
         width: 60%;
     }

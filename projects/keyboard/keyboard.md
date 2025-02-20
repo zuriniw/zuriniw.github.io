@@ -6,6 +6,19 @@ I designed a custom keypad based on a Logitech keyboard controller to suit my pe
 <figcaption>the Logitech K375s and itscontroller chip</figcaption>
 </figure>
 
+<figure>
+<img src="k375s.png">
+<figcaption>key matrix diagram for the Logitech K375s keyboard</figcaption>
+</figure>
+
+Each key is a little switch. I arranged the layout and connect them to a 12 pin socket which is connected to the controller chip.
+
+![pcb.png](pcb.png)
+
+
+
+
+
 The design loosely pays tribute to Apple's Macintosh keyboard.
 
 <figure>
@@ -13,17 +26,13 @@ The design loosely pays tribute to Apple's Macintosh keyboard.
 <figcaption>the old fashioned Apple's Macintosh keyboard</figcaption>
 </figure>
 
-<br>
-<br>
-
-
-![pcb.png](pcb.png)
 ![model.png](model.png)
 
-<figure>
-<img src="power.png">
-<figcaption>test pins with the power supply</figcaption>
-</figure>
+After modeling, I received my printed circuit board and wired components together to test if it works.
+
+![power.png](power.png)
+
+After another a few days, I received the 3D printed case. The final assembly looks like this:(I think it super lovely!)
 
 ![kb.png](kb.png)
 

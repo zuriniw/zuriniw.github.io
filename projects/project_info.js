@@ -287,7 +287,7 @@ const projects = [
         labels: ["Bits"],
         time: "2022",
         isteam: false,
-        tools: "LC EDA, Arduino, Rhino",
+        tools: "EasyEDA, Rhino, Soldering Tools",
         weight: 4.3,
         situate: { x: 85, y: -70 },
         isflipped: false,

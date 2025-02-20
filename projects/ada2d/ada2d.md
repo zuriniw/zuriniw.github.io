@@ -157,7 +157,7 @@ $$
 
 
 
-###### Proximity_0
+###### 〓 Proximity_0
 
 $$ 
 J_{prox} = -\sum_{a,l,i,j} \gamma_d \cdot d_{l,i,j} \cdot x_{a,l,i,j}
@@ -174,7 +174,7 @@ where:
 
 This term is to make all the widgets surrounded with the question panel.
 
-###### Relevance_0
+###### 〓 Relevance_0
 
 $$ 
 J_{rel} = \sum_{a,l,i,j} \gamma_r \cdot r_a \cdot x_{a,l,i,j}
@@ -188,7 +188,7 @@ where:
 
 This term prioritizes apps with higher relevance scores to show up.
 
-###### LoD_0
+###### 〓 LoD_0
 
 $$ 
 J_{LoD} = \sum_{a,l,i,j} \gamma_{lod} \cdot (l + 1) \cdot x_{a,l,i,j}
@@ -201,7 +201,7 @@ where :
 This term is set for using as large levels of details as possible when conditions permit.
 
 
-###### ROI_0
+###### 〓 ROI_0
 
 $$ 
 \begin{align*}
@@ -231,7 +231,7 @@ $$
 
 
 
-###### Proximity_1
+###### 〓 Proximity_1
 
 $$ 
 J_{prox} = \sum_{a,l,i,j} r_a \cdot (1 - \gamma_d \cdot d_{l,i,j}) \cdot x_{a,l,i,j}
@@ -264,18 +264,18 @@ $$
 
 
 
-###### LoD_1
+###### 〓 LoD_1
 
 $$ 
 J_{LoD} = \sum_{a,l,i,j} \gamma_{lod} \cdot \frac{r_a(l + 1)}{L} \cdot x_{a,l,i,j}
 $$
 
-where L is the total number of LoD levels
+where $L$ is the total number of LoD levels
 
 
-- context：As the code background shows, Weather is with the highest relevance. It appears in the nearest position, which is quiet reasonable. But it is with the lowest LoD. This is a failed trade-off between proximity and LoD.
-	- ![[viarant_3.webp|547]]
-- goal: Enhancing the impact of relevance on LoDs
+- **context**：As the code background shows, Weather is with the highest relevance. It appears in the nearest position, which is quiet reasonable. But it is with the lowest LoD. This is a failed trade-off between proximity and LoD.
+	- ![](tk.png)
+- **goal**：Enhancing the impact of relevance on LoDs
 - To make widgets with higher relevance appear with higher LoDs, I coupled the relevance to LoD. To normalize, I also made a division of 3.
 
 #### 4.3 Evaluation

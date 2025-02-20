@@ -55,7 +55,7 @@
 .toc-item {
     margin: 8px 0;
     padding-left: 16px;
-    font-size: 13px;
+    font-size: 11px;
     line-height: 1.2;
     transition: all 0.1s ease;
     background: transparent;  /* 确保没有背景色 */
