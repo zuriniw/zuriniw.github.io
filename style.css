@@ -1,5 +1,17 @@
-/* 字体声明 */
+/* font declaration */
+@font-face {
+    font-family: 'MarrSans';
+    src: url('../fonts/MarrSans-Regular-Web.woff.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
 
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/RobotoMono-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 700;
+    font-style: normal;
+}
 
 @font-face {
     font-family: 'JetBrains Mono';
@@ -64,7 +76,7 @@
     font-style: italic;
 }
 
-/* 在样式表开头添加SVG滤镜定义 */
+/* add SVG filter definition at the beginning of the style sheet */
 @supports (filter: url('#noiseFilter')) {
     body::before {
         content: '';
@@ -82,7 +94,7 @@
 }
 
 
-/* 颜色定义 */
+/* color definition */
 :root {
     --color-background: #f6f4f3;
     --color-text: #000;
@@ -92,56 +104,54 @@
     --color-text-grey: #7f7f7f;
     --color-text-darkgrey: #333;
     --color-red: #27b3b3d1;
-    --color-light-grey: #c5c5c5;  /* 添加更浅的灰色 */
-    /* 防止符号转换为 emoji */
+    --color-light-grey: #c5c5c5;
+    /* prevent symbols from being converted to emojis */
     font-variant-emoji: none;
     -webkit-font-variant-emoji: none;
 }
 
-/* 全局样式重置和基础设置 */
+/* global style reset and basic settings */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Barlow", sans-serif;  /* 设置为 Barlow 字体 */
-    letter-spacing: 0.4px;  /* 字间距 */
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
+    font-family: "Barlow", sans-serif;
+    letter-spacing: 0.4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* 隐藏 Webkit 浏览器的滚动条 */
+/* hide the scrollbar of webkit browser */
 *::-webkit-scrollbar {
     display: none;
 }
 
-/* 页面背景设置 */
+/* set the background of the page */
 body {
     min-height: 100vh;
-    background: var(--color-background);  /* 米白色背景 */
-    padding-bottom: 100px;  /* 为固定页脚留出空间 */
-    overflow-y: scroll;  /* 允许滚动但隐藏滚动条 */
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
-    /* 确保所有文字和符号使用指定字体 */
+    background: var(--color-background);
+    padding-bottom: 100px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     -webkit-font-feature-settings: "liga" 0;
     font-feature-settings: "liga" 0;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
 }
 
-/* 隐藏 body 的滚动条 */
+/* hide the scrollbar of body */
 body::-webkit-scrollbar {
     display: none;
 }
 
-/* 主容器样式 */
+/* main container */
 .container {
     position: relative;
     max-width: 1350px;
     width: 100%;
     padding: 0;
-    margin: 80px auto 100px;  /* 调整上下边距，为页眉和页脚留出空间 */
-    margin-top: px;
+    margin: 80px auto 100px;
     display: flex;
     flex-direction: column;
 }
@@ -149,7 +159,7 @@ body::-webkit-scrollbar {
     display:none;
 }
 
-/* 过滤器容器样式 */
+/* filter container */
 .filter-container {
     width: 100%;
     margin: 0 auto;
@@ -160,24 +170,24 @@ body::-webkit-scrollbar {
     z-index: 99;
 }
 
-/* 过滤器内容样式 */
+/* filter content */
 .filter-content {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     position: relative;
-    width: 760px;  /* 与卡片宽度相同 */
-    margin: 0 auto;  /* 居中对齐 */
-    justify-content: space-between;  /* 两端对齐 */
+    width: 760px;
+    margin: 0 auto;
+    justify-content: space-between;
 }
 
-/* 激活状态的按钮样式 */
+/* active button style */
 .active {
     color: var(--color-white);
     background: var(--color-text);
 }
 
-/* 按钮基础样式 */
+/* button style */
 button {
     border: 1.6px solid var(--color-border);
     cursor: pointer;
@@ -194,14 +204,14 @@ button {
     appearance: none;
 }
 
-/* 按钮悬停效果 */
+/* button hover effect */
 button:hover {
     background-color: var(--color-text-hover);
     color: #ffffff;
     border-color: var(--color-text);
 }
 
-/* 卡片网格区域样式 */
+/* card grid area */
 .cards-section {
     margin-top: 10px;
     display: flex;
@@ -217,7 +227,7 @@ button:hover {
     padding: 0 0px;
 }
 
-/* 卡片基础样式 */
+/* card style */
 .card {
     width: 243.2px;
     display: flex;
@@ -233,20 +243,20 @@ button:hover {
     transition: all 0.7s ease;
 }
 
-/* 卡片悬停效果 */
+/* card hover effect */
 .card:hover {
     background-color: #ffffff;}
 
-/* 隐藏类 */
+/* hide class */
 .hide {
     display: none;
 }
 
-/* 卡片图片链接样式 */
+/* card image link style */
 .card-image-link {
     display: block;
     width: 100%;
-    height: 180px;  /* 按比例缩小图片高度 */
+    height: 180px;
     overflow: hidden;
     cursor: pointer;
     transition: opacity 0.1s ease;
@@ -256,13 +266,13 @@ button:hover {
     filter: saturate(0.0) brightness(1.02) !important;
 }
 
-/* 当卡片被悬浮时的图片样式 */
+/* when the card is hovered, the image style */
 .card:hover .card-image-link {
     filter: saturate(1.0) brightness(1.02) !important;
     opacity: 0.9;
 }
 
-/* 卡片图片容器样式 */
+/* card image container */
 .card-image-container {
     width: 100%;
     height: 100%;
@@ -282,11 +292,11 @@ button:hover {
 }
 
 
-/* 卡片图片样式 */
+/* card image style */
 .card-image-link img {
     width: 100%;
     height: 100%;
-    object-fit: cover;  /* 确保图片填充容器 */
+    object-fit: cover;
     display: block;
     position: absolute;
     top: 0;
@@ -295,20 +305,20 @@ button:hover {
 }
 
 
-/* 当卡片被淡出时的样式 */
+/* when the card is faded */
 .card:has(.card-fade) {
     border-color: var(--color-light-grey);
     .card-title-container::after {
         background-color: var(--color-light-grey);
-        height: 1.5px;  /* 保持与普通状态一致 */
+        height: 1.5px;
         transform: scaleY(0.5);
     }
     img {
-        opacity: 0.3;  /* 当卡片被淡出时，图片透明度变为30% */
+        opacity: 0.3;
     }
 }
 
-/* 卡片内容区域样式 */
+/* card content area */
 .card-body {
     padding: 12px 16px;
     flex: 1;
@@ -316,19 +326,19 @@ button:hover {
     flex-direction: column;
     font-family: "JetBrains Mono", monospace;
     position: relative;
-    overflow: hidden;  /* 防止内容溢出 */
+    overflow: hidden;
 }
 
-/* 卡片标题容器样式 */
+/* card title container */
 .card-title-container {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-bottom: 12px;
-    position: relative;  /* 为横线定位 */
+    position: relative;
 }
 
-/* 添加标题下方的横线 */
+/* add a horizontal line below the title */
 .card-title-container::after {
     content: '';
     position: absolute;
@@ -341,7 +351,7 @@ button:hover {
     transform-origin: center;
 }
 
-/* 卡片标题样式 */
+/* card title style */
 .card-title {
     font-size: 14px;
     letter-spacing: 0.8px;
@@ -351,7 +361,7 @@ button:hover {
     transition: all 0.2s ease;
 }
 
-/* 视频图标样式 */
+/* video icon style */
 .video-icon {
     color: var(--color-border);
     text-decoration: none;
@@ -362,7 +372,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 2.8px;  /* 微调三角形位置 */
+    padding-left: 2.8px;
 }
 
 .video-icon:hover {
@@ -370,17 +380,17 @@ button:hover {
     border-color: var(--color-red);
 }
 
-/* 时间样式 */
+/* time style */
 .card-time {
     font-family: "JetBrains Mono", monospace;
     font-size: 12px;
     font-weight: 350;
     color: var(--color-text-grey);
-    margin: 2px 0 0 0;  /* 减小底部边距 */
+    margin: 2px 0 0 0;
     padding-bottom: 2px;
 }
 
-/* 卡片描述文字样式 */
+/* card description text style */
 .card-description {
     font-family: "JetBrains Mono", monospace;
     font-size: 14px;
@@ -393,7 +403,7 @@ button:hover {
     text-overflow: ellipsis;
 }
 
-/* 过滤按钮区域样式 */
+/* filter button area */
 .buttons-section {
     display: flex;
     flex-wrap: wrap;
@@ -401,7 +411,7 @@ button:hover {
     justify-content: flex-start;
 }
 
-/* 卡片标签容器样式 */
+/* card label container */
 .card-labels {
     display: flex;
     gap: 8px;
@@ -409,7 +419,7 @@ button:hover {
     margin-top: 4px;
 }
 
-/* 卡片标签样式 */
+/* card label style */
 .label {
     font-family: "JetBrains Mono", monospace;
     font-size: 11px;
@@ -423,100 +433,100 @@ button:hover {
     transition: all 0.1s ease;
 }
 
-/* 卡片标签悬停状态 */
+/* card label hover state */
 .card-label.hover {
     border-color: var(--color-red);
     color: var(--color-red);
 }
 
-/* 添加淡出效果的样式 */
+/* add fade effect */
 .card-fade {
     color: var(--color-light-grey) !important;
     border-color: var(--color-light-grey) !important;
     transition: all 0.2s ease;
 }
 
-/* 确保所有卡片元素都有过渡效果 */
+/* ensure all card elements have a transition effect */
 .card-title,
 .card-label {
     transition: all 0.2s ease;
 }
 
-/* 卡片图片链接样式 */
+/* card image link style */
 .card-image-link:hover img {
     opacity: 0.9;
     filter: saturate(1.02) brightness(1.02) !important;
 }
 
-/* 当卡片被淡出且图片被悬停时的样式 */
+/* when the card is faded and the image is hovered */
 .card:has(.card-fade) .card-image-link:hover img {
-    opacity: 0.1;  /* 即使在悬停时也保持30%的透明度 */
+    opacity: 0.1;
 }
 
-/* Filter wrapper 样式 */
+/* Filter wrapper style */
 .filter-wrapper {
     width: 100%;
     background-color: var(--color-background);
     padding: 20px 0 16px 0;
     padding-top: 120px;
     padding-bottom: 0px;
-    transition: all 0.1s ease;  /* 移除这个过渡效果 */
+    transition: all 0.1s ease;
     margin-top: 0px;
-    position: relative;  /* 为提示文字提供定位上下文 */
+    position: relative;
 }
 
-/* 过滤器容器固定样式 */
+/* filter container fixed style */
 .filter-wrapper.fixed {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    padding-top: 80px;  /* 固定时减少上边距 */
+    padding-top: 80px;
     padding-bottom: 20px;
     background-color: var(--color-background);
 }
 
-/* 当过滤器固定时，为内容添加 padding 以防止跳动 */
+/* when the filter is fixed, add padding to the content to prevent jumping */
 .filter-wrapper-placeholder {
     display: none;
     width: 100%;
-    background-color: var(--color-background);  /* 添加背景色 */
+    background-color: var(--color-background);
 }
 
 .filter-wrapper-placeholder.active {
     display: block;
 }
 
-/* 当 filter 固定时，为内容添加 padding-top */
+/* when the filter is fixed, add padding-top to the content */
 .cards-section.filter-fixed {
-    padding-top: 60px;  /* 根据 filter 高度调整 */
+    padding-top: 60px;
 }
 
-/* 切换按钮容器样式 */
+/* switch button container style */
 .switch-container {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-/* 箭头图标样式 */
+/* arrow icon style */
 .arrow-icon {
     display: inline-block;
-    transform: rotate(-50deg);  /* 默认逆时针旋转45度 */
+    transform: rotate(-50deg);
     font-size: 20px;
     color: var(--color-text);
     margin-top: -12px;
     margin-right: -2px;
-    transition: transform 0.3s ease;  /* 添加过渡动画 */
+    transition: transform 0.3s ease;
 }
 
-/* 当悬停在切换按钮容器上时的箭头效果 */
+/* when hovering over the switch button container, the arrow effect */
 .switch-container:hover .arrow-icon {
-    transform: rotate(-80deg);  /* 额外逆时针旋转30度（总共-75度） */
+    transform: rotate(-80deg);
 }
 
-/* 切换按钮样式 */
+/* switch button style */
 .switch-view {
     width: 32px;
     height: 32px;
@@ -531,10 +541,10 @@ button:hover {
     cursor: pointer;
 }
 
-/* 坐标视图样式 */
+/* coordinate view style */
 .coordinate-view {
     width: 760px;
-    height: 480px;  /* 减小高度使坐标系更扁 */
+    height: 480px;
     margin: 10px auto;
     position: relative;
 }
@@ -554,7 +564,7 @@ button:hover {
 .x-axis {
     width: 100%;
     height: 1.2px;
-    transform-origin: center;  /* 确保缩放是从中心开始的 */
+    transform-origin: center;
     top: 50%;
     left: 0;
 }
@@ -562,52 +572,52 @@ button:hover {
 .y-axis {
     width: 1.2px;
     height: 100%;
-    transform-origin: center;  /* 确保缩放是从中心开始的 */
+    transform-origin: center;
     top: 0;
     left: 50%;
 }
 
-/* 点包装器样式 */
+/* point wrapper style */
 .point-wrapper {
     position: absolute;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: opacity 0.1s ease;  /* 加快过渡速度 */
+    transition: opacity 0.1s ease;
 }
 
-/* 项目点样式 */
+/* project point style */
 .project-point {
     width: 12px;
     height: 12px;
-    border: 1.2px solid var(--color-text);  /* 添加边框 */
-    border-radius: 50%;  /* 保持圆形 */
-    background-color: var(--color-background);  /* 使用背景色，让内部透明 */
+    border: 1.2px solid var(--color-text);
+    border-radius: 50%;
+    background-color: var(--color-background);
     transition: all 0.2s ease;
 }
 
-/* 当点被淡出时的样式 */
+/* when the point is faded */
 .point-wrapper.point-fade .project-point {
-    border-color: var(--color-light-grey);  /* 淡出时改变边框颜色 */
-    background-color: var(--color-background);  /* 保持内部透明 */
+    border-color: var(--color-light-grey);
+    background-color: var(--color-background);
 }
 
-/* 可以添加悬停效果 */
+/* can add hover effect */
 .point-wrapper:hover .project-point {
-    transform: scale(1.8);  /* 悬停时放大 */
+    transform: scale(1.8);
     /* filter: blur(8px); */
     opacity: 0.6;
-    border: 1px solid var(--color-text);  /* 添加边框 */
+    border: 1px solid var(--color-text);
 }
 
-/* 点标签悬停效果 */
+/* point label hover effect */
 .point-wrapper:hover .point-label {
     color: var(--color-text);
     font-weight: 500;
 }
 
-/* 淡出状态下的悬停效果 */
+/* hover effect when the point is faded */
 .point-wrapper.point-fade:hover .project-point {
     background-color: var(--color-light-grey);
     box-shadow: 0 0 20px 8px rgba(197, 197, 197, 0.2);
@@ -617,31 +627,31 @@ button:hover {
     color: var(--color-light-grey);
 }
 
-/* 点标签基础样式 */
+/* point label basic style */
 .point-label {
     font-size: 12px;
     color: var(--color-text);
     white-space: nowrap;
     font-weight: 450;
-    position: absolute;  /* 修改为绝对定位 */
-    left: 50%;  /* 居中 */
+    position: absolute;
+    left: 50%;
     opacity: 0.8;
-    transform: translateX(-50%);  /* 居中 */
+    transform: translateX(-50%);
 }
 
-/* 翻转的标签样式 */
+/* flipped label style */
 .point-label.flipped {
-    bottom: 100%;  /* 在点的上方 */
+    bottom: 100%;
     margin-bottom: 2px;
 }
 
-/* 非翻转的标签样式 */
+/* non-flipped label style */
 .point-label:not(.flipped) {
-    top: 100%;  /* 在点的下方 */
+    top: 100%;
     margin-top: 2px;
 }
 
-/* 项目点预览样式 */
+/* project point preview style */
 .point-preview {
     position: fixed;
     z-index: 1000;
@@ -651,7 +661,7 @@ button:hover {
     pointer-events: none;
     font-size: 12px;
     transition: opacity 0.1s ease;
-    width: 214px;  /* 设置固定宽度，与图片宽度相同 */
+    width: 214px;
 }
 
 .point-preview img {
@@ -660,30 +670,27 @@ button:hover {
     object-fit: cover;
     display: block;
 }
-/* 增加 Safari 专用 CSS 修复 */
+/* add Safari-specific CSS fix */
 .point-preview {
-    /* 新增修复属性 */
-    transform: translate3d(0, 0, 0);  /* 启用 GPU 加速 */
-    backface-visibility: hidden;      /* 修复渲染残留 */
-    will-change: transform, opacity;  /* 提示浏览器优化 */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
 }
 
-/* 添加过渡效果增强平滑性 */
+/* add transition effect to enhance smoothness */
 .point-preview {
     transition: opacity 0.15s linear;
 }
 
-/* 预览标题样式 */
+/* preview title style */
 .preview-title {
-    word-wrap: break-word;     /* 允许长单词换行 */
-    overflow-wrap: break-word; /* 确保所有文字都会换行 */
-    white-space: normal;       /* 允许正常换行 */
-    padding: 4px 0;           /* 添加一些内边距 */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    padding: 4px 0;
 }
 
-
-
-/* 项目点淡出效果 */
+/* project point fade effect */
 .point-wrapper.point-fade {
     opacity: 0.6;
 }
@@ -700,7 +707,7 @@ button:hover {
     display: none;
 }
 
-/* 关于页面样式 ////////////////////////////////////////////////////////////////// */
+/* about page style ////////////////////////////////////////////////////////////////// */
 .about-section {
     max-width: 760px;
     margin: 120px auto 0;
@@ -715,14 +722,14 @@ button:hover {
     font-weight: 350;
 }
 
-/* 添加图片容器样式 */
+/* add image container style */
 .about-image {
     width: 200px;
     height: 200px;
-    margin: 0 0 40px 20px;  /* 左对齐并向右偏移20px */
+    margin: 0 0 40px 20px;
 }
 
-/* 图片样式 */
+/* image style */
 .about-image img {
     width: 100%;
     height: 100%;
@@ -738,7 +745,7 @@ button:hover {
     font-weight: 350;
 }
 
-/* 项目页面样式 ////////////////////////////////////////////////////////////////// */
+/* project page style ////////////////////////////////////////////////////////////////// */
 .project-section {
     max-width: 760px;
     margin: 0 auto;
@@ -746,7 +753,7 @@ button:hover {
     position: relative;
 }
 
-/* 项目页面背景 */
+/* project page background */
 .project-page {
     background: var(--color-white) !important;
     position: fixed;
@@ -779,17 +786,17 @@ button:hover {
     padding: 0;
 }
 
-/* 链接容器样式 */
+/* meta links container style */
 .meta-links {
     display: flex;
-    margin-top: 2px;  /* 增加与上方标签的间距 */
+    margin-top: 2px;
     flex-direction: row;
-    gap: 24px;  /* 链接之间的间距 */
-    flex-wrap: wrap;  /* 如果空间不够，允许换行 */
+    gap: 24px;
+    flex-wrap: wrap;
     border-bottom: 0px solid var(--color-text) !important;
 }
 
-/* 项目链接样式 */
+/* project link style */
 .meta-link {
     background-color: var(--color-text);
     color: var(--color-white);
@@ -811,7 +818,7 @@ button:hover {
     margin-bottom: 20px;
 }
 
-/* 项目元数据容器 */
+/* project metadata container */
 .project-meta {
     display: flex;
     flex-direction: column;
@@ -820,15 +827,15 @@ button:hover {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    gap: -76px;  /* 调整为更合适的负间距 */
+    gap: -76px;
 }
 
-/* 垂直分隔线 */
+/* vertical separator */
 .project-meta::before {
-    display: none;  /* 隐藏竖线 */
+    display: none;
 }
 
-/* 单个元数据项容器 */
+/* single metadata item container */
 .metadata-item {
     display: flex;
     min-height: 1px;
@@ -836,7 +843,7 @@ button:hover {
     border-bottom: 1.2px solid var(--color-text);
 }
 
-/* 第一个元数据项的上边框 */
+/* the top border of the first metadata item */
 .metadata-item:first-child {
     border-top: 1.2px solid var(--color-text);
 }
@@ -849,7 +856,7 @@ button:hover {
     font-size: 14px;
     color: var(--color-text);
     flex-shrink: 0;
-    line-height: 20px;  /* 调整行高 */
+    line-height: 20px;
     display: flex;
     align-items: baseline;
     justify-content: flex-end;
@@ -857,7 +864,7 @@ button:hover {
     margin: 0 !important;
 }
 
-/* 为标签添加冒号 */
+/* add colon to the label */
 .meta-label::after {
     content: '';
 }
@@ -867,8 +874,8 @@ button:hover {
     font-size: 14px;
     color: var(--color-text);
     flex: 1;
-    line-height: 20px;  /* 调整行高 */
-    min-height: 20px;  /* 调整最小高度 */
+    line-height: 20px;
+    min-height: 20px;
     display: inline-block;
     margin-left: 0;
     margin-top: 0 !important;
@@ -876,13 +883,13 @@ button:hover {
     font-weight: 350;
 }
 
-/* 处理多行内容 */
+/* handle multi-line content */
 .meta-text {
-    white-space: pre-wrap;  /* 保留换行和空格 */
-    word-wrap: break-word;  /* 长单词换行 */
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
-/* 项目页脚样式 */
+/* project footer style */
 .project-footer {
     margin-top: 40px;
 }
@@ -891,7 +898,7 @@ button:hover {
     font-family: "Barlow", sans-serif;
     font-size: 16px;
     color: var(--color-text);
-    line-height:1.2;  /* 增加行间距 */
+    line-height:1.2;
     font-style: italic;
     letter-spacing: 0.9px;
     font-weight: 400;
@@ -909,7 +916,7 @@ button:hover {
 }
 
 
-/* 点包装器链接样式 */
+/* point wrapper link style */
 .point-wrapper a {
     display: flex;
     flex-direction: column;
@@ -918,12 +925,12 @@ button:hover {
     cursor: pointer;
 }
 
-/* 确保点击区域覆盖整个点和标签 */
+/* ensure the click area covers the whole point and label */
 .point-wrapper a:hover {
     text-decoration: none;
 }
 
-/* 介绍文本中的链接样式 */
+/* link style in the intro text */
 .intro-link {
     color: var(--color-text);
     text-decoration: none;
@@ -934,7 +941,7 @@ button:hover {
     color: var(--color-text-hover);
 }
 
-/* 链接容器样式 */
+/* links container style */
 .links-container {
     margin-top: 2px;
 }
@@ -944,16 +951,16 @@ button:hover {
     display: flex;
     flex-direction: row;
     gap: 8px;
-    flex-wrap: wrap;  /* 如果空间不够，允许换行 */
+    flex-wrap: wrap;
 }
 
-/* 链接样式 */
+/* link style */
 .meta-link {
     display: inline-block;
-    font-size: 14px;  /* 确保两处字体大小一致 */
+    font-size: 14px;
 }
 
-/* 新闻页面样式 */
+/* news page style */
 .news-section {
     max-width: 760px;
     margin: 120px auto 0;
@@ -972,16 +979,16 @@ button:hover {
     align-items: baseline;
     font-family: "JetBrains Mono", monospace!important;
     padding: 16px;
-    padding-right: 64px;  /* 增加右侧内边距，为星号留出更多空间 */
+    padding-right: 64px;
     transition: all 0.1s ease;
-    position: relative;  /* 为星号定位 */
+    position: relative;
 }
 
 .news-item:hover {
     background-color: transparent;
 }
 
-/* 添加星号样式 */
+/* add star style */
 .news-item.starred::after {
     content: '★';
     position: absolute;
@@ -995,25 +1002,25 @@ button:hover {
 .news-time {
     min-width: 80px;
     color: var(--color-text);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     padding-top: 8px;
     font-family: "GeistMono", monospace;
 }
 
 .news-event {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--color-text);
-    font-family: "JetBrains Mono", monospace!important;
+    font-family: "Barlow", sans-serif!important;
     text-decoration: none;
     transition: color 0.3s ease;
-    margin-right: 32px;  /* 增加事件文本右侧的间距 */
+    margin-right: 32px;
     line-height: 1.2;
 }
 
 .news-link {
     border-bottom: 1.2px solid transparent;
-    font-family: "JetBrains Mono", monospace!important;
+    font-family: "MarrSans", sans-serif!important;
     border-bottom: 1.2px solid var(--color-text);
     text-decoration: none;
     color: var(--color-text);
@@ -1209,24 +1216,24 @@ body.project-page {
 }
 
 .y-label.top {
-    left: 51%!important;  /* 对齐y轴 */
-    top: -2px;   /* 靠近顶部 */
+    left: 51%!important;
+    top: -2px; 
 }
 
 .y-label.bottom {
-    left: 51%!important;  /* 对齐y轴 */
-    bottom: 52px;  /* 调整位置，避免超出matrix */
+    left: 51%!important;
+    bottom: 52px;
 }
 
 
 #clustrmaps {
-    position: fixed; /* 将元素固定在页面指定位置 */
-    left: 0;         /* 固定在页面最左侧 */
-    top: 0;          /* 根据需要设置垂直位置 */
-    pointer-events: none; /* 禁用所有鼠标事件 */
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
   }
 
-/* 延伸线样式 */
+/* extension line style */
 .extension-line {
     position: absolute;
     background-color: var(--color-text);
@@ -1243,44 +1250,44 @@ body.project-page {
     width: 1px;
 }
 
-/* 视频容器样式 */
+/* video container style */
 .video-wrapper {
-    max-width: 840px;    /* 最大宽度 */
-    margin: 0 auto;      /* 居中对齐 */
-    margin-top: 60px;    /* 与上方内容的间距 */
-    padding: 0 0px;     /* 左右内边距 */
+    max-width: 840px;
+    margin: 0 auto;
+    margin-top: 60px;
+    padding: 0 0px;
 }
 
 .video-wrapper iframe {
-    width: 100%;         /* 宽度占满容器 */
-    aspect-ratio: 16/9;  /* 保持16:9的宽高比 */
-    border: none;        /* 移除边框 */
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: none;
 }
 
-/* 博客部分样式 */
+/* blogs section style */
 .blogs-section {
     max-width: 760px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
-/* 博客列容器 */
+/* blogs column container */
 .blogs-container {
     display: flex;
     justify-content: space-between;
     margin-top: 250px;
 }
 
-/* 博客列样式 */
+/* blogs column style */
 .blog-column {
-    width: 220px;  /* 固定宽度 */
+    width: 220px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    position: relative;  /* 为箭头定位提供参考 */
+    position: relative;
 }
 
-/* 列标题样式 */
+/* column title style */
 .blog-column h2 {
     font-family: "JetBrains Mono", monospace;
     font-size: 18px;
@@ -1288,7 +1295,7 @@ body.project-page {
     color: var(--color-text);
     margin-bottom: 20px;
     text-align: center;
-    position: relative;  /* 为箭头定位提供参考 */
+    position: relative;
 }
 
 .blog-item {
@@ -1319,9 +1326,8 @@ body.project-page {
 
 
 
-
-/* 博客文章页面样式 */
-.blog-post .blog-title {  /* 只在博客文章页面应用居中样式 */
+/* blog article page style */
+.blog-post .blog-title {
     font-family: "JetBrains Mono", monospace;
     font-size: 40px;
     font-weight: 400;
@@ -1331,8 +1337,8 @@ body.project-page {
     text-align: center;
 }
 
-/* 博客文章时间样式 */
-.blog-post .project-header .blog-time {  /* 只在博客文章页面应用居中样式 */
+/* blog article time style */
+.blog-post .project-header .blog-time {
     display: block;
     font-family: "GeistMono", monospace;
     font-size: 14px;
@@ -1342,7 +1348,7 @@ body.project-page {
     text-align: center;
 }
 
-/* 博客描述样式 */
+/* blog description style */
 .blog-description {
     font-family: "JetBrains Mono", monospace;
     font-size: 16px;
@@ -1357,29 +1363,29 @@ body.project-page {
     margin-right: auto;
 }
 
-/* 博客内容容器样式 */
+/* blog content container style */
 .blog-article-content {
     max-width: 860px;
     margin: 0 auto;
 }
 
-/* 博客 Markdown 内容样式 */
+/* blog markdown content style */
 .blog-article-content.markdown-content {
     margin-top: 60px;
     width: 100%;
 }
 
-/* 博客文章页面的项目区域样式 */
+/* blog article page project section style */
 .blog-post .project-section {
-    max-width: 860px !important;  /* 增加容器宽度 */
+    max-width: 860px !important;
 }
 
-/* Time 元数据项的特殊样式 */
+/* Time metadata item special style */
 .metadata-item.time-item {
     border-top: 1.2px solid var(--color-text);
 }
 
-/* 保持原有的底部边框样式 */
+/* keep the original bottom border style */
 .metadata-item {
     display: flex;
     min-height: 1px;
@@ -1387,7 +1393,7 @@ body.project-page {
     border-bottom: 1.2px solid var(--color-text);
 }
 
-/* 移动端适配 */
+/* mobile adaptation */
 @media screen and (max-width: 768px) and (hover: none) {
     body {
         display: flex;
@@ -1396,16 +1402,15 @@ body.project-page {
         width: 100%;
         overflow-x: hidden;
         padding-bottom: 60px;
-        /* 禁用文字选择但保持滚动 */
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         user-select: none;
-        touch-action: manipulation;  /* 优化触摸操作 */
+        touch-action: manipulation;
     }
 
-    /* 允许点的拖拽 */
+    /* allow point dragging */
     .point-wrapper {
-        touch-action: none;  /* 允许所有触摸操作 */
+        touch-action: none;
         user-select: none;
         -webkit-user-select: none;
         cursor: grab;
@@ -1413,10 +1418,10 @@ body.project-page {
 
     .point-wrapper.dragging {
         cursor: grabbing;
-        z-index: 1000;  /* 确保拖拽时在最上层 */
+        z-index: 1000;
     }
 
-    /* Player 样式 */
+    /* player style */
     .player-left {
         position: relative;
         overflow: hidden;
@@ -1441,43 +1446,43 @@ body.project-page {
     .player-preview img {
         width: 100%;
         height: 100%;
-        object-fit: cover;  /* 确保图片填充整个容器 */
-        object-position: center;  /* 居中显示图片 */
-        filter: saturate(0) brightness(1.02);  /* 保持黑白效果 */
-        mix-blend-mode: multiply;  /* 保持混合模式 */
+        object-fit: cover;
+        object-position: center;
+        filter: saturate(0) brightness(1.02);
+        mix-blend-mode: multiply;
     }
 
     .player-preview.show {
         opacity: 1;
     }
 
-    /* 移动端触摸行为控制 */
+    /* mobile touch behavior control */
     .project-point,
     .point-wrapper {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         user-select: none;
-        touch-action: manipulation;  /* 改为 manipulation 允许基本的点击行为 */
+        touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
-        cursor: url(images/cross.svg) 10 10, auto !important;  /* 确保 cursor 样式优先级 */
+        cursor: url(images/cross.svg) 10 10, auto !important;
     }
 
-    /* 确保点击状态下的 cursor 样式 */
+    /* ensure the cursor style when clicking */
     .point-wrapper:active {
         cursor: url(images/cross.svg) 10 10, auto !important;
     }
 
-    /* 确保主要容器可以滚动 */
+    /* ensure the main containers can scroll */
     .container,
     .cards-section,
     .coordinate-view,
     .coordinate-container,
     .filter-wrapper {
-        touch-action: pan-y;  /* 允许垂直滚动 */
-        -webkit-overflow-scrolling: touch;  /* 平滑滚动 */
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* 允许特定元素的文字选择 */
+    /* allow text selection for specific elements */
     .blog-article-content,
     .project-content,
     input,
@@ -1487,18 +1492,18 @@ body.project-page {
         user-select: text;
     }
 
-    /* 隐藏箭头图标 */
+    /* hide the arrow icon */
     .arrow-icon {
         display: none;
     }
 
-    /* 调整切换按钮容器的间距 */
+    /* adjust the spacing of the switch button container */
     .switch-container {
-        gap: 0;  /* 移除箭头后不需要间距 */
+        gap: 0;
     }
 
     .buttons-section {
-        gap: 4px;  /* 减小组件间距 */
+        gap: 4px;
     }
     .intro {
         font-size: 12px !important;
@@ -1520,12 +1525,12 @@ body.project-page {
         margin-top: 0px;
     }
 
-    /* 确保所有主要容器都居中 */
+    /* ensure all main containers are centered */
     .container,
     .filter-container,
     .cards-section,
     .coordinate-view {
-        width: calc(100% - 40px);  /* 留出左右边距 */
+        width: calc(100% - 40px);
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -1533,7 +1538,7 @@ body.project-page {
     .filter-wrapper {
         padding-top: 80px;
         background-color: var(--color-background);
-        position: relative;  /* 为提示文字提供定位上下文 */
+        position: relative;
     }
     .coordinate-container {
         margin-top: 10px;
@@ -1544,19 +1549,19 @@ body.project-page {
         position: absolute;
         display: block;
         top: -22px;
-        right: 0;  /* 添加右对齐 */
-        text-align: right;  /* 文本右对齐 */
+        right: 0;
+        text-align: right;
         font-size: 10px;
-        color: var(--color-text-grey);  /* 改用灰色使提示不那么显眼 */
-        background: none;  /* 移除背景色 */
-        height: auto;  /* 移除固定高度 */
-        width: auto;  /* 移除固定宽度 */
+        color: var(--color-text-grey);
+        background: none;
+        height: auto;
+        width: auto;
         border-radius: 0;
     }
 
-    /* 调整过滤器容器 */
+    /* adjust the filter container */
     .filter-container {
-        top: 120px;  /* 调整移动端下与导航栏的距离 */
+        top: 120px;
         padding-top: 8px;
         padding-bottom: 0px;
 
@@ -1565,7 +1570,7 @@ body.project-page {
         z-index: 99;
     }
 
-    /* 确保过滤器内容在移动端正确显示 */
+    /* ensure the filter content displays correctly on mobile */
     .filter-content {
         width: 100%;
         padding: 0;
@@ -1574,23 +1579,23 @@ body.project-page {
         z-index: 99;
     }
 
-    /* 调整卡片布局 */
+    /* adjust the card layout */
     .cards-section {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);  /* 一排两个卡片 */
-        gap: 8px;  /* 卡片间距 */
-        padding: 0 20px;  /* 左右边距 */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 0 20px;
         width: 100%;
         max-width: 100%;
         margin: 0 auto;
         margin-top: 16px;
     }
     
-    /* 调整卡片大小 */
+    /* adjust the card size */
     .card {
-        width: 100%;  /* 卡片宽度占满网格单元格 */
-        max-width: none;  /* 移除最大宽度限制 */
-        margin: 0;  /* 移除外边距 */
+        width: 100%;
+        max-width: none;
+        margin: 0;
         height: 220px!important;
 
     }
@@ -1600,24 +1605,15 @@ body.project-page {
         gap: -2px;
         height: 100px!important;
     }
-    /* 隐藏类 */
+    /* hide class */
     .hide {
         display: none;
     }
 
-    /* 调整卡片图片容器 */
-    /* .card-image-container {
-        height: 60%;
-        width: 100%;
-    } */
-    /* .card-image-link{
-        height: 60%!important;
-        width: 100%;
-    } */
     .card-image-link {
         display: block;
         width: 100%;
-        height: 120px;  /* 按比例缩小图片高度 */
+        height: 120px;
         overflow: hidden;
         cursor: pointer;
         transition: opacity 0.1s ease;
@@ -1629,7 +1625,7 @@ body.project-page {
     .card-image-link img {
         width: 100%;
         height: 100%;
-        object-fit: cover;  /* 确保图片填充容器 */
+        object-fit: cover;
         display: block;
         position: absolute;
         top: 0;
@@ -1637,9 +1633,9 @@ body.project-page {
         mix-blend-mode: multiply;
     }
     
-    /* 调整卡片标题和标签的大小 */
+    /* adjust the card title and label size */
     .card-title {
-        font-size: 14px;  /* 减小标题字体 */
+        font-size: 14px;
         margin-top: 2px;
         font-weight: 450;
     }
@@ -1652,18 +1648,18 @@ body.project-page {
 
 
     .card-labels {
-        font-size: 12px;  /* 减小标签字体 */
+        font-size: 12px;
         gap: 4px;
         align-items:flex-end
     }
 
-    /* 确保卡片容器正确对齐 */
+    /* ensure the card container is aligned correctly */
     .container {
-        padding: 0;  /* 移除容器的内边距 */
+        padding: 0;
         width: 100%;
     }
 
-    /* 确保坐标轴始终居中 */
+    /* ensure the coordinate axis is always centered */
     .x-axis {
         top: 50%;
         transform: translateY(-50%);
@@ -1674,7 +1670,7 @@ body.project-page {
         transform: translateX(-50%);
     }
     
-    /* 调整点的大小 */
+    /* adjust the point size */
     .project-point {
         width: 10px;
         height: 10px;
@@ -1708,20 +1704,20 @@ body.project-page {
     }
 
 
-    /* 确保激活状态的按钮样式正确 */
+    /* ensure the active button style is correct */
     button.active {
         color: var(--color-white) !important;
         background: var(--color-text) !important;
     }
 
-    /* 长按时的按钮样式 */
+    /* button style when long pressed */
     button.long-press {
         color: var(--color-white) !important;
         background-color: var(--color-text-hover) !important;
         border: 1.6px solid var(--color-text-hover) !important;
     }
 
-    /* 移动端触摸行为 */
+    /* mobile touch behavior */
     .card:active .card-image-link {
         filter: saturate(1.0) brightness(1.02) !important;
         opacity: 0.9;
@@ -1741,13 +1737,13 @@ body.project-page {
         display: none;
     }
 
-    /* 已访问项目点的按压效果 */
+    /* the pressed effect of the visited project point */
     .point.visited:active {
         transform: scale(1.4);
         opacity: 1;
     }
 
-    /* 移除所有悬停效果 */
+    /* remove all hover effects */
     .card:hover .card-image-link,
     .card-image-link:hover img,
     .point:hover,
@@ -1759,25 +1755,25 @@ body.project-page {
         box-shadow: none;
     }
 
-    /* 调整按钮按压效果 */
+    /* adjust the button pressed effect */
     button:active {
         background-color: hsl(0, 0%, 32%);
         color: #ffffff;
     }
 
-    /* 移除按钮悬停效果 */
+    /* remove the button hover effect */
     button:hover {
         background-color: transparent;
         color: inherit;
     }
 
-    /* 调整链接按压效果 */
+    /* adjust the link pressed effect */
     .dots-link:active,
     .response-link:active {
         opacity: 0.75;
     }
 
-    /* 移除链接悬停效果 */
+    /* remove the link hover effect */
     .dots-link:hover,
     .response-link:hover {
         opacity: 1;
@@ -1799,12 +1795,12 @@ body.project-page {
         top: 90px;
     }
 
-    /* 调整主容器布局 */
+    /* adjust the main container layout */
     .container {
-        margin-top: 120px;  /* 为固定导航栏留出空间 */
+        margin-top: 120px;
     }
 
-    /* 移动端提示文字样式 */
+    /* mobile tips style */
     .mobile-tips {
         display:inline-block;
         position: absolute;
@@ -1884,7 +1880,7 @@ body.project-page {
 
 
 
-    /* 拖拽指示器样式 */
+    /* drag indicator style */
     .drag-indicator {
         position: fixed;
         width: 50px;
@@ -1897,7 +1893,7 @@ body.project-page {
         background-color: #c5c5c587;
     }
 
-    /* 移动端上移除悬停效果 */
+    /* remove the hover effect on mobile */
     .point-wrapper:hover .point-title,
     .point.point-preview {
         opacity: 0;
@@ -1913,7 +1909,7 @@ body.project-page {
         display: none;
     }
 
-    /* 移动端上的基本样式 */
+    /* basic style on mobile */
     .point-wrapper {
         touch-action: none;
         user-select: none;
@@ -1925,10 +1921,10 @@ body.project-page {
         height: 16px;
         border: 1.2px solid var(--color-text);
         border-radius: 50%;
-        transition: none;  /* 移除过渡效果 */
+        transition: none;
     }
 
-    /* 博客容器改为竖向排列 */
+    /* change the blog container to vertical arrangement */
     .blogs-container {
         display: flex;
         flex-direction: column;
@@ -1936,7 +1932,7 @@ body.project-page {
         margin-top: 400px;
     }
 
-    /* 每个类型列占满宽度 */
+    /* each type column takes up the full width */
     .blog-column {
         width: 100%;
         padding: 0 20px;
@@ -1970,7 +1966,7 @@ body.project-page {
         margin-right: 24px;
     }
 
-    /* 星标位置调整 */
+    /* adjust the starred position */
     .blog-item.starred::after {
         right: 0;
         font-size: 14px;
@@ -1978,12 +1974,12 @@ body.project-page {
 
 }
 
-/* Player 基础样式 */
+/* Player basic style */
 .matrix-player {
-    display: none !important; /* 确保在非移动端时完全隐藏 */
+    display: none !important; /* ensure it is completely hidden on non-mobile */
 }
 
-/* 移动端特定样式 */
+/* mobile specific style */
 @media screen and (max-width: 768px) and (hover: none) {
     .matrix-player {
         display: block !important;
@@ -1998,16 +1994,16 @@ body.project-page {
 
     .player-container {
         width: 100%;
-        display: grid;  /* 改用grid布局 */
-        grid-template-columns: 1fr 1fr;  /* 等宽两列 */
-        gap: 0;  /* 移除间隙 */
+        display: grid;  /* use grid layout */
+        grid-template-columns: 1fr 1fr;  /* equal width two columns */
+        gap: 0;  /* remove the gap */
     }
 
     .player-left, 
     .player-right {
         height: 80px;
         border: 1.6px solid var(--color-text);
-        width: 100%;  /* 确保宽度填满grid单元格 */
+        width: 100%;  /* ensure the width fills the grid cell */
     }
     
     .noise-effect {
@@ -2031,12 +2027,12 @@ body.project-page {
     }
 
 
-    /* 移除右边框的左边框以避免双边框 */
+    /* remove the left border of the right border to avoid double borders */
     .player-right {
         border-left: none;
     }
 
-    /* Player 右侧信息样式 */
+    /* Player right information style */
     .player-right {
         position: relative;
         padding: 8px 12px;
@@ -2069,7 +2065,7 @@ body.project-page {
 
 }
 
-/* 特别处理可能会被转换为 emoji 的元素 */
+/* special processing of elements that may be converted to emoji */
 .arrow-icon,
 .video-icon,
 .nav-item,
@@ -2090,10 +2086,10 @@ body.project-page {
     100% { filter: url(#noiseFilter3); }
 }
 
-/* 添加箭头样式 */
+/* add arrow style */
 .column-arrow {
     position: absolute;
-    top: -24px;  /* 调整箭头位置 */
+    top: -24px;  /* adjust the arrow position */
     left: 50%;
     transform: translateX(-50%);
     font-family: "JetBrains Mono", monospace;
@@ -2101,5 +2097,5 @@ body.project-page {
     color: var(--color-text);
     opacity: 0;
     transition: opacity 0.2s ease;
-    pointer-events: none;  /* 确保不影响鼠标事件 */
+    pointer-events: none;  /* ensure it does not affect the mouse event */
 }

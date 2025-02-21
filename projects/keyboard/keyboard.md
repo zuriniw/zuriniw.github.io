@@ -32,7 +32,7 @@ After modeling, I received my printed circuit board and wired components togethe
 
 ![power.png](power.png)
 
-After another a few days, I received the 3D printed case. The final assembly looks like this:(I think it super lovely!)
+After another a few days, I received the 3D printed case. The final assembly looks like this: (I think it super lovely!)
 
 ![kb.png](kb.png)
 

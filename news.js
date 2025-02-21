@@ -1,4 +1,3 @@
-// 新闻类定义
 class NewsItem {
     constructor({
         time,
@@ -13,39 +12,47 @@ class NewsItem {
     }
 }
 
-// 时间字符串转换为日期对象
+// string time to date
 function parseTime(timeStr) {
     const [year, month] = timeStr.split('.');
     return new Date(parseInt(year), parseInt(month) - 1);
 }
 
-// 新闻数据
+
 const newsItems = [
     new NewsItem({
         time: "2025.01",
-        event: `Best Academic Contribution Award in The 9th Cross-strait Youth Maker Competition, 2024. See the <a href="projects/poi/poi.html" class="news-link">project↗</a>`,
-    }),
-    new NewsItem({
-        time: "2024.12",
-        event: `1st Prize in <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112↗</a> Term Project. See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project↗</a>`,
+        event: `<b>Best Academic Contribution Award</b> in The 9th Cross-strait Youth Maker Competition, 2024. See the <a href="projects/poi/poi.html" class="news-link">project</a>`,
     }),
     new NewsItem({
         time: "2025.01",
-        event: `Fall 2024 Computational Design Commendation for outstanding academic achievements in CMU`,
+        event: `Started as a <b>Guest Reviewer</b> of CMU 25 Spring course <a href="https://www.architecture.cmu.edu/courses/spring-2025/fundamentals-computational-design" class="news-link">Fundamentals of Computational Design</a>, instructor: <a href="https://vaanoel.com/" class="news-link"> Vernelle A. A. Noel</a>`,
+    }),
+    new NewsItem({
+        time: "2024.12",
+        event: `1st Prize in <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112</a> Term Project. See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
+    }),
+    new NewsItem({
+        time: "2025.01",
+        event: `Fall 2024 <b>Computational Design Commendation</b> for outstanding academic achievements in CMU`,
         isstar: true
     }),
     new NewsItem({
         time: "2024.09",
-        event: `Started research assistant work at WHY. Research 'Studio' led by <a href="http://daraghbyrne.me/research/" class="news-link">Daragh Bryne↗</a> on Situating intelligences`,
+        event: `Started <b>Research Assistant</b> work at WHY. Research 'Studio' led by <a href="http://daraghbyrne.me/research/" class="news-link">Daragh Bryne</a> on Situating intelligences`,
+        isstar: true
+    }),
+    new NewsItem({
+        time: "2024.08",
+        event: `<b>Merit Scholarship</b> of $ 32,000 in CMU`,
         isstar: true
     })
 ];
 
-// 生成新闻条目
+
 function createNewsItems() {
     const container = document.querySelector('.news-container');
-    
-    // 按时间排序（从新到旧）
+    // sort by time (from new to old)
     const sortedItems = [...newsItems].sort((a, b) => {
         const dateA = parseTime(a.time);
         const dateB = parseTime(b.time);
@@ -67,5 +74,5 @@ function createNewsItems() {
     });
 }
 
-// 初始化页面
+// initialize the page
 createNewsItems(); 
