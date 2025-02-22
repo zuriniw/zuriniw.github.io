@@ -382,11 +382,10 @@ button:hover {
 
 /* time style */
 .card-time {
-    font-family: "JetBrains Mono", monospace;
     font-size: 12px;
     font-weight: 350;
-    color: var(--color-text-grey);
-    margin: 2px 0 0 0;
+    color: var(--color-text);
+    margin: 0px 0 0 0;
     padding-bottom: 2px;
 }
 
@@ -414,22 +413,23 @@ button:hover {
 /* card label container */
 .card-labels {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     flex-wrap: wrap;
     margin-top: 4px;
 }
 
 /* card label style */
 .label {
-    font-family: "JetBrains Mono", monospace;
     font-size: 11px;
     color: var(--color-text);
     padding-top: 0px;
+    padding-bottom: 2px;
     padding-left: 8px;
     padding-right: 8px;
     border: 1.3px solid var(--color-text);
     font-weight: 420;
-    border-radius: 12px;
+    border-radius: 8px;
+    opacity: 0.8;
     transition: all 0.1s ease;
 }
 
@@ -450,6 +450,10 @@ button:hover {
 .card-title,
 .card-label {
     transition: all 0.2s ease;
+}
+
+.card-title{
+    font-weight: 500;
 }
 
 /* card image link style */
@@ -1597,6 +1601,7 @@ body.project-page {
         max-width: none;
         margin: 0;
         height: 220px!important;
+        border-width: 1.2px;
 
     }
     .card-body{
@@ -1650,7 +1655,10 @@ body.project-page {
     .card-labels {
         font-size: 12px;
         gap: 4px;
-        align-items:flex-end
+        align-items:flex-end;
+        border-width: 1.1px;
+        font-weight: 350;
+        opacity: 0.8;
     }
 
     /* ensure the card container is aligned correctly */
