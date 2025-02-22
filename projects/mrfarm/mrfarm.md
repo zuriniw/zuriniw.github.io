@@ -1,6 +1,5 @@
 
-![pipeline.png](pipeline.png)
-![ppl2.png](ppl2.png)
+![ppl2.gif](ppl2.gif)
 
 
 <figure>
