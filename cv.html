@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading... - Ziru Wei</title>
+    <link rel="icon" type="image/png" href="../../images/kitten.png">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../styles/markdown.css">
+    <link rel="stylesheet" href="../../styles/toc.css">
+    <link rel="stylesheet" href="../../styles/header_footer.css">
+    <script src="../../components/load_components.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="../../scripts/toc.js"></script>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QLERMQJ1BN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QLERMQJ1BN');
+</script>
+
+<body class="project-page blog-post">
+    <!-- header -->
+    <div id="header"></div>
+
+    <!-- 添加 TOC 容器 -->
+    <div class="toc-container">
+        <div id="toc"></div>
+    </div>
+
+    <!-- Markdown 内容将被插入这里 -->
+    <div id="markdown-content" class="blog-article-content markdown-content"></div>
+    
+    <script>
+        // 加载 markdown 内容
+        fetch(`cv.md`)
+            .then(response => response.text())
+            .then(mdContent => {
+                const markdownDiv = document.getElementById('markdown-content');
+                markdownDiv.innerHTML = marked.parse(mdContent);
+
+                const toc = new TableOfContents();
+                toc.init();
+            })
+            .catch(error => {
+                console.error('Error loading markdown:', error);
+            });
+    </script>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+</body>
+</html>

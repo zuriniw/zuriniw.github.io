@@ -252,6 +252,21 @@
     border-bottom-color: var(--color-text-hover);
 }
 
+.markdown-content dl {
+    display: flex;
+    font-size: 14px;
+  }
+  
+.markdown-content dl dt,
+.markdown-content dl dd:not(:last-child) {
+    flex: 1;
+  }
+
+.markdown-content dl dd {
+    opacity: 0.6;
+}
+  
+
 /* 添加图片样式 */
 .markdown-content img {
     max-width: 100%;

@@ -1848,8 +1848,7 @@ body.project-page {
         font-size: 14px;
         line-height: 1.2;
         margin-right: 2px;
-        font-weight: 450;
-        color: var(--color-text-grey);
+        font-weight: 350;
     }
     .news-item {
         font-size: 14px;
@@ -1859,13 +1858,12 @@ body.project-page {
     .news-link {
         font-size: 14px;
         font-family: "JetBrains Mono", monospace;
-        font-style: italic;
         line-height: 1.2;
-        letter-spacing: -0.05em;
         margin-right: 2px;
-        font-weight: 450;
         color: var(--color-text);
     }
+
+
     .blog-item {
         font-size: 12px;
         line-height: 1.2;
@@ -2098,4 +2096,23 @@ body.project-page {
     opacity: 0;
     transition: opacity 0.2s ease;
     pointer-events: none;  /* ensure it does not affect the mouse event */
+}
+
+.cv-section {
+    text-align: center;
+    padding: 80px 0;
+}
+
+.cv-button {
+    display: inline-block;
+    padding: 12px 24px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: 1.2px solid rgb(0, 0, 0);
+}
+
+.cv-button:hover {
+    background-color: #191919;
+    color: white; 
 }
