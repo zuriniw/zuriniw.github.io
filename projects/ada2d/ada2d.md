@@ -2,7 +2,7 @@
 ## 1. Background, Goal, and Workflow
 
 > Augmented Reality promises to transform how we interact with digital information. Through blending virtual interface elements into our physical environment, it enables a range of applications from in situ displays of task instructions for training purposes to immersive educational experiences. However, placing interface elements within our physical world also makes designing AR applications incredibly difficult as they should be "context-sensitive". For the lack of words, the "goodness" of interface designs now depends on the environmental conditions (e.g., what objects are around the user) as well as external (e.g., task) and internal (e.g., cognitive load) states. Hence, UI decisions can no longer be set deterministically at design time, but adapt according to their context of use at runtime. 
-<br> <br> -- Alexandra Ion's Course Description
+<br> <br> -- Alexandra Ion's Course Description of Computational Methods of Interactive System
 
 ### 1.1 Project Goal
 

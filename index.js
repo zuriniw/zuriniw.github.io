@@ -313,7 +313,7 @@ function createProjectCards() {
                 </div>
                 <p class="card-time">
                     ${project.time}
-                    ${project.isteam ? ' -- Team' : ' -- Solo Work'}
+                    ${project.isteam ? ' | Team' : ' | Solo Work'}
                 </p>
                 <div class="card-labels">
                     ${project.labels.map(label => `<span class="label">${label}</span>`).join('')}

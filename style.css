@@ -193,12 +193,11 @@ button {
     cursor: pointer;
     padding: 4px 8px;
     font-size: 14px; 
+    font-weight: 400;
     background: transparent;
     transition: all 0.1s ease;
     margin: 0;
-    font-family: "JetBrains Mono", monospace;
-    font-weight: 360;
-    color: var(--color-text);
+    color: var(--color-border);
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -415,7 +414,7 @@ button:hover {
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
-    margin-top: 4px;
+    margin-top: 8px;
 }
 
 /* card label style */
@@ -1601,7 +1600,8 @@ body.project-page {
         max-width: none;
         margin: 0;
         height: 220px!important;
-        border-width: 1.2px;
+        border-width: 1.4px;
+        color: var(--color-text-darkgrey);
 
     }
     .card-body{

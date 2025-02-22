@@ -122,6 +122,19 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dd>2022</dd>
 </dl>
 
+<br>
+
+<dl>
+    <dt>First Prize, Bronze Medal (Top 2%) in “Zijin Award” of Architectural Design & Environmental Art Contest</dt>
+    <dd>2022</dd>
+</dl>
+
+<br>
+
+<dl>
+    <dt>METTLER TOLEDO Scholarship (Top 2%) </dt>
+    <dd>2019</dd>
+</dl>
 
 ## Activity
 
@@ -147,3 +160,11 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 </dl>
 
 - Exhibited 'Layered Rafters Lodge', a design integrating traditional material framing with modern bamboo construction techniques
+
+<dl>
+    <dt>Design Exhibition Curatorial Assistant</dt>
+    <dd>05/2021</dd>
+</dl>
+
+- Organized featured models and drawings for the exhibition, assisting in the re-arrangement of the architecture department's showcase
+
