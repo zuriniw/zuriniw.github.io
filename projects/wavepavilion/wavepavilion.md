@@ -16,6 +16,7 @@ Inspired by this natural phenomenon, This project utilizes Kangaroo 2 physics si
 
 To fit in the surrounding environment, a top curve and a spatial curve are first designed as the boundary of the shape. Then, a mesh is constructed according to these 2 curves. 2 arrays of points on the curves are selected as anchor targets, while another pairing 2 arrays of points on the mesh are selected as the anchor points. The mission of the anchor points is to pull the mesh towards the target. Meanwhile, the mesh is also subject to the gravity force with the specific material-related parameters.
 
+![kangaroo.png](kangaroo.png)
 
 ## Analysis and Optimization
 
