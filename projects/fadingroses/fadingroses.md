@@ -23,7 +23,7 @@ Dual-layered **"Space & Psyche" interaction system**:
 - **Truth-Locking Mechanism**: Final "Sea Turtle Soup" riddle requires synthesizing indoor evidence + outdoor testimonies (e.g., a vagrant with a rose pin suspected to be the disowned youngest son)  
 
 
-### **Player Analysis Highlight**  
+### **Player Reviews Highlight**  
 
 > *"Roses trace timelines... The locked storage room mirrors Rose's mind. When NPCs fled yet the vagrant stayed, I realized I am Rose — a mother rewriting her son's betrayal as mental delusions. The final rose isn’t just a clue; it’s the suture holding her shattered reality."*  
 
