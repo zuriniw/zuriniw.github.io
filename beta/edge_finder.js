@@ -72,7 +72,7 @@ void main() {
 	vec4 clr;
 
 	vec4 _fg = vec4(1.0, 1.0, 1.0, 1.0);
-	vec4 _bg = vec4(0.2, 0.2, 0.2, alpha);
+	vec4 _bg = vec4(0.01, 0.01, 0.01, 1.0);
 	vec4 bg = invert ? _fg : _bg;
 	vec4 fg = invert ? _bg : _fg;
 

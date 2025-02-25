@@ -2,8 +2,14 @@ import * as THREE from 'three';
 import { computeBoundsTree, disposeBoundsTree, acceleratedRaycast } from 'three-mesh-bvh';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { ef_init } from './edge_finder.js'; 
+// 导入必要的后处理模块
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
-var scene, camera, renderer, cameraHolder, roomMap;
+
+var scene, camera, renderer, cameraHolder, roomMap, composer;
+
 var voxelMeshes = [];  // 存储所有的体素网格
 
 var keyboard = {};
@@ -34,12 +40,12 @@ async function loadConfig() {
 function createWall(width, height, depth, position, material) {
   const geometry = new THREE.BoxGeometry(width, height, depth);
   const config = {
-    width: 0.01,
+    width: 0.008,
     alpha: true,
     invert: false,
-    mode: 1,  // 墙壁使用 mode 0
+    mode: 1,
     wave: 0,
-    exp: 9
+    exp: 100
   };
   const wall = ef_init(
     geometry,
@@ -47,32 +53,33 @@ function createWall(width, height, depth, position, material) {
     THREE.ShaderMaterial,
     THREE.Float32BufferAttribute,
     config,
-    0.001,
-    0.001
+    0.0001,
+    0.0001
   );
   wall.position.set(...position);
   return wall;
 }
 
 // 辅助函数：创建地板
-function createRoomFloor(width, depth, position, material) {
-  const geometry = new THREE.BoxGeometry(width, 0.2, depth);
+function createRoomFloor(width, depth, position) {
+  const geometry = new THREE.BoxGeometry(width, 0.1, depth);
   const config = {
-    width: 1,
+    width: 0.008,
     alpha: true,
     invert: false,
-    mode: 0,  // 地板使用 mode 0
+    mode: 1,
     wave: 0,
-    exp: 1
+    exp: 200
   };
+  
   const floor = ef_init(
     geometry,
     THREE.Mesh,
     THREE.ShaderMaterial,
     THREE.Float32BufferAttribute,
     config,
-    0.001,
-    0.001
+    0.0001,
+    0.0001
   );
   floor.position.set(...position);
   return floor;
@@ -103,11 +110,12 @@ function createRoomSystem(rooms) {
       });
 
       // 生成随机地板高度偏移量（±0.2范围内）
-      const floorHeightOffset = (Math.random() * 0.2) - 0.7; // -0.2 到 +0.2 之间的随机值
-      const floorY = room.position[1] - height / 2 + floorHeightOffset; // 计算地板高度
+      const floorHeightOffset = (Math.random() * 0.8) - 0.4; // -0.2 到 +0.2 之间的随机值
+      // 计算地板高度，整体降低0.4个单位
+      const floorY = room.position[1] - height / 2 + floorHeightOffset - 0.4; 
 
       // 创建地板
-      const roomfloor = createRoomFloor(width, depth, [room.position[0], floorY, room.position[2]], material);
+      const roomfloor = createRoomFloor(width, depth, [room.position[0], floorY, room.position[2]]);
       scene.add(roomfloor);
 
       // 定义四个角落的墙
@@ -187,36 +195,17 @@ function createVoxel(cubes) {
       const [x, y, z] = cube.position;
       const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
 
-      // 创建自定义蓝色 shader material
-      const material = new THREE.ShaderMaterial({
-          uniforms: {
-              time: { value: 0 }
-          },
-          vertexShader: `
-              varying vec3 vNormal;
-              void main() {
-                  vNormal = normalize(normalMatrix * normal);
-                  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-              }
-          `,
-          fragmentShader: `
-              uniform float time;
-              varying vec3 vNormal;
-              void main() {
-                  vec3 baseColor = vec3(0.0, 0.4, 1.0); // 基础蓝色
-                  float lightIntensity = dot(vNormal, normalize(vec3(1.0, 1.0, 1.0)));
-                  lightIntensity = max(0.3, lightIntensity); // 最小亮度为0.3
-                  vec3 finalColor = baseColor * lightIntensity;
-                  gl_FragColor = vec4(finalColor, 1.0);
-              }
-          `
+      // 创建简单的浅蓝色透明材质
+      const material = new THREE.MeshBasicMaterial({
+          color: 0x99ccff,  // 浅蓝色
+          transparent: true,
+          opacity: 0.9,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending
       });
 
       const cubeMesh = new THREE.Mesh(cubeGeometry, material);
-
       cubeMesh.position.set(x, y, z);
-      cubeMesh.receiveShadow = true;
-      cubeMesh.castShadow = true;
       voxelMeshes.push(cubeMesh);
       scene.add(cubeMesh);
   });
@@ -321,18 +310,29 @@ async function init() {
     cameraHolder.position.add(forward.multiplyScalar(moveAmount));
   }, { passive: true });  // 使用 passive 监听器提高性能
 
+    // 使用导入的类而不是通过 THREE 命名空间
+    composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+
+    // 修改辉光效果参数
+    const bloomPass = new UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        0.7,    // 降低强度
+        0.4,    // 半径
+        0.9     // 提高阈值，使得只有更亮的物体才会发光
+    );
+    composer.addPass(bloomPass);
+
+
   animate();
 }
 
 function animate() {
   requestAnimationFrame(animate);
-  // 更新所有体素的旋转和 shader 时间
+  // 更新所有体素的旋转
   voxelMeshes.forEach(voxel => {
-    if (voxel.material.uniforms) {
-      voxel.material.uniforms.time.value = performance.now() / 1000;
-    }
-    voxel.rotation.x += 0.01;
-    voxel.rotation.y += 0.02;
+      voxel.rotation.x += 0.01;
+      voxel.rotation.y += 0.02;
   });
 
   // 使用 cameraHolder 的方向来计算移动
@@ -362,7 +362,9 @@ function animate() {
     cameraHolder.rotation.y += player.turnSpeed;
   }
 
-  renderer.render(scene, camera);
+  // 使用composer渲染
+  composer.render();
+  // renderer.render(scene, camera);
 }
 
 function keyDown(e) {
