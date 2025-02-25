@@ -1,143 +1,27 @@
 import * as THREE from 'three';
 import { computeBoundsTree, disposeBoundsTree, acceleratedRaycast } from 'three-mesh-bvh';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { ef_init } from './edge_finder.js'; 
 
-let scene, camera, renderer, controls;
-const roomMap = new Map(); // 房间实例存储
+var scene, camera, renderer, cameraHolder, roomMap;
+var voxelMeshes = [];  // 存储所有的体素网格
 
-async function init() {
-    // 初始化基础场景
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+var keyboard = {};
+var player = { height: 1.8, speed: 0.1, turnSpeed: Math.PI * 0.02 };
+var mouseControl = {
+  isActive: false,
+  sensitivity: 0.002,  // 鼠标灵敏度
+  wheelSpeed: 0.01    // 滚轮灵敏度
+};
 
-    // 加载配置
-    const config = await loadConfig();
-
-    // 创建房间系统
-    createRoomSystem(config.rooms);
-
-    // 创建体素系统
-    createVoxelSystem(config.voxels);
-
-    // 光照配置
-    setupLighting();
-
-    // 相机与控制
-    setupCameraControls();
-
-    // 启动动画循环
-    animate();
-}
-
-function createRoomSystem(rooms) {
-    rooms.forEach(room => {
-        const geometry = new THREE.BoxGeometry(...room.size);
-        const material = new THREE.MeshPhongMaterial({
-            color: 0x2194fa,
-            transparent: true,
-            opacity: 0.3
-        });
-        const cube = new THREE.Mesh(geometry, material);
-        cube.position.fromArray(room.position);
-        cube.position.y += room.size[1]/2; // 底面定位修正
-        roomMap.set(rooms.indexOf(room), cube); // 存储房间实例
-        scene.add(cube);
-    });
-}
-
-function createVoxelSystem(voxels) {
-    if (!voxels || !voxels.length) return;
-    
-    // 创建渐变色映射器
-    const colorGradient = [
-        [0, new THREE.Color(0x00ff00)], // 绿色 (weight 0)
-        [0.5, new THREE.Color(0xffff00)], // 黄色
-        [1, new THREE.Color(0xff0000)] // 红色 (weight 1)
-    ];
-    
-    // 创建实例化mesh
-    const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
-    const material = new THREE.MeshPhongMaterial({ vertexColors: true });
-    const instancedMesh = new THREE.InstancedMesh(geometry, material, voxels.length);
-    
-    // 颜色属性数组
-    const colors = new Float32Array(voxels.length * 3);
-    const dummy = new THREE.Object3D();
-    
-    voxels.forEach((voxel, i) => {
-        // 计算归一化权重
-        const t = Math.min(Math.max(voxel.weight, 0), 1);
-        
-        // 插值颜色
-        let color;
-        for (let j = 1; j < colorGradient.length; j++) {
-            if (t <= colorGradient[j][0]) {
-                const [prevT, prevColor] = colorGradient[j-1];
-                const [nextT, nextColor] = colorGradient[j];
-                const ratio = (t - prevT)/(nextT - prevT);
-                color = prevColor.clone().lerp(nextColor, ratio);
-                break;
-            }
-        }
-        
-        // 如果没有找到颜色（例如，当t > 1时），使用最后一个颜色
-        if (!color) {
-            color = colorGradient[colorGradient.length - 1][1].clone();
-        }
-        
-        // 设置颜色数据
-        colors[i*3] = color.r;
-        colors[i*3+1] = color.g;
-        colors[i*3+2] = color.b;
-        
-        // 获取关联房间的位置
-        const room = roomMap.get(voxel.cluster);
-        const roomPos = room ? room.position : new THREE.Vector3();
-        
-        // 设置实例位置
-        dummy.position.set(
-            roomPos.x + voxel.position[0],
-            roomPos.y + voxel.position[1],
-            roomPos.z + voxel.position[2]
-        );
-        dummy.updateMatrix();
-        instancedMesh.setMatrixAt(i, dummy.matrix);
-    });
-    
-    // 设置顶点颜色
-    geometry.setAttribute('color', new THREE.InstancedBufferAttribute(colors, 3));
-    instancedMesh.instanceMatrix.needsUpdate = true; // 更新实例矩阵
-    scene.add(instancedMesh);
-}
-
-function setupLighting() {
-    // 添加环境光
-    const ambientLight = new THREE.AmbientLight(0x404040);
-    scene.add(ambientLight);
-    
-    // 添加方向光
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    directionalLight.position.set(1, 1, 1);
-    scene.add(directionalLight);
-}
-
-function setupCameraControls() {
-    camera.position.set(5, 5, 5);
-    camera.lookAt(0, 0, 0);
-    
-    controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-}
+// 初始化 roomMap
+roomMap = new Map();
 
 async function loadConfig() {
   try {
       const response = await fetch('beta.json');
       if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error('HTTP error! Status: ' + response.status);
       }   
       const config = await response.json();
       return config;
@@ -147,22 +31,353 @@ async function loadConfig() {
   }
 }
 
-function animate() {
-    requestAnimationFrame(animate);
-    
-    if (controls) controls.update();
-    
-    renderer.render(scene, camera);
+function createWall(width, height, depth, position, material) {
+  const geometry = new THREE.BoxGeometry(width, height, depth);
+  const config = {
+    width: 0.01,
+    alpha: true,
+    invert: false,
+    mode: 1,  // 墙壁使用 mode 0
+    wave: 0,
+    exp: 9
+  };
+  const wall = ef_init(
+    geometry,
+    THREE.Mesh,
+    THREE.ShaderMaterial,
+    THREE.Float32BufferAttribute,
+    config,
+    0.001,
+    0.001
+  );
+  wall.position.set(...position);
+  return wall;
 }
 
-// 窗口大小变化时调整渲染器和相机
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+// 辅助函数：创建地板
+function createRoomFloor(width, depth, position, material) {
+  const geometry = new THREE.BoxGeometry(width, 0.2, depth);
+  const config = {
+    width: 1,
+    alpha: true,
+    invert: false,
+    mode: 0,  // 地板使用 mode 0
+    wave: 0,
+    exp: 1
+  };
+  const floor = ef_init(
+    geometry,
+    THREE.Mesh,
+    THREE.ShaderMaterial,
+    THREE.Float32BufferAttribute,
+    config,
+    0.001,
+    0.001
+  );
+  floor.position.set(...position);
+  return floor;
+}
+// 辅助函数：检查点是否在某个房间内
+function isPointInsideRoom(point, room) {
+  const [x, y, z] = point;
+  const [roomX, roomY, roomZ] = room.position;
+  const [width, height, depth] = room.size;
+
+  return (
+      x >= roomX - width / 2 &&
+      x <= roomX + width / 2 &&
+      y >= roomY - height / 2 &&
+      y <= roomY + height / 2 &&
+      z >= roomZ - depth / 2 &&
+      z <= roomZ + depth / 2
+  );
+}
+function createRoomSystem(rooms) {
+  rooms.forEach((room, roomIndex) => {
+      const [width, height, depth] = room.size;
+      const wallThickness = 0.2; // 墙壁厚度
+      const yOffset = room.position[1] + height / 2; // 墙体居中对齐高度
+
+      const material = new THREE.MeshPhongMaterial({
+          color: 0x2194fa,
+      });
+
+      // 生成随机地板高度偏移量（±0.2范围内）
+      const floorHeightOffset = (Math.random() * 0.2) - 0.7; // -0.2 到 +0.2 之间的随机值
+      const floorY = room.position[1] - height / 2 + floorHeightOffset; // 计算地板高度
+
+      // 创建地板
+      const roomfloor = createRoomFloor(width, depth, [room.position[0], floorY, room.position[2]], material);
+      scene.add(roomfloor);
+
+      // 定义四个角落的墙
+      const corners = [
+          // 左前角
+          {
+              wall1: createWall(wallThickness, height * 2, depth / 4, 
+                  [room.position[0] - width / 2 + wallThickness / 2, yOffset, room.position[2] - depth / 2 + depth / 8], material),
+              wall2: createWall(width / 4, height * 2, wallThickness, 
+                  [room.position[0] - width / 2 + width / 8, yOffset, room.position[2] - depth / 2 + wallThickness / 2], material),
+              point: [room.position[0] - width / 2, room.position[1] + height / 2, room.position[2] - depth / 2] // 角落点
+          },
+          // 右前角
+          {
+              wall1: createWall(wallThickness, height * 2, depth / 4, 
+                  [room.position[0] + width / 2 - wallThickness / 2, yOffset, room.position[2] - depth / 2 + depth / 8], material),
+              wall2: createWall(width / 4, height * 2, wallThickness, 
+                  [room.position[0] + width / 2 - width / 8, yOffset, room.position[2] - depth / 2 + wallThickness / 2], material),
+              point: [room.position[0] + width / 2, room.position[1] + height / 2, room.position[2] - depth / 2] // 角落点
+          },
+          // 左后角
+          {
+              wall1: createWall(wallThickness, height * 2, depth / 4, 
+                  [room.position[0] - width / 2 + wallThickness / 2, yOffset, room.position[2] + depth / 2 - depth / 8], material),
+              wall2: createWall(width / 4, height * 2, wallThickness, 
+                  [room.position[0] - width / 2 + width / 8, yOffset, room.position[2] + depth / 2 - wallThickness / 2], material),
+              point: [room.position[0] - width / 2, room.position[1] + height / 2, room.position[2] + depth / 2] // 角落点
+          },
+          // 右后角
+          {
+              wall1: createWall(wallThickness, height * 2, depth / 4, 
+                  [room.position[0] + width / 2 - wallThickness / 2, yOffset, room.position[2] + depth / 2 - depth / 8], material),
+              wall2: createWall(width / 4, height * 2, wallThickness, 
+                  [room.position[0] + width / 2 - width / 8, yOffset, room.position[2] + depth / 2 - wallThickness / 2], material),
+              point: [room.position[0] + width / 2, room.position[1] + height / 2, room.position[2] + depth / 2] // 角落点
+          }
+      ];
+
+      // 检查每个角落是否需要生成墙
+      corners.forEach(corner => {
+          let shouldCreateWall = true;
+
+          // 检查该角落是否在其他房间内
+          rooms.forEach((otherRoom, otherRoomIndex) => {
+              if (roomIndex !== otherRoomIndex && isPointInsideRoom(corner.point, otherRoom)) {
+                  shouldCreateWall = false; // 如果角落在其他房间内，则不生成墙
+              }
+          });
+
+          // 如果需要生成墙，则添加到场景
+          if (shouldCreateWall) {
+              // 随机选择一面墙回缩一个厚度的距离
+              const wallToRecede = Math.random() < 0.5 ? corner.wall1 : corner.wall2;
+
+              // 回缩墙的位置
+              if (wallToRecede === corner.wall1) {
+                  // wall1 是垂直于 x 轴的墙，回缩 x 方向
+                  wallToRecede.position.x += wallThickness  * (Math.sign(wallToRecede.position.x - room.position[0]));
+              } else {
+                  // wall2 是垂直于 z 轴的墙，回缩 z 方向
+                  wallToRecede.position.z += wallThickness  * (Math.sign(wallToRecede.position.z - room.position[2]));
+              }
+
+              // 添加墙到场景
+              scene.add(corner.wall1);
+              scene.add(corner.wall2);
+          }
+      });
+
+      // 存储房间实例（包括地板）
+      roomMap.set(roomIndex, [roomfloor]);
+  });
+}
+
+function createVoxel(cubes) {
+  cubes.forEach(cube => {
+      const [x, y, z] = cube.position;
+      const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+
+      // 创建自定义蓝色 shader material
+      const material = new THREE.ShaderMaterial({
+          uniforms: {
+              time: { value: 0 }
+          },
+          vertexShader: `
+              varying vec3 vNormal;
+              void main() {
+                  vNormal = normalize(normalMatrix * normal);
+                  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+              }
+          `,
+          fragmentShader: `
+              uniform float time;
+              varying vec3 vNormal;
+              void main() {
+                  vec3 baseColor = vec3(0.0, 0.4, 1.0); // 基础蓝色
+                  float lightIntensity = dot(vNormal, normalize(vec3(1.0, 1.0, 1.0)));
+                  lightIntensity = max(0.3, lightIntensity); // 最小亮度为0.3
+                  vec3 finalColor = baseColor * lightIntensity;
+                  gl_FragColor = vec4(finalColor, 1.0);
+              }
+          `
+      });
+
+      const cubeMesh = new THREE.Mesh(cubeGeometry, material);
+
+      cubeMesh.position.set(x, y, z);
+      cubeMesh.receiveShadow = true;
+      cubeMesh.castShadow = true;
+      voxelMeshes.push(cubeMesh);
+      scene.add(cubeMesh);
+  });
+}
+
+async function init() {
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(75, document.body.clientWidth / window.innerHeight, 0.1, 1000);
+  scene.background = new THREE.Color(0x000000);  // 设置背景为黑色
+  
+  const config = await loadConfig();
+  if (!config) {
+      console.error('Failed to load configuration');
+      return;
+  }
+
+  createRoomSystem(config.rooms);
+  createVoxel(config.voxels);
+
+  cameraHolder = new THREE.Object3D();
+  scene.add(cameraHolder);
+  cameraHolder.position.y = player.height;
+  cameraHolder.add(camera);
+  camera.position.set(0, 0, 3);  // 相对于 holder 的位置
+
+  // Lighting
+  var light = new THREE.PointLight(0xffffff, 1.3, 50, 2);
+  light.position.set(-10, 20, 12);
+  scene.add(light);
+
+  var light2 = new THREE.PointLight(0xffffff, 1.3, 50, 2);
+  light2.position.set(10, 20, 12);
+  scene.add(light2);
+
+  var spotLight = new THREE.SpotLight(0xffffff, 0.1);
+  spotLight.position.set(10, 80, 10);
+  spotLight.castShadow = true;
+  spotLight.shadow.mapSize.width = 500;
+  spotLight.shadow.mapSize.height = 500;
+  spotLight.shadow.camera.near = .25;
+  spotLight.shadow.camera.far = 1000;
+  spotLight.shadow.camera.fov = 3;
+  scene.add(spotLight);
+
+  // Render 
+  renderer = new THREE.WebGLRenderer({
+    antialias: true,  // 添加抗锯齿
+    alpha: true       // 允许透明背景
+  });
+  renderer.setSize(document.body.clientWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.BasicShadowMap;
+
+  // Resize to the size of the screen
+  window.addEventListener('resize', function() {
+    var width = document.body.clientWidth;
+    var height = window.innerHeight;
+    renderer.setSize( width, height );
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // 添加鼠标事件监听
+  document.addEventListener('mousedown', function(e) {
+    if (e.button === 0) { // 左键点击
+      mouseControl.isActive = true;
+    }
+  });
+  
+  document.addEventListener('mouseup', function(e) {
+    if (e.button === 0) { // 左键释放
+      mouseControl.isActive = false;
+    }
+  });
+  
+  document.addEventListener('mousemove', function(e) {
+    if (mouseControl.isActive) {
+      cameraHolder.rotation.y -= e.movementX * mouseControl.sensitivity;
+    }
+  });
+  
+  // 防止鼠标拖动时选中文本
+  document.addEventListener('selectstart', function(e) {
+    if (mouseControl.isActive) {
+      e.preventDefault();
+    }
+  });
+
+  // 添加鼠标滚轮事件监听
+  document.addEventListener('wheel', function(e) {
+    // 获取滚轮方向
+    const direction = new THREE.Vector3(0, 0, -1);
+    direction.applyQuaternion(cameraHolder.quaternion);
+    
+    // 计算前进方向
+    const forward = new THREE.Vector3(direction.x, 0, direction.z).normalize();
+    
+    // deltaY 向上滚动为负，向下滚动为正
+    // 向上滚动前进，向下滚动后退
+    const moveAmount = -e.deltaY * mouseControl.wheelSpeed;
+    cameraHolder.position.add(forward.multiplyScalar(moveAmount));
+  }, { passive: true });  // 使用 passive 监听器提高性能
+
+  animate();
 }
 
-window.addEventListener('resize', onWindowResize);
+function animate() {
+  requestAnimationFrame(animate);
+  // 更新所有体素的旋转和 shader 时间
+  voxelMeshes.forEach(voxel => {
+    if (voxel.material.uniforms) {
+      voxel.material.uniforms.time.value = performance.now() / 1000;
+    }
+    voxel.rotation.x += 0.01;
+    voxel.rotation.y += 0.02;
+  });
 
-// 初始化应用
-init();
+  // 使用 cameraHolder 的方向来计算移动
+  const direction = new THREE.Vector3(0, 0, -1);
+  direction.applyQuaternion(cameraHolder.quaternion);
+  
+  // 计算前进方向和侧向移动的向量
+  const forward = new THREE.Vector3(direction.x, 0, direction.z).normalize();
+  const right = new THREE.Vector3(forward.z, 0, -forward.x);
+
+  if (keyboard[87]) { // W key
+    cameraHolder.position.add(forward.clone().multiplyScalar(player.speed));
+  }
+  if (keyboard[83]) { // S key
+    cameraHolder.position.add(forward.clone().multiplyScalar(-player.speed));
+  }
+  if (keyboard[68]) { // A key
+    cameraHolder.position.add(right.clone().multiplyScalar(-player.speed));
+  }
+  if (keyboard[65]) { // D key
+    cameraHolder.position.add(right.clone().multiplyScalar(player.speed));
+  }
+  if (keyboard[37]) { // left arrow key
+    cameraHolder.rotation.y -= player.turnSpeed;
+  }
+  if (keyboard[39]) { // right arrow key
+    cameraHolder.rotation.y += player.turnSpeed;
+  }
+
+  renderer.render(scene, camera);
+}
+
+function keyDown(e) {
+  keyboard[e.keyCode] = true;
+}
+
+function keyUp(e) {
+  keyboard[e.keyCode] = false;
+}
+
+window.addEventListener('keydown', keyDown);
+window.addEventListener('keyup', keyUp);
+
+window.addEventListener('load', () => {
+    init().catch(error => {
+        console.error('Initialization failed:', error);
+    });
+});

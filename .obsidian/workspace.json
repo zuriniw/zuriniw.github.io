@@ -170,6 +170,7 @@
   },
   "active": "a1ef868580f8303f",
   "lastOpenFiles": [
+    "beta/beta.css",
     "beta/package-lock.json",
     "beta/node_modules/three/examples/jsm/libs/draco/gltf/draco_decoder.wasm",
     "beta/node_modules/three/examples/jsm/libs/rhino3dm/rhino3dm.wasm",
@@ -186,7 +187,6 @@
     "beta/node_modules/three/examples/fonts/ttf",
     "beta/node_modules/three/examples/jsm/nodes/materialx/DISCLAIMER.md",
     "beta/node_modules/three/package.json",
-    "beta/node_modules/three/examples/fonts/optimer_regular.typeface.json",
     "beta/node_modules/three-mesh-bvh/README.md",
     "projects/wavepavilion/kangaroo.png",
     "projects/mrfarm/mrfarm.md",
