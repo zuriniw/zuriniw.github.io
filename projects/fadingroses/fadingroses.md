@@ -18,7 +18,7 @@ Dual-layered **"Space & Psyche" interaction system**:
 
 - **Environmental Semiotics**: Procreate-drawn clues (withered roses = lost families, locked storage room = buried guilt)  
 
-- **Branching NPC Dialogues**: Dynamic choices that lead to different story brunches
+- **Branching NPC Dialogues**: Dynamic choices that lead to different story branches
 
 - **Truth-Locking Mechanism**: Final "Sea Turtle Soup" riddle requires synthesizing indoor evidence + outdoor testimonies (e.g., a vagrant with a rose pin suspected to be the disowned youngest son)  
 
