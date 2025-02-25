@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "projects/mrfarm/mrfarm.md",
+                "file": "projects/ada2d/ada2d.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "mrfarm"
+              "title": "ada2d"
             }
           }
         ]
@@ -170,6 +170,8 @@
   },
   "active": "a1ef868580f8303f",
   "lastOpenFiles": [
+    "projects/wavepavilion/kangaroo.png",
+    "projects/mrfarm/mrfarm.md",
     "projects/wavepavilion/bb.jpg",
     "projects/weddingwall/weddingwall.gif",
     "projects/weddingwall/proce.png",
@@ -181,7 +183,6 @@
     "projects/wavepavilion/ana.png",
     "projects/wavepavilion/3.png",
     "projects/wavepavilion/2.png",
-    "projects/wavepavilion/1.png",
     "projects/fadingroses/fadingroses.md",
     "projects/wavepavilion/taihustone.html",
     "projects/wavepavilion/wavepavilion.md",
@@ -195,7 +196,6 @@
     "data/weddingwall",
     "projects/gazeknitting/weddingwall",
     "projects/mrfarm/pic.HEIC",
-    "projects/mrfarm/mrfarm.md",
     "projects/mrfarm/mrfarm",
     "未命名.canvas",
     "projects/mobius/mobius.md",
