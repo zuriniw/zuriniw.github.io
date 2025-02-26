@@ -1,8 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>3D Beta</title>
-    <style>body { margin: 0; overflow: hidden; }</style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000000;
+        }
+        
+        /* 导入Barlow字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&display=swap');
+        
+        .controls-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 5px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 300;
+            line-height: 1.5;
+            max-width: 300px;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .controls-info p {
+            margin: 0;
+        }
+        
+        .controls-info em {
+            font-style: normal;
+            font-weight: 500;
+            color: #99ccff;
+        }
+    </style>
     <script type="importmap">
         {
           "imports": {
@@ -26,15 +63,13 @@
         }
     }
     </script>
-    <div>
-    
+    <div class="controls-info">
         <p>Use Keyboard to Control Camera <br>
           <em>W,A,S,D</em> (Forward, Backward, Left, Right)<br>
             <br>
-            &larr; (Left Arrow and Right Arrow) &rarr;
-         </p>
-          
-        </div>
+            &larr; <em>Left Arrow and Right Arrow</em> &rarr;
+        </p>
+    </div>
     
     <!-- 修改为模块加载 -->
     <script type="module" src="beta.js"></script>

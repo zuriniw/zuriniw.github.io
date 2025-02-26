@@ -43,9 +43,9 @@ function createWall(width, height, depth, position, material) {
     width: 0.008,
     alpha: true,
     invert: false,
-    mode: 1,
+    mode: 0,
     wave: 0,
-    exp: 100
+    exp: 50
   };
   const wall = ef_init(
     geometry,
@@ -53,8 +53,8 @@ function createWall(width, height, depth, position, material) {
     THREE.ShaderMaterial,
     THREE.Float32BufferAttribute,
     config,
-    0.0001,
-    0.0001
+    0.000001,
+    0.000001
   );
   wall.position.set(...position);
   return wall;
@@ -62,48 +62,56 @@ function createWall(width, height, depth, position, material) {
 
 // 辅助函数：创建地板
 function createRoomFloor(width, depth, position) {
+  // 创建基础几何体
   const geometry = new THREE.BoxGeometry(width, 0.1, depth);
-  const config = {
-    width: 0.008,
-    alpha: true,
-    invert: false,
-    mode: 1,
-    wave: 0,
-    exp: 200
-  };
   
-  const floor = ef_init(
-    geometry,
-    THREE.Mesh,
-    THREE.ShaderMaterial,
-    THREE.Float32BufferAttribute,
-    config,
-    0.0001,
-    0.0001
-  );
+  // 创建基础材质 - 透明的
+  const material = new THREE.MeshBasicMaterial({
+    transparent: true,
+    opacity: 0.99,  // 完全透明
+    depthWrite: false
+  });
+  
+  // 创建基础网格
+  const floor = new THREE.Mesh(geometry, material);
   floor.position.set(...position);
+  
+  // 创建边缘几何体
+  const edges = new THREE.EdgesGeometry(geometry, 15); // 15度阈值，只显示锐角边缘
+  
+  // 创建边缘材质
+  const lineMaterial = new THREE.LineBasicMaterial({ 
+    color: 0xffffff,
+    linewidth: 0.01
+  });
+  
+  // 创建边缘线条
+  const line = new THREE.LineSegments(edges, lineMaterial);
+  
+  // 将线条添加为地板的子对象
+  floor.add(line);
+  
   return floor;
 }
-// 辅助函数：检查点是否在某个房间内
+// 辅助函数：检查xz平面上，点是否在某个房间内
 function isPointInsideRoom(point, room) {
   const [x, y, z] = point;
-  const [roomX, roomY, roomZ] = room.position;
-  const [width, height, depth] = room.size;
+  const [roomX, roomZ] = room.position;
+  const [width, depth] = room.size;
 
   return (
       x >= roomX - width / 2 &&
       x <= roomX + width / 2 &&
-      y >= roomY - height / 2 &&
-      y <= roomY + height / 2 &&
       z >= roomZ - depth / 2 &&
       z <= roomZ + depth / 2
   );
 }
 function createRoomSystem(rooms) {
   rooms.forEach((room, roomIndex) => {
-      const [width, height, depth] = room.size;
+      const [width,depth] = room.size;
+      const height = 4;
       const wallThickness = 0.2; // 墙壁厚度
-      const yOffset = room.position[1] + height / 2; // 墙体居中对齐高度
+      const height_center = height / 2; // 墙体居中对齐高度
 
       const material = new THREE.MeshPhongMaterial({
           color: 0x2194fa,
@@ -112,10 +120,13 @@ function createRoomSystem(rooms) {
       // 生成随机地板高度偏移量（±0.2范围内）
       const floorHeightOffset = (Math.random() * 0.8) - 0.4; // -0.2 到 +0.2 之间的随机值
       // 计算地板高度，整体降低0.4个单位
-      const floorY = room.position[1] - height / 2 + floorHeightOffset - 0.4; 
+      const floorY = -height / 2 + floorHeightOffset - 0.4; 
+      const room_z = room.position[1];
+      const room_x = room.position[0];
+      const room_y = 0;
 
       // 创建地板
-      const roomfloor = createRoomFloor(width, depth, [room.position[0], floorY, room.position[2]]);
+      const roomfloor = createRoomFloor(width, depth, [room_x, floorY, room_y]);
       scene.add(roomfloor);
 
       // 定义四个角落的墙
@@ -123,34 +134,34 @@ function createRoomSystem(rooms) {
           // 左前角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
-                  [room.position[0] - width / 2 + wallThickness / 2, yOffset, room.position[2] - depth / 2 + depth / 8], material),
+                  [room_x - width / 2 + wallThickness / 2, height_center, room_y - depth / 2 + depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room.position[0] - width / 2 + width / 8, yOffset, room.position[2] - depth / 2 + wallThickness / 2], material),
-              point: [room.position[0] - width / 2, room.position[1] + height / 2, room.position[2] - depth / 2] // 角落点
+                  [room_x - width / 2 + width / 8, height_center, room_y - depth / 2 + wallThickness / 2], material),
+              point: [room_x - width / 2, room_z + depth / 2, room_y - height / 2] // 角落点
           },
           // 右前角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
-                  [room.position[0] + width / 2 - wallThickness / 2, yOffset, room.position[2] - depth / 2 + depth / 8], material),
+                  [room_x + width / 2 - wallThickness / 2, height_center, room_y - depth / 2 + depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room.position[0] + width / 2 - width / 8, yOffset, room.position[2] - depth / 2 + wallThickness / 2], material),
-              point: [room.position[0] + width / 2, room.position[1] + height / 2, room.position[2] - depth / 2] // 角落点
+                  [room_x + width / 2 - width / 8, height_center, room_y - depth / 2 + wallThickness / 2], material),
+              point: [room_x + width / 2,   room_z + depth / 2, room_y - height / 2] // 角落点
           },
           // 左后角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
-                  [room.position[0] - width / 2 + wallThickness / 2, yOffset, room.position[2] + depth / 2 - depth / 8], material),
+                  [room_x - width / 2 + wallThickness / 2, height_center, room_y + depth / 2 - depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room.position[0] - width / 2 + width / 8, yOffset, room.position[2] + depth / 2 - wallThickness / 2], material),
-              point: [room.position[0] - width / 2, room.position[1] + height / 2, room.position[2] + depth / 2] // 角落点
+                  [room_x - width / 2 + width / 8, height_center, room_y + depth / 2 - wallThickness / 2], material),
+              point: [room_x - width / 2, room_z + depth / 2, room_y + height / 2] // 角落点
           },
           // 右后角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
-                  [room.position[0] + width / 2 - wallThickness / 2, yOffset, room.position[2] + depth / 2 - depth / 8], material),
+                  [room_x + width / 2 - wallThickness / 2, height_center, room_y + depth / 2 - depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room.position[0] + width / 2 - width / 8, yOffset, room.position[2] + depth / 2 - wallThickness / 2], material),
-              point: [room.position[0] + width / 2, room.position[1] + height / 2, room.position[2] + depth / 2] // 角落点
+                  [room_x + width / 2 - width / 8, height_center, room_y + depth / 2 - wallThickness / 2], material),
+              point: [room_x + width / 2, room_z + depth / 2, room_y + height / 2] // 角落点
           }
       ];
 
@@ -158,12 +169,18 @@ function createRoomSystem(rooms) {
       corners.forEach(corner => {
           let shouldCreateWall = true;
 
-          // 检查该角落是否在其他房间内
-          rooms.forEach((otherRoom, otherRoomIndex) => {
-              if (roomIndex !== otherRoomIndex && isPointInsideRoom(corner.point, otherRoom)) {
-                  shouldCreateWall = false; // 如果角落在其他房间内，则不生成墙
-              }
-          });
+      // 检查该角落是否在其他房间内
+      rooms.forEach((otherRoom, otherRoomIndex) => {
+        if (roomIndex !== otherRoomIndex) {
+            const isInside = isPointInsideRoom(corner.point, otherRoom, true); // 启用调试模式
+            if (isInside) {
+                console.log(`Overlap detected:`);
+                console.log(`- Point: ${JSON.stringify(corner.point)}`);
+                console.log(`- Room ${roomIndex} corner overlaps with Room ${otherRoomIndex}`);
+                shouldCreateWall = false; // 如果角落在其他房间内，则不生成墙
+            }
+        }
+      });
 
           // 如果需要生成墙，则添加到场景
           if (shouldCreateWall) {
@@ -176,7 +193,7 @@ function createRoomSystem(rooms) {
                   wallToRecede.position.x += wallThickness  * (Math.sign(wallToRecede.position.x - room.position[0]));
               } else {
                   // wall2 是垂直于 z 轴的墙，回缩 z 方向
-                  wallToRecede.position.z += wallThickness  * (Math.sign(wallToRecede.position.z - room.position[2]));
+                  wallToRecede.position.z += wallThickness  * (Math.sign(wallToRecede.position.z - room_y));
               }
 
               // 添加墙到场景
@@ -317,8 +334,8 @@ async function init() {
     // 修改辉光效果参数
     const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
-        0.7,    // 降低强度
-        0.4,    // 半径
+        0.1,    // 降低强度
+        0.1,    // 半径
         0.9     // 提高阈值，使得只有更亮的物体才会发光
     );
     composer.addPass(bloomPass);
