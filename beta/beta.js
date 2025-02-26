@@ -6,7 +6,7 @@ import { ef_init } from './edge_finder.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
-
+// import { clusters,projects } from '/Users/ziru/Documents/GitHub/autoPortfolio/project_clusters.json';
 
 var scene, camera, renderer, cameraHolder, roomMap, composer;
 
@@ -17,7 +17,7 @@ var player = { height: 1.8, speed: 0.1, turnSpeed: Math.PI * 0.02 };
 var mouseControl = {
   isActive: false,
   sensitivity: 0.002,  // 鼠标灵敏度
-  wheelSpeed: 0.01    // 滚轮灵敏度
+  wheelSpeed: 0.05    // 滚轮灵敏度
 };
 
 // 初始化 roomMap
@@ -25,7 +25,10 @@ roomMap = new Map();
 
 async function loadConfig() {
   try {
-      const response = await fetch('beta.json');
+      const response = await fetch('project_clusters.json', 
+        // {mode: 'cors'}
+    );
+  
       if (!response.ok) {
           throw new Error('HTTP error! Status: ' + response.status);
       }   
@@ -111,7 +114,7 @@ function createRoomSystem(rooms) {
       const [width,depth] = room.size;
       const height = 4;
       const wallThickness = 0.2; // 墙壁厚度
-      const height_center = height / 2; // 墙体居中对齐高度
+      const height_center = height / 2+1; // 墙体居中对齐高度
 
       const material = new THREE.MeshPhongMaterial({
           color: 0x2194fa,
@@ -239,8 +242,8 @@ async function init() {
       return;
   }
 
-  createRoomSystem(config.rooms);
-  createVoxel(config.voxels);
+  createRoomSystem(config.clusters);
+  createVoxel(config.projects);
 
   cameraHolder = new THREE.Object3D();
   scene.add(cameraHolder);
