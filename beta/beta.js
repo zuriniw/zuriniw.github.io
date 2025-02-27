@@ -20,14 +20,25 @@ var mouseControl = {
   wheelSpeed: 0.05    // 滚轮灵敏度
 };
 
+// 添加相机状态管理
+var cameraState = {
+    isTopView: false,
+    defaultPosition: new THREE.Vector3(0, 0, 3),
+    defaultRotation: new THREE.Euler(0, 0, 0),
+    topViewPosition: new THREE.Vector3(0, 20, 0),
+    topViewRotation: new THREE.Euler(-Math.PI/2, 0, 0),
+    transitionDuration: 1000, // 过渡动画持续时间（毫秒）
+    transitioning: false
+};
+
 // 初始化 roomMap
 roomMap = new Map();
 
 async function loadConfig() {
   try {
-      const response = await fetch('project_clusters.json', 
-        // {mode: 'cors'}
-    );
+      // const response = await fetch('beta.json');
+      const response = await fetch('project_clusters.json');
+
   
       if (!response.ok) {
           throw new Error('HTTP error! Status: ' + response.status);
@@ -64,14 +75,15 @@ function createWall(width, height, depth, position, material) {
 }
 
 // 辅助函数：创建地板
-function createRoomFloor(width, depth, position) {
+function createRoomFloor(width, depth, position, color) {
   // 创建基础几何体
   const geometry = new THREE.BoxGeometry(width, 0.1, depth);
   
-  // 创建基础材质 - 透明的
+  // 创建基础材质 - 使用传入的颜色
   const material = new THREE.MeshBasicMaterial({
+    color: color,
     transparent: true,
-    opacity: 0.99,  // 完全透明
+    opacity: 0.15,  // 降低透明度使颜色更淡
     depthWrite: false
   });
   
@@ -80,12 +92,14 @@ function createRoomFloor(width, depth, position) {
   floor.position.set(...position);
   
   // 创建边缘几何体
-  const edges = new THREE.EdgesGeometry(geometry, 15); // 15度阈值，只显示锐角边缘
+  const edges = new THREE.EdgesGeometry(geometry, 15);
   
-  // 创建边缘材质
+  // 创建边缘材质 - 使用相同的颜色但透明度更高
   const lineMaterial = new THREE.LineBasicMaterial({ 
-    color: 0xffffff,
-    linewidth: 0.01
+    color: color,
+    transparent: true,
+    opacity: 0.3,
+    linewidth: 1
   });
   
   // 创建边缘线条
@@ -96,19 +110,21 @@ function createRoomFloor(width, depth, position) {
   
   return floor;
 }
-// 辅助函数：检查xz平面上，点是否在某个房间内
-function isPointInsideRoom(point, room) {
-  const [x, y, z] = point;
-  const [roomX, roomZ] = room.position;
-  const [width, depth] = room.size;
 
-  return (
-      x >= roomX - width / 2 &&
-      x <= roomX + width / 2 &&
-      z >= roomZ - depth / 2 &&
-      z <= roomZ + depth / 2
-  );
-}
+// 辅助函数：检查xz平面上，点是否在某个房间内
+// function isPointInsideRoom(point, room) {
+//   const [x, y, z] = point;
+//   const [roomX, roomZ] = room.position;
+//   const [width, depth] = room.size;
+
+//   return (
+//       x >= roomX - width / 2 &&
+//       x <= roomX + width / 2 &&
+//       z >= roomZ - depth / 2 &&
+//       z <= roomZ + depth / 2
+//   );
+// }
+
 function createRoomSystem(rooms) {
   rooms.forEach((room, roomIndex) => {
       const [width,depth] = room.size;
@@ -116,20 +132,23 @@ function createRoomSystem(rooms) {
       const wallThickness = 0.2; // 墙壁厚度
       const height_center = height / 2+1; // 墙体居中对齐高度
 
+      // 使用clusterColors数组获取对应的颜色
+      const clusterColor = clusterColors[roomIndex % clusterColors.length];
+
       const material = new THREE.MeshPhongMaterial({
           color: 0x2194fa,
       });
 
       // 生成随机地板高度偏移量（±0.2范围内）
-      const floorHeightOffset = (Math.random() * 0.8) - 0.4; // -0.2 到 +0.2 之间的随机值
+      const floorHeightOffset = (Math.random() * 1) - 0.5; // -0.5 到 +0.5 之间的随机值
       // 计算地板高度，整体降低0.4个单位
       const floorY = -height / 2 + floorHeightOffset - 0.4; 
       const room_z = room.position[1];
       const room_x = room.position[0];
       const room_y = 0;
 
-      // 创建地板
-      const roomfloor = createRoomFloor(width, depth, [room_x, floorY, room_y]);
+      // 创建地板时传入cluster对应的颜色
+      const roomfloor = createRoomFloor(width, depth, [room_x, floorY, room_y], clusterColor);
       scene.add(roomfloor);
 
       // 定义四个角落的墙
@@ -170,39 +189,21 @@ function createRoomSystem(rooms) {
 
       // 检查每个角落是否需要生成墙
       corners.forEach(corner => {
-          let shouldCreateWall = true;
+          // 随机选择一面墙回缩一个厚度的距离
+          const wallToRecede = Math.random() < 0.5 ? corner.wall1 : corner.wall2;
 
-      // 检查该角落是否在其他房间内
-      rooms.forEach((otherRoom, otherRoomIndex) => {
-        if (roomIndex !== otherRoomIndex) {
-            const isInside = isPointInsideRoom(corner.point, otherRoom, true); // 启用调试模式
-            if (isInside) {
-                console.log(`Overlap detected:`);
-                console.log(`- Point: ${JSON.stringify(corner.point)}`);
-                console.log(`- Room ${roomIndex} corner overlaps with Room ${otherRoomIndex}`);
-                shouldCreateWall = false; // 如果角落在其他房间内，则不生成墙
-            }
-        }
-      });
-
-          // 如果需要生成墙，则添加到场景
-          if (shouldCreateWall) {
-              // 随机选择一面墙回缩一个厚度的距离
-              const wallToRecede = Math.random() < 0.5 ? corner.wall1 : corner.wall2;
-
-              // 回缩墙的位置
-              if (wallToRecede === corner.wall1) {
-                  // wall1 是垂直于 x 轴的墙，回缩 x 方向
-                  wallToRecede.position.x += wallThickness  * (Math.sign(wallToRecede.position.x - room.position[0]));
-              } else {
-                  // wall2 是垂直于 z 轴的墙，回缩 z 方向
-                  wallToRecede.position.z += wallThickness  * (Math.sign(wallToRecede.position.z - room_y));
-              }
-
-              // 添加墙到场景
-              scene.add(corner.wall1);
-              scene.add(corner.wall2);
+          // 回缩墙的位置
+          if (wallToRecede === corner.wall1) {
+              // wall1 是垂直于 x 轴的墙，回缩 x 方向
+              wallToRecede.position.x += wallThickness  * (Math.sign(wallToRecede.position.x - room.position[0]));
+          } else {
+              // wall2 是垂直于 z 轴的墙，回缩 z 方向
+              wallToRecede.position.z += wallThickness  * (Math.sign(wallToRecede.position.z - room_y));
           }
+
+          // 添加墙到场景
+          scene.add(corner.wall1);
+          scene.add(corner.wall2);
       });
 
       // 存储房间实例（包括地板）
@@ -210,25 +211,84 @@ function createRoomSystem(rooms) {
   });
 }
 
-function createVoxel(cubes) {
-  cubes.forEach(cube => {
-      const [x, y, z] = cube.position;
-      const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+// 定义一组不同的颜色
+const clusterColors = [
+  0x800080,  // 
+  0x0A97B0,  // 
+  0x0A5EB0,  // 
+  'grey',  // 
+  0xCDB699,  // 
+];
 
-      // 创建简单的浅蓝色透明材质
-      const material = new THREE.MeshBasicMaterial({
-          color: 0x99ccff,  // 浅蓝色
-          transparent: true,
-          opacity: 0.9,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending
-      });
+// 创建虚线材质
+const dashedLineMaterial = new THREE.LineDashedMaterial({
+    color: 0xffffff,
+    linewidth: 1,
+    scale: 1,
+    dashSize: 0.5,
+    gapSize: 0.3,
+    transparent: true,
+    opacity: 0.3
+});
 
-      const cubeMesh = new THREE.Mesh(cubeGeometry, material);
-      cubeMesh.position.set(x, y, z);
-      voxelMeshes.push(cubeMesh);
-      scene.add(cubeMesh);
-  });
+// 按cluster创建连接线
+function createClusterConnections(projects) {
+    // 按cluster分组
+    const clusterProjects = {};
+    projects.forEach(project => {
+        if (!clusterProjects[project.cluster]) {
+            clusterProjects[project.cluster] = [];
+        }
+        clusterProjects[project.cluster].push(project);
+    });
+
+    // 为每个cluster创建连接线
+    Object.entries(clusterProjects).forEach(([clusterId, projects]) => {
+        // 按seq排序
+        projects.sort((a, b) => a.seq - b.seq);
+        
+        // 创建线条几何体
+        const points = [];
+        projects.forEach(project => {
+            points.push(new THREE.Vector3(...project.position));
+        });
+        
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        const line = new THREE.Line(geometry, dashedLineMaterial);
+        
+        // 计算线段长度并更新虚线
+        line.computeLineDistances();
+        
+        scene.add(line);
+    });
+}
+
+function createVoxel(projects) {
+    projects.forEach(project => {
+        const [x, y, z] = project.position;
+        const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+
+        // 根据project的cluster_id选择颜色
+        const colorIndex = project.cluster % clusterColors.length;
+        const color = clusterColors[colorIndex];
+
+        // 创建带有对应颜色的透明材质
+        const material = new THREE.MeshBasicMaterial({
+            color: color,
+            transparent: true,
+            opacity: 0.5,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+        });
+
+        const cubeMesh = new THREE.Mesh(cubeGeometry, material);
+        cubeMesh.position.set(x, y, z);
+        voxelMeshes.push(cubeMesh);
+        scene.add(cubeMesh);
+    });
+
+    // 创建连接线
+    createClusterConnections(projects);
 }
 
 async function init() {
@@ -247,9 +307,14 @@ async function init() {
 
   cameraHolder = new THREE.Object3D();
   scene.add(cameraHolder);
-  cameraHolder.position.y = player.height;
+  cameraHolder.position.set(0, player.height, 0);
   cameraHolder.add(camera);
-  camera.position.set(0, 0, 3);  // 相对于 holder 的位置
+  camera.position.set(0, 0, 3);
+
+  console.log('Initial camera setup:');
+  console.log('CameraHolder position:', cameraHolder.position);
+  console.log('Camera position:', camera.position);
+  console.log('Camera rotation:', camera.rotation);
 
   // Lighting
   var light = new THREE.PointLight(0xffffff, 1.3, 50, 2);
@@ -349,6 +414,7 @@ async function init() {
 
 function animate() {
   requestAnimationFrame(animate);
+  
   // 更新所有体素的旋转
   voxelMeshes.forEach(voxel => {
       voxel.rotation.x += 0.01;
@@ -382,13 +448,20 @@ function animate() {
     cameraHolder.rotation.y += player.turnSpeed;
   }
 
-  // 使用composer渲染
   composer.render();
-  // renderer.render(scene, camera);
 }
 
 function keyDown(e) {
   keyboard[e.keyCode] = true;
+  
+  // 添加按键调试日志
+  console.log('Key pressed:', e.keyCode);
+  
+  // 't'键的keyCode是84
+  if (e.keyCode === 84) { // 't' key
+    console.log('T key pressed, triggering top view toggle');
+    toggleTopView();
+  }
 }
 
 function keyUp(e) {
@@ -403,3 +476,31 @@ window.addEventListener('load', () => {
         console.error('Initialization failed:', error);
     });
 });
+
+// 修改toggleTopView函数，使用直接设置而不是TWEEN动画
+function toggleTopView() {
+    console.log('Toggle top view called');
+    console.log('Current camera position:', camera.position);
+    console.log('Current camera rotation:', camera.rotation);
+    
+    cameraState.isTopView = !cameraState.isTopView;
+    console.log('Switching to:', cameraState.isTopView ? 'top view' : 'default view');
+    
+    if (cameraState.isTopView) {
+        // 切换到顶视图
+        cameraHolder.position.set(0, 30, 0);
+        cameraHolder.rotation.x = -Math.PI/2;
+        cameraHolder.rotation.y = 0;
+        cameraHolder.rotation.z = 0;
+    } else {
+        // 恢复到默认视图
+        cameraHolder.position.set(0, player.height, 0);
+        cameraHolder.rotation.x = 0;
+        cameraHolder.rotation.y = 0;
+        cameraHolder.rotation.z = 0;
+        camera.position.z = 3;
+    }
+    
+    console.log('New camera holder position:', cameraHolder.position);
+    console.log('New camera holder rotation:', cameraHolder.rotation);
+}

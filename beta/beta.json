@@ -1,5 +1,5 @@
 {
-  "rooms": [
+  "clusters": [
     {
       "position": [0, 0],
       "size": [19, 16]
@@ -13,7 +13,7 @@
       "size": [16, 10]
     }
   ],
-  "voxels": [
+  "projects": [
     {
       "position": [2, 1, 3],
       "weight": 0.2,
