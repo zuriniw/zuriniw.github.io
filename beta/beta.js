@@ -38,8 +38,6 @@ async function loadConfig() {
   try {
       // const response = await fetch('beta.json');
       const response = await fetch('project_clusters.json');
-
-  
       if (!response.ok) {
           throw new Error('HTTP error! Status: ' + response.status);
       }   
@@ -127,28 +125,27 @@ function createRoomFloor(width, depth, position, color) {
 
 function createRoomSystem(rooms) {
   rooms.forEach((room, roomIndex) => {
-      const [width,depth] = room.size;
+      const room_x = room.position[0];
+      const room_z = room.position[1]; // 这里就是 cluster 的 z 坐标
+      const room_y = 0;  // 地面高度固定为 0  
+       
       const height = 4;
       const wallThickness = 0.2; // 墙壁厚度
       const height_center = height / 2+1; // 墙体居中对齐高度
 
+      const floorHeightOffset = (Math.random() * 1) - 0.5; // -0.5 到 +0.5 之间的随机值
+      const floorY = room_y - (height / 2 + floorHeightOffset - 0.4); 
+
+      var [width,depth] = room.size;
+
       // 使用clusterColors数组获取对应的颜色
       const clusterColor = clusterColors[roomIndex % clusterColors.length];
+      const material = new THREE.MeshPhongMaterial({color: 0x2194fa,});
 
-      const material = new THREE.MeshPhongMaterial({
-          color: 0x2194fa,
-      });
-
-      // 生成随机地板高度偏移量（±0.2范围内）
-      const floorHeightOffset = (Math.random() * 1) - 0.5; // -0.5 到 +0.5 之间的随机值
-      // 计算地板高度，整体降低0.4个单位
-      const floorY = -height / 2 + floorHeightOffset - 0.4; 
-      const room_z = room.position[1];
-      const room_x = room.position[0];
-      const room_y = 0;
 
       // 创建地板时传入cluster对应的颜色
-      const roomfloor = createRoomFloor(width, depth, [room_x, floorY, room_y], clusterColor);
+      const roomfloor = createRoomFloor(width, depth, [room_x, floorY, room_z], clusterColor);
+      
       scene.add(roomfloor);
 
       // 定义四个角落的墙
@@ -156,33 +153,33 @@ function createRoomSystem(rooms) {
           // 左前角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
-                  [room_x - width / 2 + wallThickness / 2, height_center, room_y - depth / 2 + depth / 8], material),
+                  [room_x - width / 2 + wallThickness / 2, height_center, room_z - depth / 2 + depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room_x - width / 2 + width / 8, height_center, room_y - depth / 2 + wallThickness / 2], material),
+                  [room_x - width / 2 + width / 8, height_center, room_z - depth / 2 + wallThickness / 2], material),
               point: [room_x - width / 2, room_z + depth / 2, room_y - height / 2] // 角落点
           },
           // 右前角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
-                  [room_x + width / 2 - wallThickness / 2, height_center, room_y - depth / 2 + depth / 8], material),
+                  [room_x + width / 2 - wallThickness / 2, height_center, room_z - depth / 2 + depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room_x + width / 2 - width / 8, height_center, room_y - depth / 2 + wallThickness / 2], material),
+                  [room_x + width / 2 - width / 8, height_center, room_z - depth / 2 + wallThickness / 2], material),
               point: [room_x + width / 2,   room_z + depth / 2, room_y - height / 2] // 角落点
           },
           // 左后角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
-                  [room_x - width / 2 + wallThickness / 2, height_center, room_y + depth / 2 - depth / 8], material),
+                  [room_x - width / 2 + wallThickness / 2, height_center, room_z + depth / 2 - depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room_x - width / 2 + width / 8, height_center, room_y + depth / 2 - wallThickness / 2], material),
+                  [room_x - width / 2 + width / 8, height_center, room_z + depth / 2 - wallThickness / 2], material),
               point: [room_x - width / 2, room_z + depth / 2, room_y + height / 2] // 角落点
           },
           // 右后角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
-                  [room_x + width / 2 - wallThickness / 2, height_center, room_y + depth / 2 - depth / 8], material),
+                  [room_x + width / 2 - wallThickness / 2, height_center, room_z + depth / 2 - depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room_x + width / 2 - width / 8, height_center, room_y + depth / 2 - wallThickness / 2], material),
+                  [room_x + width / 2 - width / 8, height_center, room_z + depth / 2 - wallThickness / 2], material),
               point: [room_x + width / 2, room_z + depth / 2, room_y + height / 2] // 角落点
           }
       ];
