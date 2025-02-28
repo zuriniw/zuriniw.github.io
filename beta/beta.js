@@ -8,7 +8,18 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 // import { clusters,projects } from '/Users/ziru/Documents/GitHub/autoPortfolio/project_clusters.json';
 
+
+
+
+// 添加全局变量
 var scene, camera, renderer, cameraHolder, roomMap, composer;
+var config = null; // 添加全局config变量
+var currentCluster = null;
+var clusterInfoElement = null;
+var clusterNumberElement = null;
+var clusterIntroElement = null;  // 添加intro元素引用
+var current_activate_project = null; // 添加当前激活项目的变量
+var projectVoxels = new Map(); // 存储项目名称到voxel的映射
 
 var voxelMeshes = [];  // 存储所有的体素网格
 
@@ -128,24 +139,26 @@ function createRoomSystem(rooms) {
       const room_x = room.position[0];
       const room_z = room.position[1]; // 这里就是 cluster 的 z 坐标
       const room_y = 0;  // 地面高度固定为 0  
-       
-      const height = 4;
+
+      var [width,depth] = room.size;
+      width *= 1.25;
+      depth *= 1.25;
+
+      // 计算墙的高度：使用房间长边的0.6倍，并限制在3-10之间
+      const longSide = Math.max(width, depth);
+      const height = Math.min(Math.max(longSide * 0.2, 3), 10);
       const wallThickness = 0.2; // 墙壁厚度
-      const height_center = height / 2+1; // 墙体居中对齐高度
+      const height_center = height / 2 + 1; // 墙体居中对齐高度
 
       const floorHeightOffset = (Math.random() * 1) - 0.5; // -0.5 到 +0.5 之间的随机值
       const floorY = room_y - (height / 2 + floorHeightOffset - 0.4); 
-
-      var [width,depth] = room.size;
 
       // 使用clusterColors数组获取对应的颜色
       const clusterColor = clusterColors[roomIndex % clusterColors.length];
       const material = new THREE.MeshPhongMaterial({color: 0x2194fa,});
 
-
       // 创建地板时传入cluster对应的颜色
       const roomfloor = createRoomFloor(width, depth, [room_x, floorY, room_z], clusterColor);
-      
       scene.add(roomfloor);
 
       // 定义四个角落的墙
@@ -155,32 +168,28 @@ function createRoomSystem(rooms) {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
                   [room_x - width / 2 + wallThickness / 2, height_center, room_z - depth / 2 + depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room_x - width / 2 + width / 8, height_center, room_z - depth / 2 + wallThickness / 2], material),
-              point: [room_x - width / 2, room_z + depth / 2, room_y - height / 2] // 角落点
+                  [room_x - width / 2 + width / 8, height_center, room_z - depth / 2 + wallThickness / 2], material)
           },
           // 右前角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
                   [room_x + width / 2 - wallThickness / 2, height_center, room_z - depth / 2 + depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room_x + width / 2 - width / 8, height_center, room_z - depth / 2 + wallThickness / 2], material),
-              point: [room_x + width / 2,   room_z + depth / 2, room_y - height / 2] // 角落点
+                  [room_x + width / 2 - width / 8, height_center, room_z - depth / 2 + wallThickness / 2], material)
           },
           // 左后角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
                   [room_x - width / 2 + wallThickness / 2, height_center, room_z + depth / 2 - depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room_x - width / 2 + width / 8, height_center, room_z + depth / 2 - wallThickness / 2], material),
-              point: [room_x - width / 2, room_z + depth / 2, room_y + height / 2] // 角落点
+                  [room_x - width / 2 + width / 8, height_center, room_z + depth / 2 - wallThickness / 2], material)
           },
           // 右后角
           {
               wall1: createWall(wallThickness, height * 2, depth / 4, 
                   [room_x + width / 2 - wallThickness / 2, height_center, room_z + depth / 2 - depth / 8], material),
               wall2: createWall(width / 4, height * 2, wallThickness, 
-                  [room_x + width / 2 - width / 8, height_center, room_z + depth / 2 - wallThickness / 2], material),
-              point: [room_x + width / 2, room_z + depth / 2, room_y + height / 2] // 角落点
+                  [room_x + width / 2 - width / 8, height_center, room_z + depth / 2 - wallThickness / 2], material)
           }
       ];
 
@@ -192,7 +201,7 @@ function createRoomSystem(rooms) {
           // 回缩墙的位置
           if (wallToRecede === corner.wall1) {
               // wall1 是垂直于 x 轴的墙，回缩 x 方向
-              wallToRecede.position.x += wallThickness  * (Math.sign(wallToRecede.position.x - room.position[0]));
+              wallToRecede.position.x += wallThickness  * (Math.sign(wallToRecede.position.x - room_x));
           } else {
               // wall2 是垂直于 z 轴的墙，回缩 z 方向
               wallToRecede.position.z += wallThickness  * (Math.sign(wallToRecede.position.z - room_y));
@@ -280,7 +289,13 @@ function createVoxel(projects) {
 
         const cubeMesh = new THREE.Mesh(cubeGeometry, material);
         cubeMesh.position.set(x, y, z);
+        // 存储原始大小
+        cubeMesh.userData.originalScale = new THREE.Vector3(1, 1, 1);
+        cubeMesh.userData.originalOpacity = 0.5;
+        
         voxelMeshes.push(cubeMesh);
+        // 将voxel与项目名称关联
+        projectVoxels.set(project.name, cubeMesh);
         scene.add(cubeMesh);
     });
 
@@ -293,7 +308,7 @@ async function init() {
   camera = new THREE.PerspectiveCamera(75, document.body.clientWidth / window.innerHeight, 0.1, 1000);
   scene.background = new THREE.Color(0x000000);  // 设置背景为黑色
   
-  const config = await loadConfig();
+  config = await loadConfig(); // 存储到全局变量
   if (!config) {
       console.error('Failed to load configuration');
       return;
@@ -301,6 +316,12 @@ async function init() {
 
   createRoomSystem(config.clusters);
   createVoxel(config.projects);
+
+  // 初始化cluster信息显示元素
+  clusterInfoElement = document.querySelector('.cluster-info');
+  clusterNumberElement = document.querySelector('#cluster-number');
+  clusterIntroElement = document.querySelector('#cluster-intro');  // 获取intro元素
+    
 
   cameraHolder = new THREE.Object3D();
   scene.add(cameraHolder);
@@ -409,56 +430,310 @@ async function init() {
   animate();
 }
 
+// 添加检查玩家是否在房间内的函数
+function isPlayerInRoom(playerPosition, room) {
+    const [roomX, roomZ] = room.position;
+    let [roomWidth, roomDepth] = room.size;
+    roomWidth *= 1.25;  // 与createRoomSystem中的缩放保持一致
+    roomDepth *= 1.25;
+
+    return (
+        playerPosition.x >= roomX - roomWidth / 2 &&
+        playerPosition.x <= roomX + roomWidth / 2 &&
+        playerPosition.z >= roomZ - roomDepth / 2 &&
+        playerPosition.z <= roomZ + roomDepth / 2
+    );
+}
+
 function animate() {
-  requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
+    
+    // 更新所有体素的旋转
+    voxelMeshes.forEach(voxel => {
+        voxel.rotation.x += 0.01;
+        voxel.rotation.y += 0.02;
+    });
+
+    // 检查玩家位置
+    let foundCluster = null;
+    if (config && config.clusters) {
+        config.clusters.forEach((room, index) => {
+            if (isPlayerInRoom(cameraHolder.position, room)) {
+                foundCluster = index;
+            }
+        });
+    }
+
+    // 更新cluster显示
+    if (foundCluster !== currentCluster) {
+        currentCluster = foundCluster;
+        if (currentCluster !== null && config.clusters[currentCluster]) {
+            const cluster = config.clusters[currentCluster];
+            clusterInfoElement.style.display = 'block';
+            clusterNumberElement.textContent = currentCluster + 1;
+            
+            // 设置更明亮的文字颜色
+            const baseColor = new THREE.Color(clusterColors[currentCluster % clusterColors.length]);
+            // 获取 HSL 表示
+            const hsl = {};
+            baseColor.getHSL(hsl);
+            
+            // 调整 HSL 数值：
+            // 例如，将亮度乘以 2（上限为 1），同时将饱和度降低到原来的 50%
+            hsl.l = Math.min(1, hsl.l * 3.5);
+            hsl.s = hsl.s * 2;
+            
+            const brightDesatColor = new THREE.Color();
+            brightDesatColor.setHSL(hsl.h, hsl.s, hsl.l);
+            clusterInfoElement.style.color = `#${brightDesatColor.getHexString()}`;
+            
+            
+            // 显示cluster的介绍文本
+            if (cluster.intro) {
+                clusterIntroElement.textContent = cluster.intro;
+                clusterIntroElement.style.display = 'block';
+            } else {
+                clusterIntroElement.style.display = 'none';
+            }
+        } else {
+            clusterInfoElement.style.display = 'none';
+        }
+    }
+
+    // 使用 cameraHolder 的方向来计算移动
+    const direction = new THREE.Vector3(0, 0, -1);
+    direction.applyQuaternion(cameraHolder.quaternion);
+    
+    // 计算前进方向和侧向移动的向量
+    const forward = new THREE.Vector3(direction.x, 0, direction.z).normalize();
+    const right = new THREE.Vector3(forward.z, 0, -forward.x);
+
+    if (keyboard[87]) { // W key
+        cameraHolder.position.add(forward.clone().multiplyScalar(player.speed));
+    }
+    if (keyboard[83]) { // S key
+        cameraHolder.position.add(forward.clone().multiplyScalar(-player.speed));
+    }
+    if (keyboard[68]) { // A key
+        cameraHolder.position.add(right.clone().multiplyScalar(-player.speed));
+    }
+    if (keyboard[65]) { // D key
+        cameraHolder.position.add(right.clone().multiplyScalar(player.speed));
+    }
+    if (keyboard[37]) { // left arrow key
+        cameraHolder.rotation.y -= player.turnSpeed;
+    }
+    if (keyboard[39]) { // right arrow key
+        cameraHolder.rotation.y += player.turnSpeed;
+    }
+
+    composer.render();
+}
+
+// 添加激活和取消激活 voxel 的函数
+function activateVoxel(projectName) {
+  // 先重置之前激活的 voxel
+  deactivateCurrentVoxel();
   
-  // 更新所有体素的旋转
-  voxelMeshes.forEach(voxel => {
-      voxel.rotation.x += 0.01;
-      voxel.rotation.y += 0.02;
-  });
+  const voxel = projectVoxels.get(projectName);
+  if (voxel) {
+      // 放大 voxel
+      voxel.scale.set(1.2, 1.2, 1.2);
 
-  // 使用 cameraHolder 的方向来计算移动
-  const direction = new THREE.Vector3(0, 0, -1);
-  direction.applyQuaternion(cameraHolder.quaternion);
-  
-  // 计算前进方向和侧向移动的向量
-  const forward = new THREE.Vector3(direction.x, 0, direction.z).normalize();
-  const right = new THREE.Vector3(forward.z, 0, -forward.x);
+      // 定义基础的 glow shader uniform（可根据需要调整参数）
+      const baseGlowUniforms = {
+        glowColor: { value: voxel.material.color },
+        glowPower: { value: 0.2 },
+        glowFalloff: { value: 1.5 }
+      };
 
-  if (keyboard[87]) { // W key
-    cameraHolder.position.add(forward.clone().multiplyScalar(player.speed));
-  }
-  if (keyboard[83]) { // S key
-    cameraHolder.position.add(forward.clone().multiplyScalar(-player.speed));
-  }
-  if (keyboard[68]) { // A key
-    cameraHolder.position.add(right.clone().multiplyScalar(-player.speed));
-  }
-  if (keyboard[65]) { // D key
-    cameraHolder.position.add(right.clone().multiplyScalar(player.speed));
-  }
-  if (keyboard[37]) { // left arrow key
-    cameraHolder.rotation.y -= player.turnSpeed;
-  }
-  if (keyboard[39]) { // right arrow key
-    cameraHolder.rotation.y += player.turnSpeed;
-  }
+      // 增强后的顶点着色器：计算经过视角矫正后的法线和视线方向
+      const enhancedVertexShader = `
+        varying vec3 vNormal;
+        varying vec3 vViewDirection;
+        void main() {
+          vNormal = normalize(normalMatrix * normal);
+          // 计算从顶点指向摄像机的方向
+          vViewDirection = normalize(-(modelViewMatrix * vec4(position, 1.0)).xyz);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `;
 
-  composer.render();
+      // 增强后的片元着色器：根据法线与视线方向计算发光强度，并控制透明度
+      const enhancedFragmentShader = `
+        uniform vec3 glowColor;
+        uniform float glowPower;
+        uniform float glowFalloff;
+        varying vec3 vNormal;
+        varying vec3 vViewDirection;
+        void main() {
+          float intensity = pow(glowFalloff + glowPower * (1.0 + dot(vNormal, vViewDirection)), glowPower * 2.0);
+          vec3 glow = glowColor * intensity;
+          gl_FragColor = vec4(glow, intensity * 0.8);
+        }
+      `;
+
+      // 函数：创建优化后的细分 glow 几何体，并对顶点做扰动
+      function createOptimizedGlowGeometry() {
+          // 使用细分几何体，增加面片数以获得更平滑的效果
+          const geometry = new THREE.BoxGeometry(1, 1, 1, 256, 256, 256);
+          const pos = geometry.attributes.position;
+          // 对每个顶点进行轻微随机扰动
+          for (let i = 0; i < pos.count; i++) {
+              pos.setXYZ(
+                  i,
+                  pos.getX(i) * (1 + Math.random() * 0.03),
+                  pos.getY(i) * (1 + Math.random() * 0.03),
+                  pos.getZ(i) * (1 + Math.random() * 0.03)
+              );
+          }
+          pos.needsUpdate = true;
+          return geometry;
+      }
+
+      // 函数：创建多层发光体，每层略有不同的参数和尺寸，叠加出柔和辉光
+      function createGlowLayers(baseScale, layers) {
+          const group = new THREE.Group();
+          const geometry = createOptimizedGlowGeometry();
+          for (let i = 0; i < layers; i++) {
+              // 克隆 uniform，并为每一层微调 glowPower 和 glowFalloff
+              const layerUniforms = THREE.UniformsUtils.clone(baseGlowUniforms);
+              layerUniforms.glowPower.value = 0.6 + i * 0.2;
+              layerUniforms.glowFalloff.value = 3 - i * 0.5;
+              
+              const material = new THREE.ShaderMaterial({
+                  uniforms: layerUniforms,
+                  vertexShader: enhancedVertexShader,
+                  fragmentShader: enhancedFragmentShader,
+                  side: THREE.BackSide, // 渲染背面产生光晕轮廓
+                  blending: THREE.AdditiveBlending,
+                  transparent: true,
+                  depthWrite: false
+              });
+              
+              const mesh = new THREE.Mesh(geometry, material);
+              // 每一层的尺寸稍大一些，产生分层发光效果
+              const scaleFactor = baseScale * (1 + i * 0.12);
+              mesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
+              group.add(mesh);
+          }
+          return group;
+      }
+
+      // 创建 3 层发光效果，并添加到 voxel
+      const glowLayers = createGlowLayers(1.2, 6);
+      voxel.add(glowLayers);
+      voxel.userData.glowLayers = glowLayers;
+
+      current_activate_project = projectName;
+  }
+}
+
+
+function deactivateCurrentVoxel() {
+    if (current_activate_project) {
+        const voxel = projectVoxels.get(current_activate_project);
+        if (voxel) {
+            // 恢复原始大小
+            voxel.scale.copy(voxel.userData.originalScale);
+            
+            // 移除发光层
+            if (voxel.userData.glowLayers) {
+                voxel.remove(voxel.userData.glowLayers);
+                voxel.userData.glowLayers.traverse((child) => {
+                    if (child.geometry) {
+                        child.geometry.dispose();
+                    }
+                    if (child.material) {
+                        if (Array.isArray(child.material)) {
+                            child.material.forEach(material => material.dispose());
+                        } else {
+                            child.material.dispose();
+                        }
+                    }
+                });
+                voxel.userData.glowLayers = null;
+            }
+            
+            // 确保移除任何可能存在的旧发光mesh（向后兼容）
+            if (voxel.userData.glowMesh) {
+                voxel.remove(voxel.userData.glowMesh);
+                if (voxel.userData.glowMesh.geometry) {
+                    voxel.userData.glowMesh.geometry.dispose();
+                }
+                if (voxel.userData.glowMesh.material) {
+                    voxel.userData.glowMesh.material.dispose();
+                }
+                voxel.userData.glowMesh = null;
+            }
+        }
+        current_activate_project = null;
+    }
 }
 
 function keyDown(e) {
-  keyboard[e.keyCode] = true;
-  
-  // 添加按键调试日志
-  console.log('Key pressed:', e.keyCode);
-  
-  // 't'键的keyCode是84
-  if (e.keyCode === 84) { // 't' key
-    console.log('T key pressed, triggering top view toggle');
-    toggleTopView();
-  }
+    keyboard[e.keyCode] = true;
+
+    // 't'键的keyCode是84
+    if (e.keyCode === 84) { // 't' key
+        console.log('T key pressed, triggering top view toggle');
+        toggleTopView();
+    }
+    
+    // tab键的keyCode是9
+    if (e.keyCode === 9) { // tab key
+        e.preventDefault(); // 阻止默认的tab行为
+        
+        // 只有当玩家在某个cluster中时才处理
+        if ((currentCluster !== null && config) && (current_activate_project === null)) {
+            console.log('Current cluster:', currentCluster);
+            // 查找当前cluster中seq为0的项目
+            const firstProject = config.projects.find(project => 
+                project.cluster === currentCluster && project.seq === 0
+            );
+            if (firstProject) {
+                console.log('Activating project:', firstProject.name);
+                activateVoxel(firstProject.name);
+                console.log('Activated project:', current_activate_project);
+            }
+        }
+        else if ((currentCluster !== null && config) && (current_activate_project !== null)) {
+          console.log('Current cluster:', currentCluster);
+      
+          // 获取当前集群的所有项目并按 seq 排序
+          const clusterProjects = config.projects
+              .filter(project => project.cluster === currentCluster)
+              .sort((a, b) => a.seq - b.seq);
+      
+          // 查找当前激活的项目对象
+          const currentProjectObj = clusterProjects.find(
+              project => project.name === current_activate_project
+          );
+      
+          if (currentProjectObj) {
+              // 计算下一个项目的索引（带循环）
+              const currentIndex = clusterProjects.indexOf(currentProjectObj);
+              const nextIndex = (currentIndex + 1) % clusterProjects.length;
+      
+              // 获取下一个项目
+              const nextProject = clusterProjects[nextIndex];
+      
+              if (nextProject) {
+                  console.log('Activating project:', nextProject.name);
+                  activateVoxel(nextProject.name);
+                  console.log('Activated project:', current_activate_project);
+              }
+          } else {
+                console.warn('Current project not found in cluster:', current_activate_project);
+            }
+        }
+    }
+    
+    // ESC键的keyCode是27
+    if (e.keyCode === 27) { // ESC key
+        deactivateCurrentVoxel();
+        console.log('Deactivated current project');
+    }
 }
 
 function keyUp(e) {
