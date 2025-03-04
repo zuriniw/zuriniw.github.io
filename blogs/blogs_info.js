@@ -52,6 +52,13 @@ const blogPosts = [
         name: "firstpost",
         type: 0    // Aca的索引值
     }),
+    new BlogPost({
+        time: "25.03.04",
+        content: "<A reflection on a recent project>",
+        title: "Pre-thesis framework, Micro project",
+        name: "secondpost",
+        type:0
+    }),
 ];
 
 // 导出博客数据和类型列表
