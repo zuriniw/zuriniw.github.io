@@ -399,6 +399,21 @@ const projects = [
         ispage: true,
         ismarkdown: true,
         weight: 9,
+        situate: { x: 90, y: -30 }
+    }),
+    new Project({
+        name: "autopfl",
+        title: "ML Co-Curator",
+        time: "2025",
+        isteam: false,
+        subtitle: "An AI co-curation tool that collaborates with designers to generate portfolios and virtual exhibitions through interactive negotiation.",
+        briefDescription: "How to merge the agency of designers with the data-driven curation of machine learning?",
+        tutor: "Eunsu Kang",
+        tools: "CNN, TSNE dimension reduction, C-TSP algorithm, k-means clustering, Bokeh, Three.js ",
+        labels: ["Bits"],
+        ispage: true,
+        ismarkdown: true,
+        weight: 10,
         situate: { x: 90, y: 30 }
     })
 ];
