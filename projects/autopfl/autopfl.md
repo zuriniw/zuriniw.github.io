@@ -18,7 +18,7 @@ This project is used as a tool to explore these questions. To do so, I focus on 
 2. Inviting designers to participate and evaluating their satisfaction with the co-creation results, as well as whether they can identify latent creative surprise among a body of work with the help of machine.
 3. Reflecting on both the limitations and the potential strengths of the system.
 
-My vision is that AI can help us discover latent spaces and opportunities in partnership with our creative agency, rather than merely providing a single predetermined answer.
+My vision is that new AI infrastructures can help designers discover latent spaces and opportunities in partnership with their creative agency, rather than merely providing a single predetermined answer.
 
 <figure>
 <img src="bok.jpg">

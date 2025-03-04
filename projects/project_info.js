@@ -409,7 +409,7 @@ const projects = [
         subtitle: "An AI co-curation tool that collaborates with designers to generate portfolios and virtual exhibitions through interactive negotiation.",
         briefDescription: "How to merge the agency of designers with the data-driven curation of machine learning?",
         tutor: "Eunsu Kang",
-        tools: "CNN, TSNE dimension reduction, C-TSP algorithm, k-means clustering, Bokeh, Three.js ",
+        tools: "CNN, TSNE dimension reduction, C-TSP algorithm, k-means clustering, google-genai api, Bokeh, Three.js ",
         labels: ["Bits"],
         ispage: true,
         ismarkdown: true,
