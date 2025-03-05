@@ -945,7 +945,6 @@ function createProjectPoints() {
     initMobilePlayer();
 }
 
-// 修改视图切换功能
 function initViewSwitch() {
     const switchButton = document.querySelector('.switch-view');
     const cardsSection = document.querySelector('.cards-section');
@@ -954,10 +953,14 @@ function initViewSwitch() {
     let isGalleryView = sessionStorage.getItem('isGalleryView') === 'true';
     let pointsCreated = false;
 
-    // 初始化按钮文字
-    switchButton.textContent = isGalleryView ? '⌘' : '∀';
+    // 初始化按钮图标：当前处于画廊视图时，显示切换到数轴视图的图标（matrix.svg），否则显示 gallery.svg
+    if (isGalleryView) {
+        switchButton.innerHTML = '<img src="images/matrix.svg" alt="Matrix Icon">';
+    } else {
+        switchButton.innerHTML = '<img src="images/gallery.svg" alt="Gallery Icon">';
+    }
 
-    // 初始化为数轴视图
+    // 根据视图状态初始化显示
     if (isGalleryView) {
         cardsSection.classList.remove('hide');
         coordinateView.classList.add('hide');
@@ -970,9 +973,10 @@ function initViewSwitch() {
 
     switchButton.addEventListener('click', () => {
         if (isGalleryView) {
+            // 当前为画廊视图，切换到数轴视图：显示 gallery 图标，表示下次点击切换回画廊视图
             cardsSection.classList.add('hide');
             coordinateView.classList.remove('hide');
-            switchButton.textContent = '∀';
+            switchButton.innerHTML = '<img src="images/gallery.svg" alt="Gallery Icon">';
             
             if (!pointsCreated) {
                 createProjectPoints();
@@ -992,15 +996,17 @@ function initViewSwitch() {
                 }
             });
         } else {
+            // 当前为数轴视图，切换到画廊视图：显示 matrix 图标，表示下次点击切换回数轴视图
             cardsSection.classList.remove('hide');
             coordinateView.classList.add('hide');
-            switchButton.textContent = '⌘';
+            switchButton.innerHTML = '<img src="images/matrix.svg" alt="Matrix Icon">';
         }
         isGalleryView = !isGalleryView;
         // 保存视图状态到 sessionStorage
         sessionStorage.setItem('isGalleryView', isGalleryView);
     });
 }
+
 
 // 添加固定过滤器功能
 function initFixedFilter() {

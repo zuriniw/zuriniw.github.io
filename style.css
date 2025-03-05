@@ -513,6 +513,14 @@ button:hover {
     gap: 8px;
 }
 
+.switch-view:hover {
+    background-color: var(--color-text);
+}
+
+.switch-view img:hover {
+    filter: brightness(0) invert(1);
+  }
+
 /* arrow icon style */
 .arrow-icon {
     display: inline-block;
