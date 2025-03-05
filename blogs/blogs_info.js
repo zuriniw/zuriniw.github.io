@@ -59,6 +59,13 @@ const blogPosts = [
         name: "secondpost",
         type:0
     }),
+    new BlogPost({
+        time: "25.02.17",
+        content: "<Using Obsidian to Foster Twisted Cross-Disciplinary Learning>",
+        title: "Workflow Upgrade",
+        name: "ob",
+        type:2
+    }),
 ];
 
 // 导出博客数据和类型列表
