@@ -27,13 +27,19 @@ My vision is that new AI infrastructures can help designers discover latent spac
 
 <figure>
 <img src="topview.png">
-<figcaption>top view of the exhibition hall</figcaption>
+<figcaption>Top view of the exhibition hall</figcaption>
 </figure>
 
 <figure>
-<img src="navi.gif">
-<figcaption>tour around the virtual exhibition hall</figcaption>
+<img src="nav.gif">
+<figcaption>Tour around the virtual exhibition hall</figcaption>
 </figure>
+
+<figure>
+<img src="tab.gif">
+<figcaption>Browse project thumbnails in the virtual gallery and click one to visit its webpage</figcaption>
+</figure>
+
 
 ## Wait and see
 
