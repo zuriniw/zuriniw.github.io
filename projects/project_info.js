@@ -367,7 +367,7 @@ const projects = [
         isteam: true,
         tools: "Rhino, Grasshopper, laser cutter",
         briefDescription: "How to image a wedding vibe through a wall?",
-        situate: { x: 80, y: -50 },
+        situate: { x: -80, y: -50 },
         ispage: true,
         weight: 4,
         ismarkdown: true
