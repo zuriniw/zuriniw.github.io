@@ -64,6 +64,7 @@ To establish meaningful connections between different types of work, I structure
 
 
 ### Cross-Linking for a Networked Knowledge System
+
 - **KN (Knowledge) feeds into PJ (Projects)**, providing foundational insights.  
 - **PJ (Projects) may feed into specific CS (Courses)**, ensuring academic alignment.  
 - **Obsidian’s internal linking** allows me to establish these connections, making my knowledge graph more dynamic and interconnected—each element reinforcing the others.  
