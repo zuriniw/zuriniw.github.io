@@ -49,7 +49,6 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 
 - Independent Project 1: Conceptualized and implemented a real-time, pose-driven image generation pipeline for Human-AI co-creation in embodied practices, leveraging MediaPipe for motion capture and StreamDiffusion for image synthesis
 - Independent Project 2: Applied ML techniques and the Traveling Salesman Algorithm to optimize curation of interdisciplinary creative outputs
-- Course Project: Prototyped context-aware systems during 05-899B Computational Methods for Interactive Systems course, including adaptive augmented interfaces, ML-based pose prediction models, and interactive physical agents
 
 <dl>
     <dt>Research Assistant at WHY Research Lab, Carnegie Mellon University</dt>
