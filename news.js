@@ -22,7 +22,13 @@ function parseTime(timeStr) {
 const newsItems = [
     new NewsItem({
         time: "2025.03",
+        event: `Fall 2024 <b>Computational Design Commendation</b> for outstanding academic achievements in CMU`,
+        isstar: true,
+    }),
+    new NewsItem({
+        time: "2025.03",
         event: `<b>the research project "Embodied Generative Taskscape: Re-Connect Cultural-Ecological Perception in 5-Animal Play," has been accepted to the 4S 2025 Conference: Reverberations, which will be held September 3-6, 2025 in Seattle, WA. </a>`,
+        isstar: true,
     }),
     new NewsItem({
         time: "2025.01",
@@ -39,17 +45,14 @@ const newsItems = [
     new NewsItem({
         time: "2025.01",
         event: `Fall 2024 <b>Computational Design Commendation</b> for outstanding academic achievements in CMU`,
-        isstar: true
     }),
     new NewsItem({
         time: "2024.09",
         event: `Started <b>Research Assistant</b> work at WHY. Research 'Studio' led by <a href="http://daraghbyrne.me/research/" class="news-link">Daragh Bryne</a> on Situating intelligences`,
-        isstar: true
     }),
     new NewsItem({
         time: "2024.08",
         event: `<b>Merit Scholarship</b> of $ 32,000 in CMU`,
-        isstar: true
     })
 ];
 
