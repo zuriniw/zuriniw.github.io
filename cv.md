@@ -43,6 +43,13 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 <i style="color: rgb(130, 130, 130)">Summary: Working across multiple research labs, Ziru bridges digital and physical realms via computational design methods, emphasizing human agency in context-aware environments. She has demonstrated expertise in integrating novel technology including ML and Extended Reality into design practices.</i>
 
 <dl>
+    <dt>Research Intern at Interactive Structures Lab, Human-Computer Interaction Istitute, Carnegie Mellon University</dt>
+    <dd>04/2025 — Present</dd>
+</dl>
+
+- Independent Study: Proactive assistance robot
+
+<dl>
     <dt>Computational Design Researcher at CodeLab, Carnegie Mellon University</dt>
     <dd>08/2024 — Present</dd>
 </dl>
@@ -90,7 +97,12 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 
 <dl>
     <dt>Computational Design Commendation, Carnegie Mellon University</dt>
-    <dd>2025</dd>
+    <dd>2025 Spring</dd>
+</dl>
+
+<dl>
+    <dt>Computational Design Commendation, Carnegie Mellon University</dt>
+    <dd>2024 Fall</dd>
 </dl>
 
 <br>
