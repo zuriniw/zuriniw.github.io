@@ -32,6 +32,10 @@ Fabrication: 3D printing/laser cutting/electronic soldering | Software: Rhino/Au
 English (Fluent), Mandarin (Native), Portuguese (Beginner)
 
 ## Academic Publications
+
+**Embodied Generative Taskscape: Re-Connect Cultural-Ecological Perception in 5-Animal Play**
+<u>Ziru Wei</u>, Jimmy Cheng. Has been accepted to the 4S 2025 Conference: Reverberations, which will be held September 3-6, 2025 in Seattle, WA. 
+
 **Mixed-Reality Assisted Refinement Strategies for Old Residential Renovation and Participatory Design Research: A Case Study of the Sericulture Community in Suzhou**  
 <u>Ziru Wei</u>, X. Zhao, Y. Wang, et al. *Architecture & Culture* (Core Journal of China), July 2023, pp. 180–183. DOI: 10.19875/j.cnki.jzywh.2023.07.057 
 
