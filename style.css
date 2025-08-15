@@ -942,15 +942,16 @@ button:hover {
 }
 
 /* link style in the intro text */
-.intro-link {
-    color: var(--color-text);
-    text-decoration: none;
+/* .intro-link {
     transition: color 0.1s ease;
+    font-family: "Barlow", sans-serif !important;
 }
 
 .intro-link:hover {
-    color: var(--color-text-hover);
-}
+    color: var(--color-red) !important;
+    font-family: "Barlow", sans-serif !important;
+
+} */
 
 /* links container style */
 .links-container {
@@ -1136,6 +1137,7 @@ body.project-page {
 /* 介绍文本样式 */
 .intro {
     font-size: 15px;
+    font-family: "Barlow", sans-serif;
     color: var(--color-text);
     margin-top: 6px;
     line-height: 1.2;
@@ -1145,12 +1147,18 @@ body.project-page {
 
 .intro a {
     color: var(--color-text);
+    transition: all 0.1s ease;
+    font-family: "Barlow", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.4px;
     text-decoration: none;
-    transition: color 0.1s ease;
+    /* border-bottom: 1px solid var(--color-text); */
 }
 
 .intro a:hover {
-    color: var(--color-text-hover);
+    color: var(--color-white);
+    background-color: var(--color-text);
+    border-bottom: none;
 }
 
 /* 当卡片被淡出时的样式 */
