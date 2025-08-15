@@ -21,8 +21,8 @@ function parseTime(timeStr) {
 
 const newsItems = [
     new NewsItem({
-        time: "2025.03",
-        event: `Fall 2024 <b>Computational Design Commendation</b> for outstanding academic achievements in CMU`,
+        time: "2025.06",
+        event: `Spring 2025 <b>Computational Design Commendation</b> for outstanding academic achievements in CMU`,
         isstar: true,
     }),
     new NewsItem({
@@ -35,12 +35,8 @@ const newsItems = [
         event: `<b>Best Academic Contribution Award</b> in The 9th Cross-strait Youth Maker Competition, 2024. See the <a href="projects/poi/poi.html" class="news-link">project</a>`,
     }),
     new NewsItem({
-        time: "2025.01",
-        event: `Started as a <b>Guest Reviewer</b> of CMU 25 Spring course <a href="https://www.architecture.cmu.edu/courses/spring-2025/fundamentals-computational-design" class="news-link">Fundamentals of Computational Design</a>, instructor: <a href="https://vaanoel.com/" class="news-link"> Vernelle A. A. Noel</a>`,
-    }),
-    new NewsItem({
         time: "2024.12",
-        event: `1st Prize in <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112</a> Term Project. See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
+        event: `Win the 1st Prize in <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112</a> Term Project. See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
     }),
     new NewsItem({
         time: "2025.01",
@@ -48,7 +44,7 @@ const newsItems = [
     }),
     new NewsItem({
         time: "2024.09",
-        event: `Started <b>Research Assistant</b> work at WHY. Research 'Studio' led by <a href="http://daraghbyrne.me/research/" class="news-link">Daragh Bryne</a> on Situating intelligences`,
+        event: `Started <b>Research Assistant</b> work at WHY Research 'Studio' led by <a href="http://daraghbyrne.me/research/" class="news-link">Daragh Bryne</a> on Situating intelligences`,
     }),
     new NewsItem({
         time: "2024.08",

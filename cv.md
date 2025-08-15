@@ -44,7 +44,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 
 ## Experience  
 
-<i style="color: rgb(130, 130, 130)">Summary: Working across multiple research labs, Ziru bridges digital and physical realms via computational design methods, emphasizing human agency in context-aware environments. She has demonstrated expertise in integrating novel technology including ML and Extended Reality into design practices.</i>
+<i style="color: rgb(130, 130, 130)">Summary: Ziru is working on bridging digital-physical realms via computational methods, emphasizing human-centered experience.</i>
 
 <dl>
     <dt>Research Intern at Interactive Structures Lab, Human-Computer Interaction Istitute, Carnegie Mellon University</dt>
