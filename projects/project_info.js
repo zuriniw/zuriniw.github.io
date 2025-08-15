@@ -70,14 +70,13 @@ class Project {
 
 }
 
-// 项目实例
 
 const projects = [
     new Project({
         name: "poi",
         title: "POI +-",
         subtitle: "Humanizing MR Spatial Behavior Computation",
-        labels: ["XR", "Embodied", "Spatial"],
+        labels: ["XR", "Human-Centered", "Spatial"],
         time: "2024",
         ispage: true,
         isteam: true,
@@ -96,7 +95,7 @@ const projects = [
         name: "seeingsaw",
         title: "SEEINGSAW",
         subtitle: "Peripheral and expressive awareness in lovable devices",
-        labels: ["Embodied","Bits"],
+        labels: ["Human-Centered","Digital"],
         time: "2024",
         ispage: true,
         isteam: true,
@@ -118,7 +117,7 @@ const projects = [
         name: "shapeshift",
         title: "Shapeshift Playground",
         subtitle: "Node-based drawing tool development",
-        labels: ["Bits"],
+        labels: ["Digital"],
         time: "2024",
         ispage: true,
         isteam: false,
@@ -190,7 +189,7 @@ const projects = [
     //     name: "gazeknitting",
     //     title: "Gaze Knitting",
     //     subtitle: "Gaze visualization in non-streamlined reading",
-    //     labels: ["Embodied", "Bits"],
+    //     labels: ["Embodied", "Digital"],
     //     time: "2024",
     //     ispage: true,
     //     isteam: false,
@@ -206,7 +205,7 @@ const projects = [
         name: "fadingroses",
         title: "Fading Roses",
         subtitle: "text-space-exploration narrative game",
-        labels: ["Bits"],
+        labels: ["Digital"],
         time: "2022",
         isteam: false,
         ispage: true,
@@ -222,7 +221,7 @@ const projects = [
     //     name: "zijin",
     //     title: "IsLand -scaping",
     //     subtitle: "Urban renewal design and modeling",
-    //     labels: ["Spatial", "Bits"],
+    //     labels: ["Spatial", "Digital"],
     //     time: "2022",
     //     myContribution: "Storystelling, modeling, rendering",
     //     isteam: false,
@@ -239,7 +238,7 @@ const projects = [
         name: "taihustone",
         title: "Generative TAIHUSHI",
         subtitle: "Computational design and interface design",
-        labels: ["Bits"],
+        labels: ["Digital"],
         time: "2022",
         myContribution: "Computational design, interface design",
         isteam: true,
@@ -284,7 +283,7 @@ const projects = [
         subtitle: "A customized keyboard",
         myContribution: "PCB making, electronic assembling, and 3D printing",
         briefDescription: "Wanna have a keyboard that is super handy? DIY it!",
-        labels: ["Bits"],
+        labels: ["Digital"],
         time: "2022",
         isteam: false,
         tools: "EasyEDA, Rhino, Soldering Tools",
@@ -329,7 +328,7 @@ const projects = [
         name: "wastemachine",
         title: "Waste Machine",
         subtitle: "Build scanner from abandoned DVD drivers",
-        labels: ["Bits"],
+        labels: ["Digital"],
         time: "2024",
         collaborator: "Carla Flores Travez",
         tutor: "Daragh Bryne",
@@ -347,7 +346,7 @@ const projects = [
         name: "dataresonate",
         title: "Data Resonate",
         subtitle: "A immersive data discussion toolkit for public urban discourse",
-        labels: ["Embodied", "XR"],
+        labels: ["XR", "Human-Centered"],
         time: "2023",
         isteam: false,
         tools: "Unity | C# | HoloLens 2 | Arduino | Rhino | ArcGIS | Figma | Procreate | laser cut",
@@ -395,7 +394,7 @@ const projects = [
         briefDescription: "How to calculate and balance the trade-off between UI widgets' position, relevance, size, levels of details in a specific AR context?",
         tutor: "Alexandra Ion",
         tools: "Python, Gurobi, scikit-learn, Tkinter",
-        labels: ["Bits", "XR"],
+        labels: ["Digital", "XR"],
         ispage: true,
         ismarkdown: true,
         weight: 9,
@@ -410,7 +409,7 @@ const projects = [
         briefDescription: "How to merge the agency of designers with the data-driven curation of machine learning?",
         tutor: "Eunsu Kang",
         tools: "CNN, TSNE dimension reduction, C-TSP algorithm, k-means clustering, google-genai api, Bokeh, Three.js ",
-        labels: ["Bits"],
+        labels: ["Digital"],
         ispage: true,
         ismarkdown: true,
         weight: 10,
@@ -420,7 +419,7 @@ const projects = [
 
 // 导出所有可用的标签
 const availableLabels = [
-    "Bits", "Spatial", "XR", "Embodied"
+    "Digital", "Spatial", "XR", "Human-Centered"
 ];
 
 export { Project, projects, availableLabels };
