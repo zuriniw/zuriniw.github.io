@@ -43,10 +43,6 @@ const newsItems = [
         event: `Fall 2024 <b>Computational Design Commendation</b> for outstanding academic achievements in CMU`,
     }),
     new NewsItem({
-        time: "2024.09",
-        event: `Started <b>Research Assistant</b> work at WHY Research 'Studio' led by <a href="http://daraghbyrne.me/research/" class="news-link">Daragh Bryne</a> on Situating intelligences`,
-    }),
-    new NewsItem({
         time: "2024.08",
         event: `<b>Merit Scholarship</b> of $ 32,000 in CMU`,
     })
