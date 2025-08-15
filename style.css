@@ -735,8 +735,8 @@ button:hover {
 
 /* add image container style */
 .about-image {
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
     margin: 0 0 40px 20px;
 }
 
@@ -749,7 +749,7 @@ button:hover {
 
 .about-text {
     font-family: "Barlow", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--color-text);
     letter-spacing: 0.4px;
