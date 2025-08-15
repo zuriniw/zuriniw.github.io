@@ -394,7 +394,7 @@ const projects = [
         briefDescription: "How to calculate and balance the trade-off between UI widgets' position, relevance, size, levels of details in a specific AR context?",
         tutor: "Alexandra Ion",
         tools: "Python, Gurobi, scikit-learn, Tkinter",
-        labels: ["Digital", "XR"],
+        labels: ["Digital", "XR", "Human-Centered"],
         ispage: true,
         ismarkdown: true,
         weight: 9,
