@@ -157,10 +157,6 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-.copyright-text {
-    font-size: 18px;  /* 或者使用 1.2em、120% 等 */
-}
-
 
 /* main container */
 .container {
@@ -175,6 +171,198 @@ body::-webkit-scrollbar {
 .mobile-tips {
     display:none;
 }
+
+/* 交集图例栏样式 */
+.intersection-legend {
+    position: fixed;
+    left: 36px;
+    top: 170px;
+    background-color: var(--color-background);
+    z-index: 98;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    border-radius: 2px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.intersection-legend.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.legend-title {
+    display: none;
+}
+
+.legend-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.legend-item:last-child {
+    margin-bottom: 0;
+}
+
+.legend-item:hover {
+    opacity: 0.8;
+}
+
+.legend-point {
+    width: 12px;
+    height: 12px;
+    border: 1.2px solid var(--color-text);
+    border-radius: 50%;
+    background-color: var(--color-background);
+    position: relative;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.legend-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.legend-text {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    font-size: 11px;
+    color: var(--color-text);
+}
+
+.legend-text span {
+    display: inline-block;
+    color: var(--color-white) !important;
+    background-color: var(--color-text);
+    padding: 2px 0px;
+    border-radius: 1px;
+}
+
+.legend-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0.8;
+    color: var(--color-text);  /* 确保项目文本颜色正确 */
+}
+
+/* 只在大屏幕下显示图例 */
+@media screen and (min-width: 1000px) {
+    .intersection-legend.show {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .intersection-legend {
+        display: none !important;  /* 在小屏幕下强制隐藏 */
+    }
+}
+
+/* 复制之前定义的三种交集样式到图例中 */
+.legend-point.pattern-1 {
+    position: relative;
+    overflow: hidden;
+}
+
+.legend-point.pattern-1::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        var(--color-text) 2px,
+        var(--color-text) 3px
+    );
+    opacity: 0.5;
+}
+
+.legend-point.pattern-2 {
+    position: relative;
+    overflow: hidden;
+}
+
+.legend-point.pattern-2::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            var(--color-text) 2px,
+            var(--color-text) 3px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            var(--color-text) 2px,
+            var(--color-text) 3px
+        );
+    opacity: 0.4;
+}
+
+.legend-point.pattern-3 {
+    position: relative;
+}
+
+.legend-point.pattern-3::before,
+.legend-point.pattern-3::after {
+    content: '';
+    position: absolute;
+    background-color: var(--color-text);
+    width: 1.2px;
+    height: 12px;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+}
+
+.legend-point.pattern-3::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.legend-point.pattern-3::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.legend-point.pattern-full {
+    background-color: var(--color-text);
+    border: none;
+}
+
+.legend-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* project point pattern for triple intersection */
+.project-point.intersection-full {
+    background-color: var(--color-text);
+    border: none;
+}
+
+/* 删除重复的样式定义，已在上面定义过了 */
 
 /* filter container */
 .filter-container {
@@ -644,6 +832,86 @@ button:hover {
     border-radius: 50%;
     background-color: var(--color-background);
     transition: all 0.2s ease;
+    position: relative;
+}
+
+/* 交集点样式1：斜线填充（用于 filter1 & filter2） */
+.project-point.intersection-1 {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-point.intersection-1::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        var(--color-text) 2px,
+        var(--color-text) 3px
+    );
+    opacity: 0.5;
+}
+
+/* 交集点样式2：垂直水平线填充（用于 filter1 & filter3） */
+.project-point.intersection-2 {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-point.intersection-2::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            var(--color-text) 2px,
+            var(--color-text) 3px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            var(--color-text) 2px,
+            var(--color-text) 3px
+        );
+    opacity: 0.4;
+}
+
+/* 交集点样式3：叉号（用于 filter2 & filter3） */
+.project-point.intersection-3 {
+    position: relative;
+}
+
+.project-point.intersection-3::before,
+.project-point.intersection-3::after {
+    content: '';
+    position: absolute;
+    background-color: var(--color-text);
+    width: 1.2px;
+    height: 12px;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+}
+
+.project-point.intersection-3::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.project-point.intersection-3::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 /* when the point is faded */
@@ -653,17 +921,20 @@ button:hover {
 }
 
 /* can add hover effect */
-.point-wrapper:hover .project-point {
+.point-wrapper:hover .project-point,
+.project-point.hover-effect {
     transform: scale(1.8);
-    /* filter: blur(8px); */
     opacity: 0.6;
     border: 1px solid var(--color-text);
+    transition: all 0.2s ease;
 }
 
 /* point label hover effect */
-.point-wrapper:hover .point-label {
+.point-wrapper:hover .point-label,
+.point-wrapper .point-label.hover-effect {
     color: var(--color-text);
     font-weight: 500;
+    transition: all 0.2s ease;
 }
 
 /* hover effect when the point is faded */

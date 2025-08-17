@@ -236,6 +236,10 @@ function createFilterButtons() {
 
     // 初始化时应用过滤器
     updateCards();
+    // 初始化时更新交集图例
+    if (activeFilters.length > 0) {
+        updateIntersectionLegend();
+    }
 }
 
 // 项目排序比较函数
@@ -370,6 +374,7 @@ function handleFilterClick(e) {
     sessionStorage.setItem('activeFilters', JSON.stringify(activeFilters));
     
     updateCards();
+    updateIntersectionLegend();
 }
 
 // 更新卡片显示状态
@@ -429,6 +434,110 @@ function updateCards() {
             card.classList.remove('hide');
             card.style.order = index;
         });
+
+    // 只在选择2个或3个过滤器时显示交集
+    if (activeFilters.length === 2 || activeFilters.length === 3) {
+        // 获取所有卡片及其项目信息
+        const cards = cardSection.querySelectorAll('.card');
+        const cardsWithProjects = Array.from(cards).map(card => {
+            const cardTitle = card.querySelector('.card-title').textContent;
+            const project = projects.find(p => p.title === cardTitle);
+            return { card, project };
+        });
+
+        let intersectionInfo = [];
+        let intersectionSets = []; // 存储每个交集组合的项目集合
+
+        // 清除所有现有的交集样式
+        const points = document.querySelectorAll('.project-point');
+        points.forEach(point => {
+            point.classList.remove('intersection-1', 'intersection-2', 'intersection-3');
+        });
+
+        // 如果正好有2个过滤器，只显示这2个过滤器的交集
+        if (activeFilters.length === 2) {
+            const [filter1, filter2] = activeFilters;
+            const commonProjects = cardsWithProjects
+                .filter(({ card }) => 
+                    card.hasAttribute(`data-${filter1}`) && 
+                    card.hasAttribute(`data-${filter2}`))
+                .map(({ project }) => project.title);
+
+            if (commonProjects.length > 0) {
+                intersectionInfo.push(`${filter1} & ${filter2}: ${commonProjects.join(', ')}`);
+                intersectionSets.push(new Set(commonProjects));
+            }
+        }
+
+        // 如果有3个过滤器，显示两两之间的交集（3种组合）
+        if (activeFilters.length === 3) {
+            const [filter1, filter2, filter3] = activeFilters;
+            
+            // 计算三种两两组合的交集
+            const pairs = [
+                [filter1, filter2],
+                [filter1, filter3],
+                [filter2, filter3]
+            ];
+
+            pairs.forEach(([f1, f2]) => {
+                const commonProjects = cardsWithProjects
+                    .filter(({ card }) => 
+                        card.hasAttribute(`data-${f1}`) && 
+                        card.hasAttribute(`data-${f2}`))
+                    .map(({ project }) => project.title);
+
+                if (commonProjects.length > 0) {
+                    intersectionInfo.push(`${f1} & ${f2}: ${commonProjects.join(', ')}`);
+                    intersectionSets.push(new Set(commonProjects));
+                }
+            });
+        }
+
+        // 在控制台打印交集信息
+        if (intersectionInfo.length > 0) {
+            console.log('Filter Intersections:');
+            intersectionInfo.forEach(info => console.log(info));
+        }
+
+        // 更新坐标轴视图中点的样式
+        const pointWrappers = document.querySelectorAll('.point-wrapper');
+        pointWrappers.forEach(wrapper => {
+            const pointTitle = wrapper.querySelector('.point-label').textContent;
+            const projectPoint = wrapper.querySelector('.project-point');
+            if (!projectPoint) return;
+            
+            // 首先清除所有之前的交集样式
+            projectPoint.classList.remove('intersection-1', 'intersection-2', 'intersection-3', 'intersection-full');
+            
+            if (activeFilters.length === 3) {
+                // 检查是否在三重交集中
+                const [filter1, filter2, filter3] = activeFilters;
+                const isInTripleIntersection = wrapper.hasAttribute(`data-${filter1}`) && 
+                    wrapper.hasAttribute(`data-${filter2}`) && 
+                    wrapper.hasAttribute(`data-${filter3}`);
+
+                if (isInTripleIntersection) {
+                    // 如果在三重交集中，使用实心黑点样式
+                    projectPoint.classList.add('intersection-full');
+                    return;
+                }
+            }
+            
+            // 检查是否在双重交集中
+            intersectionSets.forEach((projectSet, index) => {
+                if (projectSet.has(pointTitle)) {
+                    projectPoint.classList.add(`intersection-${index + 1}`);
+                }
+            });
+        });
+    } else {
+        // 如果不是2个或3个过滤器，清除所有交集样式
+        const points = document.querySelectorAll('.project-point');
+        points.forEach(point => {
+            point.classList.remove('intersection-1', 'intersection-2', 'intersection-3');
+        });
+    }
 }
 
 // 添加过滤器按钮的悬停效果
@@ -1071,12 +1180,305 @@ function addClickEffect(e) {
 // 添加点击事件监听
 document.addEventListener('click', addClickEffect);
 
+// 创建交集图例
+function createIntersectionLegend() {
+    // 如果已存在图例，先移除
+    const existingLegend = document.querySelector('.intersection-legend');
+    if (existingLegend) {
+        existingLegend.remove();
+    }
+
+    const legend = document.createElement('div');
+    legend.className = 'intersection-legend';
+    
+    document.body.appendChild(legend);
+    return legend;
+}
+
+// 更新图例内容和显示状态
+function updateLegend() {
+    let legend = document.querySelector('.intersection-legend');
+    if (!legend) {
+        legend = createIntersectionLegend();
+    }
+
+    // 清空现有内容，保留标题
+    const title = legend.querySelector('.legend-title');
+    legend.innerHTML = '';
+    legend.appendChild(title);
+
+    if (activeFilters.length !== 2 && activeFilters.length !== 3) {
+        legend.classList.remove('show');
+        return;
+    }
+
+    // 获取所有卡片及其项目信息
+    const cards = document.querySelectorAll('.card');
+    const cardsWithProjects = Array.from(cards).map(card => {
+        const cardTitle = card.querySelector('.card-title').textContent;
+        const project = projects.find(p => p.title === cardTitle);
+        return { card, project };
+    });
+
+    let intersectionGroups = [];
+
+    // 收集交集组合及其项目
+    if (activeFilters.length === 2) {
+        const [filter1, filter2] = activeFilters;
+        const commonProjects = cardsWithProjects
+            .filter(({ card }) => 
+                card.hasAttribute(`data-${filter1}`) && 
+                card.hasAttribute(`data-${filter2}`))
+            .map(({ project }) => project.title);
+
+        if (commonProjects.length > 0) {
+            intersectionGroups.push({
+                filters: [filter1, filter2],
+                projects: commonProjects,
+                pattern: 'pattern-1'
+            });
+        }
+    } else if (activeFilters.length === 3) {
+        const [filter1, filter2, filter3] = activeFilters;
+        const pairs = [
+            { filters: [filter1, filter2], pattern: 'pattern-1' },
+            { filters: [filter1, filter3], pattern: 'pattern-2' },
+            { filters: [filter2, filter3], pattern: 'pattern-3' }
+        ];
+
+        pairs.forEach(pair => {
+            const commonProjects = cardsWithProjects
+                .filter(({ card }) => 
+                    card.hasAttribute(`data-${pair.filters[0]}`) && 
+                    card.hasAttribute(`data-${pair.filters[1]}`))
+                .map(({ project }) => project.title);
+
+            if (commonProjects.length > 0) {
+                intersectionGroups.push({
+                    filters: pair.filters,
+                    projects: commonProjects,
+                    pattern: pair.pattern
+                });
+            }
+        });
+    }
+
+    // 只在有交集组合时显示图例
+    if (intersectionGroups.length > 0) {
+        intersectionGroups.forEach(group => {
+            const groupElement = document.createElement('div');
+            groupElement.className = 'legend-item';
+            groupElement.innerHTML = `
+                <div class="legend-point ${group.pattern}"></div>
+                <div class="legend-content">
+                    <div class="legend-text">${group.filters.join(' & ')}</div>
+                    <div class="legend-projects">${group.projects.join(', ')}</div>
+                </div>
+            `;
+            legend.appendChild(groupElement);
+        });
+        legend.classList.add('show');
+    } else {
+        legend.classList.remove('show');
+    }
+}
+
+// 更新图例内容和显示状态
+function updateIntersectionLegend() {
+    const cards = cardSection.querySelectorAll('.card');
+    const cardsWithProjects = Array.from(cards).map(card => {
+        const cardTitle = card.querySelector('.card-title').textContent;
+        const project = projects.find(p => p.title === cardTitle);
+        return { card, project };
+    });
+
+    let legend = document.querySelector('.intersection-legend');
+    if (!legend) {
+        legend = createIntersectionLegend();
+    }
+
+    // 清空现有内容
+    legend.innerHTML = '';
+
+    if (activeFilters.length !== 2 && activeFilters.length !== 3) {
+        legend.classList.remove('show');
+        return;
+    }
+
+    let intersectionGroups = [];
+
+    // 收集交集组合及其项目
+    if (activeFilters.length === 2) {
+        const [filter1, filter2] = activeFilters;
+        const commonProjects = cardsWithProjects
+            .filter(({ card }) => 
+                card.hasAttribute(`data-${filter1}`) && 
+                card.hasAttribute(`data-${filter2}`))
+            .map(({ project }) => project.title);
+
+        if (commonProjects.length > 0) {
+            intersectionGroups.push({
+                filters: [filter1, filter2],
+                projects: commonProjects,
+                pattern: 'pattern-1'
+            });
+        }
+    } else if (activeFilters.length === 3) {
+        const [filter1, filter2, filter3] = activeFilters;
+        
+        // 首先检查三重交集
+        const tripleIntersectionProjects = cardsWithProjects
+            .filter(({ card }) => 
+                card.hasAttribute(`data-${filter1}`) && 
+                card.hasAttribute(`data-${filter2}`) && 
+                card.hasAttribute(`data-${filter3}`))
+            .map(({ project }) => project.title);
+
+        if (tripleIntersectionProjects.length > 0) {
+            intersectionGroups.push({
+                filters: [filter1, filter2, filter3],
+                projects: tripleIntersectionProjects,
+                pattern: 'pattern-full'
+            });
+        }
+
+        // 然后检查双重交集
+        const pairs = [
+            { filters: [filter1, filter2], pattern: 'pattern-1' },
+            { filters: [filter1, filter3], pattern: 'pattern-2' },
+            { filters: [filter2, filter3], pattern: 'pattern-3' }
+        ];
+
+        pairs.forEach(pair => {
+            const commonProjects = cardsWithProjects
+                .filter(({ card }) => 
+                    card.hasAttribute(`data-${pair.filters[0]}`) && 
+                    card.hasAttribute(`data-${pair.filters[1]}`))
+                .map(({ project }) => project.title);
+
+            if (commonProjects.length > 0) {
+                intersectionGroups.push({
+                    filters: pair.filters,
+                    projects: commonProjects,
+                    pattern: pair.pattern
+                });
+            }
+        });
+    }
+
+    // 只在有交集组合时显示图例
+    if (intersectionGroups.length > 0) {
+        intersectionGroups.forEach(group => {
+            const groupElement = document.createElement('div');
+            groupElement.className = 'legend-item';
+            
+            const pointElement = document.createElement('div');
+            pointElement.className = `legend-point ${group.pattern}`;
+            
+            const contentElement = document.createElement('div');
+            contentElement.className = 'legend-content';
+            
+            const textElement = document.createElement('div');
+            textElement.className = 'legend-text';
+            textElement.innerHTML = group.filters.join(' & ').split(' & ').map(text => `<span>${text}</span>`).join(' & ');
+            
+            const projectsElement = document.createElement('div');
+            projectsElement.className = 'legend-projects';
+            // 每个项目单独一行
+            group.projects.forEach(project => {
+                const projectDiv = document.createElement('div');
+                projectDiv.textContent = project;
+                projectsElement.appendChild(projectDiv);
+            });
+            
+            contentElement.appendChild(textElement);
+            contentElement.appendChild(projectsElement);
+            
+            groupElement.appendChild(pointElement);
+            groupElement.appendChild(contentElement);
+            
+            // 添加hover效果
+            groupElement.addEventListener('mouseenter', () => {
+                const pointWrappers = document.querySelectorAll('.point-wrapper');
+                pointWrappers.forEach(wrapper => {
+                    const pointTitle = wrapper.querySelector('.point-label').textContent;
+                    if (group.projects.includes(pointTitle)) {
+                        // 模拟点悬停效果
+                        const preview = document.createElement('div');
+                        preview.className = 'point-preview';
+                        const project = projects.find(p => p.title === pointTitle);
+                        if (project) {
+                            preview.innerHTML = `
+                                <img src="${project.getGifPath()}" alt="${project.title}">
+                                <div class="preview-title">${project.subtitle || ''}</div>
+                            `;
+                            
+                            const point = wrapper.querySelector('.project-point');
+                            if (point) {
+                                point.classList.add('hover-effect');
+                                document.body.appendChild(preview); // 先添加到DOM以获取正确的尺寸
+                                requestAnimationFrame(() => {
+                                    const rect = point.getBoundingClientRect();
+                                    const previewRect = preview.getBoundingClientRect();
+                                    
+                                    // 计算位置，确保在视口内
+                                    let left = rect.right + 15;
+                                    let top = rect.top;
+                                    
+                                    // 如果预览框会超出右边界，则显示在左侧
+                                    if (left + previewRect.width > window.innerWidth) {
+                                        left = rect.left - previewRect.width - 15;
+                                    }
+                                    
+                                    // 如果预览框会超出底部，则向上调整
+                                    if (top + previewRect.height > window.innerHeight) {
+                                        top = window.innerHeight - previewRect.height - 15;
+                                    }
+                                    
+                                    preview.style.left = `${left}px`;
+                                    preview.style.top = `${top}px`;
+                                    
+                                    wrapper.dataset.previewId = Date.now(); // 用于跟踪预览
+                                });
+                            }
+                        }
+                    } else {
+                        wrapper.classList.add('fade-out');
+                    }
+                });
+            });
+            
+            groupElement.addEventListener('mouseleave', () => {
+                const pointWrappers = document.querySelectorAll('.point-wrapper');
+                pointWrappers.forEach(wrapper => {
+                    wrapper.classList.remove('fade-out');
+                    const point = wrapper.querySelector('.project-point');
+                    if (point) {
+                        point.classList.remove('hover-effect');
+                    }
+                    if (wrapper.dataset.previewId) {
+                        const previews = document.querySelectorAll('.point-preview');
+                        previews.forEach(preview => preview.remove());
+                        delete wrapper.dataset.previewId;
+                    }
+                });
+            });
+            
+            legend.appendChild(groupElement);
+        });
+        legend.classList.add('show');
+    } else {
+        legend.classList.remove('show');
+    }
+}
+
 // 初始化页面
 createFilterButtons();
 createProjectCards();
 addFilterHoverEffects();
 initFilterScroll();
 initViewSwitch();
+createIntersectionLegend();
 
 // 添加过滤器点击事件监听
 buttonSection.querySelectorAll('button').forEach(button => {
@@ -1088,6 +1490,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initFilterScroll();
     addFilterHoverEffects();
     initFixedFilter();
+    // 如果有已激活的过滤器，更新交集图例
+    if (activeFilters.length > 0) {
+        updateIntersectionLegend();
+    }
 });
 
 // 切换按钮
@@ -1109,13 +1515,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 在文件开头添加全局函数
 function clearAllPreviews() {
-    const preview = document.querySelector('.point-preview');
-    if (preview) {
-        preview.remove();
-    }
+    // 清除所有预览
+    const previews = document.querySelectorAll('.point-preview');
+    previews.forEach(preview => preview.remove());
+    
     // 清除所有延伸线
     const extensionLines = document.querySelectorAll('.extension-line');
     extensionLines.forEach(line => line.remove());
+    
+    // 清除所有hover效果
+    const points = document.querySelectorAll('.project-point');
+    points.forEach(point => point.classList.remove('hover-effect'));
 }
 
 // 添加页面可见性变化监听
