@@ -223,10 +223,12 @@ function createFilterButtons() {
     availableLabels.forEach(label => {
         console.log('Creating button for:', label);
         const button = document.createElement('button');
+        // Use the original label as the data-name attribute
         button.setAttribute('data-name', label.toLowerCase());
         button.textContent = label;
-        // 恢复按钮激活状态
-        if (activeFilters.includes(label.toLowerCase())) {
+        // Use sanitized version for checking active filters
+        const sanitizedLabel = label.toLowerCase().replace(/\//g, '-');
+        if (activeFilters.includes(sanitizedLabel)) {
             button.classList.add('active');
         }
         buttonSection.appendChild(button);
@@ -266,7 +268,9 @@ function createProjectCards() {
         card.className = 'card';
         // 添加标签数据属性
         project.labels.forEach(label => {
-            card.setAttribute(`data-${label.toLowerCase()}`, '');
+            // Sanitize the label by replacing forward slashes with hyphens
+            const sanitizedLabel = label.toLowerCase().replace(/\//g, '-');
+            card.setAttribute(`data-${sanitizedLabel}`, '');
         });
         // 只有 ispage 为 true 的项目才添加点击事件和指针样式
         if (project.ispage) {
@@ -333,11 +337,13 @@ function createProjectCards() {
 
 // 过滤器点击处理
 function handleFilterClick(e) {
+    // Get the original filter name and sanitize it
     const clickedFilter = e.target.getAttribute('data-name');
+    const sanitizedFilter = clickedFilter.replace(/\//g, '-');
     const currentTime = new Date().getTime();
     
     if (lastClickedFilter === clickedFilter && currentTime - lastClickTime < 300) {
-        activeFilters = [clickedFilter];
+        activeFilters = [sanitizedFilter];
         // 更新所有按钮状态
         buttonSection.querySelectorAll('button').forEach(btn => {
             if (btn.getAttribute('data-name') === clickedFilter) {
@@ -347,11 +353,11 @@ function handleFilterClick(e) {
             }
         });
     } else {
-        if (activeFilters.includes(clickedFilter)) {
-            activeFilters = activeFilters.filter(filter => filter !== clickedFilter);
+        if (activeFilters.includes(sanitizedFilter)) {
+            activeFilters = activeFilters.filter(filter => filter !== sanitizedFilter);
             e.target.classList.remove('active');
         } else {
-            activeFilters.push(clickedFilter);
+            activeFilters.push(sanitizedFilter);
             e.target.classList.add('active');
         }
     }
@@ -400,7 +406,8 @@ function updateCards() {
         if (activeFilters.length === 0) return true;
         
         return activeFilters.some(filter => {
-            const labelAttr = `data-${filter.toLowerCase()}`;
+            // The filter name is already sanitized at this point
+            const labelAttr = `data-${filter}`;
             return card.hasAttribute(labelAttr);
         });
     });
@@ -563,6 +570,7 @@ function addFilterHoverEffects() {
     // 处理按钮效果的函数
     const handleButtonEffect = (button, isActive) => {
         const label = button.textContent.trim();
+        const sanitizedLabel = label.toLowerCase().replace(/\//g, '-');
         
         // 只在长按时或桌面端悬停时添加效果
         if (isLongPress || window.matchMedia('(hover: hover)').matches) {
@@ -570,7 +578,7 @@ function addFilterHoverEffects() {
             
             // 视觉效果
             cards.forEach(card => {
-                if (!card.hasAttribute(`data-${label.toLowerCase()}`)) {
+                if (!card.hasAttribute(`data-${sanitizedLabel}`)) {
                     card.classList.toggle('fade-out', isActive);
                 } else {
                     const labels = card.querySelectorAll('.label');
@@ -583,7 +591,7 @@ function addFilterHoverEffects() {
             });
 
             points.forEach(point => {
-                if (!point.hasAttribute(`data-${label.toLowerCase()}`)) {
+                if (!point.hasAttribute(`data-${sanitizedLabel}`)) {
                     point.classList.toggle('fade-out', isActive);
                 }
             });
@@ -817,7 +825,9 @@ function createProjectPoints() {
         
         // 为每个点添加标签数据属性
         project.labels.forEach(label => {
-            pointWrapper.setAttribute(`data-${label.toLowerCase()}`, '');
+            // Sanitize the label by replacing forward slashes with hyphens
+            const sanitizedLabel = label.toLowerCase().replace(/\//g, '-');
+            pointWrapper.setAttribute(`data-${sanitizedLabel}`, '');
         });
 
         // 添加点击事件

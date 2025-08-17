@@ -19,28 +19,36 @@ Bachelor of Architecture, GPA: 3.7/4.0
 
 ## Skills
 
-**Technical Stack:** 
-Parametric Modeling: Grasshopper (with GHPython) | Hardware: Arduino/Raspberry Pi | Languages: Python/C# | Game Engine: Unity
-
-**Data Science**:
-Machine Learning (ML): PyTorch/scikit-learn | Analytics: pandas | Visualization: seaborn/matplotlib/Tableau
+**Technical:** 
+- Hardware: Arduino / Raspberry Pi
+- Languages: Python / C# / Pascal / HTML, CSS, Javascript
+- Game Engine: Unity
 
 **Design & Production**:
-Fabrication: 3D printing/laser cutting/electronic soldering | Software: Rhino/AutoCAD/Adobe/Figma/Blender
+- Software: 
+    - 3D: Rhino, Grasshopper and GHPython / Blender
+    - 2D: AutoCAD / Adobe Suite / Figma / Procreate
+- Fabrication: 
+    - 3D printing
+    - soldering
+
 
 **Languages:** 
 English (Fluent), Mandarin (Native), Portuguese (Beginner)
 
-## Academic Publications
-
-**Embodied Generative Taskscape: Re-Connect Cultural-Ecological Perception in 5-Animal Play**
-<u>Ziru Wei</u>, Jimmy Cheng. Has been accepted to the 4S 2025 Conference: Reverberations, which will be held September 3-6, 2025 in Seattle, WA. 
+## Publications
 
 **Mixed-Reality Assisted Refinement Strategies for Old Residential Renovation and Participatory Design Research: A Case Study of the Sericulture Community in Suzhou**  
 <u>Ziru Wei</u>, X. Zhao, Y. Wang, et al. *Architecture & Culture* (Core Journal of China), July 2023, pp. 180–183. DOI: 10.19875/j.cnki.jzywh.2023.07.057 
 
 **On-site Holographic Building Construction: A Case Study of Aurora**  
 Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* (Peer-reviewed), 2022
+
+## Poster and Abstract
+
+**Embodied Generative Taskscape: Re-Connect Cultural-Ecological Perception in 5-Animal Play**
+
+<u>Ziru Wei</u>, Jimmy Cheng. Has been accepted as an abstract to the 4S 2025 Conference: Reverberations, which will be held September 3-6, 2025 in Seattle, WA. 
 
 ## Experience  
 
@@ -51,7 +59,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dd>04/2025 — Present</dd>
 </dl>
 
-- Independent Study: Proactive assistance robot
+- Independent Study: Human perception of Proactive Assistance Robot in everyday scenarios
 
 <dl>
     <dt>Computational Design Researcher at CodeLab, Carnegie Mellon University</dt>
