@@ -209,7 +209,7 @@ body::-webkit-scrollbar {
 }
 
 .legend-item:hover {
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 .legend-point {
@@ -413,6 +413,13 @@ button:hover {
     background-color: var(--color-text-hover);
     color: #ffffff;
     border-color: var(--color-text);
+}
+
+/* point hover button style - using higher specificity to override active state */
+.buttons-section button.point-hover {
+    background-color: var(--color-text-hover) !important;
+    color: #ffffff !important;
+    border-color: var(--color-text) !important;
 }
 
 /* card grid area */
@@ -929,11 +936,11 @@ button:hover {
     transition: all 0.2s ease;
 }
 
-/* point label hover effect */
+point label hover effect
 .point-wrapper:hover .point-label,
 .point-wrapper .point-label.hover-effect {
-    color: var(--color-text);
     font-weight: 500;
+    padding: 2px 4px;
     transition: all 0.2s ease;
 }
 

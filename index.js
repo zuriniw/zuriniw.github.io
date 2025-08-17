@@ -374,7 +374,12 @@ function handleFilterClick(e) {
     sessionStorage.setItem('activeFilters', JSON.stringify(activeFilters));
     
     updateCards();
-    updateIntersectionLegend();
+
+    // 只在坐标轴视图中更新图例
+    const isGalleryView = sessionStorage.getItem('isGalleryView') === 'true';
+    if (!isGalleryView) {
+        updateIntersectionLegend();
+    }
 }
 
 // 更新卡片显示状态
@@ -921,6 +926,9 @@ function createProjectPoints() {
     const containerWidth = container.offsetWidth;
     const containerHeight = container.offsetHeight;
 
+    // 记录按钮的原始激活状态
+    let originalButtonStates = new Map();
+
     projects.forEach(project => {
         if (!project.situate) return;
 
@@ -1002,6 +1010,15 @@ function createProjectPoints() {
                 preview.style.top = `${e.clientY - previewHeight - offset}px`;
             }
             
+            // 添加按钮hover效果
+            const buttons = document.querySelectorAll('.buttons-section button');
+            buttons.forEach(button => {
+                const buttonFilter = button.getAttribute('data-name').toLowerCase().replace(/\//g, '-');
+                if (pointWrapper.hasAttribute(`data-${buttonFilter}`)) {
+                    button.classList.add('point-hover');
+                }
+            });
+            
             document.body.appendChild(preview);
             
             // 添加延伸线
@@ -1052,6 +1069,15 @@ function createProjectPoints() {
 
         // 修改后的 mouseleave 事件处理（增加强制重绘逻辑）
         pointWrapper.addEventListener('mouseleave', () => {
+            // 恢复按钮的原始状态
+            const buttons = document.querySelectorAll('.buttons-section button');
+            buttons.forEach(button => {
+                const buttonFilter = button.getAttribute('data-name').toLowerCase().replace(/\//g, '-');
+                // 移除point-hover类
+                if (pointWrapper.hasAttribute(`data-${buttonFilter}`)) {
+                    button.classList.remove('point-hover');
+                }
+            });
             clearAllPreviews();
         });
                 
@@ -1072,57 +1098,57 @@ function initViewSwitch() {
     let isGalleryView = sessionStorage.getItem('isGalleryView') === 'true';
     let pointsCreated = false;
 
-    // 初始化按钮图标：当前处于画廊视图时，显示切换到数轴视图的图标（matrix.svg），否则显示 gallery.svg
-    if (isGalleryView) {
-        switchButton.innerHTML = '<img src="images/matrix.svg" alt="Matrix Icon">';
-    } else {
-        switchButton.innerHTML = '<img src="images/gallery.svg" alt="Gallery Icon">';
-    }
+    // 更新视图状态的函数
+    const updateViewState = (isGallery) => {
+        if (isGallery) {
+            cardsSection.classList.remove('hide');
+            coordinateView.classList.add('hide');
+            switchButton.innerHTML = '<img src="images/matrix.svg" alt="Matrix Icon">';
+            // 隐藏图例
+            const legend = document.querySelector('.intersection-legend');
+            if (legend) {
+                legend.classList.remove('show');
+            }
+        } else {
+            cardsSection.classList.add('hide');
+            coordinateView.classList.remove('hide');
+            switchButton.innerHTML = '<img src="images/gallery.svg" alt="Gallery Icon">';
+            // 如果有活动的过滤器且是2个或3个，则显示图例
+            if (activeFilters.length === 2 || activeFilters.length === 3) {
+                updateIntersectionLegend();
+            }
+        }
+    };
 
-    // 根据视图状态初始化显示
-    if (isGalleryView) {
-        cardsSection.classList.remove('hide');
-        coordinateView.classList.add('hide');
-    } else {
-        cardsSection.classList.add('hide');
-        coordinateView.classList.remove('hide');
+    // 初始状态设置
+    updateViewState(isGalleryView);
+    if (!isGalleryView) {
         createProjectPoints();  // 创建项目点
         pointsCreated = true;
     }
 
     switchButton.addEventListener('click', () => {
         if (isGalleryView) {
-            // 当前为画廊视图，切换到数轴视图：显示 gallery 图标，表示下次点击切换回画廊视图
-            cardsSection.classList.add('hide');
-            coordinateView.classList.remove('hide');
-            switchButton.innerHTML = '<img src="images/gallery.svg" alt="Gallery Icon">';
-            
+            // 切换到数轴视图
             if (!pointsCreated) {
                 createProjectPoints();
                 pointsCreated = true;
             }
-            
-            // 切换到数轴视图时，应用当前的过滤器状态
+
+            // 更新点的可见性
             const pointWrappers = document.querySelectorAll('.point-wrapper');
             pointWrappers.forEach(wrapper => {
                 const isVisible = activeFilters.length === 0 || 
                     activeFilters.some(filter => wrapper.hasAttribute(`data-${filter.toLowerCase()}`));
-                
-                if (isVisible) {
-                    wrapper.classList.remove('hide');
-                } else {
-                    wrapper.classList.add('hide');
-                }
+                wrapper.classList.toggle('hide', !isVisible);
             });
-        } else {
-            // 当前为数轴视图，切换到画廊视图：显示 matrix 图标，表示下次点击切换回数轴视图
-            cardsSection.classList.remove('hide');
-            coordinateView.classList.add('hide');
-            switchButton.innerHTML = '<img src="images/matrix.svg" alt="Matrix Icon">';
         }
+
         isGalleryView = !isGalleryView;
         // 保存视图状态到 sessionStorage
         sessionStorage.setItem('isGalleryView', isGalleryView);
+        // 应用新的视图状态
+        updateViewState(isGalleryView);
     });
 }
 
@@ -1285,6 +1311,17 @@ function updateLegend() {
 
 // 更新图例内容和显示状态
 function updateIntersectionLegend() {
+    // 检查当前视图模式
+    const isGalleryView = sessionStorage.getItem('isGalleryView') === 'true';
+    if (isGalleryView) {
+        // 在画廊模式下，隐藏图例
+        const existingLegend = document.querySelector('.intersection-legend');
+        if (existingLegend) {
+            existingLegend.classList.remove('show');
+        }
+        return;
+    }
+
     const cards = cardSection.querySelectorAll('.card');
     const cardsWithProjects = Array.from(cards).map(card => {
         const cardTitle = card.querySelector('.card-title').textContent;
