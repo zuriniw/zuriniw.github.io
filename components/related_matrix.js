@@ -255,7 +255,7 @@ class RelatedMatrix {
                             
                             // 创建链接
                             const rewardLink = document.createElement('a');
-                            rewardLink.href = 'https://www.are.na/ziru-wei';  // 替换为实际链接
+                            rewardLink.href = 'https://www.instagram.com/azzuriwey/';  // 替换为实际链接
                             rewardLink.className = 'reward-link';
                             rewardLink.textContent = '█████';
                             rewardLink.target = '_blank';  // 在新标签页打开

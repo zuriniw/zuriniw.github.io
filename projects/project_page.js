@@ -53,9 +53,22 @@ if (project) {
         metaSection.appendChild(toolsItem);
     }
 
+
+    // 添加助教
+    // if (project.ta) {
+    //     const taItem = createMetaItem('TA', project.ta);
+    //     metaSection.appendChild(taItem);
+    // }
+
+    // 添加我的贡献
+    if (project.myContribution) {
+        const contributionItem = createMetaItem('My Work', project.myContribution);
+        metaSection.appendChild(contributionItem);
+    }
+
     // 添加合作者
     if (project.collaborator) {
-        const collaboratorItem = createMetaItem('WorkWith', project.collaborator);
+        const collaboratorItem = createMetaItem('Work with', project.collaborator);
         metaSection.appendChild(collaboratorItem);
     }
 
@@ -63,18 +76,6 @@ if (project) {
     if (project.tutor) {
         const tutorItem = createMetaItem('Tutor', project.tutor);
         metaSection.appendChild(tutorItem);
-    }
-
-    // 添加助教
-    if (project.ta) {
-        const taItem = createMetaItem('TA', project.ta);
-        metaSection.appendChild(taItem);
-    }
-
-    // 添加我的贡献
-    if (project.myContribution) {
-        const contributionItem = createMetaItem('Work', project.myContribution);
-        metaSection.appendChild(contributionItem);
     }
 
     // 添加奖项

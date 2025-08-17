@@ -103,7 +103,7 @@
     --color-white: #fff;
     --color-text-grey: #7f7f7f;
     --color-text-darkgrey: #333;
-    --color-red: #27b3b3d1;
+    --color-red: #00c2c2d1;
     --color-light-grey: #c5c5c5;
     /* prevent symbols from being converted to emojis */
     font-variant-emoji: none;
@@ -119,6 +119,18 @@
     letter-spacing: 0.4px;
     scrollbar-width: none;
     -ms-overflow-style: none;
+}
+
+/* 文本选择的样式 */
+::selection {
+    background-color: var(--color-text);
+    color: var(--color-background);
+}
+
+/* 为 Firefox 浏览器添加文本选择样式 */
+::-moz-selection {
+    background-color: var(--color-text);
+    color: var(--color-background);
 }
 
 /* hide the scrollbar of webkit browser */
@@ -144,6 +156,11 @@ body {
 body::-webkit-scrollbar {
     display: none;
 }
+
+.copyright-text {
+    font-size: 18px;  /* 或者使用 1.2em、120% 等 */
+}
+
 
 /* main container */
 .container {
@@ -407,6 +424,26 @@ button:hover {
     flex-wrap: wrap;
     gap: 12px;
     justify-content: flex-start;
+    position: relative;
+}
+
+/* 过滤器提示文字样式 */
+.filter-hint {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--color-text-grey);
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+/* 当鼠标悬停在按钮区域时显示提示 */
+.buttons-section:hover .filter-hint {
+    opacity: 1;
 }
 
 /* card label container */
@@ -434,8 +471,9 @@ button:hover {
 
 /* card label hover state */
 .card-label.hover {
-    border-color: var(--color-red);
-    color: var(--color-red);
+    border-color: transparent;
+    background-color: var(--color-red);
+    color: var(--color-border);
 }
 
 /* add fade effect */
@@ -754,6 +792,8 @@ button:hover {
     color: var(--color-text);
     letter-spacing: 0.4px;
     font-weight: 350;
+    max-width: 760px;
+    display: inline-block;
 }
 
 /* project page style ////////////////////////////////////////////////////////////////// */

@@ -81,7 +81,7 @@ const projects = [
         ispage: true,
         isteam: true,
         tutor: "Chao Yan",
-        myContribution: "coding, ideation, experiment designing, documenting, drawing",
+        myContribution: "coding, ideation, experiment designing, documenting, figure making",
         tools: "Unity, Grasshopper, GHPython, ZED Depth Camera, Rhino",
         briefDescription: `"We shape our buildings, thereafter they shape us." --Winston Churchill, 1943`,
         youtubeLink: "https://www.youtube.com/embed/X6KAT7KzDUs?si=jhOz6vGQ7ZCa5KV1",
@@ -152,7 +152,7 @@ const projects = [
     }),
     new Project({
         name: "aurora",
-        title: "Holo Design2Fabr",
+        title: "XR-aided Fabrication",
         subtitle: "A case study of the full-scale building：AURORA",
         labels: ["XR", "Physical"],
         time: "2021",
@@ -162,8 +162,9 @@ const projects = [
         myContribution: "designing, constructing, writing",
         tools: "Fologram, Rhino, Grasshopper",
         briefDescription: `Instead of chasing zero-tolerance implementation and avoiding any potential deviations, MR-aided design practices aim to increase construction allowance by injecting computation into human operations.`,
-        youtubeLink: "https://www.dropbox.com/scl/fi/ajuzkeolpeorpc0979q8t/HolographicConstruction.mp4?rlkey=7s31yppucptg6rdk8dkhffny0&e=1&dl=0",
+        // youtubeLink: "https://www.dropbox.com/scl/fi/ajuzkeolpeorpc0979q8t/HolographicConstruction.mp4?rlkey=7s31yppucptg6rdk8dkhffny0&e=1&dl=0",
         paperLink: "https://papers.cumincad.org/cgi-bin/works/paper/caadria2022_157",
+        otherLink2: "https://humachine.cn/?post_type=products&page_id=16963",
         weight: 8.1,
         ismarkdown: true,
         situate: { x: 80, y: -80 }
@@ -241,7 +242,7 @@ const projects = [
         labels: ["Digital"],
         time: "2022",
         myContribution: "Computational design, interface design",
-        isteam: true,
+        isteam: false,
         tools: "Grasshopper",
         weight: 4,
         situate: { x: 60, y: -31 },
@@ -255,7 +256,7 @@ const projects = [
         subtitle: "Bar table furniture design",
         labels: ["Physical"],
         time: "2021",
-        collaborator: "fabrication team",
+        collaborator: "Humachine Lab",
         myContribution: "designing, modeling",
         isteam: true,
         ispage: true,
@@ -263,6 +264,7 @@ const projects = [
         tools: "Rhino, Grasshopper",
         prize: "Patent",
         weight: 5,
+        otherLink2:"https://humachine.cn/?post_type=products&page_id=17054",
         situate: { x: -30, y: -90 }
     }),
     // new Project({
@@ -283,7 +285,7 @@ const projects = [
         subtitle: "A customized keyboard",
         myContribution: "PCB making, electronic assembling, and 3D printing",
         briefDescription: "Wanna have a keyboard that is super handy? DIY it!",
-        labels: ["Digital"],
+        labels: ["Physical"],
         time: "2022",
         isteam: false,
         tools: "EasyEDA, Rhino, Soldering Tools",
@@ -364,8 +366,9 @@ const projects = [
         labels: ["Physical"],
         time: "2021",
         isteam: true,
-        tools: "Rhino, Grasshopper, laser cutter",
-        briefDescription: "How to image a wedding vibe through a wall?",
+        collaborator: "Humachine Lab",
+        tools: "Rhino, Grasshopper, CNC laser cutter",
+        briefDescription: "How to create a wedding vibe through a wall?",
         situate: { x: -50, y: -80 },
         ispage: true,
         weight: 4,
@@ -417,7 +420,6 @@ const projects = [
     })
 ];
 
-// 导出所有可用的标签
 const availableLabels = [
     "Digital", "Physical", "XR", "Human-Centered"
 ];

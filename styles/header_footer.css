@@ -122,11 +122,184 @@
     pointer-events: auto;  /* 确保可以接收鼠标事件 */
 }
 
+.box-tooltip {
+    position: fixed;
+    bottom: 80px;
+    left: 60px;
+    font-size: 11px;
+    font-family: "JetBrains Mono", monospace;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    font-weight: 400;
+    color: var(--color-background);
+    z-index: 1001;
+}
+
+/* 创建全屏遮罩 */
+.footer-box::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.footer-box:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.footer-box:hover .box-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* 版权信息样式 */
 .copyright {
     text-align: right;
-    pointer-events: none;
+    pointer-events: auto;
 }
+
+.copyright-text {
+    position: relative;
+    cursor: default;
+}
+
+.copyright-tooltip, .box-tooltip {
+    position: fixed;
+    font-size: 14px;
+    font-family: "JetBrains Mono", monospace;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    font-weight: 400;
+    color: var(--color-background);
+    z-index: 1001;
+}
+
+.copyright-tooltip {
+    bottom: 80px;
+    right: 60px;
+}
+
+.box-tooltip {
+    bottom: 80px;
+    left: 60px;
+}
+
+/* 打字机效果的容器 */
+.typing-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 每行文字的基础样式 */
+.typing-line {
+    display: block;
+    white-space: nowrap;
+    width: 0;
+    overflow: hidden;
+}
+
+/* 版权信息的打字效果 */
+.copyright-text:hover .typing-line {
+    animation: typing 2s steps(60, end) forwards,
+               blink-caret .75s step-end infinite;
+    border-right: 2px solid var(--color-background);
+}
+
+/* 左侧方块文本的打字效果 */
+.footer-box:hover .typing-line {
+    width: 0;
+    border-right: 2px solid transparent;
+}
+
+/* 第一行的动画 */
+.footer-box:hover .typing-line:nth-child(1) {
+    animation: 
+        typing 2s steps(60, end) forwards,
+        showCaret 0s forwards,
+        blink-caret .75s step-end 3 2s forwards,
+        hideCaret 0s 3.25s forwards;
+}
+
+/* 第二行的动画 */
+.footer-box:hover .typing-line:nth-child(2) {
+    animation: 
+        typing 2s steps(60, end) 3.25s forwards,
+        showCaret 0s 3.25s forwards,
+        blink-caret .75s step-end 3 5.25s forwards,
+        hideCaret 0s 6.5s forwards;
+}
+
+/* 最后一行的动画 */
+.footer-box:hover .typing-line:nth-child(3) {
+    animation: 
+        typing 2s steps(60, end) 6.5s forwards,
+        showCaret 0s 6.5s forwards,
+        blink-caret .75s step-end infinite 8.5s;
+}
+
+/* 显示光标的动画 */
+@keyframes showCaret {
+    to { border-right-color: var(--color-background); }
+}
+
+/* 隐藏光标的动画 */
+@keyframes hideCaret {
+    to { border-right-color: transparent; }
+}
+
+/* 打字机动画 */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* 光标闪烁动画 */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--color-background) }
+}
+
+/* 创建全屏遮罩 */
+.copyright-text::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.copyright-text:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.copyright-text:hover .copyright-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
 
 /* 邮箱样式 */
 .footer-email {
