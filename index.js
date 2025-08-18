@@ -1271,22 +1271,29 @@ function initDarkOverlay() {
 
     // 处理 footer 元素的点击事件
     if (footerBox) {
-        // 移动端使用 touchstart 事件
-        if (window.matchMedia('(hover: none)').matches) {
+        const isMobile = window.matchMedia('(hover: none)').matches;
+        
+        if (isMobile) {
+            // 移动端同时监听 touchstart 和 click
             footerBox.addEventListener('touchstart', (e) => {
-                e.preventDefault(); // 阻止默认行为
+                console.log('Footer box touchstart triggered');
                 e.stopPropagation();
                 showOverlay(footerBox);
-            }, { passive: false });
-        }
-        
-        // 桌面端使用 click 事件
-        footerBox.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (window.matchMedia('(hover: none)').matches) {
+            });
+
+            footerBox.addEventListener('click', (e) => {
+                console.log('Footer box click triggered');
+                e.stopPropagation();
+                e.preventDefault();
                 showOverlay(footerBox);
-            }
-        });
+            });
+        } else {
+            // 桌面端只使用 click 事件
+            footerBox.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showOverlay(footerBox);
+            });
+        }
     }
 
     if (copyright) {
