@@ -118,8 +118,9 @@
     background-color: var(--color-text);
     cursor: pointer;
     position: relative;  /* 添加相对定位 */
-    z-index: 1;  /* 确保在邮箱文本之上 */
+    z-index: 1002;  /* 确保在所有其他元素之上 */
     pointer-events: auto;  /* 确保可以接收鼠标事件 */
+    -webkit-tap-highlight-color: transparent; /* 移除移动端点击高亮 */
 }
 
 .box-tooltip {
@@ -267,9 +268,24 @@
 /* 每行文字的基础样式 */
 .typing-line {
     display: block;
-    white-space: nowrap;
     width: 0;
     overflow: hidden;
+}
+
+/* 桌面端保持单行 */
+@media (hover: hover) {
+    .typing-line {
+        white-space: nowrap;
+    }
+}
+
+/* 移动端允许换行 */
+@media (hover: none) {
+    .typing-line {
+        white-space: pre-wrap;
+        max-width: calc(100vw - 40px);
+        word-break: break-word;
+    }
 }
 
 /* 版权信息的打字效果 */
@@ -323,8 +339,30 @@
 
 /* 打字机动画 */
 @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+    from { 
+        width: 0;
+        overflow: hidden;
+    }
+    to { 
+        width: 100%;
+        overflow: visible; /* 允许文本换行 */
+    }
+}
+
+/* 移动端的特殊处理 */
+@media (hover: none) {
+    @keyframes typing {
+        from { 
+            width: 0;
+            overflow: hidden;
+        }
+        to { 
+            width: 100%;
+            overflow: visible;
+            height: auto; /* 允许高度自适应 */
+            word-wrap: break-word; /* 确保长单词会换行 */
+        }
+    }
 }
 
 /* 光标闪烁动画 */
