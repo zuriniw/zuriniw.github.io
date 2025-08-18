@@ -228,6 +228,8 @@ function createFilterButtons() {
         button.textContent = label;
         // Use sanitized version for checking active filters
         const sanitizedLabel = label.toLowerCase().replace(/\//g, '-');
+        // 为按钮添加 data-filters 属性
+        button.setAttribute('data-filters', sanitizedLabel);
         if (activeFilters.includes(sanitizedLabel)) {
             button.classList.add('active');
         }
@@ -1458,6 +1460,17 @@ function updateIntersectionLegend() {
             
             // 添加hover效果
             groupElement.addEventListener('mouseenter', () => {
+                // 给相关的filter按钮添加三角效果
+                const filterButtons = document.querySelectorAll('.buttons-section button');
+                group.filters.forEach(filter => {
+                    const sanitizedFilter = filter.toLowerCase().replace(/\//g, '-');
+                    filterButtons.forEach(button => {
+                        if (button.getAttribute('data-filters') === sanitizedFilter) {
+                            button.classList.add('point-hover');
+                        }
+                    });
+                });
+
                 const pointWrappers = document.querySelectorAll('.point-wrapper');
                 pointWrappers.forEach(wrapper => {
                     const pointTitle = wrapper.querySelector('.point-label').textContent;
@@ -1508,6 +1521,17 @@ function updateIntersectionLegend() {
             });
             
             groupElement.addEventListener('mouseleave', () => {
+                // 移除所有filter按钮的三角效果
+                const filterButtons = document.querySelectorAll('.buttons-section button');
+                group.filters.forEach(filter => {
+                    const sanitizedFilter = filter.toLowerCase().replace(/\//g, '-');
+                    filterButtons.forEach(button => {
+                        if (button.getAttribute('data-filters') === sanitizedFilter) {
+                            button.classList.remove('point-hover');
+                        }
+                    });
+                });
+
                 const pointWrappers = document.querySelectorAll('.point-wrapper');
                 pointWrappers.forEach(wrapper => {
                     wrapper.classList.remove('fade-out');
@@ -1609,6 +1633,8 @@ document.addEventListener('keydown', (event) => {
     // 检查按下的是否为退格键，且不是在输入框中
     if (event.key === 'Backspace' && 
         !['input', 'textarea'].includes(document.activeElement.tagName.toLowerCase())) {
+        // 阻止浏览器的默认退格键行为
+        event.preventDefault();
         // 只在有活动过滤器时执行清除操作
         if (activeFilters.length > 0) {
             // 清除所有过滤器

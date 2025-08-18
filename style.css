@@ -175,12 +175,11 @@ body::-webkit-scrollbar {
 /* 交集图例栏样式 */
 .intersection-legend {
     position: fixed;
-    left: 36px;
-    top: 170px;
-    background-color: var(--color-background);
+    left: 26px;
+    top: 270px;
     z-index: 98;
     font-family: "JetBrains Mono", monospace;
-    font-size: 12px;
+    font-size: 11px;
     border-radius: 2px;
     opacity: 0;
     visibility: hidden;
@@ -212,6 +211,22 @@ body::-webkit-scrollbar {
     opacity: 0.6;
 }
 
+/* When legend item is hovered, show triangles on corresponding filter buttons */
+.legend-item:hover ~ .filter-wrapper .buttons-section button[data-filters*="intersection"] {
+    position: relative;
+}
+
+.legend-item:hover ~ .filter-wrapper .buttons-section button[data-filters*="intersection"]::before {
+    content: '▼';
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: var(--color-text);
+    pointer-events: none;
+}
+
 .legend-point {
     width: 12px;
     height: 12px;
@@ -226,29 +241,36 @@ body::-webkit-scrollbar {
 .legend-content {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 2px;
 }
 
 .legend-text {
     display: flex;
-    gap: 4px;
+    gap: 2px;
     align-items: center;
     font-size: 11px;
     color: var(--color-text);
+    position: relative;
+}
+
+.legend-text::before {
+    content: ':';
 }
 
 .legend-text span {
     display: inline-block;
-    color: var(--color-white) !important;
-    background-color: var(--color-text);
-    padding: 2px 0px;
+    color: var(--color-text) !important;
+    background-color: var(--color-background);
+    padding: 2px 4px;
     border-radius: 1px;
+    border: 1px solid var(--color-text);
 }
 
 .legend-projects {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    margin-left: 8px;
     opacity: 0.8;
     color: var(--color-text);  /* 确保项目文本颜色正确 */
 }
