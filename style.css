@@ -2009,7 +2009,7 @@ body.project-page {
         height: 400px!important;
     }
     .coordinate-container::before {
-        content: "longPress: check range, doubleTap: single-elect-- ↑ ";
+        content: "↑ longPress to span, doubleTap to focus  ";
         position: absolute;
         display: block;
         top: -22px;

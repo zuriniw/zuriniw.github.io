@@ -86,14 +86,26 @@
                     touch.clientY >= playerRect.top && 
                     touch.clientY <= playerRect.bottom) {
                     
-                    const projectTitle = point.querySelector('.point-label').textContent;
-                    const project = projects.find(p => p.title === projectTitle);
-                    
-                    if (project) {
-                        // 更新当前项目引用
-                        currentProject = project;
+                        const projectTitle = point.querySelector('.point-label').textContent;
+                        const project = projects.find(p => p.title === projectTitle);
+                        
+                        if (project) {
+                            // 更新当前项目引用
+                            currentProject = project;
 
-                        // 检查当前点是否在视图中可见
+                            // 获取项目对应的标签，并为对应的filter按钮添加三角效果
+                            const buttons = document.querySelectorAll('.buttons-section button');
+                            // 先清除所有按钮的三角效果
+                            buttons.forEach(btn => btn.classList.remove('point-hover'));
+                            // 为当前项目的标签对应的按钮添加三角效果
+                            project.labels.forEach(label => {
+                                const sanitizedLabel = label.toLowerCase().replace(/\//g, '-');
+                                buttons.forEach(button => {
+                                    if (button.getAttribute('data-filters') === sanitizedLabel) {
+                                        button.classList.add('point-hover');
+                                    }
+                                });
+                            });                        // 检查当前点是否在视图中可见
                         const projectPoint = point.querySelector('.project-point');
                         const rect = projectPoint.getBoundingClientRect();
                         const isVisible = (
@@ -151,6 +163,9 @@
                     point.classList.remove('dragging');
                     playerLeft.classList.remove('drag-over');
                     removeDragIndicator();
+                    // 清除所有按钮的三角效果
+                    const buttons = document.querySelectorAll('.buttons-section button');
+                    buttons.forEach(btn => btn.classList.remove('point-hover'));
                     // 不清除 currentActivePoint，保持其引用和背景色
                 }
             };
