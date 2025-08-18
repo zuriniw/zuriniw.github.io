@@ -328,6 +328,24 @@ function createProjectCards() {
                 </div>
             </div>
         `;
+
+        // 添加卡片悬停效果
+        card.addEventListener('mouseenter', () => {
+            const buttons = document.querySelectorAll('.buttons-section button');
+            buttons.forEach(button => {
+                const buttonFilter = button.getAttribute('data-name').toLowerCase().replace(/\//g, '-');
+                if (card.hasAttribute(`data-${buttonFilter}`)) {
+                    button.classList.add('point-hover');
+                }
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            const buttons = document.querySelectorAll('.buttons-section button');
+            buttons.forEach(button => {
+                button.classList.remove('point-hover');
+            });
+        });
         
         return card;
     })).then(cards => {
@@ -552,10 +570,17 @@ function addFilterHoverEffects() {
     const points = document.querySelector('.coordinate-view').querySelectorAll('.point-wrapper');
     const container = document.querySelector('.coordinate-container');
     
-    // 确保初始状态下所有点都是可见的
+    // 根据当前过滤器状态设置点的初始可见性
     points.forEach(point => {
         point.classList.remove('fade-out');
-        point.classList.remove('hide');
+        // 检查是否应该隐藏这个点
+        const hasMatchingFilter = activeFilters.length === 0 || 
+            activeFilters.some(filter => point.hasAttribute(`data-${filter.toLowerCase()}`));
+        if (!hasMatchingFilter) {
+            point.classList.add('hide');
+        } else {
+            point.classList.remove('hide');
+        }
     });
     
     // 创建 SVG 元素
@@ -925,9 +950,6 @@ function createProjectPoints() {
     const container = document.querySelector('.coordinate-container');
     const containerWidth = container.offsetWidth;
     const containerHeight = container.offsetHeight;
-
-    // 记录按钮的原始激活状态
-    let originalButtonStates = new Map();
 
     projects.forEach(project => {
         if (!project.situate) return;
@@ -1579,5 +1601,36 @@ document.addEventListener('DOMContentLoaded', () => {
         container.addEventListener('mouseleave', () => {
             clearAllPreviews();
         });
+    }
+});
+
+// 添加键盘事件监听器来处理退格键
+document.addEventListener('keydown', (event) => {
+    // 检查按下的是否为退格键，且不是在输入框中
+    if (event.key === 'Backspace' && 
+        !['input', 'textarea'].includes(document.activeElement.tagName.toLowerCase())) {
+        // 只在有活动过滤器时执行清除操作
+        if (activeFilters.length > 0) {
+            // 清除所有过滤器
+            activeFilters = [];
+            // 更新所有按钮状态
+            buttonSection.querySelectorAll('button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // 保存状态到 sessionStorage
+            sessionStorage.setItem('activeFilters', JSON.stringify(activeFilters));
+            // 更新显示
+            updateCards();
+            // 隐藏图例
+            const legend = document.querySelector('.intersection-legend');
+            if (legend) {
+                legend.classList.remove('show');
+            }
+            // 清除所有交集样式
+            const projectPoints = document.querySelectorAll('.project-point');
+            projectPoints.forEach(point => {
+                point.classList.remove('intersection-1', 'intersection-2', 'intersection-3', 'intersection-full');
+            });
+        }
     }
 });

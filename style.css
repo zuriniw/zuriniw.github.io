@@ -262,7 +262,7 @@ body::-webkit-scrollbar {
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1163px) {
     .intersection-legend {
         display: none !important;  /* 在小屏幕下强制隐藏 */
     }
@@ -373,6 +373,7 @@ body::-webkit-scrollbar {
     top: 120px;
     background-color: var(--color-background);
     z-index: 99;
+    padding: 0 20px;
 }
 
 /* filter content */
@@ -381,9 +382,11 @@ body::-webkit-scrollbar {
     flex-direction: row;
     align-items: flex-start;
     position: relative;
-    width: 760px;
+    width: 100%;
+    max-width: 760px;
     margin: 0 auto;
-    justify-content: space-between;
+    justify-content: flex-start;  /* 改为左对齐 */
+    gap: 12px;  /* 添加固定间距 */
 }
 
 /* active button style */
@@ -415,23 +418,30 @@ button:hover {
     border-color: var(--color-text);
 }
 
-/* point hover button style - using higher specificity to override active state */
+/* point hover button style - adding a triangle indicator */
 .buttons-section button.point-hover {
-    background-color: var(--color-text-hover) !important;
-    color: #ffffff !important;
-    border-color: var(--color-text) !important;
+    position: relative;
+}
+
+.buttons-section button.point-hover::before {
+    content: '▼';
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: var(--color-text);
+    pointer-events: none;
 }
 
 /* card grid area */
 .cards-section {
     margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 243.2px);
     gap: 15px;
     row-gap: 28px;
-    justify-content: flex-start;
-    align-items: left;
+    justify-content: center;
     width: 100%;
     max-width: 760px;
     margin: 12px auto;
@@ -625,7 +635,7 @@ button:hover {
 /* 过滤器提示文字样式 */
 .filter-hint {
     position: absolute;
-    top: -20px;
+    top: -36px;
     left: 0;
     font-family: "JetBrains Mono", monospace;
     font-size: 11px;
@@ -634,11 +644,19 @@ button:hover {
     white-space: nowrap;
     pointer-events: none;
     transition: opacity 0.2s ease;
+    display: none;  /* 默认隐藏 */
 }
 
-/* 当鼠标悬停在按钮区域时显示提示 */
-.buttons-section:hover .filter-hint {
-    opacity: 1;
+/* 在桌面端显示提示 */
+@media (hover: hover) {
+    .filter-hint {
+        display: block;  /* 在桌面端显示 */
+    }
+    
+    /* 当鼠标悬停在按钮区域时显示提示 */
+    .buttons-section:hover .filter-hint {
+        opacity: 1;
+    }
 }
 
 /* card label container */
@@ -787,10 +805,12 @@ button:hover {
 
 /* coordinate view style */
 .coordinate-view {
-    width: 760px;
+    width: 100%;
+    max-width: 760px;
     height: 480px;
     margin: 10px auto;
     position: relative;
+    padding: 0 20px;
 }
 
 .coordinate-container {
@@ -798,6 +818,7 @@ button:hover {
     width: 100%;
     height: 100%;
     border: 1.5px solid var(--color-text);
+    min-width: 300px; /* 设置最小宽度，防止内容过于拥挤 */
 }
 
 .axis {
@@ -1439,6 +1460,11 @@ body.project-page {
     font-size: 24px;
     color: var(--color-text);
     font-weight: 550;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .matrix-caption a {
@@ -1461,6 +1487,11 @@ body.project-page {
     line-height: 1.2;
     font-weight: 400;
     text-align: right;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .intro a,
@@ -1734,6 +1765,65 @@ body.project-page {
     min-height: 1px;
     align-items: baseline;
     border-bottom: 1.2px solid var(--color-text);
+}
+
+/* 添加桌面端小屏幕适配 */
+@media screen and (max-width: 760px) {
+    .coordinate-view {
+        padding: 0 10px;
+        min-width: 384px;
+    }
+
+    .filter-container {
+        padding: 0 10px;
+        min-width: 384px;
+    }
+
+    .filter-content {
+        min-width: 384px;
+        padding-right: 0;  /* 移除右侧内边距 */
+    }
+
+    .filter-content .switch-container {
+        margin-right: 12px;  /* 为切换按钮添加右侧间距 */
+    }
+
+    .matrix-caption {
+        padding: 0 10px;
+        font-size: 20px;
+        min-width: 384px;
+    }
+
+    .intro {
+        padding: 0 10px;
+        font-size: 14px;
+        min-width: 384px;
+    }
+
+    /* 确保按钮区域在小屏幕上合理换行 */
+    .buttons-section {
+        gap: 8px;
+        min-width: 364px; /* 384px - 20px padding */
+        flex: 1;  /* 让按钮区域占据剩余空间 */
+        justify-content: flex-start;  /* 按钮左对齐 */
+    }
+
+    button {
+        padding: 3px 6px;
+        font-size: 13px;
+    }
+
+    /* 为小于384px的屏幕添加水平滚动 */
+    @media screen and (max-width: 384px) {
+        body {
+            overflow-x: auto;
+            min-width: 384px;
+        }
+        
+        .coordinate-container {
+            min-width: 364px; /* 384px - 20px padding */
+        }
+    }
 }
 
 /* mobile adaptation */
