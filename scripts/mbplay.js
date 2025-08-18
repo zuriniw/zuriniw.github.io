@@ -163,10 +163,9 @@
                     point.classList.remove('dragging');
                     playerLeft.classList.remove('drag-over');
                     removeDragIndicator();
-                    // 清除所有按钮的三角效果
-                    const buttons = document.querySelectorAll('.buttons-section button');
-                    buttons.forEach(btn => btn.classList.remove('point-hover'));
-                    // 不清除 currentActivePoint，保持其引用和背景色
+                    // 不清除按钮的三角效果，保持与当前预览中的项目同步
+                    // 只清除拖拽状态相关的样式
+                    // currentActivePoint 和 按钮的 point-hover 效果会保持到预览更改或关闭
                 }
             };
 

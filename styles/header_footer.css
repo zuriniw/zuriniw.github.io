@@ -128,13 +128,23 @@
     left: 60px;
     font-size: 11px;
     font-family: "JetBrains Mono", monospace;
-    white-space: nowrap;
+    white-space: pre-wrap; /* 允许文本换行 */
+    max-width: calc(100vw - 120px); /* 设置最大宽度，留出左右边距 */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     font-weight: 400;
     color: var(--color-background);
     z-index: 1001;
+}
+
+@media screen and (max-width: 768px) {
+    .box-tooltip {
+        left: 20px;
+        bottom: 60px;
+        max-width: calc(100vw - 40px); /* 移动端左右边距更小 */
+        text-align: left;
+    }
 }
 
 /* 创建全屏遮罩 */
@@ -184,16 +194,28 @@
     font-weight: 400;
     color: var(--color-background);
     z-index: 1001;
+    white-space: pre-wrap; /* 允许文本换行 */
+    max-width: calc(100vw - 120px); /* 设置最大宽度，留出左右边距 */
 }
 
 .copyright-tooltip {
     bottom: 80px;
     right: 60px;
+    text-align: right;
 }
 
 .box-tooltip {
     bottom: 80px;
     left: 60px;
+    text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+    .copyright-tooltip {
+        right: 20px;
+        bottom: 60px;
+        max-width: calc(100vw - 40px); /* 移动端左右边距更小 */
+    }
 }
 
 /* 打字机效果的容器 */
@@ -317,6 +339,22 @@
 .footer-left.show-email .footer-email {
     opacity: 1;
     visibility: visible;
+}
+
+/* 添加移动端触摸支持 */
+@media (hover: none) {
+    .footer-box:active::before,
+    .footer-box:active .box-tooltip,
+    .copyright-text:active::before,
+    .copyright-text:active .copyright-tooltip,
+    .copyright-text:active .typing-line {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .footer-box:active .typing-line {
+        animation-play-state: running;
+    }
 }
 
 /* 移动端适配 */
