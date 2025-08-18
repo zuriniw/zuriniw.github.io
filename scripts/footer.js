@@ -8,6 +8,11 @@ if (window.matchMedia('(hover: none)').matches) {
     // 当前活动的元素
     let activeElement = null;
 
+    // 用于跟踪触摸状态
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const MOVE_THRESHOLD = 10; // 移动阈值（像素）
+
     // 处理 footer 元素的点击
     function handleFooterClick(element) {
         // 如果点击的是当前活动元素，则关闭它
@@ -35,17 +40,49 @@ if (window.matchMedia('(hover: none)').matches) {
     function initFooterInteractions() {
         const footerBox = document.querySelector('.footer-box');
         const copyrightText = document.querySelector('.copyright-text');
+        const footer = document.querySelector('.footer');
 
-        // 点击事件监听器
-        footerBox?.addEventListener('click', (e) => {
-            e.stopPropagation();
-            handleFooterClick(footerBox);
-        });
-        
-        copyrightText?.addEventListener('click', (e) => {
-            e.stopPropagation();
-            handleFooterClick(copyrightText);
-        });
+        // 触摸开始时记录位置
+        function handleTouchStart(e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }
+
+        // 触摸移动时检查是否超过移动阈值
+        function handleTouchMove(e) {
+            const moveX = Math.abs(e.touches[0].clientX - touchStartX);
+            const moveY = Math.abs(e.touches[0].clientY - touchStartY);
+
+            // 如果移动超过阈值，标记为滑动而不是点击
+            if (moveX > MOVE_THRESHOLD || moveY > MOVE_THRESHOLD) {
+                e.target.dataset.isSliding = 'true';
+            }
+        }
+
+        // 触摸结束时检查是否为有效点击
+        function handleTouchEnd(e, element) {
+            if (e.target.dataset.isSliding !== 'true') {
+                // 是点击，不是滑动
+                e.preventDefault();
+                e.stopPropagation();
+                handleFooterClick(element);
+            }
+            // 重置滑动状态
+            delete e.target.dataset.isSliding;
+        }
+
+        // 添加触摸事件监听器
+        if (footerBox) {
+            footerBox.addEventListener('touchstart', handleTouchStart, { passive: false });
+            footerBox.addEventListener('touchmove', handleTouchMove, { passive: true });
+            footerBox.addEventListener('touchend', (e) => handleTouchEnd(e, footerBox));
+        }
+
+        if (copyrightText) {
+            copyrightText.addEventListener('touchstart', handleTouchStart, { passive: false });
+            copyrightText.addEventListener('touchmove', handleTouchMove, { passive: true });
+            copyrightText.addEventListener('touchend', (e) => handleTouchEnd(e, copyrightText));
+        }
 
         // 点击遮罩时关闭
         overlay.addEventListener('click', () => {
