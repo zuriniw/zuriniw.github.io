@@ -1230,6 +1230,66 @@ function addClickEffect(e) {
 // 添加点击事件监听
 document.addEventListener('click', addClickEffect);
 
+// 初始化暗色遮罩层
+function initDarkOverlay() {
+    // 创建遮罩层
+    let overlay = document.querySelector('.dark-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'dark-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    // 处理 footer 元素的点击
+    const footerBox = document.querySelector('.footer-box');
+    const copyright = document.querySelector('.copyright-text');
+    
+    function showOverlay(targetElement) {
+        overlay.classList.add('active');
+        targetElement.classList.add('active');
+        document.body.style.overflow = 'hidden'; // 防止背景滚动
+    }
+    
+    function hideOverlay() {
+        overlay.classList.remove('active');
+        footerBox.classList.remove('active');
+        copyright.classList.remove('active');
+        document.body.style.overflow = ''; // 恢复滚动
+    }
+    
+    // 点击遮罩层时关闭
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            hideOverlay();
+        }
+    });
+
+    // 处理 footer 元素的点击事件
+    if (footerBox) {
+        footerBox.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showOverlay(footerBox);
+        });
+    }
+
+    if (copyright) {
+        copyright.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showOverlay(copyright);
+        });
+    }
+
+    // 添加 ESC 键关闭功能
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hideOverlay();
+        }
+    });
+}
+
+// 初始化调用
+document.addEventListener('DOMContentLoaded', initDarkOverlay);
+
 // 创建交集图例
 function createIntersectionLegend() {
     // 如果已存在图例，先移除

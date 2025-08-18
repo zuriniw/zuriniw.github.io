@@ -130,12 +130,17 @@
     font-family: "JetBrains Mono", monospace;
     white-space: pre-wrap; /* 允许文本换行 */
     max-width: calc(100vw - 120px); /* 设置最大宽度，留出左右边距 */
+    word-break: break-word; /* 允许在任何字符间换行 */
+    overflow-wrap: break-word; /* 确保长单词也会换行 */
+    line-height: 1.4; /* 改善文字间距 */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     font-weight: 400;
     color: var(--color-background);
     z-index: 1001;
+    max-height: calc(100vh - 160px); /* 确保不会超出屏幕高度 */
+    overflow-y: auto; /* 如果内容太长，允许滚动 */
 }
 
 @media screen and (max-width: 768px) {
@@ -148,8 +153,7 @@
 }
 
 /* 创建全屏遮罩 */
-.footer-box::before {
-    content: '';
+.dark-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -159,13 +163,23 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease;
-    pointer-events: none;
-    z-index: 1000;
+    pointer-events: auto; /* 允许接收点击事件 */
+    z-index: 999; /* 确保在文字下方但在页面内容上方 */
+    cursor: pointer; /* 指示可点击 */
 }
 
-.footer-box:hover::before {
+.dark-overlay.active {
     opacity: 1;
     visibility: visible;
+}
+
+/* 原有的遮罩样式修改为不可见的占位 */
+.footer-box::before {
+    display: none;
+}
+
+.footer-box.active::before {
+    display: none;
 }
 
 .footer-box:hover .box-tooltip {
@@ -343,16 +357,14 @@
 
 /* 添加移动端触摸支持 */
 @media (hover: none) {
-    .footer-box:active::before,
-    .footer-box:active .box-tooltip,
-    .copyright-text:active::before,
-    .copyright-text:active .copyright-tooltip,
-    .copyright-text:active .typing-line {
+    .footer-box.active .box-tooltip,
+    .copyright-text.active .copyright-tooltip,
+    .copyright-text.active .typing-line {
         opacity: 1;
         visibility: visible;
     }
 
-    .footer-box:active .typing-line {
+    .footer-box.active .typing-line {
         animation-play-state: running;
     }
 }
