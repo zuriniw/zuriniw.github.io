@@ -351,7 +351,7 @@ body::-webkit-scrollbar {
 .legend-point.pattern-3::after {
     content: '';
     position: absolute;
-    background-color: var(--color-text);
+    background-color: rgba(128, 128, 128, 0.473);
     width: 1.2px;
     height: 12px;
     top: 50%;
@@ -368,8 +368,8 @@ body::-webkit-scrollbar {
 }
 
 .legend-point.pattern-full {
-    background-color: var(--color-text);
-    border: none;
+    background-color: grey;
+    border: 1.2px solid var(--color-text);
 }
 
 .legend-content {
@@ -380,8 +380,8 @@ body::-webkit-scrollbar {
 
 /* project point pattern for triple intersection */
 .project-point.intersection-full {
-    background-color: var(--color-text);
-    border: none;
+    background-color: grey;
+    border: 1.2px solid var(--color-text);
 }
 
 /* 删除重复的样式定义，已在上面定义过了 */
