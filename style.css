@@ -408,7 +408,7 @@ body::-webkit-scrollbar {
     max-width: 760px;
     margin: 0 auto;
     justify-content: flex-start;  /* 改为左对齐 */
-    gap: 24px;  /* 添加固定间距 */
+    gap: 12px;  /* 添加固定间距 */
 }
 
 /* active button style */
@@ -461,7 +461,7 @@ button:hover {
     margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fit, 243.2px);
-    gap: 10px;
+    gap: 15px;
     row-gap: 28px;
     justify-content: center;
     width: 100%;
@@ -472,7 +472,7 @@ button:hover {
 
 /* card style */
 .card {
-    width: 242px;
+    width: 243.2px;
     display: flex;
     flex-direction: column;
     height: 280px;
@@ -1482,7 +1482,7 @@ body.project-page {
     font-size: 24px;
     color: var(--color-text);
     font-weight: 550;
-    padding: 0 20px;
+    padding: 0 0px;
     width: 100%;
     max-width: 760px;
     margin-left: auto;
@@ -1509,7 +1509,7 @@ body.project-page {
     line-height: 1.2;
     font-weight: 400;
     text-align: right;
-    padding: 0 20px;
+    padding: 0 0px;
     width: 100%;
     max-width: 760px;
     margin-left: auto;
