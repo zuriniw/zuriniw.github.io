@@ -173,13 +173,38 @@
     visibility: visible;
 }
 
-/* 原有的遮罩样式修改为不可见的占位 */
-.footer-box::before {
-    display: none;
+/* 保持桌面端的hover效果 */
+@media (hover: hover) {
+    .footer-box::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.85);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        pointer-events: none;
+        z-index: 1000;
+    }
+
+    .footer-box:hover::before {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
-.footer-box.active::before {
-    display: none;
+/* 移动端使用active类 */
+@media (hover: none) {
+    .footer-box::before {
+        display: none;
+    }
+
+    .footer-box.active::before {
+        display: none;
+    }
 }
 
 .footer-box:hover .box-tooltip {
@@ -355,7 +380,21 @@
     visibility: visible;
 }
 
-/* 添加移动端触摸支持 */
+/* 桌面端hover效果 */
+@media (hover: hover) {
+    .footer-box:hover .box-tooltip,
+    .copyright-text:hover .copyright-tooltip,
+    .copyright-text:hover .typing-line {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .footer-box:hover .typing-line {
+        animation-play-state: running;
+    }
+}
+
+/* 移动端触摸支持 */
 @media (hover: none) {
     .footer-box.active .box-tooltip,
     .copyright-text.active .copyright-tooltip,

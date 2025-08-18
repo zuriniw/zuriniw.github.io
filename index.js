@@ -1232,6 +1232,11 @@ document.addEventListener('click', addClickEffect);
 
 // 初始化暗色遮罩层
 function initDarkOverlay() {
+    // 只在移动端初始化
+    if (window.matchMedia('(hover: hover)').matches) {
+        return;
+    }
+
     // 创建遮罩层
     let overlay = document.querySelector('.dark-overlay');
     if (!overlay) {
