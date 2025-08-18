@@ -319,7 +319,7 @@ function createProjectCards() {
             <div class="card-body">
                 <div class="card-title-container">
                     <h3 class="card-title">${project.title}</h3>
-                    ${project.youtubeLink ? '<span class="video-icon">▶</span>' : ''}
+                    ${project.youtubeLink ? '<span class="video-icon"></span>' : ''}
                 </div>
                 <p class="card-time">
                     ${project.time}
