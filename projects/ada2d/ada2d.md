@@ -35,15 +35,6 @@ Each widget has 3 levels of details (LoD), and the size of the widget is determi
 </figure>
 
 
-### 1.2 Workflow
-
-<figure>
-
-<img src="wf.png">
-
-<figcaption>4 parts one build on another</figcaption>
-
-</figure>
 
 
 ## 2. Setup
