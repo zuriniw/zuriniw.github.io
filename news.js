@@ -21,6 +21,10 @@ function parseTime(timeStr) {
 
 const newsItems = [
     new NewsItem({
+        time: "2025.08",
+        event: `I launched two new lateral-puzzle games this summer. Although I hadn’t worked on this for quite a while, old players still remember me—which makes me so happy! For fans of horror and interactive storytelling, check them out on BiliBili: <a href="https://www.bilibili.com/video/BV1iyuMzoEuB/">here</a> and <a href="https://www.bilibili.com/video/BV1FpupzuEnm/?vd_source=0f99d8862012dc3500590ba5b2bad6e7">here</a>.`
+    }),
+    new NewsItem({
         time: "2025.06",
         event: `Spring 2025 <b>Computational Design Commendation</b> for outstanding academic achievements in CMU`,
         isstar: true,
