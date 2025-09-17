@@ -31,8 +31,7 @@ const newsItems = [
     }),
     new NewsItem({
         time: "2025.03",
-        event: `<b>the research project "Embodied Generative Taskscape: Re-Connect Cultural-Ecological Perception in 5-Animal Play," has been accepted to the 4S 2025 Conference: Reverberations, which will be held September 3-6, 2025 in Seattle, WA. </a>`,
-        isstar: true,
+        event: `<b>An Acstract has been accepted to 4S 2025 Conference Panel, September 3-6, 2025 in Seattle, WA. </a>`,
     }),
     new NewsItem({
         time: "2025.01",
