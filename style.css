@@ -1165,7 +1165,7 @@ point label hover effect
 }
 
 .about-greeting {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 40px;
     color: var(--color-text);
     font-weight: 350;
@@ -1187,7 +1187,7 @@ point label hover effect
 
 .about-text {
     font-family: "Barlow", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6;
     color: var(--color-text);
     letter-spacing: 0.4px;
@@ -2002,6 +2002,7 @@ body.project-page {
     .intro a:hover,
     .intro a:active {
         font-family: "JetBrains Mono", monospace !important;
+        font-size: 10px !important;
         border-bottom: 0cap !important;
     }
 
@@ -2270,6 +2271,15 @@ body.project-page {
     button:hover {
         background-color: transparent;
         color: inherit;
+    }
+
+    /* 专门移除 switch-view 按钮的悬停效果 */
+    .switch-view:hover {
+        background-color: transparent !important;
+    }
+
+    .switch-view img:hover {
+        filter: none !important;
     }
 
     /* 调整链接按压效果 */

@@ -40,6 +40,7 @@ Bachelor of Architecture, GPA: 3.7/4.0
 
 **Languages:** 
 English (Fluent), Mandarin (Native), Portuguese (Beginner)
+
 ## Papers and Journals
 
 **(In submission, CHI 2026) “Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots**  
@@ -65,45 +66,46 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 <i style="color: rgb(130, 130, 130)">Summary: Ziru is working on building new intelligent infrastructures for everyday contexts.</i>
 
 <dl>
-    <dt>Master Researcher student at Interactive Structures Lab, Human-Computer Interaction Istitute, Carnegie Mellon University</dt>
+    <dt>Master’s Research Student at Interactive Structures Lab, Human-Computer Interaction Institute, Carnegie Mellon University</dt>
     <dd>04/2025 — Present</dd>
 </dl>
 
-- Human perception of Proactive Assistance Robot in everyday scenarios
+- Conducted a Wizard-of-Oz user study on small-scale personal robots across private, social, and public-work environments; modeled intention-aware and intention-revealing proactivity, and distilled quantitative and qualitative findings into design recommendations for unobtrusive proactive robots.  
+- Building a computational pipeline to orchestrate the multimodal behaviors of proactive personal robots, integrating perception, decision-making, and interaction modules (ongoing).
+
+
+
+<br>
 
 <dl>
-    <dt>Design Researcher at CodeLab, Carnegie Mellon University</dt>
-    <dd>08/2024 — Present</dd>
+    <dt>Research Student at CodeLab, Carnegie Mellon University</dt>
+    <dd>02/2025 — 06/2025</dd>
 </dl>
 
-- Independent Project 1: Conceptualized and implemented a real-time, pose-driven image generation pipeline for Human-AI co-creation in embodied practices, leveraging MediaPipe for motion capture and StreamDiffusion for image synthesis
-- Independent Project 2: Applied ML techniques and the Traveling Salesman Algorithm to optimize curation of interdisciplinary creative outputs
+- Independent Project 1: Implemented a real-time system that transformed hand shadows into six-panel comic storytelling, leveraging MediaPipe for motion capture, StreamDiffusion for real-time image synthesis, and an LLM for caption generation.  
+- Independent Project 2: Experimented with ML techniques to automate the curation of creative works, exploring varying balances between human-led and machine-led decision-making.
+
+<br>
+
 
 <dl>
-    <dt>Research Assistant at WHY Research Lab, Carnegie Mellon University</dt>
+    <dt>Research Intern at WHY Research Lab, Carnegie Mellon University</dt>
     <dd>08/2024 — 01/2025</dd>
 </dl>
 
-- Conceptualized and facilitated e-waste workshops (device 'funerals' and 'surgeries') to critically examine technology lifecycles and sustainable disposal practices
-- Built the WasteStation database in Notion to map connections between components and potential reuse applications
-- Repurposed dismantled disk drives into 'Ladybug', an innovative scanning device, through disassembly, resoldering, and Raspberry Pi integration, showcasing innovative recycling possibilities and strategies
-
-<dl>
-    <dt>Web Application Designer, ScottyLabs, Carnegie Mellon University</dt>
-    <dd>11/2024 — 01/2025</dd>
-</dl>
-
-- Designed interface architecture for the new CMU Research Portal, delivering Figma wireframes
-- Collaborated with the technical team to implement key components and features, enhancing user navigation of research resources
+- Built the WasteStation database in Notion to map connections between components and potential reuse applications  
+- Replicated the 'Ladybug' project, which transformed dismantled disk drives into a scanning device through disassembly, resoldering, and Raspberry Pi integration
+<br>
 
 <dl>
     <dt>Research Assistant, Humachine Lab, Soochow University</dt>
     <dd>08/2021 — 07/2022</dd>
 </dl>
 
-- Executed Fologram-based Mixed Reality (MR) workflows in nonlinear panel assembly of a full-scale house within 10 days
-- Framed and led 4 different collaboration methods to maximize the benefits of MR in registration and adjustment, synchronized work and cross-time work
-- Documented the design-to-construction process and contributed to academic writing 
+- Executed Mixed Reality (MR) workflows in nonlinear panel assembly of a full-scale house within 10 days  
+- Framed and led four collaboration methods to maximize the benefits of MR in registration, adjustment, synchronized work, and cross-time work  
+- Documented the design-to-construction process and contributed to academic writing
+
 
 
 ## Awards and Honors
@@ -112,7 +114,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dt>Computational Design Commendation, Carnegie Mellon University</dt>
     <dd>2025 Spring</dd>
 </dl>
-
+<br>
 <dl>
     <dt>Computational Design Commendation, Carnegie Mellon University</dt>
     <dd>2024 Fall</dd>
@@ -122,7 +124,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 
 <dl>
     <dt>Merit Scholarship, Carnegie Mellon University</dt>
-    <dd>2024</dd>
+    <dd>2024 - 2026</dd>
 </dl>
 
 <br>
@@ -170,6 +172,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 - Worked as a Guest Reviewer for the Spring 2025 Fundamentals of Computational Design course at Carnegie Mellon University, taught by Vernelle A. A. Noel. 
 - Facilitated project reviews for over 50 students working in teams, providing feedback to support their growth in computational design practices.
 
+<br>
 <dl>
     <dt>Student Volunteer at des[AI]gn conference 2024, American Institute of Architecture Students (AIAS) NEQ</dt>
     <dd>10/2024</dd>
@@ -177,6 +180,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 
 - Assisted in workshop setup, documented the sessions through photography, and facilitated the use of interactive swatch-making software for creating knit samples in the CMU Textiles Lab
 - Coordinated logistics and facilitated the setup for an AI panel discussion and the opening session of the conference
+<br>
 
 <dl>
     <dt>Suzhou International Design Week</dt>
@@ -184,6 +188,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 </dl>
 
 - Exhibited 'Layered Rafters Lodge', a design integrating traditional material framing with modern bamboo construction techniques
+<br>
 
 <dl>
     <dt>Design Exhibition Curatorial Assistant</dt>
