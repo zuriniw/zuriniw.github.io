@@ -88,7 +88,7 @@ const projects = [
         prize: "Best Academic Contribution Award",
         ismarkdown: true,   
         weight: 9,
-        situate: { x: -68, y: 37 },
+        situate: { x: -38, y: 37 },
         otherLink2: null
     }),
     new Project({
