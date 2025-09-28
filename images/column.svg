@@ -1,0 +1,17 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Column view icon with 3 vertical bars representing columns -->
+  <rect x="1" y="2" width="2.5" height="12" fill="currentColor" rx="0.5"/>
+  <rect x="6.75" y="2" width="2.5" height="12" fill="currentColor" rx="0.5"/>
+  <rect x="12.5" y="2" width="2.5" height="12" fill="currentColor" rx="0.5"/>
+  
+  <!-- Small dividers to represent items within columns -->
+  <line x1="1.5" y1="6" x2="3" y2="6" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+  <line x1="1.5" y1="10" x2="3" y2="10" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+  
+  <line x1="7.25" y1="5" x2="8.75" y2="5" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+  <line x1="7.25" y1="8" x2="8.75" y2="8" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+  <line x1="7.25" y1="11" x2="8.75" y2="11" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+  
+  <line x1="13" y1="4" x2="14.5" y2="4" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+  <line x1="13" y1="7" x2="14.5" y2="7" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+</svg>

@@ -1,0 +1,288 @@
+/* Column View Styles */
+.column-view {
+    padding: 80px 0;
+    min-height: 100vh;
+}
+
+.column-container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(180px, 200px));
+    gap: 8px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px;
+    justify-content: center;
+    position: relative;
+}
+
+/* Category Column */
+.category-column {
+    background: rgba(255, 255, 255, 0.02);
+    min-height: 200px;
+    padding: 4px;
+    position: relative;
+}
+
+.category-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: 20px; /* 固定标题高度确保对齐 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+/* Project Card in Column */
+.column-project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0;
+    padding: 24px 4px 0px 4px;
+    transition: all 0.2s ease;
+}
+
+.column-project-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.column-project-card.hide {
+    display: none;
+}
+
+.column-project-image {
+    width: 100%;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 0;
+    margin-bottom: 4px;
+    border: 1px solid #000;
+}
+
+.column-project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.2);
+    transition: filter 0.2s ease;
+}
+
+.column-project-card:hover .column-project-image img {
+    filter: grayscale(0);
+}
+
+.column-project-info {
+    text-align: left;
+}
+
+.column-project-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: #000;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Desktop-only lines (横线和竖线) */
+@media screen and (min-width: 1025px) {
+    /* 横线：贯穿所有column title下方 */
+    .column-container::after {
+        content: '';
+        position: absolute;
+        top: 44px; /* 12px(column padding) + 20px(title height) + 12px(title margin-bottom) */
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #000000;
+        z-index: 10;
+        pointer-events: none;
+    }
+    
+    /* 竖线：每个column之间的分割线 */
+    .category-column:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        top: 44px; /* 与横线对齐 */
+        right: -4px; /* gap(8px)的一半 */
+        bottom: 0;
+        width: 1.4px;
+        background: #000000;
+        z-index: 10;
+        pointer-events: none;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .column-container {
+        grid-template-columns: repeat(3, minmax(160px, 180px));
+        gap: 6px;
+    }
+    
+    /* 移除桌面端的线条效果 */
+    .column-container::after {
+        display: none;
+    }
+    
+    .category-column::before {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .column-container {
+        grid-template-columns: repeat(2, minmax(150px, 200px));
+        gap: 6px;
+        padding: 0 12px;
+    }
+    
+    .category-column {
+        padding: 10px;
+    }
+    
+    /* 确保移除桌面端的线条效果 */
+    .column-container::after {
+        display: none;
+    }
+    
+    .category-column::before {
+        display: none;
+    }
+    
+    .category-title {
+        font-size: 11px;
+        margin-bottom: 10px;
+        height: 18px;
+    }
+    
+    .column-project-card {
+        padding: 6px;
+    }
+    
+    .column-project-image {
+        height: 60px;
+        border: 1.5px solid #000;
+    }
+    
+    .column-project-title {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .column-view {
+        padding: 12px 0;
+    }
+    
+    .column-container {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 0 10px;
+    }
+    
+    .category-column {
+        padding: 12px 10px;
+    }
+    
+    /* 确保移除桌面端的线条效果 */
+    .column-container::after {
+        display: none;
+    }
+    
+    .category-column::before {
+        display: none;
+    }
+    
+    .category-title {
+        height: 16px;
+        font-size: 10px;
+    }
+    
+    .column-project-image {
+        height: 50px;
+        border: 1.5px solid #000;
+    }
+    
+    .column-project-title {
+        font-size: 10px;
+    }
+}
+
+/* Filter Integration */
+.column-project-card[data-digital],
+.column-project-card[data-physical],
+.column-project-card[data-xr],
+.column-project-card[data-hcd] {
+    /* Ensure all label attributes are available for filtering */
+    position: relative;
+}
+
+/* Hide/Show animations */
+.column-project-card {
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.column-project-card.hide {
+    opacity: 0;
+    transform: scale(0.98);
+    pointer-events: none;
+    margin: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Hover filter effects for column view */
+.column-project-card.fade-out {
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
+}
+
+/* 确保分割线不受任何效果影响 - 最强规则 */
+.column-container::after {
+    opacity: 1 !important;
+    z-index: 999 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* 强制所有竖线保持可见 - 覆盖所有可能的情况 */
+.category-column::before,
+.category-column:not(:has(.column-project-card:not(.hide)))::before,
+.category-column:has(.column-project-card:not(.hide))::before,
+.category-column:has(.column-project-card.fade-out)::before,
+.category-column:not(:has(.column-project-card:not(.hide))):has(.column-project-card.fade-out)::before {
+    opacity: 1 !important;
+    z-index: 999 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Empty category handling */
+.category-column:has(.column-project-card:not(.hide)) .category-title {
+    opacity: 1;
+}
+
+.category-column:not(:has(.column-project-card:not(.hide))) {
+    opacity: 0.3;
+}
+
+/* 确保空column的竖线仍然可见 - 已合并到上面的最强规则中 */
+
+.category-column:not(:has(.column-project-card:not(.hide))) .category-title {
+    opacity: 0.5;
+}

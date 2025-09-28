@@ -1,6 +1,6 @@
 console.log('Script is running');
 
-import { projects, availableLabels } from './projects/project_info.js';
+import { projects, availableLabels, availableCategories } from './projects/project_info.js';
 import { Delaunay } from 'https://cdn.jsdelivr.net/npm/d3-delaunay@6/+esm';
 import { initMobilePlayer } from './scripts/mbplay.js';
 
@@ -399,8 +399,8 @@ function handleFilterClick(e) {
     updateCards();
 
     // 只在坐标轴视图中更新图例
-    const isGalleryView = sessionStorage.getItem('isGalleryView') === 'true';
-    if (!isGalleryView) {
+    const currentView = sessionStorage.getItem('currentView') || 'gallery';
+    if (currentView === 'coordinate') {
         updateIntersectionLegend();
     }
 }
@@ -409,6 +409,7 @@ function handleFilterClick(e) {
 function updateCards() {
     const cards = cardSection.querySelectorAll('.card');
     const pointWrappers = document.querySelectorAll('.point-wrapper');
+    const columnCards = document.querySelectorAll('.column-project-card');
     
     // 更新数轴视图的点
     pointWrappers.forEach(wrapper => {
@@ -419,6 +420,18 @@ function updateCards() {
             wrapper.classList.remove('hide');
         } else {
             wrapper.classList.add('hide');
+        }
+    });
+    
+    // 更新列视图的卡片
+    columnCards.forEach(card => {
+        const hasMatchingFilter = activeFilters.length === 0 || 
+            activeFilters.some(filter => card.hasAttribute(`data-${filter.toLowerCase()}`));
+        
+        if (hasMatchingFilter) {
+            card.classList.remove('hide');
+        } else {
+            card.classList.add('hide');
         }
     });
 
@@ -739,6 +752,14 @@ function addFilterHoverEffects() {
                     point.classList.toggle('fade-out', isActive);
                 }
             });
+            
+            // 添加column视图的hover效果
+            const columnCards = document.querySelectorAll('.column-project-card');
+            columnCards.forEach(card => {
+                if (!card.hasAttribute(`data-${sanitizedLabel}`)) {
+                    card.classList.toggle('fade-out', isActive);
+                }
+            });
 
             // 获取当前可见的点
             const visiblePoints = Array.from(points).filter(point => 
@@ -960,6 +981,93 @@ function initFilterScroll() {
     });
 }
 
+// 创建分类列视图
+function createCategoryColumns() {
+    const columnContainer = document.querySelector('.column-container');
+    if (!columnContainer) return;
+    
+    // 清空现有内容
+    columnContainer.innerHTML = '';
+    
+    // 为每个类别创建一列
+    availableCategories.forEach(category => {
+        const column = document.createElement('div');
+        column.className = 'category-column';
+        column.setAttribute('data-category', category.replace(/\s+/g, '-'));
+        
+        // 创建类别标题
+        const title = document.createElement('div');
+        title.className = 'category-title';
+        title.textContent = category.toUpperCase();
+        
+        // 创建项目容器
+        const projectsContainer = document.createElement('div');
+        projectsContainer.className = 'category-projects';
+        
+        // 获取属于该类别的项目
+        const categoryProjects = projects.filter(project => project.category === category);
+        
+        // 按weight排序项目
+        categoryProjects.sort(compareProjects);
+        
+        // 为每个项目创建卡片
+        categoryProjects.forEach(project => {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'column-project-card';
+            
+            // 添加标签数据属性用于过滤
+            project.labels.forEach(label => {
+                const sanitizedLabel = label.toLowerCase().replace(/\//g, '-');
+                projectCard.setAttribute(`data-${sanitizedLabel}`, '');
+            });
+            
+            // 添加点击事件
+            if (project.ispage) {
+                projectCard.style.cursor = 'pointer';
+                projectCard.addEventListener('click', () => {
+                    window.location.href = project.getHtmlPath();
+                });
+            } else {
+                projectCard.style.cursor = 'url(images/closedhand.svg) 10 10, auto';
+            }
+            
+            // 创建项目内容
+            projectCard.innerHTML = `
+                <div class="column-project-image">
+                    <img src="${project.getGifPath()}" alt="${project.title}">
+                </div>
+                <div class="column-project-info">
+                    <h4 class="column-project-title">${project.title}</h4>
+                </div>
+            `;
+            
+            // 添加卡片悬停效果
+            projectCard.addEventListener('mouseenter', () => {
+                const buttons = document.querySelectorAll('.buttons-section button');
+                buttons.forEach(button => {
+                    const buttonFilter = button.getAttribute('data-name').toLowerCase().replace(/\//g, '-');
+                    if (projectCard.hasAttribute(`data-${buttonFilter}`)) {
+                        button.classList.add('point-hover');
+                    }
+                });
+            });
+
+            projectCard.addEventListener('mouseleave', () => {
+                const buttons = document.querySelectorAll('.buttons-section button');
+                buttons.forEach(button => {
+                    button.classList.remove('point-hover');
+                });
+            });
+            
+            projectsContainer.appendChild(projectCard);
+        });
+        
+        column.appendChild(title);
+        column.appendChild(projectsContainer);
+        columnContainer.appendChild(column);
+    });
+}
+
 // 修改项目点生成功能
 function createProjectPoints() {
     const container = document.querySelector('.coordinate-container');
@@ -1131,69 +1239,100 @@ function initViewSwitch() {
     const switchButton = document.querySelector('.switch-view');
     const cardsSection = document.querySelector('.cards-section');
     const coordinateView = document.querySelector('.coordinate-view');
-    // 从 sessionStorage 获取视图状态
-    let isGalleryView = sessionStorage.getItem('isGalleryView') === 'true';
+    const columnView = document.querySelector('.column-view');
+    // 从 sessionStorage 获取视图状态，默认为 'gallery'
+    let currentView = sessionStorage.getItem('currentView') || 'gallery';
     let pointsCreated = false;
+    let columnsCreated = false;
 
     // 更新视图状态的函数
-    const updateViewState = (isGallery) => {
+    const updateViewState = (view) => {
         const switchLabel = document.querySelector('.switch-label');
         
-        if (isGallery) {
-            cardsSection.classList.remove('hide');
-            coordinateView.classList.add('hide');
-            switchButton.innerHTML = '<img src="images/matrix.svg" alt="Matrix Icon">';
-            if (switchLabel) {
-                switchLabel.textContent = 'Map\nView';
-            }
-            // 隐藏图例
-            const legend = document.querySelector('.intersection-legend');
-            if (legend) {
-                legend.classList.remove('show');
-            }
-        } else {
-            cardsSection.classList.add('hide');
-            coordinateView.classList.remove('hide');
-            switchButton.innerHTML = '<img src="images/gallery.svg" alt="Gallery Icon">';
-            if (switchLabel) {
-                switchLabel.textContent = 'Gallery\nView';
-            }
-            // 如果有活动的过滤器且是2个或3个，则显示图例
-            if (activeFilters.length === 2 || activeFilters.length === 3) {
-                updateIntersectionLegend();
-            }
+        // 隐藏所有视图
+        cardsSection.classList.add('hide');
+        columnView.classList.add('hide');
+        coordinateView.classList.add('hide');
+        
+        // 隐藏图例
+        const legend = document.querySelector('.intersection-legend');
+        if (legend) {
+            legend.classList.remove('show');
+        }
+        
+        // 根据视图模式显示相应的内容和按钮
+        switch(view) {
+            case 'gallery':
+                cardsSection.classList.remove('hide');
+                switchButton.innerHTML = '<img src="images/column.svg" alt="Column Icon">';
+                if (switchLabel) {
+                    switchLabel.textContent = 'Column\nView';
+                }
+                break;
+            case 'column':
+                columnView.classList.remove('hide');
+                switchButton.innerHTML = '<img src="images/matrix.svg" alt="Matrix Icon">';
+                if (switchLabel) {
+                    switchLabel.textContent = 'Map\nView';
+                }
+                break;
+            case 'coordinate':
+                coordinateView.classList.remove('hide');
+                switchButton.innerHTML = '<img src="images/gallery.svg" alt="Gallery Icon">';
+                if (switchLabel) {
+                    switchLabel.textContent = 'Gallery\nView';
+                }
+                // 如果有活动的过滤器且是2个或3个，则显示图例
+                if (activeFilters.length === 2 || activeFilters.length === 3) {
+                    updateIntersectionLegend();
+                }
+                break;
         }
     };
 
     // 初始状态设置
-    updateViewState(isGalleryView);
-    if (!isGalleryView) {
-        createProjectPoints();  // 创建项目点
+    updateViewState(currentView);
+    if (currentView === 'coordinate') {
+        createProjectPoints();
         pointsCreated = true;
+    } else if (currentView === 'column') {
+        createCategoryColumns();
+        columnsCreated = true;
     }
 
     switchButton.addEventListener('click', () => {
-        if (isGalleryView) {
-            // 切换到数轴视图
-            if (!pointsCreated) {
-                createProjectPoints();
-                pointsCreated = true;
-            }
-
-            // 更新点的可见性
-            const pointWrappers = document.querySelectorAll('.point-wrapper');
-            pointWrappers.forEach(wrapper => {
-                const isVisible = activeFilters.length === 0 || 
-                    activeFilters.some(filter => wrapper.hasAttribute(`data-${filter.toLowerCase()}`));
-                wrapper.classList.toggle('hide', !isVisible);
-            });
+        // 循环切换三种视图：gallery -> column -> coordinate -> gallery
+        switch(currentView) {
+            case 'gallery':
+                currentView = 'column';
+                if (!columnsCreated) {
+                    createCategoryColumns();
+                    columnsCreated = true;
+                }
+                break;
+            case 'column':
+                currentView = 'coordinate';
+                if (!pointsCreated) {
+                    createProjectPoints();
+                    pointsCreated = true;
+                }
+                // 更新点的可见性
+                const pointWrappers = document.querySelectorAll('.point-wrapper');
+                pointWrappers.forEach(wrapper => {
+                    const isVisible = activeFilters.length === 0 || 
+                        activeFilters.some(filter => wrapper.hasAttribute(`data-${filter.toLowerCase()}`));
+                    wrapper.classList.toggle('hide', !isVisible);
+                });
+                break;
+            case 'coordinate':
+                currentView = 'gallery';
+                break;
         }
-
-        isGalleryView = !isGalleryView;
+        
         // 保存视图状态到 sessionStorage
-        sessionStorage.setItem('isGalleryView', isGalleryView);
+        sessionStorage.setItem('currentView', currentView);
         // 应用新的视图状态
-        updateViewState(isGalleryView);
+        updateViewState(currentView);
     });
 }
 
@@ -1357,9 +1496,9 @@ function updateLegend() {
 // 更新图例内容和显示状态
 function updateIntersectionLegend() {
     // 检查当前视图模式
-    const isGalleryView = sessionStorage.getItem('isGalleryView') === 'true';
-    if (isGalleryView) {
-        // 在画廊模式下，隐藏图例
+    const currentView = sessionStorage.getItem('currentView') || 'gallery';
+    if (currentView !== 'coordinate') {
+        // 只在坐标轴视图下显示图例
         const existingLegend = document.querySelector('.intersection-legend');
         if (existingLegend) {
             existingLegend.classList.remove('show');
@@ -1699,6 +1838,10 @@ function clearAllPreviews() {
     // 清除所有hover效果
     const points = document.querySelectorAll('.project-point');
     points.forEach(point => point.classList.remove('hover-effect'));
+    
+    // 清除column卡片的fade-out效果
+    const columnCards = document.querySelectorAll('.column-project-card');
+    columnCards.forEach(card => card.classList.remove('fade-out'));
 }
 
 // 添加页面可见性变化监听

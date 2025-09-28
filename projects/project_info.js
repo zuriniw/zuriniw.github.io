@@ -24,7 +24,8 @@ class Project {
         prize = null,
         weight = null,
         situate = null,
-        isflipped = false
+        isflipped = false,
+        category = null
     }) {
         this.name = name;
         this.title = title;
@@ -51,6 +52,7 @@ class Project {
         this.weight = weight;
         this.situate = situate;
         this.isflipped = isflipped;
+        this.category = category;
     }
 
     // 获取项目 HTML 页面路径
@@ -89,7 +91,8 @@ const projects = [
         ismarkdown: true,   
         weight: 9,
         situate: { x: -38, y: 37 },
-        otherLink2: null
+        otherLink2: null,
+        category: "blended environment"
     }),
     new Project({
         name: "seeingsaw",
@@ -111,7 +114,8 @@ const projects = [
         otherLink2: "http://ideate.xsead.cmu.edu/gallery/projects/remaking-shaker-1996",
         weight: 8.9,
         isflipped: false,
-        situate: { x: 70, y: 20 }
+        situate: { x: 70, y: 20 },
+        category: "devices"
     }),
     new Project({
         name: "shapeshift",
@@ -129,7 +133,8 @@ const projects = [
         weight: 6.1,
         situate: { x: 70, y: -56 },
         ismarkdown: true,
-        isflipped: false
+        isflipped: false,
+        category: "computational design tool"
     }),
     new Project({
         name: "villagerenewal",
@@ -149,6 +154,7 @@ const projects = [
         weight: 5,
         situate: { x: -50, y: 70 },
         otherLink2: "https://www.behance.net/gallery/217218343/Village-Renewal-Design-in-Fujian-China",
+        category: "architecture and installation"
     }),
     new Project({
         name: "aurora",
@@ -167,7 +173,8 @@ const projects = [
         otherLink2: "https://humachine.cn/?post_type=products&page_id=16963",
         weight: 8.1,
         ismarkdown: true,
-        situate: { x: 70, y: -85 }
+        situate: { x: 70, y: -85 },
+        category: "blended environment"
     }),
     // new Project({
     //     name: "bodymusic",
@@ -245,10 +252,11 @@ const projects = [
         isteam: false,
         tools: "Grasshopper",
         weight: 4,
-        situate: { x: 60, y: -51 },
+        situate: { x: 50, y: -51 },
         isflipped: true,
         ispage: true,
-        ismarkdown: true
+        ismarkdown: true,
+        category: "computational design tool"
     }),
     new Project({
         name: "mobius",
@@ -265,7 +273,8 @@ const projects = [
         prize: "Patent",
         weight: 5,
         otherLink2:"https://humachine.cn/?post_type=products&page_id=17054",
-        situate: { x: -30, y: -90 }
+        situate: { x: -30, y: -90 },
+        category: "architecture and installation"
     }),
     // new Project({
     //     name: "intdesign",
@@ -293,7 +302,8 @@ const projects = [
         situate: { x: 70, y: -70 },
         isflipped: false,
         ispage: true,
-        ismarkdown: true
+        ismarkdown: true,
+        category: "devices"
     }),
     // new Project({
     //     name: "mrintdesign",
@@ -324,26 +334,27 @@ const projects = [
         tools: "Unity C#, Arduino Components, HoloLens 2",
         briefDescription: "What if data can flows among the real world and MR scene?",
         weight: 4,
-        situate: { x: 50, y: 80 }
+        situate: { x: 50, y: 80 },
+        category: "blended environment"
     }),
-    // new Project({
-    //     name: "wastemachine",
-    //     title: "Waste Machine",
-    //     subtitle: "Build scanner from abandoned DVD drivers",
-    //     labels: ["Physical"],
-    //     time: "2024",
-    //     collaborator: "Carla Flores Travez",
-    //     tutor: "Daragh Bryne",
-    //     myContribution: "Researching, Disassembling, Assambling",
-    //     isteam: true,
-    //     tools: "Rasp pi, soldering tools",
-    //     briefDescription: "Linking invention and disposal by researching, disassembling, and re-assambling————hold funeral, surgey, and Neonatal surgery for disk drives",
-    //     otherLink2: "https://ziruw.notion.site/waste-machines-input-output-103f6c956a3280d7bc93d368a16e2498?pvs=74",
-    //     situate: { x: 60, y: 70 },
-    //     ispage: true,
-    //     weight: 6,
-    //     ismarkdown: true
-    // }),
+    new Project({
+        name: "wastemachine",
+        title: "Waste Machine",
+        subtitle: "A scanning rig made from abandoned DVD drivers",
+        labels: ["Physical"],
+        time: "2024",
+        collaborator: "Carla Flores Travez",
+        tutor: "Daragh Bryne",
+        myContribution: "Researching, Disassembling, Assambling",
+        isteam: true,
+        tools: "Raspberry pi, electronic soldering tools",
+        briefDescription: "Linking invention and disposal by researching, disassembling, and re-assambling————hold funeral, surgey, and Neonatal surgery for disk drives",
+        situate: { x: 60, y: 40 },
+        ispage: true,
+        weight: 6,
+        ismarkdown: true,
+        category: "devices"
+    }),
     new Project({
         name: "dataresonate",
         title: "Sensible Data",
@@ -356,8 +367,9 @@ const projects = [
         youtubeLink: "https://www.youtube.com/embed/Nbk9Z47OTQQ?si=e-NE6-3MkLDDQATN",
         situate: { x: 70, y: 50 },
         ispage: true,
-        weight: 7,
-        ismarkdown: true
+        weight: 8.7,
+        ismarkdown: true,
+        category: "blended environment"
     }),
     new Project({
         name: "weddingwall",
@@ -372,7 +384,8 @@ const projects = [
         situate: { x: -70, y: -90 },
         ispage: true,
         weight: 4,
-        ismarkdown: true
+        ismarkdown: true,
+        category: "architecture and installation"
     }),
     // new Project({
     //     name: "wavepavilion",
@@ -401,7 +414,8 @@ const projects = [
         ispage: true,
         ismarkdown: true,
         weight: 9,
-        situate: { x: 80, y: 70 }
+        situate: { x: 80, y: 70 },
+        category: "foundamental interaction techniques"
     }),
     new Project({
         name: "autopfl",
@@ -416,7 +430,8 @@ const projects = [
         ispage: true,
         ismarkdown: true,
         weight: 5,
-        situate: { x: 10, y: 50 }
+        situate: { x: 10, y: 50 },
+        category: "computational design tool"
     })
 ];
 
@@ -424,4 +439,12 @@ const availableLabels = [
     "Digital", "Physical", "XR", "HCD"
 ];
 
-export { Project, projects, availableLabels };
+const availableCategories = [
+    "blended environment",
+    "computational design tool", 
+    "devices",
+    "foundamental interaction techniques",
+    "architecture and installation"
+];
+
+export { Project, projects, availableLabels, availableCategories };
