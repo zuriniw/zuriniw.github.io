@@ -7,7 +7,9 @@
     <dd>05/2026</dd>
 </dl>
 
-Master of Science in Computational Design, GPA: 4.0/4.0
+Master of Science in Computational Design (HCI focus), GPA: 4.0/4.0  
+
+Thesis: *Towards Multimodal Interaction with Proactive Physical Agents* (Advised by Prof. Alexandra Ion)
 
 
 <dl>
@@ -21,48 +23,57 @@ Bachelor of Architecture, GPA: 3.7/4.0
 
 **Technical:** 
 - Hardware: Arduino / Raspberry Pi
-- Languages: Python / C# / Pascal / HTML, CSS, Javascript
+- Languages: Python / R / C# / Pascal / HTML, CSS, Javascript
 - Game Engine: Unity
 
-**Design & Production**:
-- Software: 
-    - 3D: Rhino, Grasshopper and GHPython / Blender
-    - 2D: AutoCAD / Adobe Suite / Figma / Procreate
-- Fabrication: 
-    - 3D printing
-    - soldering
+
+**Design & Production**:  
+- **Software**:  
+  - **3D**: Rhino / Grasshopper with GHPython / Blender  
+  - **2D**: AutoCAD / Adobe Creative Suite / Figma / Procreate  
+- **Fabrication**:  
+  - 3D printing  
+  - Soldering and electronic wiring  
+  - Welding (basic)  
+  - Woodworking  
 
 
 **Languages:** 
 English (Fluent), Mandarin (Native), Portuguese (Beginner)
 
-## Publications
+## Papers and Journals
+
+**(In submission, CHI 2026) “Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots**  
+<u>Ziru Wei</u>, Violet Yinuo Han, Tanvi Handoo, Alexandra Ion  
+
+**(In submission, CHI 2026) Embodiment and Interaction Influence Perceptions of Robotic Collaborators in Everyday Physical Tasks**  
+Violet Yinuo Han, <u>Ziru Wei</u>, Aiden Yiliu Li, Chris Wu, Alexandra Ion  
+
+**On-site Holographic Building Construction: A Case Study of Aurora**  
+Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* (Peer-reviewed), 2022  
 
 **Mixed-Reality Assisted Refinement Strategies for Old Residential Renovation and Participatory Design Research: A Case Study of the Sericulture Community in Suzhou**  
 <u>Ziru Wei</u>, X. Zhao, Y. Wang, et al. *Architecture & Culture* (Core Journal of China), July 2023, pp. 180–183. DOI: 10.19875/j.cnki.jzywh.2023.07.057 
 
-**On-site Holographic Building Construction: A Case Study of Aurora**  
-Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* (Peer-reviewed), 2022
+## Posters and Abstracts
 
-## Poster and Abstract
-
-**Embodied Generative Taskscape: Re-Connect Cultural-Ecological Perception in 5-Animal Play**
+**Embodied Generative storytelling**
 
 <u>Ziru Wei</u>, Jimmy Cheng. Has been accepted as an abstract to the 4S 2025 Conference: Reverberations, which will be held September 3-6, 2025 in Seattle, WA. 
 
 ## Experience  
 
-<i style="color: rgb(130, 130, 130)">Summary: Ziru is working on bridging digital-physical realms via computational methods, emphasizing human-centered experience.</i>
+<i style="color: rgb(130, 130, 130)">Summary: Ziru is working on building new intelligent infrastructures for everyday contexts.</i>
 
 <dl>
-    <dt>Research Intern at Interactive Structures Lab, Human-Computer Interaction Istitute, Carnegie Mellon University</dt>
+    <dt>Master Researcher student at Interactive Structures Lab, Human-Computer Interaction Istitute, Carnegie Mellon University</dt>
     <dd>04/2025 — Present</dd>
 </dl>
 
-- Independent Study: Human perception of Proactive Assistance Robot in everyday scenarios
+- Human perception of Proactive Assistance Robot in everyday scenarios
 
 <dl>
-    <dt>Computational Design Researcher at CodeLab, Carnegie Mellon University</dt>
+    <dt>Design Researcher at CodeLab, Carnegie Mellon University</dt>
     <dd>08/2024 — Present</dd>
 </dl>
 
@@ -94,15 +105,6 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 - Executed Fologram-based Mixed Reality (MR) workflows in nonlinear panel assembly of a full-scale house within 10 days
 - Framed and led 4 different collaboration methods to maximize the benefits of MR in registration and adjustment, synchronized work and cross-time work
 - Documented the design-to-construction process and contributed to academic writing 
-
-<dl>
-    <dt>Research Assistant, Sustainable Landscape Group, Soochow University</dt>
-    <dd>04/2022 — 05/2022</dd>
-</dl>
-
-- Collected, cleaned, and curated geospatial datasets using Python (pandas) for analyzing 200+ community garden records to identify Kendall correlations between community garden distribution and obesity rate
-
-
 
 
 ## Awards and Honors
@@ -166,8 +168,8 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dd>01/2025 — 05/2025</dd>
 </dl>
 
-- Invited as a Guest Reviewer for the Spring 2025 Fundamentals of Computational Design course at Carnegie Mellon University, taught by Vernelle A. A. Noel. 
-- Facilitated project reviews for over 50 students working in teams, offering critical feedback and insights to support their growth in computational design practices.
+- Worked as a Guest Reviewer for the Spring 2025 Fundamentals of Computational Design course at Carnegie Mellon University, taught by Vernelle A. A. Noel. 
+- Facilitated project reviews for over 50 students working in teams, providing feedback to support their growth in computational design practices.
 
 <dl>
     <dt>Student Volunteer at des[AI]gn conference 2024, American Institute of Architecture Students (AIAS) NEQ</dt>

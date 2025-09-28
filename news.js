@@ -22,11 +22,11 @@ function parseTime(timeStr) {
 const newsItems = [
     new NewsItem({
         time: "2025.09",
-        event: `We submitted 2 CHI paper! One of them is my first own research. fingers crossed. Great time in <a href="https://interactive-structures.org/" class="news-link">ISL</a> this summer working with amazing people.`,
+        event: `We submitted 2 CHI papers! Fingers crossed.`,
     }),
     new NewsItem({
         time: "2025.08",
-        event: `I launched two new mini lateral-puzzle games this summer. Although I hadn’t worked on this for quite a while, old players still remember me—which makes me so happy! For fans of horror and interactive storytelling, check them out on BiliBili: <a href="https://www.bilibili.com/video/BV1iyuMzoEuB/" class="news-link">here</a> and <a href="https://www.bilibili.com/video/BV1FpupzuEnm/?vd_source=0f99d8862012dc3500590ba5b2bad6e7" class="news-link">here</a>.`
+        event: `I launched two new mini lateral-puzzle games this summer. For fans of horror and interactive storytelling, check them out: <a href="https://www.bilibili.com/video/BV1iyuMzoEuB/" class="news-link">here</a> and <a href="https://www.bilibili.com/video/BV1FpupzuEnm/?vd_source=0f99d8862012dc3500590ba5b2bad6e7" class="news-link">here</a>. (BiliBil account required)` 
     }),
     new NewsItem({
         time: "2025.06",

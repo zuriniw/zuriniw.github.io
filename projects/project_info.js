@@ -76,7 +76,7 @@ const projects = [
         name: "poi",
         title: "POI +-",
         subtitle: "Humanizing MR Spatial Behavior Computation",
-        labels: ["XR", "Human-Centered", "Physical"],
+        labels: ["XR", "HCD", "Physical"],
         time: "2024",
         ispage: true,
         isteam: true,
@@ -95,7 +95,7 @@ const projects = [
         name: "seeingsaw",
         title: "SEEINGSAW",
         subtitle: "Peripheral and expressive awareness in lovable devices",
-        labels: ["Human-Centered","Physical"],
+        labels: ["HCD","Physical"],
         time: "2024",
         ispage: true,
         isteam: true,
@@ -326,29 +326,29 @@ const projects = [
         weight: 4,
         situate: { x: 10, y: 10 }
     }),
-    new Project({
-        name: "wastemachine",
-        title: "Waste Machine",
-        subtitle: "Build scanner from abandoned DVD drivers",
-        labels: ["Physical"],
-        time: "2024",
-        collaborator: "Carla Flores Travez",
-        tutor: "Daragh Bryne",
-        myContribution: "Researching, Disassembling, Assambling",
-        isteam: true,
-        tools: "Rasp pi, soldering tools",
-        briefDescription: "Linking invention and disposal by researching, disassembling, and re-assambling————hold funeral, surgey, and Neonatal surgery for disk drives",
-        otherLink2: "https://ziruw.notion.site/waste-machines-input-output-103f6c956a3280d7bc93d368a16e2498?pvs=74",
-        situate: { x: 60, y: 70 },
-        ispage: true,
-        weight: 6,
-        ismarkdown: true
-    }),
+    // new Project({
+    //     name: "wastemachine",
+    //     title: "Waste Machine",
+    //     subtitle: "Build scanner from abandoned DVD drivers",
+    //     labels: ["Physical"],
+    //     time: "2024",
+    //     collaborator: "Carla Flores Travez",
+    //     tutor: "Daragh Bryne",
+    //     myContribution: "Researching, Disassembling, Assambling",
+    //     isteam: true,
+    //     tools: "Rasp pi, soldering tools",
+    //     briefDescription: "Linking invention and disposal by researching, disassembling, and re-assambling————hold funeral, surgey, and Neonatal surgery for disk drives",
+    //     otherLink2: "https://ziruw.notion.site/waste-machines-input-output-103f6c956a3280d7bc93d368a16e2498?pvs=74",
+    //     situate: { x: 60, y: 70 },
+    //     ispage: true,
+    //     weight: 6,
+    //     ismarkdown: true
+    // }),
     new Project({
         name: "dataresonate",
         title: "Data Resonate",
         subtitle: "A immersive data discussion toolkit for public urban discourse",
-        labels: ["XR", "Human-Centered"],
+        labels: ["XR", "HCD"],
         time: "2023",
         isteam: false,
         tools: "Unity | C# | HoloLens 2 | Arduino | Rhino | ArcGIS | Figma | Procreate | laser cut",
@@ -374,20 +374,20 @@ const projects = [
         weight: 4,
         ismarkdown: true
     }),
-    new Project({
-        name: "wavepavilion",
-        title: "Wave Pavilion",
-        subtitle: "physical simulation to do formfinding and structural optimization",
-        labels: ["Physical"],
-        time: "2021",
-        isteam: true,
-        tools: "Rhino, Grasshopper, Kangaroo 2 (for physical simulation), karamba3d (for structural analysis)",
-        briefDescription: "How to make structure part works as functional art in a small scale pavilion design",
-        situate: { x: 50, y: 20 },
-        ispage: true,
-        weight: 4,
-        ismarkdown: true
-    }),
+    // new Project({
+    //     name: "wavepavilion",
+    //     title: "Wave Pavilion",
+    //     subtitle: "physical simulation to do formfinding and structural optimization",
+    //     labels: ["Physical"],
+    //     time: "2021",
+    //     isteam: true,
+    //     tools: "Rhino, Grasshopper, Kangaroo 2 (for physical simulation), karamba3d (for structural analysis)",
+    //     briefDescription: "How to make structure part works as functional art in a small scale pavilion design",
+    //     situate: { x: 50, y: 20 },
+    //     ispage: true,
+    //     weight: 4,
+    //     ismarkdown: true
+    // }),
     new Project({
         name: "ada2d",
         title: "WidgetsGo",
@@ -397,7 +397,7 @@ const projects = [
         briefDescription: "How to calculate and balance the trade-off between UI widgets' position, relevance, size, levels of details in a specific AR context?",
         tutor: "Alexandra Ion",
         tools: "Python, Gurobi, scikit-learn, Tkinter",
-        labels: ["Digital", "XR", "Human-Centered"],
+        labels: ["Digital", "XR", "HCD"],
         ispage: true,
         ismarkdown: true,
         weight: 9,
@@ -421,7 +421,7 @@ const projects = [
 ];
 
 const availableLabels = [
-    "Digital", "Physical", "XR", "Human-Centered"
+    "Digital", "Physical", "XR", "HCD"
 ];
 
 export { Project, projects, availableLabels };

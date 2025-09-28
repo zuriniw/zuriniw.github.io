@@ -833,6 +833,7 @@ button:hover {
     margin: 10px auto;
     position: relative;
     padding: 0 20px;
+    box-sizing: border-box; /* 确保padding包含在宽度内 */
 }
 
 .coordinate-container {
@@ -840,7 +841,8 @@ button:hover {
     width: 100%;
     height: 100%;
     border: 1.5px solid var(--color-text);
-    min-width: 300px; /* 设置最小宽度，防止内容过于拥挤 */
+    min-width: 280px; /* 降低最小宽度，适应更小屏幕 */
+    box-sizing: border-box; /* 确保边框包含在宽度内 */
 }
 
 .axis {
@@ -1792,59 +1794,107 @@ body.project-page {
 /* 添加桌面端小屏幕适配 */
 @media screen and (max-width: 760px) {
     .coordinate-view {
-        padding: 0 10px;
-        min-width: 384px;
+      padding: 0 10px;
+      width: 100%;
+      min-width: 320px; /* 降低最小宽度，适应更小屏幕 */
+      max-width: 100%; /* 确保不会超出屏幕 */
+      box-sizing: border-box; /* 包含padding在宽度计算中 */
     }
-
+  
     .filter-container {
-        padding: 0 10px;
-        min-width: 384px;
+      padding: 0 0px;
+      width: 100%;
+      min-width: 320px; /* 降低最小宽度，与coordinate-view保持一致 */
+      max-width: 100%;
+      box-sizing: border-box;
     }
-
+  
     .filter-content {
-        min-width: 384px;
-        padding-right: 0;  /* 移除右侧内边距 */
+      /* 这是父容器：flex 布局 + 左右内边距 */
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-width: 320px; /* 与其他容器保持一致 */
+      max-width: 100%;
+      padding-right: 12px !important;
+      padding-left: 12px !important;
+      gap: 8px; /* 可选：子项之间的间距 */
+      box-sizing: border-box;
     }
-
+  
     .filter-content .switch-container {
-        margin-right: 12px;  /* 为切换按钮添加右侧间距 */
+      flex: 0 0 auto;      /* 固定自身宽度，不参与拉伸 */
+      margin-right: 0 !important;
     }
-
+  
     .matrix-caption {
-        padding: 0 10px;
-        font-size: 20px;
-        min-width: 384px;
+      padding: 0 10px;
+      font-size: 20px;
+      width: 100%;
+      min-width: 320px; /* 与其他容器保持一致 */
+      max-width: 100%;
+      box-sizing: border-box;
     }
-
+  
     .intro {
-        padding: 0 10px;
-        font-size: 14px;
-        min-width: 384px;
+      padding: 0 10px;
+      font-size: 14px;
+      width: 100%;
+      min-width: 320px; /* 与其他容器保持一致 */
+      max-width: 100%;
+      box-sizing: border-box;
     }
-
-    /* 确保按钮区域在小屏幕上合理换行 */
+  
+    /* 右侧按钮块：贴右对齐、可换行、不溢出 */
     .buttons-section {
-        gap: 8px;
-        min-width: 364px; /* 384px - 20px padding */
-        flex: 1;  /* 让按钮区域占据剩余空间 */
-        justify-content: flex-start;  /* 按钮左对齐 */
+      display: flex;
+      flex-wrap: wrap;       /* 空间不足时换行 */
+      gap: 8px;
+  
+      /* 关键点：让整个按钮块贴到右侧，并在可用空间内伸缩 */
+      margin-left: auto;     
+      justify-content: flex-end;
+  
+      flex: 1 1 0;           /* 允许收缩/增长，占据剩余空间 */
+      min-width: 0;          /* 允许在窄屏下真正收缩，防止被最小内容宽度撑爆 */
+      width: min(100%, 364px); /* 取代原来的 min-width:364px，避免溢出 */
+      max-width: 100%;
     }
-
+  
+    /* 每个按钮不要被拉伸，也允许文本收缩 */
+    .buttons-section > * {
+      flex: 0 0 auto;
+      min-width: 0;
+    }
+  
     button {
-        padding: 3px 6px;
-        font-size: 13px;
+      padding: 3px 6px;
+      font-size: 13px;
     }
+  }
 
-    /* 为小于384px的屏幕添加水平滚动 */
-    @media screen and (max-width: 384px) {
-        body {
-            overflow-x: auto;
-            min-width: 384px;
-        }
-        
-        .coordinate-container {
-            min-width: 364px; /* 384px - 20px padding */
-        }
+/* 极小屏幕优化（小于320px） */
+@media screen and (max-width: 319px) {
+    .coordinate-view {
+        padding: 0 5px; /* 减少内边距 */
+        min-width: 280px; /* 进一步降低最小宽度 */
+    }
+    
+    .coordinate-container {
+        min-width: 270px; /* 适应更小的屏幕 */
+    }
+    
+    .filter-container,
+    .filter-content {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        min-width: 280px;
+    }
+    
+    .matrix-caption,
+    .intro {
+        padding: 0 5px;
+        min-width: 280px;
     }
 }
 
@@ -1955,11 +2005,16 @@ body.project-page {
     /* adjust the spacing of the switch button container */
     .switch-container {
         gap: 0;
+        margin-left: 0; /* switch button与coordinate左边线对齐 */
+        margin-right: auto; /* 让buttons-section占据剩余空间 */
     }
 
     .buttons-section {
         gap: 4px;
+        width: 100%; /* 确保按钮区域不超出父容器 */
+        max-width: 100%; /* 防止溢出 */
     }
+    
     .intro {
         font-size: 12px !important;
         padding: 0 !important;
@@ -1994,10 +2049,13 @@ body.project-page {
     .filter-container,
     .cards-section,
     .coordinate-view {
-        width: calc(100% - 40px);
+        width: 100%;
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
     }
     .filter-wrapper {
         padding-top: 80px;
@@ -2036,8 +2094,8 @@ body.project-page {
 
     /* ensure the filter content displays correctly on mobile */
     .filter-content {
-        width: 100%;
-        padding: 0;
+        width: 100%; /* filter-container已经设置了正确宽度 */
+        padding: 0 20px; /* 添加内边距以匹配coordinate-view */
         background-color: var(--color-background);
         position: relative;
         z-index: 99;
