@@ -158,7 +158,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dd>2019</dd>
 </dl>
 
-## Activity
+## Activities
 
 <dl>
     <dt>Course Project Reviewer</dt>
