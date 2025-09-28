@@ -45,7 +45,7 @@ const newsItems = [
     }),
     new NewsItem({
         time: "2024.12",
-        event: `I won the 1st Prize in <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112</a> Term Project. See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
+        event: `I won the 1st Prize in <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112</a> Term Project (selected among 400+ projects, David Kosbie and audiences' choice)! See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
         isstar: true,
     }),
     new NewsItem({

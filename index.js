@@ -1144,7 +1144,7 @@ function initViewSwitch() {
             coordinateView.classList.add('hide');
             switchButton.innerHTML = '<img src="images/matrix.svg" alt="Matrix Icon">';
             if (switchLabel) {
-                switchLabel.textContent = 'Gallery View';
+                switchLabel.textContent = 'Map\nView';
             }
             // 隐藏图例
             const legend = document.querySelector('.intersection-legend');
@@ -1156,7 +1156,7 @@ function initViewSwitch() {
             coordinateView.classList.remove('hide');
             switchButton.innerHTML = '<img src="images/gallery.svg" alt="Gallery Icon">';
             if (switchLabel) {
-                switchLabel.textContent = 'Plane View';
+                switchLabel.textContent = 'Gallery\nView';
             }
             // 如果有活动的过滤器且是2个或3个，则显示图例
             if (activeFilters.length === 2 || activeFilters.length === 3) {

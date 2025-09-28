@@ -861,6 +861,7 @@ button:hover {
     font-size: 14px;
     color: var(--color-text);
     white-space: nowrap;
+    padding-left: 4px;
 }
 
 .switch-view:hover {
@@ -1471,7 +1472,6 @@ point label hover effect
 
 .news-link {
     border-bottom: 1.2px solid transparent;
-    font-family: "MarrSans", sans-serif!important;
     border-bottom: 1.2px solid var(--color-text);
     text-decoration: none;
     color: var(--color-text);
@@ -2044,7 +2044,8 @@ body.project-page {
     }
 
     .coordinate-container::before {
-        content: "↑ longPress to span, doubleTap to focus  ";
+        content: "↑ Double Tap to FOCUS  ";
+        font-family: "Barlow", serif;
         position: absolute;
         display: block;
         top: -22px;
@@ -2071,7 +2072,7 @@ body.project-page {
     /* 移动端的过滤器内容 - 会被后面的规则覆盖 */
     .filter-content {
         width: 100%;
-        padding: 0 20px;
+        padding: 40px 20px 0 20px; /* 上20，左右20，下0 */
         background-color: var(--color-background);
         position: relative;
         z-index: 99;
@@ -2296,7 +2297,7 @@ body.project-page {
     .matrix-caption,
     .intro {
         position: relative;
-        top: 90px;
+        top: 100px;
     }
 
     /* 调整主容器布局 */
@@ -2365,7 +2366,6 @@ body.project-page {
 
     .news-link {
         font-size: 14px;
-        font-family: "JetBrains Mono", monospace;
         line-height: 1.2;
         margin-right: 2px;
         color: var(--color-text);
@@ -2540,16 +2540,15 @@ body.project-page {
     }
 
     .player-title {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 450;
         color: var(--color-text);
-        line-height: 1.2;
+        line-height: 1;
     }
 
     .player-subtitle {
         font-family: "Barlow", sans-serif;
-        font-size: 12px;
+        font-size: 11px;
         color: var(--color-text);
         line-height: 1.2;
         opacity: 0.8;
