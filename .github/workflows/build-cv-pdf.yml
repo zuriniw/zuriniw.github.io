@@ -1,0 +1,57 @@
+name: Build CV PDF
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'cv.md' ]
+  pull_request:
+    branches: [ main ]
+    paths: [ 'cv.md' ]
+  workflow_dispatch:
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Install pandoc and LaTeX
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended texlive-fonts-extra
+        
+    - name: Build PDF
+      run: |
+        mkdir -p data
+        pandoc cv.md -o data/cv.pdf \
+          --pdf-engine=xelatex \
+          --variable=geometry:margin=1in \
+          --variable=fontsize=11pt \
+          --variable=author="Ziru Wei" \
+          --variable=title="Curriculum Vitae" \
+          --metadata=title:"Ziru Wei - CV"
+          
+    - name: Check PDF size
+      run: |
+        ls -lh data/cv.pdf
+        echo "PDF generated successfully!"
+        
+    - name: Commit and push PDF
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/cv.pdf
+        git diff --staged --quiet || git commit -m "Auto-update CV PDF [skip ci]"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Upload PDF artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: cv-pdf
+        path: data/cv.pdf
+        retention-days: 90

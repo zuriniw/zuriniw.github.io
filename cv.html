@@ -33,9 +33,16 @@
         <div id="toc"></div>
     </div>
 
+
     <!-- Markdown 内容将被插入这里 -->
     <div id="markdown-content" class="blog-article-content markdown-content"></div>
-    
+        <!-- PDF 下载按钮 -->
+    <div class="cv-download-section">
+        <a href="data/cv.pdf" class="cv-download-btn" download="Ziru_Wei_CV.pdf" target="_blank">
+            Download PDF Version
+        </a>
+        <p class="cv-download-note">Last updated: <span id="pdf-date">Loading...</span></p>
+    </div>
     <script>
         // 加载 markdown 内容
         fetch(`cv.md`)
@@ -49,6 +56,27 @@
             })
             .catch(error => {
                 console.error('Error loading markdown:', error);
+            });
+
+        // 检查PDF文件是否存在并获取更新时间
+        fetch('data/cv.pdf', { method: 'HEAD' })
+            .then(response => {
+                if (response.ok) {
+                    const lastModified = response.headers.get('last-modified');
+                    if (lastModified) {
+                        const date = new Date(lastModified);
+                        document.getElementById('pdf-date').textContent = date.toLocaleDateString();
+                    } else {
+                        document.getElementById('pdf-date').textContent = 'Available';
+                    }
+                } else {
+                    // PDF不存在，隐藏下载按钮
+                    document.querySelector('.cv-download-section').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.log('PDF not available yet');
+                document.querySelector('.cv-download-section').style.display = 'none';
             });
     </script>
 

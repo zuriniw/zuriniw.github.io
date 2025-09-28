@@ -1,0 +1,18 @@
+{
+  "name": "zuriniw-portfolio",
+  "version": "1.0.0",
+  "description": "Ziru Wei's portfolio website with CV PDF generation",
+  "scripts": {
+    "build:cv": "./scripts/build_cv_pdf.sh",
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zuriniw/zuriniw.github.io"
+  },
+  "author": "Ziru Wei",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}

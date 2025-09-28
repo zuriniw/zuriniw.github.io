@@ -1,3 +1,34 @@
+/* CV PDF Download Button Styles */
+.cv-download-section {
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+}
+
+.cv-download-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: 1.2px solid rgb(0, 0, 0);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.cv-download-btn:hover {
+    background-color: #191919;
+    color: white;
+    text-decoration: none;
+}
+
+.cv-download-note {
+    margin-top: 0.5rem;
+    color: #6c757d;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
 /* font declaration */
 @font-face {
     font-family: 'MarrSans';

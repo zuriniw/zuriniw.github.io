@@ -1,0 +1,118 @@
+% Simple and effective Pandoc LaTeX template for CV
+% Focused on proper formatting with minimal complexity
+
+% Document class and font size (using 9pt like original)
+\documentclass[a4paper,9pt]{extarticle}
+
+% Basic packages
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{letterpaper, margin=0.75in}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+
+% (Using default LaTeX font; no custom main font configured)
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=gray,
+    pdfborder={0 0 0},
+    pdfauthor={Ziru Wei},
+    pdftitle={Ziru Wei - CV}
+}
+
+% Configure heading levels: H1 minimal, H2 as main sections
+\setcounter{secnumdepth}{0}
+
+% Suppress H1 from markdown to avoid duplicate title
+\renewcommand{\section}[1]{}
+
+% H2 (\subsection) - main sections with dividers (Education, Skills, etc.)
+\renewcommand{\subsection}[1]{%
+    \vspace{1.4em}%
+    \noindent{\large\textsc{#1}}%
+    \vspace{0.6em}%
+    \hrule%
+    \vspace{0em}%
+}
+
+% H3 (\subsubsection) - smaller subsections if needed
+\renewcommand{\subsubsection}[1]{%
+    \vspace{0.8em}%
+    {\normalsize\bfseries #1}%
+    \vspace{0.25em}%
+}
+
+% Pandoc specific commands
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Support for underline (from <u> tags in markdown)
+\usepackage{ulem}
+\normalem  % Keep normal emphasis behavior
+
+% Add extra spacing above bold text (for institution names, paper titles, etc.)
+\let\oldtextbf\textbf
+\renewcommand{\textbf}[1]{%
+    \vspace{0.4em}%
+    \noindent\oldtextbf{#1}%
+}
+
+% List formatting - support nested lists with proper indentation
+\setlist[itemize,1]{nosep, leftmargin=1.5em, topsep=0pt, partopsep=0pt, itemsep=0pt, parsep=0pt}
+\setlist[itemize,2]{nosep, leftmargin=1.5em, topsep=0pt, partopsep=0pt, itemsep=0pt, parsep=0pt}
+\setlist[enumerate,1]{nosep, leftmargin=1.5em, topsep=0pt, partopsep=0pt, itemsep=0pt, parsep=0pt}
+\setlist[enumerate,2]{nosep, leftmargin=1.5em, topsep=0pt, partopsep=0pt, itemsep=0pt, parsep=0pt}
+
+
+% Indented environment that preserves nested lists and wrapping
+\newenvironment{cvindent}{%
+    \begin{list}{}{%
+        \setlength{\leftmargin}{0em}%
+        \setlength{\rightmargin}{0pt}%
+        \setlength{\topsep}{0pt}%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\itemsep}{0pt}%
+        \setlength{\parsep}{0pt}%
+    }%
+    \item[]%
+}{%
+    \end{list}%
+}
+
+% Additional spacing control
+\setlength{\parskip}{0pt} % No extra space between paragraphs
+\setlength{\baselineskip}{1.1em} % Tighter line spacing
+\setlength{\parindent}{0pt} % No paragraph indentation
+
+% Begin document
+\begin{document}
+
+% Simple page setup
+\pagestyle{empty}
+
+% Title formatting (centered) with fixed contact info
+\begin{center}
+    {\Huge\bfseries Ziru Wei}\\[4pt]
+    {\normalsize
+      \href{mailto:ziruw@andrew.cmu.edu}{ziruw@andrew.cmu.edu} \,|\, 
+      \href{https://zuriniw.github.io}{zuriniw.github.io}
+    }\\
+    \end{center}
+    \vspace{0.5em}
+    
+
+% Body content from markdown
+$body$
+
+% Footer
+\vfill
+\begin{center}
+\small{Generated from Markdown • \today}
+\end{center}
+
+\end{document}
