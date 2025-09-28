@@ -202,22 +202,22 @@ const projects = [
     //     weight: 3,
     //     situate: { x: 35, y: 50 }
     // }),
-    new Project({
-        name: "fadingroses",
-        title: "Fading Roses",
-        subtitle: "A text-space-exploration game",
-        labels: ["Digital"],
-        time: "2022",
-        isteam: false,
-        ispage: true,
-        ismarkdown: true,
-        tools: "Procreate, Adobe Suite",
-        briefDescription: "It is a story starting from a rose, a home, and a place.",
-        otherLink2: "https://www.bilibili.com/video/BV1jT411g7Xf/",
-        prize: "[Award of Excellence] & [Award of New Talent] on Bilibili 'Gamify Everything' Competition",
-        weight: 0.1,
-        situate: { x: -80, y: -70 }
-    }),
+    // new Project({
+    //     name: "fadingroses",
+    //     title: "Fading Roses",
+    //     subtitle: "A text-space-exploration game",
+    //     labels: ["Digital"],
+    //     time: "2022",
+    //     isteam: false,
+    //     ispage: true,
+    //     ismarkdown: true,
+    //     tools: "Procreate, Adobe Suite",
+    //     briefDescription: "It is a story starting from a rose, a home, and a place.",
+    //     otherLink2: "https://www.bilibili.com/video/BV1jT411g7Xf/",
+    //     prize: "[Award of Excellence] & [Award of New Talent] on Bilibili 'Gamify Everything' Competition",
+    //     weight: 0.1,
+    //     situate: { x: -80, y: -70 }
+    // }),
     // new Project({
     //     name: "zijin",
     //     title: "IsLand -scaping",
