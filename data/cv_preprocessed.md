@@ -118,7 +118,7 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 **METTLER TOLEDO Scholarship (Top 2%) ** \hfill 2019
 
 
-## Activity
+## Activities
 
 **Course Project Reviewer** \hfill 2025.01 - 2025.05
 
