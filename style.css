@@ -192,7 +192,20 @@ body::-webkit-scrollbar {
 }
 
 .legend-title {
-    display: none;
+    margin-bottom: 16px;
+}
+
+.legend-title-main {
+    font-size: 16px;
+    color: var(--color-text);
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.legend-title-sub {
+    font-size: 12px;
+    color: var(--color-text);
+    font-weight: 400;
 }
 
 .legend-item {
@@ -201,6 +214,7 @@ body::-webkit-scrollbar {
     margin-bottom: 24px;
     gap: 4px;
     cursor: pointer;
+    padding: 6px 2px;
 }
 
 .legend-item:last-child {
@@ -261,8 +275,8 @@ body::-webkit-scrollbar {
     display: inline-block;
     color: var(--color-text) !important;
     background-color: var(--color-background);
-    padding: 2px 4px;
-    border-radius: 1px;
+    padding: 1px 6px 1.2px 6px; /* 上下1px，左右2px */
+    border-radius: 28px;
     border: 1px solid var(--color-text);
 }
 
@@ -407,7 +421,7 @@ body::-webkit-scrollbar {
     width: 100%;
     max-width: 760px;
     margin: 0 auto;
-    justify-content: flex-start;  /* 改为左对齐 */
+    justify-content: space-between;  /* 两端对齐 */
     gap: 12px;  /* 添加固定间距 */
 }
 
@@ -650,34 +664,89 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    justify-content: flex-start;
+    justify-content: flex-end;
     position: relative;
+    align-items: flex-start;
 }
 
-/* 过滤器提示文字样式 */
-.filter-hint {
+/* help icon container */
+.help-icon-container {
+    display: none; /* 默认隐藏，只在桌面端显示 */
     position: absolute;
-    top: -36px;
-    left: 0;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
-    color: var(--color-text-grey);
-    opacity: 0;
-    white-space: nowrap;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-    display: none;  /* 默认隐藏 */
+    right: -32px;
+    bottom: 0;
 }
 
-/* 在桌面端显示提示 */
+.help-icon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.help-icon:hover {
+    opacity: 0.8;
+}
+
+.help-icon.pinned {
+    opacity: 1;
+}
+
+/* 在桌面端显示问号图标 */
 @media (hover: hover) {
-    .filter-hint {
-        display: block;  /* 在桌面端显示 */
+    .help-icon-container {
+        display: block;
+    }
+}
+
+/* 过滤器指令列表样式 */
+.filter-instructions-list {
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    width: fit-content;
+    min-width: max-content;
+    border: 1.5px solid var(--color-text);
+}
+
+.instruction-item {
+    /* font-family: "JetBrains Mono", monospace; */
+    font-size: 11px;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    padding: 2px 2px;
+    white-space: nowrap;
+    line-height: 1.2;
+    width: fit-content;
+    min-width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.instruction-icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
+/* 在桌面端显示指令列表 */
+@media (hover: hover) {
+    .filter-instructions-list {
+        display: flex;
     }
     
-    /* 当鼠标悬停在按钮区域时显示提示 */
-    .buttons-section:hover .filter-hint {
+    /* 当指令列表被激活时显示 */
+    .filter-instructions-list.show {
         opacity: 1;
+        visibility: visible;
     }
 }
 
@@ -782,8 +851,16 @@ button:hover {
 /* switch button container style */
 .switch-container {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 8px;
+}
+
+.switch-label {
+    font-family: "Barlow", sans-serif;
+    font-size: 14px;
+    color: var(--color-text);
+    white-space: nowrap;
 }
 
 .switch-view:hover {
@@ -1087,7 +1164,6 @@ point label hover effect
 }
 
 .about-greeting {
-    font-family: "JetBrains Mono", monospace;
     font-size: 24px;
     margin-bottom: 40px;
     color: var(--color-text);
@@ -1620,7 +1696,7 @@ body.project-page {
 
 .y-label.bottom {
     left: 51%!important;
-    bottom: 52px;
+    bottom: 36px !important;
 }
 
 
@@ -1791,114 +1867,12 @@ body.project-page {
     border-bottom: 1.2px solid var(--color-text);
 }
 
-/* 添加桌面端小屏幕适配 */
-@media screen and (max-width: 760px) {
-    .coordinate-view {
-      padding: 0 10px;
-      width: 100%;
-      min-width: 320px; /* 降低最小宽度，适应更小屏幕 */
-      max-width: 100%; /* 确保不会超出屏幕 */
-      box-sizing: border-box; /* 包含padding在宽度计算中 */
-    }
-  
-    .filter-container {
-      padding: 0 0px;
-      width: 100%;
-      min-width: 320px; /* 降低最小宽度，与coordinate-view保持一致 */
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-  
-    .filter-content {
-      /* 这是父容器：flex 布局 + 左右内边距 */
-      display: flex;
-      align-items: center;
-      width: 100%;
-      min-width: 320px; /* 与其他容器保持一致 */
-      max-width: 100%;
-      padding-right: 12px !important;
-      padding-left: 12px !important;
-      gap: 8px; /* 可选：子项之间的间距 */
-      box-sizing: border-box;
-    }
-  
-    .filter-content .switch-container {
-      flex: 0 0 auto;      /* 固定自身宽度，不参与拉伸 */
-      margin-right: 0 !important;
-    }
-  
-    .matrix-caption {
-      padding: 0 10px;
-      font-size: 20px;
-      width: 100%;
-      min-width: 320px; /* 与其他容器保持一致 */
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-  
-    .intro {
-      padding: 0 10px;
-      font-size: 14px;
-      width: 100%;
-      min-width: 320px; /* 与其他容器保持一致 */
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-  
-    /* 右侧按钮块：贴右对齐、可换行、不溢出 */
-    .buttons-section {
-      display: flex;
-      flex-wrap: wrap;       /* 空间不足时换行 */
-      gap: 8px;
-  
-      /* 关键点：让整个按钮块贴到右侧，并在可用空间内伸缩 */
-      margin-left: auto;     
-      justify-content: flex-end;
-  
-      flex: 1 1 0;           /* 允许收缩/增长，占据剩余空间 */
-      min-width: 0;          /* 允许在窄屏下真正收缩，防止被最小内容宽度撑爆 */
-      width: min(100%, 364px); /* 取代原来的 min-width:364px，避免溢出 */
-      max-width: 100%;
-    }
-  
-    /* 每个按钮不要被拉伸，也允许文本收缩 */
-    .buttons-section > * {
-      flex: 0 0 auto;
-      min-width: 0;
-    }
-  
-    button {
-      padding: 3px 6px;
-      font-size: 13px;
-    }
-  }
-
-/* 极小屏幕优化（小于320px） */
-@media screen and (max-width: 319px) {
-    .coordinate-view {
-        padding: 0 5px; /* 减少内边距 */
-        min-width: 280px; /* 进一步降低最小宽度 */
-    }
-    
-    .coordinate-container {
-        min-width: 270px; /* 适应更小的屏幕 */
-    }
-    
-    .filter-container,
-    .filter-content {
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-        min-width: 280px;
-    }
-    
-    .matrix-caption,
-    .intro {
-        padding: 0 5px;
-        min-width: 280px;
-    }
+/* Player 基础样式 - 在非移动端隐藏 */
+.matrix-player {
+    display: none !important; /* 确保在非移动端完全隐藏 */
 }
 
-/* mobile adaptation */
+/* 移动端适配 - 先定义移动端规则 */
 @media screen and (max-width: 768px) and (hover: none) {
     body {
         display: flex;
@@ -1913,7 +1887,7 @@ body.project-page {
         touch-action: manipulation;
     }
 
-    /* allow point dragging */
+    /* 允许点拖拽 */
     .point-wrapper {
         touch-action: none;
         user-select: none;
@@ -1926,7 +1900,7 @@ body.project-page {
         z-index: 1000;
     }
 
-    /* player style */
+    /* Player 样式 */
     .player-left {
         position: relative;
         overflow: hidden;
@@ -1961,7 +1935,7 @@ body.project-page {
         opacity: 1;
     }
 
-    /* mobile touch behavior control */
+    /* 移动端触摸行为控制 */
     .project-point,
     .point-wrapper {
         -webkit-touch-callout: none;
@@ -1972,12 +1946,12 @@ body.project-page {
         cursor: url(images/cross.svg) 10 10, auto !important;
     }
 
-    /* ensure the cursor style when clicking */
+    /* 确保点击时的光标样式 */
     .point-wrapper:active {
         cursor: url(images/cross.svg) 10 10, auto !important;
     }
 
-    /* ensure the main containers can scroll */
+    /* 确保主要容器可以滚动 */
     .container,
     .cards-section,
     .coordinate-view,
@@ -1987,7 +1961,7 @@ body.project-page {
         -webkit-overflow-scrolling: touch;
     }
 
-    /* allow text selection for specific elements */
+    /* 允许特定元素的文本选择 */
     .blog-article-content,
     .project-content,
     input,
@@ -1997,24 +1971,24 @@ body.project-page {
         user-select: text;
     }
 
-    /* hide the arrow icon */
+    /* 隐藏箭头图标 */
     .arrow-icon {
         display: none;
     }
 
-    /* adjust the spacing of the switch button container */
+    /* 移动端的 filter 样式 - 会被后面的桌面小屏幕规则覆盖 */
     .switch-container {
         gap: 0;
-        margin-left: 0; /* switch button与coordinate左边线对齐 */
-        margin-right: auto; /* 让buttons-section占据剩余空间 */
+        margin-left: 0;
+        margin-right: auto;
     }
 
     .buttons-section {
         gap: 4px;
-        width: 100%; /* 确保按钮区域不超出父容器 */
-        max-width: 100%; /* 防止溢出 */
+        width: 100%;
+        max-width: 100%;
     }
-    
+
     .intro {
         font-size: 12px !important;
         padding: 0 !important;
@@ -2037,14 +2011,14 @@ body.project-page {
         line-height: 1.2 !important;
         margin-top: 16px;
     }
-    
+
     .point-label {
         font-size: 12px !important;
         font-family: "Barlow", sans-serif !important;
         font-weight: 400 !important;
     }
 
-    /* ensure all main containers are centered */
+    /* 确保所有主要容器居中 */
     .container,
     .filter-container,
     .cards-section,
@@ -2057,15 +2031,18 @@ body.project-page {
         padding-right: 20px;
         box-sizing: border-box;
     }
+
     .filter-wrapper {
         padding-top: 80px;
         background-color: var(--color-background);
         position: relative;
     }
+
     .coordinate-container {
         margin-top: 10px;
-        height: 400px!important;
+        height: 400px !important;
     }
+
     .coordinate-container::before {
         content: "↑ longPress to span, doubleTap to focus  ";
         position: absolute;
@@ -2081,27 +2058,26 @@ body.project-page {
         border-radius: 0;
     }
 
-    /* adjust the filter container */
+    /* 移动端的过滤器容器 - 会被后面的规则覆盖 */
     .filter-container {
         top: 120px;
         padding-top: 8px;
         padding-bottom: 0px;
-
         position: sticky;
         background-color: var(--color-background);
         z-index: 99;
     }
 
-    /* ensure the filter content displays correctly on mobile */
+    /* 移动端的过滤器内容 - 会被后面的规则覆盖 */
     .filter-content {
-        width: 100%; /* filter-container已经设置了正确宽度 */
-        padding: 0 20px; /* 添加内边距以匹配coordinate-view */
+        width: 100%;
+        padding: 0 20px;
         background-color: var(--color-background);
         position: relative;
         z-index: 99;
     }
 
-    /* adjust the card layout */
+    /* 调整卡片布局 - 一行两个 */
     .cards-section {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -2112,24 +2088,25 @@ body.project-page {
         margin: 0 auto;
         margin-top: 16px;
     }
-    
-    /* adjust the card size */
+
+    /* 调整卡片大小 */
     .card {
         width: 100%;
         max-width: none;
         margin: 0;
-        height: 220px!important;
+        height: 220px !important;
         border-width: 1.4px;
         color: var(--color-text-darkgrey);
-
     }
-    .card-body{
+
+    .card-body {
         padding: 8px;
         padding-top: 4px;
         gap: -2px;
-        height: 100px!important;
+        height: 100px !important;
     }
-    /* hide class */
+
+    /* 隐藏类 */
     .hide {
         display: none;
     }
@@ -2146,6 +2123,7 @@ body.project-page {
         border-bottom: 1.5px solid var(--color-text);
         filter: saturate(0.0) brightness(1.02) !important;
     }
+
     .card-image-link img {
         width: 100%;
         height: 100%;
@@ -2156,73 +2134,73 @@ body.project-page {
         left: 0;
         mix-blend-mode: multiply;
     }
-    
-    /* adjust the card title and label size */
+
+    /* 调整卡片标题和标签大小 */
     .card-title {
         font-size: 14px;
         margin-top: 2px;
         font-weight: 450;
     }
-    .card-title-container{
+
+    .card-title-container {
         margin-bottom: 2px;
     }
-    .card-title-container::after{
+
+    .card-title-container::after {
         display: none;
     }
-
 
     .card-labels {
         font-size: 12px;
         gap: 4px;
-        align-items:flex-end;
+        align-items: flex-end;
         border-width: 1.1px;
         font-weight: 350;
         opacity: 0.8;
     }
 
-    /* ensure the card container is aligned correctly */
+    /* 确保卡片容器正确对齐 */
     .container {
         padding: 0;
         width: 100%;
     }
 
-    /* ensure the coordinate axis is always centered */
+    /* 确保坐标轴始终居中 */
     .x-axis {
         top: 50%;
         transform: translateY(-50%);
     }
-    
+
     .y-axis {
         left: 50%;
         transform: translateX(-50%);
     }
-    
-    /* adjust the point size */
+
+    /* 调整点的大小 */
     .project-point {
         width: 10px;
         height: 10px;
     }
-    
+
     .axis-label {
-        font-size: 9px; 
+        font-size: 9px;
     }
-    
+
     .x-label.left {
-        left: 4px; 
+        left: 4px;
     }
-    
+
     .x-label.right {
         right: 4px;
     }
-    
+
     .y-label.top {
         top: 0;
     }
-    
+
     .y-label.bottom {
-        bottom: 48px;
+        bottom: 32px !important;
     }
-    
 
     button {
         color: var(--color-text) !important;
@@ -2230,21 +2208,20 @@ body.project-page {
         -webkit-tap-highlight-color: transparent;
     }
 
-
-    /* ensure the active button style is correct */
+    /* 确保活动按钮样式正确 */
     button.active {
         color: var(--color-white) !important;
         background: var(--color-text) !important;
     }
 
-    /* button style when long pressed */
+    /* 长按按钮样式 */
     button.long-press {
         color: var(--color-white) !important;
         background-color: var(--color-text-hover) !important;
         border: 1.6px solid var(--color-text-hover) !important;
     }
 
-    /* mobile touch behavior */
+    /* 移动端触摸行为 */
     .card:active .card-image-link {
         filter: saturate(1.0) brightness(1.02) !important;
         opacity: 0.9;
@@ -2264,13 +2241,13 @@ body.project-page {
         display: none;
     }
 
-    /* the pressed effect of the visited project point */
+    /* 访问过的项目点的按压效果 */
     .point.visited:active {
         transform: scale(1.4);
         opacity: 1;
     }
 
-    /* remove all hover effects */
+    /* 移除所有悬停效果 */
     .card:hover .card-image-link,
     .card-image-link:hover img,
     .point:hover,
@@ -2282,25 +2259,25 @@ body.project-page {
         box-shadow: none;
     }
 
-    /* adjust the button pressed effect */
+    /* 调整按钮按压效果 */
     button:active {
         background-color: hsl(0, 0%, 32%);
         color: #ffffff;
     }
 
-    /* remove the button hover effect */
+    /* 移除按钮悬停效果 */
     button:hover {
         background-color: transparent;
         color: inherit;
     }
 
-    /* adjust the link pressed effect */
+    /* 调整链接按压效果 */
     .dots-link:active,
     .response-link:active {
         opacity: 0.75;
     }
 
-    /* remove the link hover effect */
+    /* 移除链接悬停效果 */
     .dots-link:hover,
     .response-link:hover {
         opacity: 1;
@@ -2316,56 +2293,58 @@ body.project-page {
         border-bottom-width: 1px;
     }
 
-    .matrix-caption ,
+    .matrix-caption,
     .intro {
         position: relative;
         top: 90px;
     }
 
-    /* adjust the main container layout */
+    /* 调整主容器布局 */
     .container {
         margin-top: 120px;
     }
 
-    /* mobile tips style */
+    /* 移动端提示样式 */
     .mobile-tips {
-        display:inline-block;
+        display: inline-block;
         position: absolute;
         top: -80px;
         right: 0;
         text-align: right;
-        font-family:"Barlow", sans-serif;
+        font-family: "Barlow", sans-serif;
         font-style: italic;
         font-size: 11px;
         color: var(--color-text-grey);
         line-height: 1.1;
         width: 100%;
-        padding-right: 0%!important;
-        margin-right: 0%!important;
-        margin-left: 5%!important;
-        padding-left: 5%!important;
+        padding-right: 0% !important;
+        margin-right: 0% !important;
+        margin-left: 5% !important;
+        padding-left: 5% !important;
     }
 
-
-
-    .project-section{
+    .project-section {
         width: 100%;
     }
+
     .meta-text,
     .meta-label {
         line-height: 1.0;
         font-size: 12px !important;
     }
+
     .project-context {
         font-size: 12px;
         line-height: 1.2;
-        margin: 0px!important;
+        margin: 0px !important;
         font-style: italic;
     }
+
     .project-subtitle {
         font-size: 16px;
         line-height: 1.2;
     }
+
     .project-title {
         font-size: 44px;
         line-height: 1.1;
@@ -2377,11 +2356,13 @@ body.project-page {
         margin-right: 2px;
         font-weight: 350;
     }
+
     .news-item {
         font-size: 14px;
         padding-top: 8px;
         padding-bottom: 8px;
     }
+
     .news-link {
         font-size: 14px;
         font-family: "JetBrains Mono", monospace;
@@ -2389,7 +2370,6 @@ body.project-page {
         margin-right: 2px;
         color: var(--color-text);
     }
-
 
     .blog-item {
         font-size: 12px;
@@ -2403,9 +2383,7 @@ body.project-page {
         padding-right: 20px;
     }
 
-
-
-    /* drag indicator style */
+    /* 拖拽指示器样式 */
     .drag-indicator {
         position: fixed;
         width: 50px;
@@ -2418,13 +2396,12 @@ body.project-page {
         background-color: #c5c5c587;
     }
 
-    /* remove the hover effect on mobile */
+    /* 移除移动端悬停效果 */
     .point-wrapper:hover .point-title,
     .point.point-preview {
         opacity: 0;
         display: none;
     }
-
 
     .point:hover,
     .point-wrapper:hover .point:not(.current) {
@@ -2434,7 +2411,7 @@ body.project-page {
         display: none;
     }
 
-    /* basic style on mobile */
+    /* 移动端基本样式 */
     .point-wrapper {
         touch-action: none;
         user-select: none;
@@ -2449,7 +2426,7 @@ body.project-page {
         transition: none;
     }
 
-    /* change the blog container to vertical arrangement */
+    /* 将博客容器改为垂直排列 */
     .blogs-container {
         display: flex;
         flex-direction: column;
@@ -2457,7 +2434,7 @@ body.project-page {
         margin-top: 400px;
     }
 
-    /* each type column takes up the full width */
+    /* 每个类型列占据全宽 */
     .blog-column {
         width: 100%;
         padding: 0 20px;
@@ -2491,21 +2468,13 @@ body.project-page {
         margin-right: 24px;
     }
 
-    /* adjust the starred position */
+    /* 调整星标位置 */
     .blog-item.starred::after {
         right: 0;
         font-size: 14px;
     }
 
-}
-
-/* Player basic style */
-.matrix-player {
-    display: none !important; /* ensure it is completely hidden on non-mobile */
-}
-
-/* mobile specific style */
-@media screen and (max-width: 768px) and (hover: none) {
+    /* Player 显示和样式 */
     .matrix-player {
         display: block !important;
         width: 100%;
@@ -2519,22 +2488,21 @@ body.project-page {
 
     .player-container {
         width: 100%;
-        display: grid;  /* use grid layout */
-        grid-template-columns: 1fr 1fr;  /* equal width two columns */
-        gap: 0;  /* remove the gap */
+        display: grid; /* 使用网格布局 */
+        grid-template-columns: 1fr 1fr; /* 等宽两列 */
+        gap: 0; /* 移除间隙 */
     }
 
-    .player-left, 
+    .player-left,
     .player-right {
         height: 80px;
         border: 1.6px solid var(--color-text);
-        width: 100%;  /* ensure the width fills the grid cell */
+        width: 100%; /* 确保宽度填满网格单元 */
     }
-    
+
     .noise-effect {
         animation: noiseAnim 2s infinite linear;
     }
-    
 
     .player-left::after {
         content: " - Drag a point here - ";
@@ -2551,13 +2519,12 @@ body.project-page {
         z-index: 1;
     }
 
-
-    /* remove the left border of the right border to avoid double borders */
+    /* 移除右侧的左边框以避免双边框 */
     .player-right {
         border-left: none;
     }
 
-    /* Player right information style */
+    /* Player 右侧信息样式 */
     .player-right {
         position: relative;
         padding: 8px 12px;
@@ -2587,7 +2554,113 @@ body.project-page {
         line-height: 1.2;
         opacity: 0.8;
     }
+}
 
+/* 桌面端小屏幕适配 - 后定义，优先级更高 */
+@media screen and (max-width: 760px) {
+    .coordinate-view {
+        padding: 0 10px;
+        width: 100%;
+        min-width: 320px; /* 降低最小宽度，适应更小屏幕 */
+        max-width: 100%; /* 确保不会超出屏幕 */
+        box-sizing: border-box; /* 包含padding在宽度计算中 */
+    }
+
+    .filter-container {
+        padding: 0;
+        width: 100%;
+        min-width: 320px; /* 降低最小宽度，与coordinate-view保持一致 */
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .filter-content {
+        /* 这是父容器：flex 布局 + 左右内边距 */
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-width: 320px; /* 与其他容器保持一致 */
+        max-width: 100%;
+        padding-right: 12px !important;
+        padding-left: 12px !important;
+        gap: 8px; /* 可选：子项之间的间距 */
+        box-sizing: border-box;
+    }
+
+    .filter-content .switch-container {
+        flex: 0 0 auto; /* 固定自身宽度，不参与拉伸 */
+        margin-right: 0 !important;
+    }
+
+    .matrix-caption {
+        padding: 0 10px;
+        font-size: 20px;
+        width: 100%;
+        min-width: 320px; /* 与其他容器保持一致 */
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .intro {
+        padding: 0 10px;
+        font-size: 14px;
+        width: 100%;
+        min-width: 320px; /* 与其他容器保持一致 */
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 右侧按钮块：贴右对齐、可换行、不溢出 */
+    .buttons-section {
+        display: flex;
+        flex-wrap: wrap; /* 空间不足时换行 */
+        gap: 8px;
+
+        /* 关键点：让整个按钮块贴到右侧，并在可用空间内伸缩 */
+        margin-left: auto;
+        justify-content: flex-end;
+
+        flex: 1 1 auto; /* 允许收缩/增长，占据剩余空间 */
+        min-width: 0; /* 允许在窄屏下真正收缩，防止被最小内容宽度撑爆 */
+        width: min(100%, 364px); /* 取代原来的 min-width:364px，避免溢出 */
+        max-width: 100%;
+    }
+
+    /* 每个按钮不要被拉伸，也允许文本收缩 */
+    .buttons-section > * {
+        flex: 0 0 auto;
+        min-width: 0;
+    }
+
+    button {
+        padding: 3px 6px;
+        font-size: 13px;
+    }
+}
+
+/* 极小屏幕优化（小于320px） */
+@media screen and (max-width: 319px) {
+    .coordinate-view {
+        padding: 0 5px; /* 减少内边距 */
+        min-width: 280px; /* 进一步降低最小宽度 */
+    }
+
+    .coordinate-container {
+        min-width: 270px; /* 适应更小的屏幕 */
+    }
+
+    .filter-container,
+    .filter-content {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        min-width: 280px;
+    }
+
+    .matrix-caption,
+    .intro {
+        padding: 0 5px;
+        min-width: 280px;
+    }
 }
 
 /* special processing of elements that may be converted to emoji */

@@ -74,8 +74,8 @@ class Project {
 const projects = [
     new Project({
         name: "poi",
-        title: "POI +-",
-        subtitle: "Humanizing MR Spatial Behavior Computation",
+        title: "Adaptive Exhibition",
+        subtitle: "An adaptive layout system via computing human factors in the environment",
         labels: ["XR", "HCD", "Physical"],
         time: "2024",
         ispage: true,
@@ -88,13 +88,13 @@ const projects = [
         prize: "Best Academic Contribution Award",
         ismarkdown: true,   
         weight: 9,
-        situate: { x: -68, y: 77 },
+        situate: { x: -68, y: 37 },
         otherLink2: null
     }),
     new Project({
         name: "seeingsaw",
         title: "SEEINGSAW",
-        subtitle: "Peripheral and expressive awareness in lovable devices",
+        subtitle: "Lovable paired devices for telepresence",
         labels: ["HCD","Physical"],
         time: "2024",
         ispage: true,
@@ -111,12 +111,12 @@ const projects = [
         otherLink2: "http://ideate.xsead.cmu.edu/gallery/projects/remaking-shaker-1996",
         weight: 8.9,
         isflipped: false,
-        situate: { x: -60, y: -20 }
+        situate: { x: 70, y: 20 }
     }),
     new Project({
         name: "shapeshift",
         title: "Shapeshift Playground",
-        subtitle: "Node-based drawing tool development",
+        subtitle: "A node-based drawing tool inspired by Grasshopper",
         labels: ["Digital"],
         time: "2024",
         ispage: true,
@@ -127,7 +127,7 @@ const projects = [
         otherLink2: null,
         prize: "1st Prize in CMU 15-112 Term Project",
         weight: 6.1,
-        situate: { x: 50, y: -90 },
+        situate: { x: 70, y: -56 },
         ismarkdown: true,
         isflipped: false
     }),
@@ -147,13 +147,13 @@ const projects = [
         briefDescription: "Revitalize the village through architectural design and cultural preservation. The project aims to preserve and enhance the unique cultural heritage of the village while improving the living conditions of its residents.",
         prize: "Outstanding Undergraduate Thesis; 1st place in Architecture School",
         weight: 5,
-        situate: { x: -50, y: 50 },
+        situate: { x: -50, y: 70 },
         otherLink2: "https://www.behance.net/gallery/217218343/Village-Renewal-Design-in-Fujian-China",
     }),
     new Project({
         name: "aurora",
-        title: "XR-aided Fabrication",
-        subtitle: "A case study of the full-scale building：AURORA",
+        title: "XR-aided Construction",
+        subtitle: "A case study of the holographic construction of the full-scale building：AURORA",
         labels: ["XR", "Physical"],
         time: "2021",
         ispage: true,
@@ -167,7 +167,7 @@ const projects = [
         otherLink2: "https://humachine.cn/?post_type=products&page_id=16963",
         weight: 8.1,
         ismarkdown: true,
-        situate: { x: 80, y: -80 }
+        situate: { x: 70, y: -85 }
     }),
     // new Project({
     //     name: "bodymusic",
@@ -205,7 +205,7 @@ const projects = [
     new Project({
         name: "fadingroses",
         title: "Fading Roses",
-        subtitle: "text-space-exploration narrative game",
+        subtitle: "A text-space-exploration game",
         labels: ["Digital"],
         time: "2022",
         isteam: false,
@@ -216,7 +216,7 @@ const projects = [
         otherLink2: "https://www.bilibili.com/video/BV1jT411g7Xf/",
         prize: "[Award of Excellence] & [Award of New Talent] on Bilibili 'Gamify Everything' Competition",
         weight: 0.1,
-        situate: { x: -80, y: -50 }
+        situate: { x: -80, y: -70 }
     }),
     // new Project({
     //     name: "zijin",
@@ -241,11 +241,11 @@ const projects = [
         subtitle: "Computational design and interface design",
         labels: ["Digital"],
         time: "2022",
-        myContribution: "Computational design, interface design",
+        myContribution: "A computational design tool for generative Taihu stone",
         isteam: false,
         tools: "Grasshopper",
         weight: 4,
-        situate: { x: 60, y: -31 },
+        situate: { x: 60, y: -51 },
         isflipped: true,
         ispage: true,
         ismarkdown: true
@@ -253,7 +253,7 @@ const projects = [
     new Project({
         name: "mobius",
         title: "Mobius",
-        subtitle: "Bar table furniture design",
+        subtitle: "A bar table furniture design and fabrication",
         labels: ["Physical"],
         time: "2021",
         collaborator: "Humachine Lab",
@@ -281,8 +281,8 @@ const projects = [
     // }),
     new Project({
         name: "keyboard",
-        title: "Stbrdc Pad",
-        subtitle: "A customized keyboard",
+        title: "Mini Keyboard",
+        subtitle: "A customized keyboard for my personal use",
         myContribution: "PCB making, electronic assembling, and 3D printing",
         briefDescription: "Wanna have a keyboard that is super handy? DIY it!",
         labels: ["Physical"],
@@ -290,7 +290,7 @@ const projects = [
         isteam: false,
         tools: "EasyEDA, Rhino, Soldering Tools",
         weight: 4.3,
-        situate: { x: 85, y: -70 },
+        situate: { x: 70, y: -70 },
         isflipped: false,
         ispage: true,
         ismarkdown: true
@@ -312,7 +312,7 @@ const projects = [
     new Project({
         name: "mrfarm",
         title: "BlendedFarm",
-        subtitle: "PHYGITAL interaction",
+        subtitle: "A prototype of a hybrid planting system",
         labels: ["XR"],
         time: "2021",
         collaborator: "Haoxuan Li, Yueying Chen",
@@ -324,7 +324,7 @@ const projects = [
         tools: "Unity C#, Arduino Components, HoloLens 2",
         briefDescription: "What if data can flows among the real world and MR scene?",
         weight: 4,
-        situate: { x: 10, y: 10 }
+        situate: { x: 50, y: 80 }
     }),
     // new Project({
     //     name: "wastemachine",
@@ -346,15 +346,15 @@ const projects = [
     // }),
     new Project({
         name: "dataresonate",
-        title: "Data Resonate",
-        subtitle: "A immersive data discussion toolkit for public urban discourse",
+        title: "Sensible Data",
+        subtitle: "An multi-modal data exploration toolkit for public urban discourse",
         labels: ["XR", "HCD"],
         time: "2023",
         isteam: false,
         tools: "Unity | C# | HoloLens 2 | Arduino | Rhino | ArcGIS | Figma | Procreate | laser cut",
         briefDescription: "How to make a bridge between distant information and sensible responses?",
         youtubeLink: "https://www.youtube.com/embed/Nbk9Z47OTQQ?si=e-NE6-3MkLDDQATN",
-        situate: { x: 15, y: -30 },
+        situate: { x: 70, y: 50 },
         ispage: true,
         weight: 7,
         ismarkdown: true
@@ -369,7 +369,7 @@ const projects = [
         collaborator: "Humachine Lab",
         tools: "Rhino, Grasshopper, CNC laser cutter",
         briefDescription: "How to create a wedding vibe through a wall?",
-        situate: { x: -50, y: -80 },
+        situate: { x: -70, y: -90 },
         ispage: true,
         weight: 4,
         ismarkdown: true
@@ -390,7 +390,7 @@ const projects = [
     // }),
     new Project({
         name: "ada2d",
-        title: "WidgetsGo",
+        title: "Adaptive UI",
         time: "2025",
         isteam: false,
         subtitle: "Adaptive 2d UI layout in AR context",
@@ -401,22 +401,22 @@ const projects = [
         ispage: true,
         ismarkdown: true,
         weight: 9,
-        situate: { x: 90, y: -30 }
+        situate: { x: 80, y: 70 }
     }),
     new Project({
         name: "autopfl",
         title: "ML Co-Curator",
         time: "2025",
         isteam: false,
-        subtitle: "An AI co-curation tool that collaborates with designers to generate portfolios and virtual exhibitions through interactive negotiation.",
+        subtitle: "An AI co-curation tool that collaborates with designers to generate portfolios and virtual exhibitions",
         briefDescription: "How to merge the agency of designers with the data-driven curation of machine learning?",
         tutor: "Eunsu Kang",
         tools: "CNN, TSNE dimension reduction, C-TSP algorithm, k-means clustering, google-genai api, Bokeh, Three.js ",
         labels: ["Digital"],
         ispage: true,
         ismarkdown: true,
-        weight: 10,
-        situate: { x: 90, y: 30 }
+        weight: 5,
+        situate: { x: 10, y: 50 }
     })
 ];
 

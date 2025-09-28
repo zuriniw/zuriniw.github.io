@@ -40,7 +40,6 @@ Bachelor of Architecture, GPA: 3.7/4.0
 
 **Languages:** 
 English (Fluent), Mandarin (Native), Portuguese (Beginner)
-
 ## Papers and Journals
 
 **(In submission, CHI 2026) “Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots**  

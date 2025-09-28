@@ -4,6 +4,13 @@ import { projects, availableLabels } from './projects/project_info.js';
 import { Delaunay } from 'https://cdn.jsdelivr.net/npm/d3-delaunay@6/+esm';
 import { initMobilePlayer } from './scripts/mbplay.js';
 
+// 获取原始标签名称的函数
+function getOriginalLabelName(sanitizedName) {
+    return availableLabels.find(label => 
+        label.toLowerCase().replace(/\//g, '-') === sanitizedName
+    ) || sanitizedName;
+}
+
 console.log('Available labels:', availableLabels);
 console.log('Projects:', projects);
 
@@ -211,11 +218,7 @@ function createFilterButtons() {
     if (!tips) {
         tips = document.createElement('div');
         tips.className = 'mobile-tips';
-        tips.innerHTML = `
-            //longPress to check range<br>
-            //doubleClick to single select<br>
-            //shortClick to toggle select
-        `;
+        tips.innerHTML = `placeholder`;
         filterWrapper.insertBefore(tips, filterWrapper.firstChild);
     }
 
@@ -489,7 +492,7 @@ function updateCards() {
                 .map(({ project }) => project.title);
 
             if (commonProjects.length > 0) {
-                intersectionInfo.push(`${filter1} & ${filter2}: ${commonProjects.join(', ')}`);
+                intersectionInfo.push(`${filter1} && ${filter2}: ${commonProjects.join(', ')}`);
                 intersectionSets.push(new Set(commonProjects));
             }
         }
@@ -513,7 +516,7 @@ function updateCards() {
                     .map(({ project }) => project.title);
 
                 if (commonProjects.length > 0) {
-                    intersectionInfo.push(`${f1} & ${f2}: ${commonProjects.join(', ')}`);
+                    intersectionInfo.push(`${f1} && ${f2}: ${commonProjects.join(', ')}`);
                     intersectionSets.push(new Set(commonProjects));
                 }
             });
@@ -862,6 +865,16 @@ function clearHull() {
     existingPaths.forEach(path => path.remove());
 }
 
+
+// 隐藏指令列表
+function hideInstructionsList() {
+    const instructionsList = document.querySelector('.filter-instructions-list');
+    if (!instructionsList) return;
+    
+    // 隐藏列表
+    instructionsList.classList.remove('show');
+}
+
 // 修改 createNoiseFilter 函数以接受参数配置
 function createNoiseFilter(id, config = {}) {
     // 设置默认值
@@ -1124,10 +1137,15 @@ function initViewSwitch() {
 
     // 更新视图状态的函数
     const updateViewState = (isGallery) => {
+        const switchLabel = document.querySelector('.switch-label');
+        
         if (isGallery) {
             cardsSection.classList.remove('hide');
             coordinateView.classList.add('hide');
             switchButton.innerHTML = '<img src="images/matrix.svg" alt="Matrix Icon">';
+            if (switchLabel) {
+                switchLabel.textContent = 'Gallery View';
+            }
             // 隐藏图例
             const legend = document.querySelector('.intersection-legend');
             if (legend) {
@@ -1137,6 +1155,9 @@ function initViewSwitch() {
             cardsSection.classList.add('hide');
             coordinateView.classList.remove('hide');
             switchButton.innerHTML = '<img src="images/gallery.svg" alt="Gallery Icon">';
+            if (switchLabel) {
+                switchLabel.textContent = 'Plane View';
+            }
             // 如果有活动的过滤器且是2个或3个，则显示图例
             if (activeFilters.length === 2 || activeFilters.length === 3) {
                 updateIntersectionLegend();
@@ -1321,7 +1342,7 @@ function updateLegend() {
             groupElement.innerHTML = `
                 <div class="legend-point ${group.pattern}"></div>
                 <div class="legend-content">
-                    <div class="legend-text">${group.filters.join(' & ')}</div>
+                    <div class="legend-text">${group.filters.join(' && ')}</div>
                     <div class="legend-projects">${group.projects.join(', ')}</div>
                 </div>
             `;
@@ -1360,6 +1381,15 @@ function updateIntersectionLegend() {
 
     // 清空现有内容
     legend.innerHTML = '';
+    
+    // 添加标题
+    const titleElement = document.createElement('div');
+    titleElement.className = 'legend-title';
+    titleElement.innerHTML = `
+        <div class="legend-title-main">Intersections</div>
+        <div class="legend-title-sub">Hover to check them out</div>
+    `;
+    legend.appendChild(titleElement);
 
     if (activeFilters.length !== 2 && activeFilters.length !== 3) {
         legend.classList.remove('show');
@@ -1379,7 +1409,7 @@ function updateIntersectionLegend() {
 
         if (commonProjects.length > 0) {
             intersectionGroups.push({
-                filters: [filter1, filter2],
+                filters: [getOriginalLabelName(filter1), getOriginalLabelName(filter2)],
                 projects: commonProjects,
                 pattern: 'pattern-1'
             });
@@ -1397,7 +1427,7 @@ function updateIntersectionLegend() {
 
         if (tripleIntersectionProjects.length > 0) {
             intersectionGroups.push({
-                filters: [filter1, filter2, filter3],
+                filters: [getOriginalLabelName(filter1), getOriginalLabelName(filter2), getOriginalLabelName(filter3)],
                 projects: tripleIntersectionProjects,
                 pattern: 'pattern-full'
             });
@@ -1419,7 +1449,7 @@ function updateIntersectionLegend() {
 
             if (commonProjects.length > 0) {
                 intersectionGroups.push({
-                    filters: pair.filters,
+                    filters: pair.filters.map(f => getOriginalLabelName(f)),
                     projects: commonProjects,
                     pattern: pair.pattern
                 });
@@ -1441,7 +1471,7 @@ function updateIntersectionLegend() {
             
             const textElement = document.createElement('div');
             textElement.className = 'legend-text';
-            textElement.innerHTML = group.filters.join(' & ').split(' & ').map(text => `<span>${text}</span>`).join(' & ');
+            textElement.innerHTML = group.filters.join(' && ').split(' && ').map(text => `<span>${text}</span>`).join(' && ');
             
             const projectsElement = document.createElement('div');
             projectsElement.className = 'legend-projects';
@@ -1555,6 +1585,65 @@ function updateIntersectionLegend() {
     }
 }
 
+// 初始化问号图标功能
+function initHelpIcon() {
+    const helpIcon = document.querySelector('.help-icon');
+    if (!helpIcon) return;
+    
+    // 只在桌面端添加功能
+    if (!window.matchMedia('(hover: hover)').matches) return;
+    
+    let isPinned = false; // 跟踪列表是否被固定
+    
+    // 点击事件 - 切换固定状态
+    helpIcon.addEventListener('click', (e) => {
+        e.stopPropagation(); // 防止事件冒泡
+        isPinned = !isPinned;
+        
+        if (isPinned) {
+            showInstructionsListFromIcon(helpIcon);
+            helpIcon.classList.add('pinned');
+        } else {
+            hideInstructionsList();
+            helpIcon.classList.remove('pinned');
+        }
+    });
+    
+    // hover事件 - 只在未固定时生效
+    helpIcon.addEventListener('mouseenter', () => {
+        if (!isPinned) {
+            showInstructionsListFromIcon(helpIcon);
+        }
+    });
+    
+    helpIcon.addEventListener('mouseleave', () => {
+        if (!isPinned) {
+            hideInstructionsList();
+        }
+    });
+    
+}
+
+// 从问号图标显示指令列表
+function showInstructionsListFromIcon(icon) {
+    const instructionsList = document.querySelector('.filter-instructions-list');
+    if (!instructionsList) return;
+    
+    // 获取图标的位置
+    const iconRect = icon.getBoundingClientRect();
+    
+    // 计算列表位置（在图标右边，上端对齐）
+    const listLeft = iconRect.right + 8; // 图标右边 + 8px间距
+    const listTop = iconRect.top; // 上端对齐
+    
+    // 设置列表位置
+    instructionsList.style.left = `${listLeft}px`;
+    instructionsList.style.top = `${listTop}px`;
+    
+    // 显示列表
+    instructionsList.classList.add('show');
+}
+
 // 初始化页面
 createFilterButtons();
 createProjectCards();
@@ -1562,6 +1651,7 @@ addFilterHoverEffects();
 initFilterScroll();
 initViewSwitch();
 createIntersectionLegend();
+initHelpIcon();
 
 // 添加过滤器点击事件监听
 buttonSection.querySelectorAll('button').forEach(button => {

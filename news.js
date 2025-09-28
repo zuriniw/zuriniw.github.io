@@ -22,7 +22,9 @@ function parseTime(timeStr) {
 const newsItems = [
     new NewsItem({
         time: "2025.09",
-        event: `We submitted 2 CHI papers! Fingers crossed.`,
+        event: `We submitted 2 papers to CHI 2026! Fingers crossed.`,
+        isstar: true,
+
     }),
     new NewsItem({
         time: "2025.08",
@@ -39,6 +41,7 @@ const newsItems = [
     new NewsItem({
         time: "2025.01",
         event: `<b>Best Academic Contribution Award</b> in The 9th Cross-strait Youth Maker Competition, 2024. See the <a href="projects/poi/poi.html" class="news-link">project</a>`,
+        isstar: true,
     }),
     new NewsItem({
         time: "2024.12",

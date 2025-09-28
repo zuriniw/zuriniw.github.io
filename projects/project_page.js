@@ -80,7 +80,7 @@ if (project) {
 
     // 添加奖项
     if (project.prize) {
-        const prizeItem = createMetaItem('Honor', project.prize);
+        const prizeItem = createMetaItem('Award', project.prize);
         metaSection.appendChild(prizeItem);
     }
 
