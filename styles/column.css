@@ -23,6 +23,14 @@
     position: relative;
 }
 
+/* Category illustration above the title */
+.category-illustration {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 0 4px 0; /* full-width on desktop; centered via media rule on mobile */
+}
+
 .category-title {
     font-size: 12px;
     font-weight: 800;
@@ -93,11 +101,20 @@
 
 /* Desktop-only lines (横线和竖线) - 只在901px以上显示5列布局 */
 @media screen and (min-width: 901px) {
-    /* 横线：贯穿所有column title下方 */
+    /* Desktop: fix illustration height so headers align */
+    .category-illustration {
+        width: 100%;
+        height: 100px; /* larger for desktop */
+        object-fit: contain;
+        margin: 0 0 2px 0; /* keep small flow gap */
+        transform: translateY(-21px); /* visually move up to open space before title */
+    }
+
+    /* Horizontal line across all columns under titles */
     .column-container::after {
         content: '';
         position: absolute;
-        top: 26px; /* 4px(column padding) + 20px(title height) + 0px(margin-bottom) + 2px(fine adjustment) */
+        top: 128px; /* 4px (padding) + 100px (img) + 2px (gap) + 20px (title) + 2px (fine) */
         left: 0;
         right: 0;
         height: 2px;
@@ -105,13 +122,13 @@
         z-index: 10;
         pointer-events: none;
     }
-    
-    /* 竖线：每个column之间的分割线 */
+
+    /* Vertical dividers between columns starting at the horizontal line */
     .category-column:not(:last-child)::before {
         content: '';
         position: absolute;
-        top: 26px; /* 与横线对齐 */
-        right: -2px; /* gap(4px)的一半 */
+        top: 128px; /* align with horizontal line */
+        right: -2px; /* half of the 4px gap */
         bottom: 0;
         width: 1.4px;
         background: #000000;
@@ -173,6 +190,13 @@
         /* padding-bottom: 4px; */
         font-weight: 600;
         border-bottom: 2px solid #000; /* 移动端标题下方的分割线 */
+    }
+
+    /* Illustration is half column width on mobile */
+    .category-illustration {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .column-project-card {
@@ -279,24 +303,7 @@
 }
 
 /* 确保分割线不受任何效果影响 - 最强规则 */
-.column-container::after {
-    opacity: 1 !important;
-    z-index: 5 !important;
-    visibility: visible !important;
-    display: block !important;
-}
-
-/* 强制所有竖线保持可见 - 覆盖所有可能的情况 */
-.category-column::before,
-.category-column:not(:has(.column-project-card:not(.hide)))::before,
-.category-column:has(.column-project-card:not(.hide))::before,
-.category-column:has(.column-project-card.fade-out)::before,
-.category-column:not(:has(.column-project-card:not(.hide))):has(.column-project-card.fade-out)::before {
-    opacity: 1 !important;
-    z-index: 5 !important;
-    visibility: visible !important;
-    display: block !important;
-}
+/* 移除全局强制线条，改为每列标题下边框以适配插图动态高度 */
 
 /* Empty category handling */
 .category-column:has(.column-project-card:not(.hide)) .category-title {

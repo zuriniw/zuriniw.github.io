@@ -991,12 +991,26 @@ function createCategoryColumns() {
     
     // 定义category的排序顺序
     const categoryOrder = ['blended environment', 'foundamental interaction techniques', 'computational design tools', 'devices', 'architectures and installations'];
+    // 定义每个category对应的插图
+    const categoryImages = {
+        'blended environment': 'images/blended.png',
+        'foundamental interaction techniques': 'images/found.png',
+        'computational design tools': 'images/compu.png',
+        'devices': 'images/devices.png',
+        'architectures and installations': 'images/archi.png'
+    };
     
     // 按指定顺序为每个类别创建一列
     categoryOrder.forEach(category => {
         const column = document.createElement('div');
         column.className = 'category-column';
         column.setAttribute('data-category', category.replace(/\s+/g, '-'));
+        
+        // 创建类别插图
+        const illustration = document.createElement('img');
+        illustration.className = 'category-illustration';
+        illustration.src = categoryImages[category] || '';
+        illustration.alt = `${category} illustration`;
         
         // 创建类别标题
         const title = document.createElement('div');
@@ -1065,6 +1079,7 @@ function createCategoryColumns() {
             projectsContainer.appendChild(projectCard);
         });
         
+        column.appendChild(illustration);
         column.appendChild(title);
         column.appendChild(projectsContainer);
         columnContainer.appendChild(column);

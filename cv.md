@@ -62,6 +62,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 ## Posters and Abstracts
 
 **Embodied Generative storytelling**
+<br>
 <u>Ziru Wei</u>, Jimmy Cheng. Accepted as an abstract to the 4S 2025 Conference: Reverberations, September 3-6, 2025 in Seattle, WA. 
 
 ## Experience  
