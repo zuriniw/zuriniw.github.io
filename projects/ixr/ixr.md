@@ -57,9 +57,9 @@ where:
 
 Principles: 
 
-- Bubbles should wrap the objects.
-- Bubbles should not be too large.
-- There is an upper limit for overlapping.
+- Bubbles should wrap around the objects.
+- Bubbles should be large enough to be easily selected, but not excessively large.
+- Overlapping should be avoided as much as possible, with an upper limit on the allowed overlap.
 
 
 #### Objective
@@ -112,7 +112,7 @@ where:
 - $P_{iso}(b_i)$ is isolation-based enhancement for isolated objects  
 - $w_x, w_y, w_z$ are weights, $g$ is a global scale factor  
 
-In this way, smaller objects, far-away object will be compensated with larger initial size since they are hard to select. Also, the isolated object will be assigned with larger initial size for quick and rough selection.
+In this way, the **smaller objects** and **far-away objects** will be compensated with larger initial size since they are hard to select. Also, the **isolated objects** will be assigned with larger initial size for quick and rough selection.
 
 
 ## Manipulation
