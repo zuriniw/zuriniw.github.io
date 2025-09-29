@@ -335,6 +335,14 @@ function createProjectCards() {
             </div>
         `;
 
+        // 优化 gallery 图片加载：惰性加载与异步解码，降低滚动时解码抖动
+        const galleryImg = card.querySelector('.card-image-link img');
+        if (galleryImg) {
+            galleryImg.loading = 'lazy';
+            galleryImg.decoding = 'async';
+            galleryImg.setAttribute('fetchpriority', 'low');
+        }
+
         // 添加卡片悬停效果
         card.addEventListener('mouseenter', () => {
             const buttons = document.querySelectorAll('.buttons-section button');

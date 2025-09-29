@@ -529,6 +529,9 @@ button:hover {
     position: relative;
     cursor: pointer;
     transition: all 0.7s ease;
+    /* Hint browser to skip offscreen rendering where supported */
+    content-visibility: auto;
+    contain-intrinsic-size: 280px 230px;
 }
 
 /* card hover effect */
@@ -590,6 +593,19 @@ button:hover {
     top: 0;
     left: 0;
     mix-blend-mode: multiply;
+    /* Hint browser for offscreen images */
+    content-visibility: auto;
+    contain-intrinsic-size: 180px 230px;
+}
+
+/* Mobile: disable heavy filters and blending for smoother scroll */
+@media (max-width: 900px) {
+    .card-image-container { 
+        filter: none !important; 
+    }
+    .card-image-link img { 
+        mix-blend-mode: normal; 
+    }
 }
 
 
