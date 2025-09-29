@@ -1397,9 +1397,41 @@ function initViewSwitch() {
         let startX = 0;
         let startY = 0;
         let startTime = 0;
+        let isSwipeActive = false;
+        let currentTranslateX = 0;
         
-        // 获取主要内容区域
+        // 获取主要内容区域和视图容器
         const mainContent = document.body;
+        const viewContainers = [
+            document.querySelector('.cards-section'),
+            document.querySelector('.column-view'),
+            document.querySelector('.coordinate-view')
+        ];
+        
+        // 创建swipe容器包装器
+        const swipeWrapper = document.createElement('div');
+        swipeWrapper.className = 'swipe-wrapper';
+        swipeWrapper.style.cssText = `
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            transition: none;
+        `;
+        
+        // 将所有视图容器包装到swipe容器中
+        const parentElement = viewContainers[0].parentElement;
+        parentElement.insertBefore(swipeWrapper, viewContainers[0]);
+        
+        viewContainers.forEach(container => {
+            container.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            `;
+            swipeWrapper.appendChild(container);
+        });
         
         mainContent.addEventListener('touchstart', (e) => {
             // 只处理单指触摸
@@ -1409,11 +1441,57 @@ function initViewSwitch() {
             startX = touch.clientX;
             startY = touch.clientY;
             startTime = Date.now();
+            currentTranslateX = 0;
+            
+            // 检查是否在可swipe的区域
+            const target = e.target;
+            const isInFilterArea = target.closest('.buttons-section') || 
+                                 target.closest('.switch-container') || 
+                                 target.closest('.help-icon-container');
+            
+            isSwipeActive = !isInFilterArea;
+            
+            if (isSwipeActive) {
+                // 禁用transition以实现实时跟随
+                viewContainers.forEach(container => {
+                    container.style.transition = 'none';
+                });
+            }
+        }, { passive: true });
+        
+        mainContent.addEventListener('touchmove', (e) => {
+            if (!isSwipeActive || e.touches.length !== 1) return;
+            
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            
+            // 确保主要是水平移动
+            if (Math.abs(deltaY) > Math.abs(deltaX)) {
+                isSwipeActive = false;
+                return;
+            }
+            
+            // 限制平移距离，创建阻力效果
+            const maxTranslate = window.innerWidth * 0.3; // 最大平移30%屏幕宽度
+            const resistance = 0.6; // 阻力系数
+            currentTranslateX = Math.sign(deltaX) * Math.min(Math.abs(deltaX) * resistance, maxTranslate);
+            
+            // 获取当前活动的视图
+            const activeView = viewContainers.find(container => !container.classList.contains('hide'));
+            if (activeView) {
+                activeView.style.transform = `translateX(${currentTranslateX}px)`;
+                
+                // 添加视觉反馈 - 轻微的缩放和透明度变化
+                const scale = 1 - Math.abs(currentTranslateX) / maxTranslate * 0.02; // 最多缩放2%
+                const opacity = 1 - Math.abs(currentTranslateX) / maxTranslate * 0.1; // 最多透明10%
+                activeView.style.transform = `translateX(${currentTranslateX}px) scale(${scale})`;
+                activeView.style.opacity = opacity;
+            }
         }, { passive: true });
         
         mainContent.addEventListener('touchend', (e) => {
-            // 只处理单指触摸
-            if (e.changedTouches.length !== 1) return;
+            if (!isSwipeActive || e.changedTouches.length !== 1) return;
             
             const touch = e.changedTouches[0];
             const endX = touch.clientX;
@@ -1424,32 +1502,52 @@ function initViewSwitch() {
             const deltaY = endY - startY;
             const deltaTime = endTime - startTime;
             
+            // 重新启用transition
+            viewContainers.forEach(container => {
+                container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease, transform 0.3s ease';
+            });
+            
             // 检查是否为有效的swipe手势
             const minSwipeDistance = 50; // 最小swipe距离
-            const maxSwipeTime = 300; // 最大swipe时间
+            const maxSwipeTime = 500; // 增加最大swipe时间以适应新的交互
             const maxVerticalMovement = 100; // 最大垂直移动距离
+            
+            // 恢复当前视图的样式
+            const activeView = viewContainers.find(container => !container.classList.contains('hide'));
+            if (activeView) {
+                activeView.style.transform = 'translateX(0) scale(1)';
+                activeView.style.opacity = '1';
+            }
             
             // 确保是水平swipe且时间和距离合适
             if (Math.abs(deltaX) > minSwipeDistance && 
                 Math.abs(deltaY) < maxVerticalMovement && 
                 deltaTime < maxSwipeTime) {
                 
-                // 检查是否在可swipe的区域（避免在filter按钮等交互元素上swipe）
-                const target = e.target;
-                const isInFilterArea = target.closest('.buttons-section') || 
-                                     target.closest('.switch-container') || 
-                                     target.closest('.help-icon-container');
-                
-                if (!isInFilterArea) {
-                    if (deltaX > 0) {
-                        // 向右swipe - 切换到前一个视图
-                        switchToPrevView();
-                    } else {
-                        // 向左swipe - 切换到下一个视图
-                        switchToNextView();
-                    }
+                if (deltaX > 0) {
+                    // 向右swipe - 切换到前一个视图
+                    switchToPrevView();
+                } else {
+                    // 向左swipe - 切换到下一个视图
+                    switchToNextView();
                 }
             }
+            
+            isSwipeActive = false;
+        }, { passive: true });
+        
+        // 处理触摸取消
+        mainContent.addEventListener('touchcancel', (e) => {
+            if (!isSwipeActive) return;
+            
+            // 恢复样式
+            viewContainers.forEach(container => {
+                container.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                container.style.transform = 'translateX(0) scale(1)';
+                container.style.opacity = '1';
+            });
+            
+            isSwipeActive = false;
         }, { passive: true });
     }
 

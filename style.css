@@ -982,6 +982,37 @@ button:hover {
     }
 }
 
+/* Swipe interaction styles */
+.swipe-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Smooth transitions for view switching */
+.cards-section,
+.column-view,
+.coordinate-view {
+    transform-origin: center center;
+    will-change: transform, opacity;
+}
+
+/* Enhanced mobile touch interactions */
+@media screen and (max-width: 768px) {
+    .swipe-wrapper {
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y; /* 允许垂直滚动，限制水平滚动 */
+    }
+    
+    /* 优化移动端的transition */
+    .cards-section,
+    .column-view,
+    .coordinate-view {
+        transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                    opacity 0.25s ease !important;
+    }
+}
+
 .switch-view:hover,
 .switch-container:hover .switch-view {
     background-color: var(--color-text);
