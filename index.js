@@ -27,6 +27,82 @@ let lastClickedFilter = null;
 // 添加在文件开头的全局变量
 let svg = null;
 let filterScrollInitialized = false; // 防止重复注册滚动监听
+const prefetchedImages = new Set(); // 记录已预取的图片
+
+// 注册 Service Worker（用于图片缓存）
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        try {
+            navigator.serviceWorker.register('sw.js');
+        } catch (e) {
+            console.warn('SW register failed', e);
+        }
+    }
+}
+
+// 预取图片到 CacheStorage
+async function prefetchToCache(urls) {
+    if (!('caches' in window)) return;
+    try {
+        const cache = await caches.open('site-images-v1');
+        await Promise.all(urls.map(async (url) => {
+            if (!url || prefetchedImages.has(url)) return;
+            try {
+                await cache.add(url);
+                prefetchedImages.add(url);
+            } catch (_) {
+                // 忽略单个失败
+            }
+        }));
+    } catch (_) {}
+}
+
+// 初始化图片预取与优先级（缓解移动端滚动加载延迟）
+function initImageCaching() {
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    const galleryImgs = Array.from(document.querySelectorAll('.card-image-link img'));
+    const columnImgs = Array.from(document.querySelectorAll('.column-project-image img'));
+
+    // 提前加载首屏附近的图片
+    const eagerCount = isMobile ? 6 : 12;
+    galleryImgs.slice(0, eagerCount).forEach(img => {
+        img.loading = 'eager';
+        img.decoding = 'async';
+        img.setAttribute('fetchpriority', 'high');
+    });
+
+    // 背景预取下一批图片（避免一次性把网络打满）
+    const nextBatch = [
+        ...galleryImgs.slice(eagerCount, eagerCount + 12),
+        ...columnImgs.slice(0, 8)
+    ].map(img => img.currentSrc || img.src);
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => prefetchToCache(nextBatch));
+    } else {
+        setTimeout(() => prefetchToCache(nextBatch), 300);
+    }
+
+    // 接近视口时预取更多
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+            const toPrefetch = [];
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const url = img.currentSrc || img.src;
+                    if (url && !prefetchedImages.has(url)) {
+                        toPrefetch.push(url);
+                    }
+                }
+            });
+            if (toPrefetch.length) prefetchToCache(toPrefetch);
+        }, { rootMargin: '1200px 0px' });
+
+        galleryImgs.forEach(img => io.observe(img));
+        columnImgs.forEach(img => io.observe(img));
+    }
+}
 
 // 添加凹包算法相关的辅助函数
 function getPointCoordinates(point) {
@@ -368,6 +444,8 @@ function createProjectCards() {
         // 按顺序添加所有卡片
         cards.forEach(card => cardSection.appendChild(card));
         updateCards();
+        // 卡片渲染后初始化图片缓存/预取
+        initImageCaching();
     });
 }
 
@@ -1106,6 +1184,8 @@ function createCategoryColumns() {
         column.appendChild(projectsContainer);
         columnContainer.appendChild(column);
     });
+    // 列视图生成后，更新图片缓存/预取
+    initImageCaching();
 }
 
 // 修改项目点生成功能
@@ -2055,6 +2135,7 @@ initFilterScroll();
 initViewSwitch();
 createIntersectionLegend();
 initHelpIcon();
+registerServiceWorker();
 
 // 添加过滤器点击事件监听
 buttonSection.querySelectorAll('button').forEach(button => {
@@ -2066,6 +2147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFilterScroll();
     addFilterHoverEffects();
     initFixedFilter();
+    initImageCaching();
     // 如果有已激活的过滤器，更新交集图例
     if (activeFilters.length > 0) {
         updateIntersectionLegend();
