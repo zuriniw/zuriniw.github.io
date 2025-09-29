@@ -20,31 +20,6 @@ Thesis: *Towards Multimodal Interaction with Proactive Physical Agents* (Advised
 Bachelor of Architecture, GPA: 3.7/4.0
 
 
-## Skills
-
-<dl>
-    <dt>Technical</dt>
-</dl>
-
-- Hardware: Arduino, Raspberry Pi
-- Languages: Python, R, C#, Pascal, HTML, CSS, Javascript
-- Game Engine: Unity
-
-
-<dl>
-    <dt>Design & Production</dt>
-</dl>
-
-- Software: Rhino, Grasshopper with GHPython, Blender, AutoCAD, Adobe Creative Suite, Figma, Procreate
-- Fabrication: 3D printing, Soldering and electronic wiring, Welding (basic), Woodworking
-
-<dl>
-    <dt>Languages</dt>
-</dl>
-
-- English (Fluent), Mandarin (Native), Portuguese (Beginner)
-
-
 ## Publications
 
 **(In submission, CHI 2026) “Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots**  
@@ -63,7 +38,8 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 
 **Embodied Generative storytelling**
 <br>
-<u>Ziru Wei</u>, Jimmy Cheng. Accepted as an abstract to the 4S 2025 Conference: Reverberations, September 3-6, 2025 in Seattle, WA. 
+<u>Ziru Wei</u>, Jimmy Cheng. Abstract accepted, 4S 2025 Conference: Reverberations, Seattle, WA, Sept 3–6, 2025.
+
 
 ## Experience  
 
@@ -158,6 +134,31 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dt>METTLER TOLEDO Scholarship (Top 2%) </dt>
     <dd>2019</dd>
 </dl>
+
+## Skills
+
+<dl>
+    <dt>Technical</dt>
+</dl>
+
+- Hardware: Arduino, Raspberry Pi
+- Languages: Python, R, C#, Pascal, HTML, CSS, Javascript
+- Game Engine: Unity
+
+
+<dl>
+    <dt>Design & Production</dt>
+</dl>
+
+- Software: Rhino, Grasshopper with GHPython, Blender, AutoCAD, Adobe Creative Suite, Figma, Procreate
+- Fabrication: 3D printing, Soldering and electronic wiring, Welding (basic), Woodworking
+
+<dl>
+    <dt>Languages</dt>
+</dl>
+
+- English (Fluent), Mandarin (Native), Portuguese (Beginner)
+
 
 ## Activities
 

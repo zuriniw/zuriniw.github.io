@@ -14,25 +14,6 @@
 - Bachelor of Architecture, GPA: 3.7/4.0
 
 
-## Skills
-
-**Technical**
-
-- Hardware: Arduino, Raspberry Pi
-- Languages: Python, R, C#, Pascal, HTML, CSS, Javascript
-- Game Engine: Unity
-
-
-**Design & Production**
-
-- Software: Rhino, Grasshopper with GHPython, Blender, AutoCAD, Adobe Creative Suite, Figma, Procreate
-- Fabrication: 3D printing, Soldering and electronic wiring, Welding (basic), Woodworking
-
-
-**Languages**
-
-- English (Fluent), Mandarin (Native), Portuguese (Beginner)
-
 ## Publications
 **(In submission, CHI 2026) “Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots**
 
@@ -53,7 +34,7 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 ## Posters and Abstracts
 **Embodied Generative storytelling**
 
-\underline{Ziru Wei}, Jimmy Cheng. Accepted as an abstract to the 4S 2025 Conference: Reverberations, September 3-6, 2025 in Seattle, WA.
+\underline{Ziru Wei}, Jimmy Cheng. Abstract accepted, 4S 2025 Conference: Reverberations, Seattle, WA, Sept 3–6, 2025.
 
 ## Experience
 
@@ -117,6 +98,25 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 
 **METTLER TOLEDO Scholarship (Top 2%) ** \hfill 2019
 
+
+## Skills
+
+**Technical**
+
+- Hardware: Arduino, Raspberry Pi
+- Languages: Python, R, C#, Pascal, HTML, CSS, Javascript
+- Game Engine: Unity
+
+
+**Design & Production**
+
+- Software: Rhino, Grasshopper with GHPython, Blender, AutoCAD, Adobe Creative Suite, Figma, Procreate
+- Fabrication: 3D printing, Soldering and electronic wiring, Welding (basic), Woodworking
+
+
+**Languages**
+
+- English (Fluent), Mandarin (Native), Portuguese (Beginner)
 
 ## Activities
 

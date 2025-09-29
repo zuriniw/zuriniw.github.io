@@ -33,9 +33,9 @@
 
 % H2 (\subsection) - main sections with dividers (Education, Skills, etc.)
 \renewcommand{\subsection}[1]{%
-    \vspace{1.4em}%
+    \vspace{1.6em}%
     \noindent{\large\textsc{#1}}%
-    \vspace{0.6em}%
+    \vspace{0.2em}%
     \hrule%
     \vspace{0em}%
 }
@@ -58,7 +58,7 @@
 % Add extra spacing above bold text (for institution names, paper titles, etc.)
 \let\oldtextbf\textbf
 \renewcommand{\textbf}[1]{%
-    \vspace{0.4em}%
+    \vspace{0.8em}%
     \noindent\oldtextbf{#1}%
 }
 
@@ -96,14 +96,17 @@
 \pagestyle{empty}
 
 % Title formatting (centered) with fixed contact info
-\begin{center}
-    {\Huge\bfseries Ziru Wei}\\[4pt]
-    {\normalsize
-      \href{mailto:ziruw@andrew.cmu.edu}{ziruw@andrew.cmu.edu} \,|\, 
-      \href{https://zuriniw.github.io}{zuriniw.github.io}
-    }\\
+    \begin{center}
+        {\Huge\bfseries Ziru Wei}\\[6pt]
+        {\large
+          \href{mailto:ziruw@andrew.cmu.edu}{ziruw@andrew.cmu.edu} \,|\, 
+          \href{https://zuriniw.github.io}{zuriniw.github.io}
+        }\\[6pt]
+        {\small {Keywords: Technical HCI, Human–Robot Interaction,   
+        User Modeling, Multimodal Interaction, Extended Reality}}
     \end{center}
     \vspace{0.5em}
+    
     
 
 % Body content from markdown
