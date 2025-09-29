@@ -908,7 +908,8 @@ button:hover {
     background-color: var(--color-text);
 }
 
-.switch-view img:hover {
+.switch-view img:hover,
+.switch-container:hover .switch-view img {
     filter: brightness(0) invert(1);
   }
 

@@ -178,7 +178,7 @@
     .column-project-card {
         padding: 2px 0;
         display: flex;
-        gap: 14px;
+        gap: 10px;
         align-items: center;
         border-bottom: 1px solid #000;
     }
@@ -190,8 +190,8 @@
     }
     
     .column-project-image {
-        width: 120px;
-        height: 36px;
+        width: 140px;
+        height: 42px;
         flex-shrink: 0;
         border: 1px solid #000;
     }
@@ -220,12 +220,12 @@
     
     .column-project-card {
         padding: 2px 0;
-        gap: 12px;
+        gap: 8px;
     }
     
     .column-project-image {
-        width: 110px;
-        height: 32px;
+        width: 130px;
+        height: 38px;
         border: 1px solid #000;
     }
     
