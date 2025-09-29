@@ -152,6 +152,21 @@
     -ms-overflow-style: none;
 }
 
+/* Make all images non-selectable and non-draggable (global) */
+img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+}
+
+a img {
+    -webkit-user-drag: none;
+}
+
 /* 文本选择的样式 */
 ::selection {
     background-color: var(--color-text);

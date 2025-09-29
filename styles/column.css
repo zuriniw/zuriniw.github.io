@@ -29,6 +29,12 @@
     width: 100%;
     height: auto;
     margin: 0 0 4px 0; /* full-width on desktop; centered via media rule on mobile */
+    /* Make the illustration non-selectable/non-draggable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .category-title {

@@ -1097,6 +1097,10 @@ function createCategoryColumns() {
         illustration.className = 'category-illustration';
         illustration.src = categoryImages[category] || '';
         illustration.alt = `${category} illustration`;
+        // 禁止拖拽（跨浏览器）
+        illustration.setAttribute('draggable', 'false');
+        illustration.draggable = false;
+        illustration.addEventListener('dragstart', (e) => e.preventDefault());
         
         // 创建类别标题
         const title = document.createElement('div');
@@ -2155,6 +2159,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeFilters.length > 0) {
         updateIntersectionLegend();
     }
+    // 全局禁止图片拖拽，并为后续新插入的图片同步设置
+    (function enforceNoSelectNoDragOnImages() {
+        const setAttrs = (img) => {
+            try {
+                img.setAttribute('draggable', 'false');
+                img.draggable = false;
+                img.style.webkitUserDrag = 'none';
+                img.style.userSelect = 'none';
+            } catch (_) {}
+        };
+        document.querySelectorAll('img').forEach(setAttrs);
+        const mo = new MutationObserver((mutations) => {
+            for (const m of mutations) {
+                m.addedNodes && m.addedNodes.forEach((node) => {
+                    if (node && node.nodeType === 1) {
+                        if (node.tagName === 'IMG') setAttrs(node);
+                        if (node.querySelectorAll) node.querySelectorAll('img').forEach(setAttrs);
+                    }
+                });
+            }
+        });
+        mo.observe(document.documentElement, { childList: true, subtree: true });
+        document.addEventListener('dragstart', (e) => {
+            if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+        });
+    })();
 });
 
 // 切换按钮 - 现在针对整个switch容器
