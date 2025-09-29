@@ -134,7 +134,7 @@ const projects = [
         situate: { x: 70, y: -56 },
         ismarkdown: true,
         isflipped: false,
-        category: "computational design tool"
+        category: "computational design tools"
     }),
     new Project({
         name: "villagerenewal",
@@ -154,7 +154,7 @@ const projects = [
         weight: 5,
         situate: { x: -50, y: 70 },
         otherLink2: "https://www.behance.net/gallery/217218343/Village-Renewal-Design-in-Fujian-China",
-        category: "architecture and installation"
+        category: "architectures and installations"
     }),
     new Project({
         name: "aurora",
@@ -248,7 +248,7 @@ const projects = [
         subtitle: "Computational design and interface design",
         labels: ["Digital"],
         time: "2022",
-        myContribution: "A computational design tool for generative Taihu stone",
+        myContribution: "A computational design tools for generative Taihu stone",
         isteam: false,
         tools: "Grasshopper",
         weight: 4,
@@ -256,7 +256,7 @@ const projects = [
         isflipped: true,
         ispage: true,
         ismarkdown: true,
-        category: "computational design tool"
+        category: "computational design tools"
     }),
     new Project({
         name: "mobius",
@@ -274,7 +274,7 @@ const projects = [
         weight: 5,
         otherLink2:"https://humachine.cn/?post_type=products&page_id=17054",
         situate: { x: -30, y: -90 },
-        category: "architecture and installation"
+        category: "architectures and installations"
     }),
     // new Project({
     //     name: "intdesign",
@@ -385,7 +385,7 @@ const projects = [
         ispage: true,
         weight: 4,
         ismarkdown: true,
-        category: "architecture and installation"
+        category: "architectures and installations"
     }),
     // new Project({
     //     name: "wavepavilion",
@@ -431,7 +431,7 @@ const projects = [
         ismarkdown: true,
         weight: 5,
         situate: { x: 10, y: 50 },
-        category: "computational design tool"
+        category: "computational design tools"
     })
 ];
 
@@ -441,10 +441,10 @@ const availableLabels = [
 
 const availableCategories = [
     "blended environment",
-    "computational design tool", 
+    "computational design tools", 
     "devices",
     "foundamental interaction techniques",
-    "architecture and installation"
+    "architectures and installations"
 ];
 
 export { Project, projects, availableLabels, availableCategories };

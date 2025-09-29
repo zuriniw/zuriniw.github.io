@@ -989,8 +989,11 @@ function createCategoryColumns() {
     // 清空现有内容
     columnContainer.innerHTML = '';
     
-    // 为每个类别创建一列
-    availableCategories.forEach(category => {
+    // 定义category的排序顺序
+    const categoryOrder = ['blended environment', 'foundamental interaction techniques', 'computational design tools', 'devices', 'architectures and installations'];
+    
+    // 按指定顺序为每个类别创建一列
+    categoryOrder.forEach(category => {
         const column = document.createElement('div');
         column.className = 'category-column';
         column.setAttribute('data-category', category.replace(/\s+/g, '-'));
@@ -1240,8 +1243,10 @@ function initViewSwitch() {
     const cardsSection = document.querySelector('.cards-section');
     const coordinateView = document.querySelector('.coordinate-view');
     const columnView = document.querySelector('.column-view');
-    // 从 sessionStorage 获取视图状态，默认为 'gallery'
-    let currentView = sessionStorage.getItem('currentView') || 'gallery';
+    // 从 sessionStorage 获取视图状态，移动端默认为 'column'，桌面端默认为 'gallery'
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    const defaultView = isMobile ? 'column' : 'gallery';
+    let currentView = sessionStorage.getItem('currentView') || defaultView;
     let pointsCreated = false;
     let columnsCreated = false;
 

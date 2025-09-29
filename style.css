@@ -2080,21 +2080,7 @@ body.project-page {
         height: 400px !important;
     }
 
-    .coordinate-container::before {
-        content: "↑ Double Tap to FOCUS  ";
-        font-family: "Barlow", serif;
-        position: absolute;
-        display: block;
-        top: -22px;
-        right: 0;
-        text-align: right;
-        font-size: 10px;
-        color: var(--color-text-grey);
-        background: none;
-        height: auto;
-        width: auto;
-        border-radius: 0;
-    }
+
 
     /* 移动端的过滤器容器 - 会被后面的规则覆盖 */
     .filter-container {

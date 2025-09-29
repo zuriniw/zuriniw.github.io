@@ -18,7 +18,7 @@
 /* Category Column */
 .category-column {
     background: rgba(255, 255, 255, 0.02);
-    min-height: 200px;
+    min-height: 200px; /* 只在桌面端保持最小高度 */
     padding: 4px;
     position: relative;
 }
@@ -28,13 +28,12 @@
     font-weight: 800;
     color: #000000;
     text-align: center;
-    margin-bottom: 12px;
+    margin-bottom: 0px; /* 无间距 */
     letter-spacing: 0.5px;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 0 0 0; /* 只保留上内边距，移除下内边距 */
     height: 20px; /* 固定标题高度确保对齐 */
     display: flex;
-    align-items: center;
+    align-items: flex-end; /* 向下对齐 */
     justify-content: center;
 }
 
@@ -98,7 +97,7 @@
     .column-container::after {
         content: '';
         position: absolute;
-        top: 44px; /* 12px(column padding) + 20px(title height) + 12px(title margin-bottom) */
+        top: 26px; /* 4px(column padding) + 20px(title height) + 0px(margin-bottom) + 2px(fine adjustment) */
         left: 0;
         right: 0;
         height: 2px;
@@ -111,7 +110,7 @@
     .category-column:not(:last-child)::before {
         content: '';
         position: absolute;
-        top: 44px; /* 与横线对齐 */
+        top: 26px; /* 与横线对齐 */
         right: -4px; /* gap(8px)的一半 */
         bottom: 0;
         width: 1.4px;
@@ -132,11 +131,30 @@
         gap: 12px;
         padding: 0 20px;
         max-width: 500px;
+        position: relative;
+    }
+    
+    /* 移动端提示文字 */
+    .column-container::before {
+        content: "Tap to TOGGLE, Double Tap to FOCUS  ";
+        font-family: "Barlow", serif;
+        position: absolute;
+        display: block;
+        top: -22px;
+        right: -24px;
+        text-align: right;
+        font-size: 10px;
+        color: var(--color-text-grey);
+        background: none;
+        height: auto;
+        width: auto;
+        border-radius: 0;
     }
     
     .category-column {
-        padding: 16px 0;
-        margin-bottom: 24px;
+        padding: 16px 0 0 0; /* 只保留顶部padding */
+        margin-bottom: 20px; /* 恢复正常间距 */
+        min-height: auto; /* 移动端自适应高度 */
     }
     
     /* 移除桌面端的线条效果 */
@@ -150,11 +168,11 @@
     
     .category-title {
         font-size: 14px;
-        margin-bottom: 8px;
+        margin-bottom: 2px;
         height: auto;
-        border-bottom: 2px solid #000;
         /* padding-bottom: 4px; */
         font-weight: 600;
+        border-bottom: 2px solid #000; /* 移动端标题下方的分割线 */
     }
     
     .column-project-card {
@@ -168,6 +186,7 @@
     /* 每个category的最后一个card下方2px的线 */
     .category-column .column-project-card:last-child {
         border-bottom: 2px solid #000;
+        margin-bottom: 16px; /* 添加底部间距匹配padding */
     }
     
     .column-project-image {
@@ -194,8 +213,9 @@
     }
     
     .category-column {
-        padding: 12px 0;
-        margin-bottom: 20px;
+        padding: 12px 0 0 0; /* 只保留顶部padding */
+        margin-bottom: 20px; /* 恢复正常间距 */
+        min-height: auto; /* 极小屏幕自适应高度 */
     }
     
     .column-project-card {
@@ -215,7 +235,15 @@
     
     .category-title {
         font-size: 13px;
+        margin-bottom: 2px;
         /* padding-bottom: 4px; */
+        border-bottom: 2px solid #000; /* 确保极小屏幕也有标题下方的分割线 */
+    }
+    
+    /* 每个category的最后一个card下方2px的线 - 极小屏幕 */
+    .category-column .column-project-card:last-child {
+        border-bottom: 2px solid #000;
+        margin-bottom: 12px; /* 添加底部间距匹配padding */
     }
 }
 
