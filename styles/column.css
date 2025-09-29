@@ -6,9 +6,9 @@
 
 .column-container {
     display: grid;
-    grid-template-columns: repeat(5, minmax(180px, 200px));
-    gap: 8px;
-    max-width: 960px;
+    grid-template-columns: repeat(5, minmax(150px, 165px));
+    gap: 4px;
+    max-width: 730px;
     margin: 0 auto;
     padding: 0 16px;
     justify-content: center;
@@ -111,7 +111,7 @@
         content: '';
         position: absolute;
         top: 26px; /* 与横线对齐 */
-        right: -4px; /* gap(8px)的一半 */
+        right: -2px; /* gap(4px)的一半 */
         bottom: 0;
         width: 1.4px;
         background: #000000;
