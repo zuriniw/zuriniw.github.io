@@ -114,7 +114,7 @@ const projects = [
         otherLink2: "http://ideate.xsead.cmu.edu/gallery/projects/remaking-shaker-1996",
         weight: 8.9,
         isflipped: false,
-        situate: { x: 70, y: -5 },
+        situate: { x: 60, y: -5 },
         category: "devices"
     }),
     new Project({
@@ -382,7 +382,7 @@ const projects = [
         tools: "Unity | C# | HoloLens 2 | Arduino | Rhino | ArcGIS | Figma | Procreate | laser cut",
         briefDescription: "How to make a bridge between distant information and sensible responses?",
         youtubeLink: "https://www.youtube.com/embed/Nbk9Z47OTQQ?si=e-NE6-3MkLDDQATN",
-        situate: { x: 70, y: -15 },
+        situate: { x: 60, y: -15 },
         ispage: true,
         weight: 8.7,
         ismarkdown: true,
