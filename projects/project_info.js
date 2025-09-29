@@ -357,7 +357,7 @@ const projects = [
     }),
     new Project({
         name: "dataresonate",
-        title: "Sensible Data",
+        title: "Perceivable Data",
         subtitle: "An multi-modal data exploration toolkit for public urban discourse",
         labels: ["XR", "HCD"],
         time: "2023",

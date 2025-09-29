@@ -6,7 +6,7 @@
 
 .column-container {
     display: grid;
-    grid-template-columns: repeat(5, minmax(150px, 165px));
+    grid-template-columns: repeat(5, minmax(145px, 160px));
     gap: 4px;
     max-width: 730px;
     margin: 0 auto;
