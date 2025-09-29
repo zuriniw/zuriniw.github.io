@@ -135,7 +135,7 @@
     }
     
     /* 移动端提示文字 */
-    .column-container::before {
+    /* .column-container::before {
         content: "Tap to TOGGLE, Double Tap to FOCUS  ";
         font-family: "Barlow", serif;
         position: absolute;
@@ -149,7 +149,7 @@
         height: auto;
         width: auto;
         border-radius: 0;
-    }
+    } */
     
     .category-column {
         padding: 16px 0 0 0; /* 只保留顶部padding */

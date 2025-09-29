@@ -2155,7 +2155,7 @@ body.project-page {
     }
 
     .buttons-section {
-        gap: 4px; /* 增大间距 */
+        gap: 6px; /* 增大间距 */
         width: 100%;
         max-width: 100%;
         flex-wrap: nowrap; /* 禁止换行 */
