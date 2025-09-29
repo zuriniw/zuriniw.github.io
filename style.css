@@ -885,6 +885,9 @@ button:hover {
     flex-direction: row;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .switch-label {
@@ -893,9 +896,15 @@ button:hover {
     color: var(--color-text);
     white-space: nowrap;
     padding-left: 4px;
+    transition: opacity 0.2s ease;
 }
 
-.switch-view:hover {
+.switch-container:hover .switch-label {
+    opacity: 0.7;
+}
+
+.switch-view:hover,
+.switch-container:hover .switch-view {
     background-color: var(--color-text);
 }
 

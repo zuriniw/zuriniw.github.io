@@ -1240,6 +1240,7 @@ function createProjectPoints() {
 
 function initViewSwitch() {
     const switchButton = document.querySelector('.switch-view');
+    const switchContainer = document.querySelector('.switch-container');
     const cardsSection = document.querySelector('.cards-section');
     const coordinateView = document.querySelector('.coordinate-view');
     const columnView = document.querySelector('.column-view');
@@ -1316,7 +1317,8 @@ function initViewSwitch() {
         columnsCreated = true;
     }
 
-    switchButton.addEventListener('click', () => {
+    // 为整个switch容器添加点击事件
+    switchContainer.addEventListener('click', () => {
         // 循环切换三种视图：gallery -> column -> coordinate -> gallery
         switch(currentView) {
             case 'gallery':
