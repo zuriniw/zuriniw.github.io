@@ -128,7 +128,7 @@ const projects = [
         tools: "Unity, C#, Quest 2",
         otherLink2: null,
         weight: 6.1,
-        situate: { x: 20, y: -5 },
+        situate: { x: 20, y: 60 },
         ismarkdown: true,
         isflipped: false,
         tutor: "David Lindlbauer",
@@ -431,7 +431,7 @@ const projects = [
         ispage: true,
         ismarkdown: true,
         weight: 9,
-        situate: { x: 80, y: 70 },
+        situate: { x: 20, y: 50 },
         category: "foundamental interaction techniques"
     }),
     new Project({
@@ -447,7 +447,7 @@ const projects = [
         ispage: true,
         ismarkdown: true,
         weight: 5,
-        situate: { x: 10, y: 50 },
+        situate: { x: 10, y: 20 },
         category: "computational design tools"
     })
 ];
