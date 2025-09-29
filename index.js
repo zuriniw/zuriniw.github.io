@@ -1461,8 +1461,8 @@ function initViewSwitch() {
     // 添加swipe手势支持
     initSwipeGestures();
     
-    // 初始化swipe提示
-    initSwipeHint();
+    // 初始化swipe提示 - 暂时禁用
+    // initSwipeHint();
 }
 
 
