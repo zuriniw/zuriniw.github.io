@@ -2155,7 +2155,7 @@ body.project-page {
     }
 
     .buttons-section {
-        gap: 2px; /* 减小间距 */
+        gap: 4px; /* 增大间距 */
         width: 100%;
         max-width: 100%;
         flex-wrap: nowrap; /* 禁止换行 */
@@ -2170,8 +2170,8 @@ body.project-page {
     
     /* 移动端button样式 */
     .buttons-section button {
-        padding: 2px 4px; /* 减小内边距 */
-        font-size: 12px; /* 减小字体 */
+        padding: 3px 5px; /* 增大内边距 */
+        font-size: 13px; /* 增大字体 */
         white-space: nowrap; /* 防止文字换行 */
         flex-shrink: 0; /* 防止按钮被压缩 */
     }
@@ -2450,13 +2450,27 @@ body.project-page {
         color: inherit;
     }
 
-    /* 专门移除 switch-view 按钮的悬停效果 */
-    .switch-view:hover {
+    /* 专门移除 switch-view 按钮的悬停和点击效果 */
+    .switch-view:hover,
+    .switch-view:active,
+    .switch-view:focus,
+    .switch-container:hover .switch-view,
+    .switch-container:active .switch-view {
         background-color: transparent !important;
     }
 
-    .switch-view img:hover {
+    .switch-view img:hover,
+    .switch-view img:active,
+    .switch-view img:focus,
+    .switch-container:hover .switch-view img,
+    .switch-container:active .switch-view img {
         filter: none !important;
+    }
+    
+    /* 禁用switch容器的所有交互效果 */
+    .switch-container:hover .switch-label,
+    .switch-container:active .switch-label {
+        opacity: 1 !important;
     }
 
     /* 调整链接按压效果 */
@@ -2802,7 +2816,7 @@ body.project-page {
     .buttons-section {
         display: flex;
         flex-wrap: nowrap; /* 禁止换行 */
-        gap: 2px; /* 进一步减小间距 */
+        gap: 4px; /* 保持适中间距 */
 
         /* 关键点：让整个按钮块贴到右侧，并在可用空间内伸缩 */
         margin-left: auto;
@@ -2828,8 +2842,8 @@ body.project-page {
     }
 
     button {
-        padding: 2px 4px; /* 进一步减小按钮内边距 */
-        font-size: 12px; /* 减小字体大小 */
+        padding: 3px 5px; /* 增大按钮内边距 */
+        font-size: 13px; /* 增大字体大小 */
         white-space: nowrap; /* 防止文字换行 */
     }
 }
@@ -2837,12 +2851,12 @@ body.project-page {
 /* 针对非常小的屏幕（320px以下） */
 @media screen and (max-width: 320px) {
     .buttons-section {
-        gap: 1px; /* 最小间距 */
+        gap: 2px; /* 适中间距 */
     }
     
     .buttons-section button {
-        padding: 1px 3px; /* 最小内边距 */
-        font-size: 11px; /* 最小字体 */
+        padding: 2px 4px; /* 适中内边距 */
+        font-size: 12px; /* 适中字体 */
     }
 }
 
