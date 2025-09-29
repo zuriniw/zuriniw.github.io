@@ -2032,7 +2032,7 @@ body.project-page {
     }
 
     .intro {
-        font-size: 13px !important;
+        font-size: 16px !important;
         padding: 20px 10px 0px 10px !important;
         line-height: 1.3 !important;
         margin-top: 6px;
@@ -2048,7 +2048,7 @@ body.project-page {
     .intro a:hover,
     .intro a:active {
         font-family: "Barlow", sans-serif !important;
-        font-size: 14px !important;
+        font-size: 16px !important;
         border-bottom: none !important;
     }
 
@@ -2642,7 +2642,7 @@ body.project-page {
 
     .intro {
         padding: 0 10px;
-        font-size: 13px !important;
+        font-size: 16px !important;
         width: 100%;
         min-width: 320px; /* 与其他容器保持一致 */
         max-width: 100%;

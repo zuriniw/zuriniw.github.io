@@ -1243,10 +1243,21 @@ function initViewSwitch() {
     const cardsSection = document.querySelector('.cards-section');
     const coordinateView = document.querySelector('.coordinate-view');
     const columnView = document.querySelector('.column-view');
-    // 从 sessionStorage 获取视图状态，移动端默认为 'column'，桌面端默认为 'gallery'
+    // 根据当前屏幕尺寸决定默认视图，移动端默认为 'column'，桌面端默认为 'gallery'
     const isMobile = window.matchMedia('(max-width: 900px)').matches;
     const defaultView = isMobile ? 'column' : 'gallery';
-    let currentView = sessionStorage.getItem('currentView') || defaultView;
+    // 优先使用当前屏幕尺寸对应的默认视图，而不是保存的状态
+    let currentView = defaultView;
+    // 只在同一设备类型下保持用户的选择
+    const savedView = sessionStorage.getItem('currentView');
+    const savedDeviceType = sessionStorage.getItem('deviceType');
+    const currentDeviceType = isMobile ? 'mobile' : 'desktop';
+    
+    if (savedView && savedDeviceType === currentDeviceType) {
+        currentView = savedView;
+    }
+    // 保存当前设备类型
+    sessionStorage.setItem('deviceType', currentDeviceType);
     let pointsCreated = false;
     let columnsCreated = false;
 
@@ -1336,6 +1347,9 @@ function initViewSwitch() {
         
         // 保存视图状态到 sessionStorage
         sessionStorage.setItem('currentView', currentView);
+        // 保存设备类型以便下次访问时判断
+        const isMobileNow = window.matchMedia('(max-width: 900px)').matches;
+        sessionStorage.setItem('deviceType', isMobileNow ? 'mobile' : 'desktop');
         // 应用新的视图状态
         updateViewState(currentView);
     });

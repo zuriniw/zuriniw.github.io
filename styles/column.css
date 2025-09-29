@@ -230,11 +230,11 @@
     }
     
     .column-project-title {
-        font-size: 12px;
+        font-size: 15px;
     }
     
     .category-title {
-        font-size: 13px;
+        font-size: 14px;
         margin-bottom: 2px;
         /* padding-bottom: 4px; */
         border-bottom: 2px solid #000; /* 确保极小屏幕也有标题下方的分割线 */

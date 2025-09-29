@@ -23,8 +23,6 @@ const newsItems = [
     new NewsItem({
         time: "2025.09",
         event: `We submitted 2 papers to CHI 2026! Fingers crossed.`,
-        isstar: true,
-
     }),
     new NewsItem({
         time: "2025.08",
