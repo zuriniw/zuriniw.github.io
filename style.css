@@ -2032,6 +2032,15 @@ body.project-page {
         gap: 0;
         margin-left: 0;
         margin-right: auto;
+        /* 移动端touch优化 */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        /* 增大点击区域 */
+        padding: 8px;
+        margin: -8px;
     }
 
     .buttons-section {

@@ -1829,16 +1829,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 切换按钮
+// 切换按钮 - 现在针对整个switch容器
 function addVibrationToSwitchButton() {
-    const switchButton = document.querySelector('.switch-view');
-    if (!switchButton) return; 
-    const originalClick = switchButton.onclick;
-    switchButton.onclick = (e) => {
-        if (originalClick) {
-            originalClick.call(switchButton, e);
+    const switchContainer = document.querySelector('.switch-container');
+    if (!switchContainer) return; 
+    
+    // 为移动端添加touch事件处理
+    let touchStartTime = 0;
+    
+    switchContainer.addEventListener('touchstart', (e) => {
+        touchStartTime = Date.now();
+        // 防止默认行为和事件冒泡
+        e.preventDefault();
+    }, { passive: false });
+    
+    switchContainer.addEventListener('touchend', (e) => {
+        const touchDuration = Date.now() - touchStartTime;
+        
+        // 只有在短按时才触发点击（避免长按时意外触发）
+        if (touchDuration < 300) {
+            // 触发点击事件
+            switchContainer.click();
         }
-    };
+        
+        e.preventDefault();
+    }, { passive: false });
 }
 
 // 在页面加载完成时初始化
