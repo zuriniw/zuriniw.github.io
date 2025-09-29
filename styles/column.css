@@ -1,6 +1,6 @@
 /* Column View Styles */
 .column-view {
-    padding: 80px 0;
+    padding: 60px 0 0 0;
     min-height: 100vh;
 }
 
@@ -53,11 +53,7 @@
     transition: all 0.2s ease;
 }
 
-.column-project-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
-}
+
 
 .column-project-card.hide {
     display: none;
@@ -96,8 +92,8 @@
     line-height: 1.2;
 }
 
-/* Desktop-only lines (横线和竖线) */
-@media screen and (min-width: 1025px) {
+/* Desktop-only lines (横线和竖线) - 只在901px以上显示5列布局 */
+@media screen and (min-width: 901px) {
     /* 横线：贯穿所有column title下方 */
     .column-container::after {
         content: '';
@@ -125,11 +121,22 @@
     }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
+/* Responsive Design - 只有两种状态：5列(桌面)和1列(移动) */
+@media (max-width: 900px) {
+    .column-view {
+        padding: 20px 0;
+    }
+    
     .column-container {
-        grid-template-columns: repeat(3, minmax(160px, 180px));
-        gap: 6px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 0 20px;
+        max-width: 500px;
+    }
+    
+    .category-column {
+        padding: 16px 0;
+        margin-bottom: 24px;
     }
     
     /* 移除桌面端的线条效果 */
@@ -140,84 +147,75 @@
     .category-column::before {
         display: none;
     }
-}
-
-@media (max-width: 768px) {
-    .column-container {
-        grid-template-columns: repeat(2, minmax(150px, 200px));
-        gap: 6px;
-        padding: 0 12px;
-    }
-    
-    .category-column {
-        padding: 10px;
-    }
-    
-    /* 确保移除桌面端的线条效果 */
-    .column-container::after {
-        display: none;
-    }
-    
-    .category-column::before {
-        display: none;
-    }
     
     .category-title {
-        font-size: 11px;
-        margin-bottom: 10px;
-        height: 18px;
+        font-size: 14px;
+        margin-bottom: 8px;
+        height: auto;
+        border-bottom: 2px solid #000;
+        /* padding-bottom: 4px; */
+        font-weight: 600;
     }
     
     .column-project-card {
-        padding: 6px;
+        padding: 2px 0;
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        border-bottom: 1px solid #000;
+    }
+    
+    /* 每个category的最后一个card下方2px的线 */
+    .category-column .column-project-card:last-child {
+        border-bottom: 2px solid #000;
     }
     
     .column-project-image {
-        height: 60px;
-        border: 1.5px solid #000;
+        width: 120px;
+        height: 36px;
+        flex-shrink: 0;
+        border: 1px solid #000;
+    }
+    
+    .column-project-info {
+        flex: 1;
     }
     
     .column-project-title {
-        font-size: 11px;
+        font-size: 13px;
     }
 }
 
+/* 极小屏幕优化 */
 @media (max-width: 480px) {
-    .column-view {
-        padding: 12px 0;
-    }
-    
     .column-container {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        padding: 0 10px;
+        padding: 0 15px;
+        max-width: 460px;
     }
     
     .category-column {
-        padding: 12px 10px;
+        padding: 12px 0;
+        margin-bottom: 20px;
     }
     
-    /* 确保移除桌面端的线条效果 */
-    .column-container::after {
-        display: none;
-    }
-    
-    .category-column::before {
-        display: none;
-    }
-    
-    .category-title {
-        height: 16px;
-        font-size: 10px;
+    .column-project-card {
+        padding: 2px 0;
+        gap: 12px;
     }
     
     .column-project-image {
-        height: 50px;
-        border: 1.5px solid #000;
+        width: 110px;
+        height: 32px;
+        border: 1px solid #000;
     }
     
     .column-project-title {
-        font-size: 10px;
+        font-size: 12px;
+    }
+    
+    .category-title {
+        font-size: 13px;
+        /* padding-bottom: 4px; */
     }
 }
 
@@ -255,7 +253,7 @@
 /* 确保分割线不受任何效果影响 - 最强规则 */
 .column-container::after {
     opacity: 1 !important;
-    z-index: 999 !important;
+    z-index: 5 !important;
     visibility: visible !important;
     display: block !important;
 }
@@ -267,7 +265,7 @@
 .category-column:has(.column-project-card.fade-out)::before,
 .category-column:not(:has(.column-project-card:not(.hide))):has(.column-project-card.fade-out)::before {
     opacity: 1 !important;
-    z-index: 999 !important;
+    z-index: 5 !important;
     visibility: visible !important;
     display: block !important;
 }

@@ -55,7 +55,7 @@ class RelatedMatrix {
         labels.className = 'axis-labels';
 
         // X轴标签
-        const xLabels = ['REPRESENTATION', 'TOOLS'];
+        const xLabels = ['REPRESENTATION', 'TOOLING'];
         xLabels.forEach((text, i) => {
             const label = document.createElement('div');
             label.className = `x-label ${i === 0 ? 'left' : 'right'}`;
