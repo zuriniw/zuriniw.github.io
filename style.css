@@ -2033,9 +2033,9 @@ body.project-page {
 
     .intro {
         font-size: 16px !important;
-        padding: 20px 10px 0px 10px !important;
+        padding: 8px 10px 0px 10px !important;
         line-height: 1.3 !important;
-        margin-top: 6px;
+        margin-top: 0px;
         margin-bottom: 12px;
         text-align: left !important;
         position: relative !important;
@@ -2080,13 +2080,13 @@ body.project-page {
     }
 
     .filter-wrapper {
-        padding-top: 80px;
+        padding-top: 50px;
         background-color: var(--color-background);
         position: relative;
     }
 
     .coordinate-container {
-        margin-top: 10px;
+        margin-top: 4px;
         height: 400px !important;
     }
 
@@ -2105,7 +2105,7 @@ body.project-page {
     /* 移动端的过滤器内容 - 会被后面的规则覆盖 */
     .filter-content {
         width: 100%;
-        padding: 40px 10px 0 20px; /* 上20，左右20，下0 */
+        padding: 16px 10px 0 20px; /* 上16，左右20，下0 */
         background-color: var(--color-background);
         position: relative;
         z-index: 99;
