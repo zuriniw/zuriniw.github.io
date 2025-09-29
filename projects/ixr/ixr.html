@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading... - Ziru Wei</title>
+    <link rel="icon" type="image/png" href="../../images/kitten.png">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../styles/toc.css">
+    <link rel="stylesheet" href="../../styles/markdown.css">
+    <link rel="stylesheet" href="../../styles/related_matrix.css">
+    <link rel="stylesheet" href="../../styles/header_footer.css">
+    <script src="../../components/load_components.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="../../components/related_matrix.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        });
+    </script>
+
+</head>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QLERMQJ1BN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QLERMQJ1BN');
+</script>
+
+
+<body class="project-page">
+    <!-- 页眉容器 -->
+    <div id="header"></div>
+
+    <!-- 项目内容 -->
+    <div class="project-section">
+        <div class="project-header">
+            <h1 class="project-title"></h1>
+            <h2 class="project-subtitle"></h2>
+        </div>
+
+        <div class="project-meta">
+            <!-- 元数据将由 JavaScript 动态填充 -->
+        </div>
+
+        <div class="project-footer">
+            <p class="project-context"></p>
+        </div>
+    </div>
+        
+    <!-- 视频容器 -->
+    <div class="video-wrapper"></div>
+    <!-- 添加 markdown 内容容器 -->
+    <div id="markdown-content" class="markdown-content">
+        <!-- Markdown 内容将被动态加载到这里 -->
+    </div>
+
+    <!-- 页脚容器 -->
+    <div id="footer"></div>
+
+    <script type="module" src="../project_page.js"></script>
+    <!-- 添加加载 markdown 的脚本 -->
+    <script type="module">
+        import { ProjectPage } from '../project_page.js';
+        import { projects } from '../project_info.js';
+        marked.use({
+            mangle: false,     // 禁用特殊字符转换
+            headerIds: false   // 禁用自动header id生成
+        });
+        // 获取当前项目信息
+        const projectName = ProjectPage.getCurrentProjectName();
+        const currentProject = projects.find(p => p.name === projectName);
+        
+        // 只有当项目的 ismarkdown 为 true 时才加载 markdown 内容
+        if (currentProject && currentProject.ismarkdown) {
+            fetch(`${ProjectPage.getCurrentProjectName()}.md`)
+                .then(response => response.text())
+                .then(mdContent => {
+                    // 将 markdown 转换为 HTML 并插入到容器中
+                    document.getElementById('markdown-content').innerHTML = marked.parse(mdContent);
+                    
+                        // ▶ 新增的数学公式渲染调用
+                    renderMathInElement(document.getElementById('markdown-content'), {
+                        delimiters: [
+                            { left: '$$', right: '$$', display: true },
+                            { left: '$', right: '$', display: false },
+                            { left: '\\(', right: '\\)', display: false },
+                            { left: '\\[', right: '\\]', display: true }
+                        ],
+                        output: 'html',
+                        // 关键配置
+                        fleqn: false,
+                        throwOnError: false,
+                        trust: false,
+                        strict: false,
+                        // ▶ 新增字体配置
+                        macros: {
+                            "\\fontfamily": "\\mathbb{\\text{#1}}"
+                        },
+                    });
+                    
+                    // 初始化目录
+                    const toc = new TableOfContents();
+                    toc.init();
+                })
+                .catch(error => {
+                    console.error('Error loading markdown:', error);
+                });
+        }
+    </script>
+
+    <script src="../../scripts/toc.js"></script>
+</body>
+</html>

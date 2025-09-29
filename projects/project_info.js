@@ -118,6 +118,23 @@ const projects = [
         category: "devices"
     }),
     new Project({
+        name: "ixr",
+        title: "Optimized VR Interaction",
+        subtitle: "A series of optimized interaction techniques for VR expereince",
+        labels: ["Digital", "XR", "HCD"],
+        time: "2025",
+        ispage: true,
+        isteam: false,
+        tools: "Unity, C#, Quest 2",
+        otherLink2: null,
+        weight: 6.1,
+        situate: { x: 20, y: -5 },
+        ismarkdown: true,
+        isflipped: false,
+        tutor: "David Lindlbauer",
+        category: "foundamental interaction techniques"
+    }),
+    new Project({
         name: "shapeshift",
         title: "Shapeshift Playground",
         subtitle: "A node-based drawing tool inspired by Grasshopper",

@@ -96,7 +96,9 @@
                     renderMathInElement(document.getElementById('markdown-content'), {
                         delimiters: [
                             { left: '$$', right: '$$', display: true },
-                            { left: '$', right: '$', display: false }
+                            { left: '$', right: '$', display: false },
+                            { left: '\\(', right: '\\)', display: false },
+                            { left: '\\[', right: '\\]', display: true }
                         ],
                         output: 'html',
                         // 关键配置
