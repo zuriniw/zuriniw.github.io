@@ -29,6 +29,8 @@ let svg = null;
 let filterScrollInitialized = false; // 防止重复注册滚动监听
 const prefetchedImages = new Set(); // 记录已预取的图片
 
+// （移除 GIF 首帧静态海报逻辑，保持 GIF 直接显示）
+
 // 注册 Service Worker（用于图片缓存）
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
@@ -401,13 +403,7 @@ function createProjectCards() {
                     <h3 class="card-title">${project.title}</h3>
                     ${project.youtubeLink ? '<span class="video-icon"></span>' : ''}
                 </div>
-                <p class="card-time">
-                    ${project.time}
-                    ${project.isteam ? ' | Team' : ' | Solo Work'}
-                </p>
-                <div class="card-labels">
-                    ${project.labels.map(label => `<span class="label">${label}</span>`).join('')}
-                </div>
+                <p class="card-time">${project.subtitle || ''}</p>
             </div>
         `;
 
@@ -672,11 +668,12 @@ function updateCards() {
 function addFilterHoverEffects() {
     const buttons = document.querySelectorAll('.buttons-section button');
     const cards = document.querySelectorAll('.card');
-    const points = document.querySelector('.coordinate-view').querySelectorAll('.point-wrapper');
+    // 动态获取坐标系中的点，避免在切换到坐标视图后 NodeList 为空
+    const getPoints = () => document.querySelectorAll('.coordinate-view .point-wrapper');
     const container = document.querySelector('.coordinate-container');
     
     // 根据当前过滤器状态设置点的初始可见性
-    points.forEach(point => {
+    getPoints().forEach(point => {
         point.classList.remove('fade-out');
         // 检查是否应该隐藏这个点
         const hasMatchingFilter = activeFilters.length === 0 || 
@@ -834,7 +831,7 @@ function addFilterHoverEffects() {
                 }
             });
 
-            points.forEach(point => {
+            getPoints().forEach(point => {
                 if (!point.hasAttribute(`data-${sanitizedLabel}`)) {
                     point.classList.toggle('fade-out', isActive);
                 }
@@ -849,7 +846,7 @@ function addFilterHoverEffects() {
             });
 
             // 获取当前可见的点
-            const visiblePoints = Array.from(points).filter(point => 
+            const visiblePoints = Array.from(getPoints()).filter(point => 
                 !point.classList.contains('fade-out') && 
                 !point.classList.contains('hide')
             );
@@ -878,7 +875,7 @@ function addFilterHoverEffects() {
             card.classList.toggle('hide', activeFilters.length > 0 && !hasAllFilters);
         });
         
-        points.forEach(point => {
+        getPoints().forEach(point => {
             const hasAllFilters = activeFilters.every(filter => 
                 point.hasAttribute(`data-${filter}`));
             point.classList.toggle('hide', activeFilters.length > 0 && !hasAllFilters);
@@ -1141,12 +1138,14 @@ function createCategoryColumns() {
             const imageWrap = document.createElement('div');
             imageWrap.className = 'column-project-image';
             const img = document.createElement('img');
+            // 直接显示 GIF
             img.src = project.getGifPath();
             img.alt = project.title;
             img.loading = 'lazy';
             img.decoding = 'async';
             img.setAttribute('fetchpriority', 'low');
             imageWrap.appendChild(img);
+
 
             const info = document.createElement('div');
             info.className = 'column-project-info';
@@ -1158,7 +1157,7 @@ function createCategoryColumns() {
             projectCard.appendChild(imageWrap);
             projectCard.appendChild(info);
             
-            // 添加卡片悬停效果
+            // 添加卡片悬停效果（仅用于按钮高亮，不再切换 GIF）
             projectCard.addEventListener('mouseenter', () => {
                 const buttons = document.querySelectorAll('.buttons-section button');
                 buttons.forEach(button => {
@@ -1361,9 +1360,9 @@ function initViewSwitch() {
     const cardsSection = document.querySelector('.cards-section');
     const coordinateView = document.querySelector('.coordinate-view');
     const columnView = document.querySelector('.column-view');
-    // 根据当前屏幕尺寸决定默认视图，移动端默认为 'column'，桌面端默认为 'gallery'
+    // 默认视图：PC 与移动端均为 'column'，切换顺序为 column → coordinate → gallery
     const isMobile = window.matchMedia('(max-width: 900px)').matches;
-    const defaultView = isMobile ? 'column' : 'gallery';
+    const defaultView = 'column';
     // 优先使用当前屏幕尺寸对应的默认视图，而不是保存的状态
     let currentView = defaultView;
     // 只在同一设备类型下保持用户的选择
@@ -1429,6 +1428,8 @@ function initViewSwitch() {
     if (currentView === 'coordinate') {
         createProjectPoints();
         pointsCreated = true;
+        // 确保坐标视图的按钮悬停效果与连线可用
+        addFilterHoverEffects();
     } else if (currentView === 'column') {
         createCategoryColumns();
         columnsCreated = true;
@@ -1450,6 +1451,7 @@ function initViewSwitch() {
                     createProjectPoints();
                     pointsCreated = true;
                 }
+                addFilterHoverEffects();
                 // 更新点的可见性
                 const pointWrappers = document.querySelectorAll('.point-wrapper');
                 pointWrappers.forEach(wrapper => {
@@ -1480,6 +1482,7 @@ function initViewSwitch() {
                     createProjectPoints();
                     pointsCreated = true;
                 }
+                addFilterHoverEffects();
                 // 更新点的可见性
                 const pointWrappers = document.querySelectorAll('.point-wrapper');
                 pointWrappers.forEach(wrapper => {

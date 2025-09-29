@@ -439,7 +439,7 @@ const projects = [
         title: "ML Co-Curator",
         time: "2025",
         isteam: false,
-        subtitle: "An AI co-curation tool that collaborates with designers to generate portfolios and virtual exhibitions",
+        subtitle: "A ML-driven curation tool that generates portfolios and virtual exhibitions",
         briefDescription: "How to merge the agency of designers with the data-driven curation of machine learning?",
         tutor: "Eunsu Kang",
         tools: "CNN, TSNE dimension reduction, C-TSP algorithm, k-means clustering, google-genai api, Bokeh, Three.js ",
