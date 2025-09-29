@@ -1317,9 +1317,8 @@ function initViewSwitch() {
         columnsCreated = true;
     }
 
-    // 为整个switch容器添加点击事件
-    switchContainer.addEventListener('click', () => {
-        // 循环切换三种视图：gallery -> column -> coordinate -> gallery
+    // 提取视图切换逻辑为独立函数
+    function switchToNextView() {
         switch(currentView) {
             case 'gallery':
                 currentView = 'column';
@@ -1354,7 +1353,116 @@ function initViewSwitch() {
         sessionStorage.setItem('deviceType', isMobileNow ? 'mobile' : 'desktop');
         // 应用新的视图状态
         updateViewState(currentView);
+    }
+
+    function switchToPrevView() {
+        switch(currentView) {
+            case 'gallery':
+                currentView = 'coordinate';
+                if (!pointsCreated) {
+                    createProjectPoints();
+                    pointsCreated = true;
+                }
+                // 更新点的可见性
+                const pointWrappers = document.querySelectorAll('.point-wrapper');
+                pointWrappers.forEach(wrapper => {
+                    const isVisible = activeFilters.length === 0 || 
+                        activeFilters.some(filter => wrapper.hasAttribute(`data-${filter.toLowerCase()}`));
+                    wrapper.classList.toggle('hide', !isVisible);
+                });
+                break;
+            case 'column':
+                currentView = 'gallery';
+                break;
+            case 'coordinate':
+                currentView = 'column';
+                if (!columnsCreated) {
+                    createCategoryColumns();
+                    columnsCreated = true;
+                }
+                break;
+        }
+        
+        // 保存视图状态到 sessionStorage
+        sessionStorage.setItem('currentView', currentView);
+        // 保存设备类型以便下次访问时判断
+        const isMobileNow = window.matchMedia('(max-width: 900px)').matches;
+        sessionStorage.setItem('deviceType', isMobileNow ? 'mobile' : 'desktop');
+        // 应用新的视图状态
+        updateViewState(currentView);
+    }
+
+    // 添加swipe手势处理函数
+    function initSwipeGestures() {
+        let startX = 0;
+        let startY = 0;
+        let startTime = 0;
+        
+        // 获取主要内容区域
+        const mainContent = document.body;
+        
+        mainContent.addEventListener('touchstart', (e) => {
+            // 只处理单指触摸
+            if (e.touches.length !== 1) return;
+            
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            startTime = Date.now();
+        }, { passive: true });
+        
+        mainContent.addEventListener('touchend', (e) => {
+            // 只处理单指触摸
+            if (e.changedTouches.length !== 1) return;
+            
+            const touch = e.changedTouches[0];
+            const endX = touch.clientX;
+            const endY = touch.clientY;
+            const endTime = Date.now();
+            
+            const deltaX = endX - startX;
+            const deltaY = endY - startY;
+            const deltaTime = endTime - startTime;
+            
+            // 检查是否为有效的swipe手势
+            const minSwipeDistance = 50; // 最小swipe距离
+            const maxSwipeTime = 300; // 最大swipe时间
+            const maxVerticalMovement = 100; // 最大垂直移动距离
+            
+            // 确保是水平swipe且时间和距离合适
+            if (Math.abs(deltaX) > minSwipeDistance && 
+                Math.abs(deltaY) < maxVerticalMovement && 
+                deltaTime < maxSwipeTime) {
+                
+                // 检查是否在可swipe的区域（避免在filter按钮等交互元素上swipe）
+                const target = e.target;
+                const isInFilterArea = target.closest('.buttons-section') || 
+                                     target.closest('.switch-container') || 
+                                     target.closest('.help-icon-container');
+                
+                if (!isInFilterArea) {
+                    if (deltaX > 0) {
+                        // 向右swipe - 切换到前一个视图
+                        switchToPrevView();
+                    } else {
+                        // 向左swipe - 切换到下一个视图
+                        switchToNextView();
+                    }
+                }
+            }
+        }, { passive: true });
+    }
+
+    // 为整个switch容器添加点击事件
+    switchContainer.addEventListener('click', () => {
+        switchToNextView();
     });
+
+    // 添加swipe手势支持
+    initSwipeGestures();
+    
+    // 初始化swipe提示
+    initSwipeHint();
 }
 
 
@@ -1896,6 +2004,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// 初始化swipe提示功能
+function initSwipeHint() {
+    const swipeHint = document.getElementById('swipeHint');
+    const swipeHintClose = document.getElementById('swipeHintClose');
+    
+    if (!swipeHint || !swipeHintClose) return;
+    
+    // 检查是否已经显示过提示（通过localStorage记录）
+    const hasSeenSwipeHint = localStorage.getItem('hasSeenSwipeHint');
+    
+    // 只在移动端且未见过提示时显示
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    
+    if (isMobile && !hasSeenSwipeHint) {
+        // 延迟1秒显示提示，让用户先适应界面
+        setTimeout(() => {
+            swipeHint.classList.add('show');
+            
+            // 30秒后自动隐藏
+            setTimeout(() => {
+                hideSwipeHint();
+            }, 30000);
+            
+        }, 1000);
+    }
+    
+    // 点击关闭按钮
+    swipeHintClose.addEventListener('click', (e) => {
+        e.stopPropagation(); // 防止触发switch容器的点击事件
+        hideSwipeHint();
+    });
+    
+    // 隐藏提示框的函数
+    function hideSwipeHint() {
+        swipeHint.classList.remove('show');
+        // 记录用户已经看过提示
+        localStorage.setItem('hasSeenSwipeHint', 'true');
+    }
+    
+    // 如果用户进行了swipe操作，也隐藏提示
+    let hasSwipedBefore = false;
+    
+    // 监听触摸事件来检测swipe
+    document.body.addEventListener('touchend', (e) => {
+        if (!hasSwipedBefore && swipeHint.classList.contains('show')) {
+            // 简单检测是否为可能的swipe手势
+            const touch = e.changedTouches[0];
+            if (touch) {
+                hasSwipedBefore = true;
+                setTimeout(() => {
+                    hideSwipeHint();
+                }, 500); // 延迟一点隐藏，让用户看到效果
+            }
+        }
+    }, { passive: true });
+}
 
 // 添加键盘事件监听器来处理退格键
 document.addEventListener('keydown', (event) => {

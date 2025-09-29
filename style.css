@@ -903,6 +903,85 @@ button:hover {
     opacity: 0.7;
 }
 
+/* Swipe Hint Tooltip */
+.swipe-hint {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-text);
+    color: var(--color-background);
+    padding: 8px 12px 8px 8px;
+    border-radius: 4px;
+    font-family: "Barlow", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.swipe-hint.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.swipe-hint-text {
+    display: inline-block;
+    padding-right: 4px;
+}
+
+.swipe-hint-close {
+    position: absolute;
+    top: 0px;
+    right: 4px;
+    background: none;
+    border: none;
+    color: var(--color-background);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swipe-hint-close:hover {
+    opacity: 0.7;
+}
+
+/* Arrow pointing down */
+.swipe-hint::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--color-text);
+}
+
+/* Mobile specific adjustments */
+@media screen and (max-width: 768px) {
+    .swipe-hint {
+        top: -40px;
+        font-size: 11px;
+        padding: 6px 10px 6px 6px;
+    }
+    
+    .swipe-hint-close {
+        right: 3px;
+        font-size: 14px;
+    }
+}
+
 .switch-view:hover,
 .switch-container:hover .switch-view {
     background-color: var(--color-text);
@@ -2045,9 +2124,25 @@ body.project-page {
     }
 
     .buttons-section {
-        gap: 4px;
+        gap: 2px; /* 减小间距 */
         width: 100%;
         max-width: 100%;
+        flex-wrap: nowrap; /* 禁止换行 */
+        overflow-x: auto; /* 如果内容过多，允许水平滚动 */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE */
+    }
+    
+    .buttons-section::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+    
+    /* 移动端button样式 */
+    .buttons-section button {
+        padding: 2px 4px; /* 减小内边距 */
+        font-size: 12px; /* 减小字体 */
+        white-space: nowrap; /* 防止文字换行 */
+        flex-shrink: 0; /* 防止按钮被压缩 */
     }
 
     .intro {
@@ -2672,11 +2767,11 @@ body.project-page {
         text-align: left; /* 移动端左对齐更易读 */
     }
 
-    /* 右侧按钮块：贴右对齐、可换行、不溢出 */
+    /* 右侧按钮块：贴右对齐、禁止换行、不溢出 */
     .buttons-section {
         display: flex;
-        flex-wrap: wrap; /* 空间不足时换行 */
-        gap: 8px;
+        flex-wrap: nowrap; /* 禁止换行 */
+        gap: 2px; /* 进一步减小间距 */
 
         /* 关键点：让整个按钮块贴到右侧，并在可用空间内伸缩 */
         margin-left: auto;
@@ -2684,8 +2779,15 @@ body.project-page {
 
         flex: 1 1 auto; /* 允许收缩/增长，占据剩余空间 */
         min-width: 0; /* 允许在窄屏下真正收缩，防止被最小内容宽度撑爆 */
-        width: min(100%, 364px); /* 取代原来的 min-width:364px，避免溢出 */
+        width: 100%;
         max-width: 100%;
+        overflow-x: auto; /* 如果内容过多，允许水平滚动 */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE */
+    }
+    
+    .buttons-section::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
     }
 
     /* 每个按钮不要被拉伸，也允许文本收缩 */
@@ -2695,8 +2797,21 @@ body.project-page {
     }
 
     button {
-        padding: 3px 6px;
-        font-size: 13px;
+        padding: 2px 4px; /* 进一步减小按钮内边距 */
+        font-size: 12px; /* 减小字体大小 */
+        white-space: nowrap; /* 防止文字换行 */
+    }
+}
+
+/* 针对非常小的屏幕（320px以下） */
+@media screen and (max-width: 320px) {
+    .buttons-section {
+        gap: 1px; /* 最小间距 */
+    }
+    
+    .buttons-section button {
+        padding: 1px 3px; /* 最小内边距 */
+        font-size: 11px; /* 最小字体 */
     }
 }
 
