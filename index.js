@@ -26,6 +26,7 @@ let lastClickedFilter = null;
 
 // 添加在文件开头的全局变量
 let svg = null;
+let filterScrollInitialized = false; // 防止重复注册滚动监听
 
 // 添加凹包算法相关的辅助函数
 function getPointCoordinates(point) {
@@ -958,6 +959,7 @@ function createNoiseFilter(id, config = {}) {
 
 // 初始化过滤器滚动效果
 function initFilterScroll() {
+    if (filterScrollInitialized) return; // 已初始化则直接返回
     const buttonSection = document.querySelector('.buttons-section');
     let filterRect = buttonSection.getBoundingClientRect();  // 改用 let 声明
     let originalTop = filterRect.top + window.pageYOffset;
@@ -979,6 +981,7 @@ function initFilterScroll() {
         filterRect = buttonSection.getBoundingClientRect();
         originalTop = filterRect.top + window.pageYOffset;
     });
+    filterScrollInitialized = true;
 }
 
 // 创建分类列视图
@@ -1048,15 +1051,26 @@ function createCategoryColumns() {
                 projectCard.style.cursor = 'url(images/closedhand.svg) 10 10, auto';
             }
             
-            // 创建项目内容
-            projectCard.innerHTML = `
-                <div class="column-project-image">
-                    <img src="${project.getGifPath()}" alt="${project.title}">
-                </div>
-                <div class="column-project-info">
-                    <h4 class="column-project-title">${project.title}</h4>
-                </div>
-            `;
+            // 创建项目内容（使用惰性加载和异步解码以提升滚动性能）
+            const imageWrap = document.createElement('div');
+            imageWrap.className = 'column-project-image';
+            const img = document.createElement('img');
+            img.src = project.getGifPath();
+            img.alt = project.title;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.setAttribute('fetchpriority', 'low');
+            imageWrap.appendChild(img);
+
+            const info = document.createElement('div');
+            info.className = 'column-project-info';
+            const title = document.createElement('h4');
+            title.className = 'column-project-title';
+            title.textContent = project.title;
+            info.appendChild(title);
+
+            projectCard.appendChild(imageWrap);
+            projectCard.appendChild(info);
             
             // 添加卡片悬停效果
             projectCard.addEventListener('mouseenter', () => {

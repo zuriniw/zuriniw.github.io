@@ -58,6 +58,9 @@
     border-radius: 0;
     padding: 24px 4px 0px 4px;
     transition: all 0.2s ease;
+    /* Skip rendering offscreen cards where supported */
+    content-visibility: auto;
+    contain-intrinsic-size: 90px 160px;
 }
 
 
@@ -81,6 +84,9 @@
     object-fit: cover;
     filter: grayscale(0.2);
     transition: filter 0.2s ease;
+    /* Hint the browser to skip offscreen work where supported */
+    content-visibility: auto;
+    contain-intrinsic-size: 70px 160px;
 }
 
 .column-project-card:hover .column-project-image img {
@@ -218,6 +224,13 @@
         height: 42px;
         flex-shrink: 0;
         border: 1px solid #000;
+    }
+
+    /* On mobile, remove image filters to reduce GPU work */
+    .column-project-image img {
+        filter: none;
+        content-visibility: auto;
+        contain-intrinsic-size: 42px 140px;
     }
     
     .column-project-info {
