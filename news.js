@@ -34,7 +34,7 @@ const newsItems = [
     }),
     new NewsItem({
         time: "2025.03",
-        event: `<b>An Acstract has been accepted to 4S 2025 Conference Panel, September 3-6, 2025 in Seattle, WA. </a>`,
+        event: `<b>An Abstract has been accepted to 4S 2025 Conference Panel, September 3-6, 2025 in Seattle, WA. </a>`,
     }),
     new NewsItem({
         time: "2025.01",

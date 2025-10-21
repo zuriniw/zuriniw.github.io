@@ -45,13 +45,6 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 
 
 
-**Research Student at CodeLab, Carnegie Mellon University** \hfill 2025.02 - 2025.06
-
-- Independent Project 1: Implemented a real-time system that transformed hand shadows into six-panel comic storytelling, leveraging MediaPipe for motion capture, StreamDiffusion for real-time image synthesis, and an LLM for caption generation.
-- Independent Project 2: Experimented with ML techniques to automate the curation of creative works, exploring varying balances between human-led and machine-led decision-making.
-
-
-
 **Research Intern at WHY Research Lab, Carnegie Mellon University** \hfill 2024.08 - 2025.01
 
 - Built the WasteStation database in Notion to map connections between components and potential reuse applications

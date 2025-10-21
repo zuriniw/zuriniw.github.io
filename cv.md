@@ -31,8 +31,6 @@ Violet Yinuo Han, <u>Ziru Wei</u>, Aiden Yiliu Li, Chris Wu, Alexandra Ion
 **On-site Holographic Building Construction: A Case Study of Aurora**  
 Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* (Peer-reviewed), 2022  
 
-**Mixed-Reality Assisted Refinement Strategies for Old Residential Renovation and Participatory Design Research: A Case Study of the Sericulture Community in Suzhou**  
-<u>Ziru Wei</u>, X. Zhao, Y. Wang, et al. *Architecture & Culture* (Core Journal of China), July 2023, pp. 180–183. 
 
 ## Posters and Abstracts
 
@@ -51,14 +49,6 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 - Conducted a Wizard-of-Oz user study on small-scale personal robots across private, social, and public-work environments; modeled intention-aware and intention-revealing proactivity, and distilled quantitative and qualitative findings into design recommendations for unobtrusive proactive robots.  
 - Building a computational pipeline to orchestrate the multimodal behaviors of proactive personal robots, integrating perception, decision-making, and interaction modules (ongoing).
 
-<br>
-<dl>
-    <dt>Research Student at CodeLab, Carnegie Mellon University</dt>
-    <dd>2025.02 - 2025.06</dd>
-</dl>
-
-- Independent Project 1: Implemented a real-time system that transformed hand shadows into six-panel comic storytelling, leveraging MediaPipe for motion capture, StreamDiffusion for real-time image synthesis, and an LLM for caption generation.  
-- Independent Project 2: Experimented with ML techniques to automate the curation of creative works, exploring varying balances between human-led and machine-led decision-making.
 
 <br>
 <dl>

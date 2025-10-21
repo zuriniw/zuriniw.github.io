@@ -85,7 +85,7 @@ const projects = [
         tutor: "Chao Yan",
         myContribution: "coding, ideation, experiment designing, documenting, figure making",
         tools: "Unity, Grasshopper, GHPython, ZED Depth Camera, Rhino",
-        briefDescription: `"We shape our buildings, thereafter they shape us." --Winston Churchill, 1943`,
+        briefDescription: `We shape our buildings, thereafter they shape us." --Winston Churchill, 1943`,
         youtubeLink: "https://www.youtube.com/embed/X6KAT7KzDUs?si=jhOz6vGQ7ZCa5KV1",
         prize: "Best Academic Contribution Award",
         ismarkdown: true,   
