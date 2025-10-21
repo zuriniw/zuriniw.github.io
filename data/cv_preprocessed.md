@@ -25,11 +25,7 @@ Violet Yinuo Han, \underline{Ziru Wei}, Aiden Yiliu Li, Chris Wu, Alexandra Ion
 
 **On-site Holographic Building Construction: A Case Study of Aurora**
 
-Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* (Peer-reviewed), 2022
-
-**Mixed-Reality Assisted Refinement Strategies for Old Residential Renovation and Participatory Design Research: A Case Study of the Sericulture Community in Suzhou**
-
-\underline{Ziru Wei}, X. Zhao, Y. Wang, et al. *Architecture & Culture* (Core Journal of China), July 2023, pp. 180–183.
+Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* , 2022 (peer-reviewed, ≈30 % acceptance)
 
 ## Posters and Abstracts
 **Embodied Generative storytelling**
@@ -40,22 +36,21 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 
 **Research Student at Interactive Structures Lab, Human-Computer Interaction Institute, Carnegie Mellon University** \hfill 2025.04 - Present
 
-- Conducted a Wizard-of-Oz user study on small-scale personal robots across private, social, and public-work environments; modeled intention-aware and intention-revealing proactivity, and distilled quantitative and qualitative findings into design recommendations for unobtrusive proactive robots.
-- Building a computational pipeline to orchestrate the multimodal behaviors of proactive personal robots, integrating perception, decision-making, and interaction modules (ongoing).
+- Designed and conducted a Wizard-of-Oz study on how users perceive a proactive portable personal robot performing different types of assistances across private, social, and public contexts; synthesized quantitative and qualitative findings into design recommendations for developing unobtrusive proactive physical assistance
+- Developing a real-time computational pipeline for proactive physical agents to perceive and reason about contextual cues, and to orchestrate multimodal proactive behaviors to initiate assistance &nbsp;(ongoing)
 
 
 
 **Research Intern at WHY Research Lab, Carnegie Mellon University** \hfill 2024.08 - 2025.01
 
-- Built the WasteStation database in Notion to map connections between components and potential reuse applications
 - Replicated the 'Ladybug' project, which transformed dismantled disk drives into a scanning device through disassembly, resoldering, and Raspberry Pi integration
+- Built the WasteStation database in Notion to map connections between components and potential reuse applications
 
 
 
 **Research Assistant, Humachine Lab, Soochow University** \hfill 2021.08 - 2022.07
 
-- Executed Mixed Reality (MR) workflows in nonlinear panel assembly of a full-scale house within 10 days
-- Framed and led four on-site collaboration methods to maximize the benefits of MR in registration, adjustment, synchronized work, and cross-time work
+- Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize the use of limited MR devices within a small, low-tech construction team
 - Documented the design-to-construction process and contributed to academic writing
 
 

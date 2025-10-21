@@ -1595,9 +1595,20 @@ point label hover effect
 
 /* news page style */
 .news-section {
-    max-width: 760px;
-    margin: 120px auto 0;
-    padding: 0 20px;
+    max-width: 800px;
+    margin: 80px auto 0;
+    padding: 30px 30px 0;
+    position: relative;
+    z-index: 101;
+    background-color: var(--color-background);
+}
+
+.news-heading {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text);
+    padding: 0 40px 20px 16px !important;
+    font-family: "Barlow", sans-serif;
 }
 
 .news-container {
@@ -1767,8 +1778,8 @@ body.project-page {
     margin-top: 6px;
     margin-bottom: 40px;
     line-height: 1.2;
-    font-weight: 400;
-    text-align: right;
+    font-weight: 300;
+    text-align: left;
     padding: 0 0px;
     width: 100%;
     max-width: 720px;
@@ -1787,14 +1798,14 @@ body.project-page {
     text-decoration: none;
     padding: 1px 4px;
     margin: -1px -4px;
-    border-bottom: none;
+    border-bottom: 0.5px solid var(--color-text);
 }
 
 .intro a:hover,
 .intro a:active {
     color: var(--color-white);
     background-color: var(--color-text);
-    border-bottom: none;
+    border-bottom: 0.5px solid var(--color-white);
     font-family: "Barlow", sans-serif !important;
 }
 
@@ -2220,12 +2231,17 @@ body.project-page {
 
     .intro a,
     .intro a:link,
-    .intro a:visited,
+    .intro a:visited {
+        font-family: "Barlow", sans-serif !important;
+        font-size: 16px !important;
+        border-bottom: 0.5px solid var(--color-text) !important;
+    }
+    
     .intro a:hover,
     .intro a:active {
         font-family: "Barlow", sans-serif !important;
         font-size: 16px !important;
-        border-bottom: none !important;
+        border-bottom: 0.5px solid var(--color-white) !important;
     }
 
     .matrix-caption {
@@ -2959,6 +2975,9 @@ body.project-page {
 .cv-section {
     text-align: center;
     padding: 80px 0;
+    position: relative;
+    z-index: 101;
+    background-color: var(--color-background);
 }
 
 .cv-button {
