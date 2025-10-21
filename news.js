@@ -22,7 +22,8 @@ function parseTime(timeStr) {
 const newsItems = [
     new NewsItem({
         time: "2025.09",
-        event: `We submitted 2 papers to CHI 2026! Fingers crossed.`,
+        event: `We submitted 2 papers to <b>CHI 2026</b>! Fingers crossed.`,
+
     }),
     new NewsItem({
         time: "2025.08",
@@ -34,17 +35,15 @@ const newsItems = [
     }),
     new NewsItem({
         time: "2025.03",
-        event: `<b>An Abstract has been accepted to 4S 2025 Conference Panel, September 3-6, 2025 in Seattle, WA. </a>`,
+        event: `<b>An Abstract has been accepted to 4S 2025 Conference Panel, September 3-6, 2025 in Seattle, WA. </b>`,
     }),
     new NewsItem({
         time: "2025.01",
         event: `<b>Best Academic Contribution Award</b> in The 9th Cross-strait Youth Maker Competition, 2024. See the <a href="projects/poi/poi.html" class="news-link">project</a>`,
-        isstar: true,
     }),
     new NewsItem({
         time: "2024.12",
         event: `I won 1st Prize in the <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112</a> Term Project (selected from 400+ projects, chosen by David Kosbie and audience vote)! See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
-        isstar: true,
     }),
     new NewsItem({
         time: "2025.01",

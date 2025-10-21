@@ -1,10 +1,10 @@
-# Ziru Wei
+# Ziru Wei （魏·子茹）
 
 ## Education
 
 **Carnegie Mellon University** \hfill 2026.05
 
-- Master of Science in Computational Design (HCI focus), GPA: 4.0/4.0
+- Master of Science in Computational Design (HCI focus), GPA: 4.14/4.33
 
 - Thesis: *Towards Multimodal Interaction with Proactive Physical Agents* (Advised by Prof. Alexandra Ion)
 
@@ -25,7 +25,7 @@ Violet Yinuo Han, \underline{Ziru Wei}, Aiden Yiliu Li, Chris Wu, Alexandra Ion
 
 **On-site Holographic Building Construction: A Case Study of Aurora**
 
-Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* , 2022 (peer-reviewed, ≈30 % acceptance)
+Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* , 2022 (peer-reviewed, ≈30 % acceptance, top-tier computational design conference)
 
 ## Posters and Abstracts
 **Embodied Generative storytelling**
@@ -110,7 +110,7 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 
 **Course Project Reviewer** \hfill 2025.01 - 2025.05
 
-- Worked as a Guest Reviewer for the Spring 2025 Fundamentals of Computational Design course at Carnegie Mellon University, taught by Vernelle A. A. Noel.
+- Worked as a Guest Reviewer for the Spring 2025 Fundamentals of Computational Design course at Carnegie Mellon University, taught by Prof. Vernelle A. A. Noel.
 - Facilitated project reviews for over 50 students working in teams, providing feedback to support their growth in computational design practices.
 
 

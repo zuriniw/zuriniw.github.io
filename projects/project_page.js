@@ -14,21 +14,41 @@ if (project) {
     // 填充项目标题和副标题
     document.querySelector('.project-title').textContent = project.title;
     document.querySelector('.project-subtitle').textContent = project.subtitle;
+    
+    // 添加citation（如果有的话）
+    if (project.citation) {
+        const citationElement = document.createElement('div');
+        citationElement.className = 'project-citation';
+        citationElement.innerHTML = `<strong>Publication:</strong> ${project.citation}`;
+        document.querySelector('.project-header').appendChild(citationElement);
+    }
 
     // 创建并填充元数据
     const metaSection = document.querySelector('.project-meta');
        // 添加链接
-       if (project.youtubeLink || project.paperLink || project.githubLink || project.otherLink2) {
+       if (project.youtubeLink || project.paperLink || project.githubLink || project.otherLink2 || project.doi) {
         const linksContainer = document.createElement('div');
         linksContainer.className = 'meta-item links-container';
         const linksWrapper = document.createElement('div');
         linksWrapper.className = 'links-wrapper';
 
+        // 链接配置映射
+        const linkConfig = {
+            'doi': { label: 'DOI↗', value: project.doi },
+            'paperLink': { label: 'Paper↗', value: project.paperLink },
+            'youtubeLink': { label: 'Demo Video↗', value: project.youtubeLink },
+            'githubLink': { label: 'GitHub↗', value: project.githubLink },
+            'otherLink2': { label: 'Project Page↗', value: project.otherLink2 },
+        };
+
+        // 根据 linkOrder 生成链接
         const links = [];
-        if (project.youtubeLink) links.push(createMetaLink('Demo Video↗', project.youtubeLink));
-        if (project.paperLink) links.push(createMetaLink('Paper↗', project.paperLink));
-        if (project.githubLink) links.push(createMetaLink('GitHub↗', project.githubLink));
-        if (project.otherLink2) links.push(createMetaLink('Project Page↗', project.otherLink2));
+        project.linkOrder.forEach(linkKey => {
+            const config = linkConfig[linkKey];
+            if (config && config.value) {
+                links.push(createMetaLink(config.label, config.value));
+            }
+        });
 
         linksWrapper.innerHTML = links.map(link => `<a href="${link.href}" target="_blank" class="meta-link">${link.textContent}</a>`).join('\n');
         linksContainer.appendChild(linksWrapper);

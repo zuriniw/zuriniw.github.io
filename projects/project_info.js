@@ -19,13 +19,16 @@ class Project {
         youtubeLink = null,
         paperLink = null,
         githubLink = null,
+        doi = null,
+        citation = null,
         otherLink2 = null,
         otherLink3 = null,
         prize = null,
         weight = null,
         situate = null,
         isflipped = false,
-        category = null
+        category = null,
+        linkOrder = ['youtubeLink', 'paperLink', 'githubLink', 'otherLink2', 'doi'] // 默认顺序
     }) {
         this.name = name;
         this.title = title;
@@ -46,6 +49,8 @@ class Project {
         this.youtubeLink = youtubeLink;
         this.paperLink = paperLink;
         this.githubLink = githubLink;
+        this.doi = doi;
+        this.citation = citation;
         this.otherLink2 = otherLink2;
         this.otherLink3 = otherLink3;
         this.prize = prize;
@@ -53,6 +58,7 @@ class Project {
         this.situate = situate;
         this.isflipped = isflipped;
         this.category = category;
+        this.linkOrder = linkOrder;
     }
 
     // 获取项目 HTML 页面路径
@@ -183,10 +189,12 @@ const projects = [
         isteam: true,
         tutor: "Sining Wang, Dongchen Han",
         myContribution: "designing, constructing, writing",
+        citation: "Sijie Liu, Ziru Wei, and Sining Wang. 2022. On-site Holographic Building Construction: A Case Study of Aurora. In Proceedings of CAADRIA ’22: The 27th International Conference on Computer-Aided Architectural Design Research in Asia (Post-Carbon). Sydney, Australia. April 9–15, 2022. DOI: https://doi.org/10.52842/conf.caadria.2022.2.405",
         tools: "Fologram, Rhino, Grasshopper",
         briefDescription: `Instead of chasing zero-tolerance implementation and avoiding any potential deviations, MR-aided design practices aim to increase construction allowance by injecting computation into human operations.`,
         // youtubeLink: "https://www.dropbox.com/scl/fi/ajuzkeolpeorpc0979q8t/HolographicConstruction.mp4?rlkey=7s31yppucptg6rdk8dkhffny0&e=1&dl=0",
-        paperLink: "https://papers.cumincad.org/cgi-bin/works/paper/caadria2022_157",
+        doi: "https://doi.org/10.52842/conf.caadria.2022.2.405",
+        paperLink: "https://papers.cumincad.org/data/works/att/caadria2022_157.pdf",
         otherLink2: "https://humachine.cn/?post_type=products&page_id=16963",
         weight: 8.1,
         ismarkdown: true,

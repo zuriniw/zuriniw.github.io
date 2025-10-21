@@ -56,7 +56,7 @@ Eight testees sequentially viewed four exhibits through the installation, making
   <figcaption>Figure 7: Experiment in progress, showing participants interacting with the system.</figcaption>
 </figure>
 
-## Impact
+## Award
 
 We brought the interactive system to a real exhibition setting at **DigitalFUTURES 2024, Shanghai**.
 
