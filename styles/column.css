@@ -153,6 +153,13 @@
     }
 }
 
+/* 移动端隐藏提示框 */
+@media (max-width: 900px), (hover: none) {
+    .column-preview {
+        display: none !important;
+    }
+}
+
 /* Responsive Design - 只有两种状态：5列(桌面)和1列(移动) */
 @media (max-width: 900px) {
     .column-view {
@@ -323,6 +330,33 @@
 .column-project-card.fade-out {
     opacity: 0.2;
     transition: opacity 0.3s ease;
+}
+
+/* Column preview tooltip */
+.column-preview {
+    position: fixed;
+    z-index: 1000;
+    background: white;
+    border: 1.2px solid var(--color-text);
+    padding: 6px 10px;
+    pointer-events: none;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    width: 180px;
+    /* 添加 Safari 兼容性 */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
+
+.column-preview-subtitle {
+    font-family: "Barlow", sans-serif;
+    font-size: 12px;
+    color: var(--color-text);
+    line-height: 1.3;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 /* 确保分割线不受任何效果影响 - 最强规则 */

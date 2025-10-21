@@ -1170,6 +1170,36 @@ function createCategoryColumns() {
                         button.classList.add('point-hover');
                     }
                 });
+
+                // 添加提示框
+                const preview = document.createElement('div');
+                preview.className = 'column-preview';
+                preview.innerHTML = `
+                    <div class="column-preview-subtitle">${project.subtitle}</div>
+                `;
+
+                // 定位提示框在图片右侧
+                document.body.appendChild(preview);
+
+                const imageRect = imageWrap.getBoundingClientRect();
+                const previewRect = preview.getBoundingClientRect();
+
+                // 计算位置：图片右侧，上边缘对齐
+                let left = imageRect.right + 8;
+                let top = imageRect.top;
+
+                // 垂直边界检查
+                if (top < 10) top = 10;
+                if (top + previewRect.height > window.innerHeight - 10) {
+                    top = window.innerHeight - previewRect.height - 10;
+                }
+
+                preview.style.left = `${left}px`;
+                preview.style.top = `${top}px`;
+                preview.style.opacity = '1';
+
+                // 项目名称变灰
+                title.style.color = 'var(--color-text-grey)';
             });
 
             projectCard.addEventListener('mouseleave', () => {
@@ -1177,6 +1207,13 @@ function createCategoryColumns() {
                 buttons.forEach(button => {
                     button.classList.remove('point-hover');
                 });
+
+                // 移除提示框
+                const previews = document.querySelectorAll('.column-preview');
+                previews.forEach(preview => preview.remove());
+
+                // 恢复项目名称颜色
+                title.style.color = '';
             });
             
             projectsContainer.appendChild(projectCard);

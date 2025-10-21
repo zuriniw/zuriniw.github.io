@@ -196,7 +196,7 @@ const projects = [
         doi: "https://doi.org/10.52842/conf.caadria.2022.2.405",
         paperLink: "https://papers.cumincad.org/data/works/att/caadria2022_157.pdf",
         otherLink2: "https://humachine.cn/?post_type=products&page_id=16963",
-        weight: 8.1,
+        weight: 9.9,
         ismarkdown: true,
         situate: { x: 70, y: -85 },
         category: "blended environment"
