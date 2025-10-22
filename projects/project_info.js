@@ -182,7 +182,7 @@ const projects = [
     new Project({
         name: "aurora",
         title: "XR-aided Construction",
-        subtitle: "A case study of the holographic construction of the full-scale building：AURORA",
+        subtitle: "A case study of the holographic construction of a full-scale building",
         labels: ["XR", "Physical"],
         time: "2021",
         ispage: true,

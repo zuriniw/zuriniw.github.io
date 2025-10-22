@@ -312,6 +312,12 @@ function createFilterButtons() {
         const sanitizedLabel = label.toLowerCase().replace(/\//g, '-');
         // 为按钮添加 data-filters 属性
         button.setAttribute('data-filters', sanitizedLabel);
+
+        // 为 HCD 按钮添加 tooltip
+        if (label.toUpperCase() === 'HCD') {
+            button.setAttribute('data-tooltip', 'Human-centered Design');
+        }
+
         if (activeFilters.includes(sanitizedLabel)) {
             button.classList.add('active');
         }

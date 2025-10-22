@@ -193,7 +193,7 @@
 
 /* color definition */
 :root {
-    --color-background: #f6f4f3;
+    --color-background: #f5f5f5;
     --color-text: #000;
     --color-text-hover: #9f9f9f;
     --color-border: #000;
@@ -202,6 +202,7 @@
     --color-text-darkgrey: #333;
     --color-red: #009797d1;
     --color-light-grey: #c5c5c5;
+    --color-highlight: #c8c8c8e3;
     /* prevent symbols from being converted to emojis */
     font-variant-emoji: none;
     -webkit-font-variant-emoji: none;
@@ -564,6 +565,34 @@ button:hover {
     background-color: var(--color-text-hover);
     color: #ffffff;
     border-color: var(--color-text);
+}
+
+/* button tooltip */
+button[data-tooltip] {
+    position: relative;
+}
+
+button[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    background-color: var(--color-text);
+    color: var(--color-white);
+    font-size: 11px;
+    white-space: nowrap;
+    border-radius: 2px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+}
+
+button[data-tooltip]:hover::after {
+    opacity: 1;
 }
 
 /* point hover button style - adding a triangle indicator */
@@ -1894,6 +1923,11 @@ body.project-page {
 .highlight-special {
     font-style: italic;
     font-weight: 800;
+}
+
+.highlight-bg {
+    background-color: var(--color-highlight);
+    padding: 1px 2px;
 }
 
 /* 当卡片被淡出时的样式 */

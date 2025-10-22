@@ -1,6 +1,7 @@
 /* Column View Styles */
 .column-view {
     padding: 60px 0 0 0;
+    background: var(--color-background);
     /* min-height: 100vh; */
 }
 
@@ -13,11 +14,12 @@
     padding: 0 16px;
     justify-content: center;
     position: relative;
+    background: var(--color-background);
 }
 
 /* Category Column */
 .category-column {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--color-background);
     min-height: 200px; /* 只在桌面端保持最小高度 */
     padding: 4px;
     position: relative;
@@ -35,6 +37,7 @@
     -ms-user-select: none;
     user-select: none;
     -webkit-user-drag: none;
+    mix-blend-mode: darken;
 }
 
 .category-title {
@@ -59,10 +62,10 @@
 
 /* Project Card in Column */
 .column-project-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 0;
-    padding: 24px 4px 0px 4px;
+    padding: 24px 0px 0px 0px;
     transition: all 0.2s ease;
     /* Skip rendering offscreen cards where supported */
     content-visibility: auto;
@@ -90,6 +93,7 @@
     object-fit: cover;
     /* Default: slightly desaturated and brighter */
     filter: saturate(0.6) brightness(1.1);
+    mix-blend-mode: multiply;
     transition: filter 0.2s ease;
     /* Hint the browser to skip offscreen work where supported */
     content-visibility: auto;
