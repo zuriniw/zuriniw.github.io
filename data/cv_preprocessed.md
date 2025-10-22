@@ -54,6 +54,24 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 - Documented the design-to-construction process and contributed to academic writing
 
 
+## Skills
+
+**Technical**
+
+- Hardware: Arduino, Raspberry Pi
+- Programming Languages: Python, R, C#, Pascal, HTML, CSS, Javascript
+
+
+**Design & Production**
+
+- Software: Unity, Rhino, Grasshopper with GHPython, Blender, AutoCAD, Adobe Creative Suite, Figma, Procreate
+- Fabrication: 3D printing, Soldering and electronic wiring, Welding (basic), Woodworking
+
+
+**Languages**
+
+- English (Fluent), Mandarin (Native), Portuguese (Beginner)
+
 ## Awards and Honors
 
 **Computational Design Commendation, Carnegie Mellon University** \hfill 2025
@@ -86,25 +104,6 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 
 **METTLER TOLEDO Scholarship (Top 2%) ** \hfill 2019
 
-
-## Skills
-
-**Technical**
-
-- Hardware: Arduino, Raspberry Pi
-- Languages: Python, R, C#, Pascal, HTML, CSS, Javascript
-- Game Engine: Unity
-
-
-**Design & Production**
-
-- Software: Rhino, Grasshopper with GHPython, Blender, AutoCAD, Adobe Creative Suite, Figma, Procreate
-- Fabrication: 3D printing, Soldering and electronic wiring, Welding (basic), Woodworking
-
-
-**Languages**
-
-- English (Fluent), Mandarin (Native), Portuguese (Beginner)
 
 ## Activities
 

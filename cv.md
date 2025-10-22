@@ -68,7 +68,28 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
 - Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize the use of limited MR devices within a small, low-tech construction team
 - Documented the design-to-construction process and contributed to academic writing
 
+## Skills
 
+<dl>
+    <dt>Technical</dt>
+</dl>
+
+- Hardware: Arduino, Raspberry Pi
+- Programming Languages: Python, R, C#, Pascal, HTML, CSS, Javascript
+
+
+<dl>
+    <dt>Design & Production</dt>
+</dl>
+
+- Software: Unity, Rhino, Grasshopper with GHPython, Blender, AutoCAD, Adobe Creative Suite, Figma, Procreate
+- Fabrication: 3D printing, Soldering and electronic wiring, Welding (basic), Woodworking
+
+<dl>
+    <dt>Languages</dt>
+</dl>
+
+- English (Fluent), Mandarin (Native), Portuguese (Beginner)
 
 ## Awards and Honors
 
@@ -124,29 +145,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dd>2019</dd>
 </dl>
 
-## Skills
 
-<dl>
-    <dt>Technical</dt>
-</dl>
-
-- Hardware: Arduino, Raspberry Pi
-- Languages: Python, R, C#, Pascal, HTML, CSS, Javascript
-- Game Engine: Unity
-
-
-<dl>
-    <dt>Design & Production</dt>
-</dl>
-
-- Software: Rhino, Grasshopper with GHPython, Blender, AutoCAD, Adobe Creative Suite, Figma, Procreate
-- Fabrication: 3D printing, Soldering and electronic wiring, Welding (basic), Woodworking
-
-<dl>
-    <dt>Languages</dt>
-</dl>
-
-- English (Fluent), Mandarin (Native), Portuguese (Beginner)
 
 
 ## Activities
