@@ -28,6 +28,7 @@ class Project {
         situate = null,
         isflipped = false,
         category = null,
+        isResearch = false,
         linkOrder = ['youtubeLink', 'paperLink', 'githubLink', 'otherLink2', 'doi'] // 默认顺序
     }) {
         this.name = name;
@@ -58,6 +59,7 @@ class Project {
         this.situate = situate;
         this.isflipped = isflipped;
         this.category = category;
+        this.isResearch = isResearch;
         this.linkOrder = linkOrder;
     }
 
@@ -98,12 +100,12 @@ const projects = [
         weight: 9,
         situate: { x: -38, y: 37 },
         otherLink2: null,
-        category: "blended environment"
+        category: "Blended Environment"
     }),
     new Project({
         name: "seeingsaw",
         title: "SEEINGSAW",
-        subtitle: "Lovable paired devices for telepresence",
+        subtitle: "Design paired devices for telepresence",
         labels: ["HCD","Physical"],
         time: "2024",
         ispage: true,
@@ -114,14 +116,14 @@ const projects = [
         ta: "Zhenfang Chen",
         myContribution: "researching, ideating, electrical wiring, coding",
         tools: "Particle Cloud, Photon2, Woodworking Tools",
-        briefDescription: `Build peripheral and expressive awareness in lovable devices, to foster emotive communication through low-fidelity information`,
+        briefDescription: `We built this peripheral and expressive awareness in lovable devices to foster emotive communication through low-fidelity information`,
         youtubeLink: "https://www.youtube.com/embed/KNwp1Vy8hrg?si=GnxYe-9l1eCnve2S&amp;controls=0",
         githubLink: "https://github.com/zuriniw/SEEINGSAW",
         otherLink2: "http://ideate.xsead.cmu.edu/gallery/projects/remaking-shaker-1996",
         weight: 8.9,
         isflipped: false,
         situate: { x: 60, y: -5 },
-        category: "devices"
+        category: "Devices"
     }),
     new Project({
         name: "ixr",
@@ -138,7 +140,7 @@ const projects = [
         ismarkdown: true,
         isflipped: false,
         tutor: "David Lindlbauer",
-        category: "foundamental interaction techniques"
+        category: "Fundamental Interaction"
     }),
     new Project({
         name: "shapeshift",
@@ -157,7 +159,7 @@ const projects = [
         situate: { x: 70, y: -56 },
         ismarkdown: true,
         isflipped: false,
-        category: "computational design tools"
+        category: "Computational Design Tools"
     }),
     new Project({
         name: "villagerenewal",
@@ -177,14 +179,14 @@ const projects = [
         weight: 5,
         situate: { x: -50, y: 70 },
         otherLink2: "https://www.behance.net/gallery/217218343/Village-Renewal-Design-in-Fujian-China",
-        category: "architectures and installations"
+        category: "Architectures & Installations"
     }),
     new Project({
         name: "aurora",
         title: "XR-aided Construction",
         subtitle: "A case study of the holographic construction of a full-scale building",
         labels: ["XR", "Physical"],
-        time: "2021",
+        time: "2022",
         ispage: true,
         isteam: true,
         tutor: "Sining Wang, Dongchen Han",
@@ -199,7 +201,8 @@ const projects = [
         weight: 9.9,
         ismarkdown: true,
         situate: { x: 70, y: -85 },
-        category: "blended environment"
+        category: "Blended Environment",
+        isResearch: true
     }),
     // new Project({
     //     name: "bodymusic",
@@ -281,7 +284,7 @@ const projects = [
         isflipped: true,
         ispage: true,
         ismarkdown: true,
-        category: "computational design tools"
+        category: "Computational Design Tools"
     }),
     new Project({
         name: "mobius",
@@ -299,7 +302,7 @@ const projects = [
         weight: 5,
         otherLink2:"https://humachine.cn/?post_type=products&page_id=17054",
         situate: { x: -30, y: -90 },
-        category: "architectures and installations"
+        category: "Architectures & Installations"
     }),
     // new Project({
     //     name: "intdesign",
@@ -328,7 +331,7 @@ const projects = [
         isflipped: false,
         ispage: true,
         ismarkdown: true,
-        category: "devices"
+        category: "Devices"
     }),
     // new Project({
     //     name: "mrintdesign",
@@ -360,7 +363,7 @@ const projects = [
         briefDescription: "What if data can flows among the real world and MR scene?",
         weight: 4,
         situate: { x: 50, y: 80 },
-        category: "blended environment"
+        category: "Blended Environment"
     }),
     new Project({
         name: "wastemachine",
@@ -378,7 +381,7 @@ const projects = [
         ispage: true,
         weight: 6,
         ismarkdown: true,
-        category: "devices"
+        category: "Devices"
     }),
     new Project({
         name: "dataresonate",
@@ -394,7 +397,7 @@ const projects = [
         ispage: true,
         weight: 8.7,
         ismarkdown: true,
-        category: "blended environment"
+        category: "Blended Environment"
     }),
     new Project({
         name: "weddingwall",
@@ -410,7 +413,7 @@ const projects = [
         ispage: true,
         weight: 4,
         ismarkdown: true,
-        category: "architectures and installations"
+        category: "Architectures & Installations"
     }),
     // new Project({
     //     name: "wavepavilion",
@@ -440,7 +443,7 @@ const projects = [
         ismarkdown: true,
         weight: 9,
         situate: { x: 20, y: 50 },
-        category: "foundamental interaction techniques"
+        category: "Fundamental Interaction"
     }),
     new Project({
         name: "autopfl",
@@ -456,7 +459,7 @@ const projects = [
         ismarkdown: true,
         weight: 5,
         situate: { x: 10, y: 20 },
-        category: "computational design tools"
+        category: "Computational Design Tools"
     })
 ];
 
@@ -465,11 +468,26 @@ const availableLabels = [
 ];
 
 const availableCategories = [
-    "blended environment",
-    "computational design tools", 
-    "devices",
-    "foundamental interaction techniques",
-    "architectures and installations"
+    {
+        name: "Blended Environment",
+        illustration: "images/blended.png"
+    },
+    {
+        name: "Computational Design Tools",
+        illustration: "images/compu.png"
+    },
+    {
+        name: "Devices",
+        illustration: "images/devices.png"
+    },
+    {
+        name: "Fundamental Interaction",
+        illustration: "images/found.png"
+    },
+    {
+        name: "Architectures & Installations",
+        illustration: "images/archi.png"
+    }
 ];
 
 export { Project, projects, availableLabels, availableCategories };

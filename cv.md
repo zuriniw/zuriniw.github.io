@@ -20,7 +20,7 @@ Thesis: *Towards Multimodal Interaction with Proactive Physical Agents* (Advised
 Bachelor of Architecture, GPA: 3.7/4.0
 
 
-## Publications
+## Research
 
 **(In submission, CHI 2026) “Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots**  
 <u>Ziru Wei</u>, Violet Yinuo Han, Tanvi Handoo, Alexandra Ion  

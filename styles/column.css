@@ -1,17 +1,17 @@
 /* Column View Styles */
 .column-view {
-    padding: 60px 0 0 0;
+    padding: 20px 0 0 0;
     background: var(--color-background);
     /* min-height: 100vh; */
 }
 
 .column-container {
     display: grid;
-    grid-template-columns: repeat(5, minmax(145px, 160px));
+    grid-template-columns: repeat(5, minmax(145px, 1fr));
     gap: 4px;
-    max-width: 730px;
-    margin: 0 auto;
-    padding: 0 16px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
     justify-content: center;
     position: relative;
     background: var(--color-background);
@@ -117,8 +117,15 @@
     line-height: 1.2;
 }
 
-/* Desktop-only lines (横线和竖线) - 只在901px以上显示5列布局 */
-@media screen and (min-width: 901px) {
+/* Medium screens: adjust column width */
+@media screen and (max-width: 1200px) and (min-width: 1001px) {
+    .column-container {
+        grid-template-columns: repeat(5, minmax(120px, 1fr));
+    }
+}
+
+/* Desktop-only lines (横线和竖线) - 只在1001px以上显示5列布局 */
+@media screen and (min-width: 1001px) {
     /* Desktop: fix illustration height so headers align */
     .category-illustration {
         width: 100%;
@@ -158,14 +165,14 @@
 }
 
 /* 移动端隐藏提示框 */
-@media (max-width: 900px), (hover: none) {
+@media (max-width: 1000px), (hover: none) {
     .column-preview {
         display: none !important;
     }
 }
 
 /* Responsive Design - 只有两种状态：5列(桌面)和1列(移动) */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .column-view {
         padding: 20px 0;
     }

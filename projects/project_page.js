@@ -62,10 +62,7 @@ if (project) {
     }
 
     // 添加标签
-    if (project.labels && project.labels.length > 0) {
-        const labelsItem = createMetaItem('Types', project.labels.join(', '));
-        metaSection.appendChild(labelsItem);
-    }
+    // 标签字段已在首页展示，此处不再重复
 
     // 添加工具
     if (project.tools) {

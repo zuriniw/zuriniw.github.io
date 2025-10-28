@@ -34,131 +34,116 @@
     <!-- header -->
     <div id="header"></div>
 
-    <div class="filter-wrapper">
-        <!-- mobile-tips will be inserted here -->
+    <!-- Main content area with side-by-side layout -->
+    <div class="main-content-wrapper">
+        <!-- Left side: Projects -->
+        <div class="projects-column">
+            <!-- Intro section -->
+            <div class="intro-wrapper">
+                <div class="intro">
+                    <p>
+                        I am interested in building new intelligent infrastructures for everyday environments, aiming to enhance human ability and cognition and to support meaningful interaction in an <strong>intelligence-infused reality</strong>.
+                    </p>
+                </div>
 
-        <div class="intro">
-            
-            I am interested in building new
-            <span class="highlight"><span class="highlight-special">intelligent infrastructures</span></span>
-            for everyday environments that can persist through the AI wave
-            <span class="highlight-bg">—— not by keeping up with it, but by exploring retained knowledge and lasting affordances that emerge from it</span>.
-            <br>
-            <br>
-            Currently affiliated with
-            <a href="https://interactive-structures.org/" class="intro-link">Interactive Structures Lab</a>
-            and
-            <a href="http://code.arc.cmu.edu/" class="intro-link">CodeLab</a>
-            at CMU,
-            My recent work are with an emphasis on user modeling, robotic interfaces, and extended reality.
-            Before that, I worked with <a href="https://humachine.cn/" class="intro-link">Humachine Lab</a> on digital architectural fabrication practices.
-          </div>
-          
-          
+                <img src="images/roadmap.png" alt="Research Roadmap" class="intro-image">
+
+                <div class="intro">
+                    <p>
+                        The figure above defines my interested research space and two possible directions of future exploration:
+                    </p>
+                    <p class="intro-break"></p>
+                    <p class="intro-item">
+                        <strong class="intro-highlight intro-highlight-affordances">[1] AFFORDANCES</strong>: Apply intelligence to the physical world, from object level to room level, to give things new abilities. These abilities have the potential to reshape how the world is perceived and acted upon.
+                    </p>
+                    <p class="intro-item">
+                        <strong class="intro-highlight intro-highlight-interactivity">[2] INTERACTIVITY</strong>: Bring embedded intelligence to people with the right timing, initiative, and modality. This fosters unobtrusive and adaptive collaboration and communication.
+                    </p>
+                </div>
+
+                <div class="intro">
+                    <p>
+                        I pursue research that can persist as AI models evolve&mdash;not by keeping up with one specific model, but by exploring retainable knowledge and lasting potential that emerge from them.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="projects-heading">Archive</h3>
 
 
-        <div class="filter-container">
-            <div class="filter-content">
-                <div class="switch-container">
-                    <!-- <span class="arrow-icon">▼</span> -->
-                    <button class="switch-view">⌘</button>
-                    <div class="switch-label">switch to gallery view</div>
-                    
-                    <!-- Swipe hint tooltip -->
-                    <div class="swipe-hint" id="swipeHint">
-                        <button class="swipe-hint-close" id="swipeHintClose">×</button>
-                        <div class="swipe-hint-text">Swipe left/right to switch views</div>
+            <!-- Desktop carousel view -->
+            <div class="desktop-carousel">
+                <!-- Category carousel (top section) -->
+                <div class="carousel-categories">
+                    <div class="carousel-track">
+                        <!-- Categories will be inserted here by JavaScript -->
                     </div>
                 </div>
-                <div class="divider"></div>
-                <div class="buttons-section">
-                    <div class="filter-instructions-list">
-                        <div class="instruction-item">
-                            <img src="images/click.svg" alt="Click" class="instruction-icon">
-                            Click to TOGGLE
-                        </div>
-                        <div class="instruction-item">
-                            <img src="images/doubleClick.svg" alt="Double-click" class="instruction-icon">
-                            Double-click to FOCUS
-                        </div>
-                        <div class="instruction-item">
-                            <img src="images/hover.svg" alt="Hover" class="instruction-icon">
-                            Hover to SPAN
-                        </div>
-                        <div class="instruction-item">
-                            <img src="images/backspace.svg" alt="Backspace" class="instruction-icon">
-                            Backspace to CLEAR
-                        </div>
-                    </div>
-                    <!-- filter buttons will be inserted here -->
-                    <div class="help-icon-container">
-                        <img src="images/question.svg" alt="Help" class="help-icon">
-                    </div>
+
+                <!-- Project display (bottom section) -->
+                <div class="carousel-projects">
+                    <!-- Projects for selected category will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Mobile column view -->
+            <div class="column-view">
+                <div class="column-container">
+                    <!-- category columns will be inserted here -->
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="cards-section">
-        <!-- project cards will be inserted here -->
-    </div>
+        <!-- Right side: News -->
+        <div class="news-column">
+            <!-- About Section -->
+            <div class="about-section">
+                <h3 class="about-heading">About</h3>
+                <div class="about-content">
+                    <p class="about-item">
+                        <span class="about-label">Master Program</span>
+                        <span class="about-text">MS in Computational Design at Carnegie Mellon University, Year 2 (research-based)</span>
+                    </p>
+                    <p class="about-item">
+                        <span class="about-label">Thesis</span>
+                        <span class="about-text">
+                            Proactive Robotic Interfaces as AI Bodies in Everyday Reality (Advised by <a href="https://alexandraion.com/" class="about-link" target="_blank">Prof. Alexandra Ion</a>)
+                        </span>
+                    </p>
+                    <p class="about-item">
+                        <span class="about-label">Affiliations</span>
+                        <span class="about-text">
+                            <b>Current:</b>
+                            <br>
+                            ● <a href="https://interactive-structures.org/" class="about-link" target="_blank">Interactive Structures Lab</a> (Human-Computer Interaction Institute, CMU)
+                            <br>
+                            ● <a href="http://code.arc.cmu.edu/" class="about-link" target="_blank">CodeLab</a> (School of Architecture, CMU)
+                            <br>
+                            <br><b>Previous:</b> 
+                            <br>
+                            ● <a href="https://humachine.cn/" class="about-link" target="_blank">Humachine Lab</a> (digital architectural fabrication)
+                        </span>
+                    </p>
+                </div>
+            </div>
 
-    <!-- add column view container -->
-    <div class="column-view hide">
-        <div class="column-container">
-            <!-- category columns will be inserted here -->
-        </div>
-    </div>
+            <!-- News Section -->
+            <div class="news-section">
+                <h3 class="news-heading">News</h3>
+                <div class="news-container">
+                    <!-- 新闻条目将由 JavaScript 动态生成 -->
+                </div>
+            </div>
 
-    <!-- add coordinate view container -->
-    <div class="coordinate-view hide">
-        <div class="coordinate-container">
-            <div class="axis x-axis"></div>
-            <div class="axis y-axis"></div>
-            <!-- add axis labels -->
-            <div class="axis-label x-label left">REPRESENTATION</div>
-            <div class="axis-label x-label right">TOOLING</div>
-            <div class="axis-label y-label top">PROTOTYPE</div>
-            <div class="axis-label y-label bottom">USABLE</div>
-            <!-- project points will be inserted here -->
-        </div>
-        
-        <!-- add player component -->
-        <div class="matrix-player">
-            <div class="player-container">
-                <div class="player-left"></div>
-                <div class="player-right"></div>
+            <!-- CV 按钮部分 -->
+            <div class="cv-section">
+                <a href="cv.html" class="cv-button">View the full CV</a>
             </div>
         </div>
-    </div>
-    
-    <svg width="0" height="0">
-        <filter id="noiseFilter2">
-            <feTurbulence type="turbulence" baseFrequency="0.6" numOctaves="5" result="noise"/>
-            <feColorMatrix type="matrix" values="
-                0 0 0 0 0.5
-                0 0 0 0 0.45
-                0 0 0 0 0.47
-                0 0 0 0.7 0
-            "/>
-        </filter>
-    </svg>
-    
-    <!-- News section -->
-    <div class="news-section">
-        <h3 class="news-heading">News</h3>
-        <div class="news-container">
-            <!-- 新闻条目将由 JavaScript 动态生成 -->
-        </div>
-    </div>
-
-    <!-- CV 按钮部分 -->
-    <div class="cv-section">
-        <a href="cv.html" class="cv-button">View the full CV</a>
     </div>
     
     <!-- footer -->
-    <div id="footer"></div>
+    <!-- <div id="footer"></div> -->
 
     <script src="../../scripts/toc.js"></script>
     <script type="module" src="news.js"></script>
@@ -166,4 +151,3 @@
 </body>
 
 </html>
-
