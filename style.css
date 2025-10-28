@@ -428,6 +428,88 @@ body::-webkit-scrollbar {
     padding-left: 30px;
 }
 
+.research-section {
+    width: 100%;
+    margin: 24px 0 40px;
+}
+
+.research-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.research-card {
+    display: flex;
+    gap: 24px;
+    padding: 16px 0;
+    align-items: stretch;
+}
+
+.research-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.research-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.research-card-author {
+    font-family: "Barlow", sans-serif;
+    font-size: 12px;
+    line-height: 1.3;
+    color: var(--color-text);
+}
+
+.research-card-venue {
+    font-family: "Barlow", sans-serif;
+    font-size: 12px;
+    line-height: 1.3;
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.research-card-links,
+.carousel-project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.carousel-project-links {
+    margin-top: 6px;
+}
+
+.research-card-link,
+.project-card-link {
+    font-family: "GeistMono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-white);
+    background-color: var(--color-text);
+    padding: 2px 10px 2px;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.project-card-link:hover,
+.research-card-link:hover {
+    transform: translateY(-1px);
+    opacity: 0.85;
+}
+
+.research-card--clickable {
+    cursor: pointer;
+}
+
 /* 新闻列 (右侧) */
 .news-column {
     flex: 0 0 360px;
@@ -572,7 +654,7 @@ body::-webkit-scrollbar {
 
 .carousel-project-title {
     font-family: "Barlow", sans-serif;
-    font-size: 15px;
+    font-size: clamp(13px, 2.6vw, 15px);
     font-weight: 500;
     color: var(--color-text);
     margin: 0;
@@ -592,6 +674,10 @@ body::-webkit-scrollbar {
     transition: color 0.1s ease;
 }
 
+.research-card .carousel-project-subtitle {
+    opacity: 0.4;
+}
+
 .carousel-project-card:hover .carousel-project-subtitle {
     color: var(--color-text);
 }
@@ -608,35 +694,6 @@ body::-webkit-scrollbar {
 
 .carousel-project-card:hover .carousel-project-date {
     color: var(--color-text);
-}
-
-.carousel-project-actions {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    margin-left: auto;
-    padding-top: 4px;
-}
-
-.carousel-project-video {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border: 1.2px solid var(--color-text);
-    border-radius: 50%;
-    color: var(--color-text);
-    font-size: 16px;
-    background-color: transparent;
-    text-decoration: none;
-    transition: all 0.1s ease;
-    padding-left: 3px;
-}
-
-.carousel-project-video:hover {
-    background-color: var(--color-text);
-    color: var(--color-white);
 }
 
 /* Desktop placeholder */

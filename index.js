@@ -5,6 +5,140 @@ import { projects, availableLabels, availableCategories } from './projects/proje
 console.log('Available labels:', availableLabels);
 console.log('Projects:', projects);
 
+const MODALITY_PLACEHOLDER_SRC = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22180%22%3E%3Crect%20width%3D%22320%22%20height%3D%22180%22%20fill%3D%22%23e0e0e0%22/%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%234c4c4c%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2215%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3Ecoming%20soon%3C/text%3E%3C/svg%3E';
+
+function createResearchProjectsSection() {
+    const researchContainer = document.querySelector('.research-projects');
+    const researchSection = document.querySelector('.research-section');
+    const researchHeading = document.querySelector('.research-heading');
+
+    if (!researchContainer || !researchSection || !researchHeading) return;
+
+    const researchProjects = projects.filter(project => project.isResearch);
+
+    if (!researchProjects.length) {
+        researchSection.style.display = 'none';
+        researchHeading.style.display = 'none';
+        return;
+    }
+
+    researchContainer.innerHTML = '';
+
+    researchProjects
+        .slice()
+        .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0))
+        .forEach(project => {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'research-card';
+
+            const projectImage = document.createElement('div');
+            projectImage.className = 'carousel-project-image';
+
+            const img = document.createElement('img');
+            img.src = project.name === 'modalityOchastrator'
+                ? MODALITY_PLACEHOLDER_SRC
+                : project.gifImage;
+            img.alt = project.title;
+            img.loading = 'lazy';
+            img.setAttribute('draggable', 'false');
+
+            projectImage.appendChild(img);
+
+            const projectInfo = document.createElement('div');
+            projectInfo.className = 'carousel-project-info';
+
+            const projectTitle = document.createElement('h4');
+            projectTitle.className = 'carousel-project-title';
+            projectTitle.textContent = project.title;
+            projectInfo.appendChild(projectTitle);
+
+            projectCard.appendChild(projectImage);
+            projectCard.appendChild(projectInfo);
+
+            const projectDetails = document.createElement('div');
+            projectDetails.className = 'research-card-details';
+
+            if (project.author) {
+                const author = document.createElement('div');
+                author.className = 'research-card-author';
+                author.textContent = project.author;
+                projectDetails.appendChild(author);
+            }
+
+            if (project.venue) {
+                const venue = document.createElement('div');
+                venue.className = 'research-card-venue';
+                venue.textContent = project.venue;
+                projectDetails.appendChild(venue);
+            }
+
+            const links = [];
+            const addLink = (rawUrl, label) => {
+                if (!rawUrl) return;
+                const url = String(rawUrl).replace(/&amp;/g, '&').trim();
+                if (!url) return;
+
+                const link = document.createElement('a');
+                link.className = 'research-card-link';
+                link.href = url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.textContent = label;
+                link.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                });
+                links.push(link);
+            };
+
+            addLink(project.paperLink, 'Paper');
+            addLink(project.doi, 'DOI');
+
+            if (links.length) {
+                const linkWrapper = document.createElement('div');
+                linkWrapper.className = 'research-card-links';
+                links.forEach(link => linkWrapper.appendChild(link));
+                projectDetails.appendChild(linkWrapper);
+            }
+
+            if (projectDetails.children.length) {
+                projectInfo.appendChild(projectDetails);
+            }
+
+            if (project.youtubeLink) {
+                const projectActions = document.createElement('div');
+                projectActions.className = 'carousel-project-actions';
+
+                let videoUrl = String(project.youtubeLink);
+                const sanitized = videoUrl.replace(/&amp;/g, '&');
+                const embedMatch = sanitized.match(/youtube\.com\/embed\/([A-Za-z0-9_-]+)/i);
+                videoUrl = embedMatch ? `https://www.youtube.com/watch?v=${embedMatch[1]}` : sanitized;
+
+                const videoButton = document.createElement('a');
+                videoButton.className = 'carousel-project-video';
+                videoButton.href = videoUrl;
+                videoButton.target = '_blank';
+                videoButton.rel = 'noopener noreferrer';
+                videoButton.textContent = '▶';
+                videoButton.setAttribute('aria-label', `Watch ${project.title} video`);
+                videoButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                });
+
+                projectActions.appendChild(videoButton);
+                projectCard.appendChild(projectActions);
+            }
+
+            if (project.ispage) {
+                projectCard.classList.add('research-card--clickable');
+                projectCard.addEventListener('click', () => {
+                    window.location.href = project.getHtmlPath();
+                });
+            }
+
+            researchContainer.appendChild(projectCard);
+        });
+}
+
 // Register service worker
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
@@ -48,7 +182,7 @@ function createCategoryColumns() {
 
         // Filter and add projects for this category
         const categoryProjectList = projects
-            .filter(project => project.category === category.name)
+            .filter(project => project.category === category.name && !project.isResearch)
             .slice()
             .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0));
 
@@ -228,7 +362,7 @@ function displayCategoryProjects(categoryName) {
 
     // Filter projects for this category
     const categoryProjects = projects
-        .filter(project => project.category === categoryName)
+        .filter(project => project.category === categoryName && !project.isResearch)
         .slice()
         .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0));
 
@@ -265,7 +399,32 @@ function displayCategoryProjects(categoryName) {
 
         projectInfo.appendChild(projectTitle);
         projectInfo.appendChild(projectSubtitle);
+
         projectInfo.appendChild(projectDate);
+
+        if (project.youtubeLink) {
+            const projectLinks = document.createElement('div');
+            projectLinks.className = 'carousel-project-links';
+
+            let videoUrl = String(project.youtubeLink);
+            const sanitized = videoUrl.replace(/&amp;/g, '&');
+            const embedMatch = sanitized.match(/youtube\.com\/embed\/([A-Za-z0-9_-]+)/i);
+            videoUrl = embedMatch ? `https://www.youtube.com/watch?v=${embedMatch[1]}` : sanitized;
+
+            const videoButton = document.createElement('a');
+            videoButton.className = 'project-card-link';
+            videoButton.href = videoUrl;
+            videoButton.target = '_blank';
+            videoButton.rel = 'noopener noreferrer';
+            videoButton.textContent = 'Video';
+            videoButton.setAttribute('aria-label', `Watch ${project.title} video`);
+            videoButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+
+            projectLinks.appendChild(videoButton);
+            projectInfo.appendChild(projectLinks);
+        }
 
         // Add hover handlers to pause/resume carousel
         projectCard.addEventListener('mouseenter', () => {
@@ -287,36 +446,15 @@ function displayCategoryProjects(categoryName) {
         projectCard.appendChild(projectImage);
         projectCard.appendChild(projectInfo);
 
-        if (project.youtubeLink) {
-            const projectActions = document.createElement('div');
-            projectActions.className = 'carousel-project-actions';
-
-            let videoUrl = String(project.youtubeLink);
-            const sanitized = videoUrl.replace(/&amp;/g, '&');
-            const embedMatch = sanitized.match(/youtube\.com\/embed\/([A-Za-z0-9_-]+)/i);
-            videoUrl = embedMatch ? `https://www.youtube.com/watch?v=${embedMatch[1]}` : sanitized;
-
-            const videoButton = document.createElement('a');
-            videoButton.className = 'carousel-project-video';
-            videoButton.href = videoUrl;
-            videoButton.target = '_blank';
-            videoButton.rel = 'noopener noreferrer';
-            videoButton.textContent = '▶';
-            videoButton.setAttribute('aria-label', `Watch ${project.title} video`);
-            videoButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-            });
-
-            projectActions.appendChild(videoButton);
-            projectCard.appendChild(projectActions);
-        }
-
         projectsContainer.appendChild(projectCard);
     });
 }
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+    // Create research section
+    createResearchProjectsSection();
+
     // Create column view (only visible on mobile)
     createCategoryColumns();
 

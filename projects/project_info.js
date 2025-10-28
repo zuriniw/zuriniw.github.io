@@ -22,11 +22,14 @@ class Project {
         doi = null,
         citation = null,
         otherLink2 = null,
+        venue = null,
+        researchType = null,
         otherLink3 = null,
         prize = null,
         weight = null,
         situate = null,
         isflipped = false,
+        author = null,
         category = null,
         isResearch = false,
         linkOrder = ['youtubeLink', 'paperLink', 'githubLink', 'otherLink2', 'doi'] // 默认顺序
@@ -45,6 +48,7 @@ class Project {
         this.ta = ta;
         this.myContribution = myContribution;
         this.tools = tools;
+        this.venue = venue;
         this.briefDescription = briefDescription;
         this.narrative = narrative;
         this.youtubeLink = youtubeLink;
@@ -53,7 +57,9 @@ class Project {
         this.doi = doi;
         this.citation = citation;
         this.otherLink2 = otherLink2;
+        this.author = author;
         this.otherLink3 = otherLink3;
+        this.researchType = researchType;
         this.prize = prize;
         this.weight = weight;
         this.situate = situate;
@@ -101,6 +107,40 @@ const projects = [
         situate: { x: -38, y: 37 },
         otherLink2: null,
         category: "Blended Environment"
+    }),
+    new Project({
+        name: "robff",
+        title: "“Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots",
+        subtitle: "An adaptive layout system via computing human factors in the environment",
+        time: "2025",
+        isteam: true,
+        weight: 11,
+        otherLink2: null,
+        // isResearch: true,
+        author: "Ziru Wei, Violet Yinuo Han, Tanvi Handoo, Alexandra Ion",
+        venue: "in submission",
+    }),
+    new Project({
+        name: "objectLimb",
+        title: "Embodiment and Interaction Influence Perceptions of Robotic Collaborators in Everyday Physical Tasks",
+        time: "2025",
+        isteam: true,
+        weight: 10,
+        otherLink2: null,
+        // isResearch: true,
+        author: "Violet Yinuo Han, Ziru Wei, Aiden Yiliu Li, Chris Wu, Alexandra Ion",
+        venue: "in submission",
+    }),
+    new Project({
+        name: "modalityOchastrator",
+        title: "modalityOchastrator",
+        time: "2025",
+        isteam: true,
+        weight: 12,
+        otherLink2: null,
+        isResearch: true,
+        author: "Ziru Wei, Alexandra Ion",
+        venue: "ongoing research project",
     }),
     new Project({
         name: "seeingsaw",
@@ -183,13 +223,13 @@ const projects = [
     }),
     new Project({
         name: "aurora",
-        title: "XR-aided Construction",
-        subtitle: "A case study of the holographic construction of a full-scale building",
+        title: "On-site Holographic Building Construction: A Case Study of Aurora",
+        subtitle: "MR-aided facade construction for a full-scale building",
         labels: ["XR", "Physical"],
         time: "2022",
         ispage: true,
         isteam: true,
-        tutor: "Sining Wang, Dongchen Han",
+        author: "Sijie Liu, Ziru Wei, Sining Wang",
         myContribution: "designing, constructing, writing",
         citation: "Sijie Liu, Ziru Wei, and Sining Wang. 2022. On-site Holographic Building Construction: A Case Study of Aurora. In Proceedings of CAADRIA ’22: The 27th International Conference on Computer-Aided Architectural Design Research in Asia (Post-Carbon). Sydney, Australia. April 9–15, 2022. DOI: https://doi.org/10.52842/conf.caadria.2022.2.405",
         tools: "Fologram, Rhino, Grasshopper",
@@ -197,11 +237,11 @@ const projects = [
         // youtubeLink: "https://www.dropbox.com/scl/fi/ajuzkeolpeorpc0979q8t/HolographicConstruction.mp4?rlkey=7s31yppucptg6rdk8dkhffny0&e=1&dl=0",
         doi: "https://doi.org/10.52842/conf.caadria.2022.2.405",
         paperLink: "https://papers.cumincad.org/data/works/att/caadria2022_157.pdf",
-        otherLink2: "https://humachine.cn/?post_type=products&page_id=16963",
         weight: 9.9,
         ismarkdown: true,
         situate: { x: 70, y: -85 },
         category: "Blended Environment",
+        venue: "CAADRIA 2022",
         isResearch: true
     }),
     // new Project({
