@@ -312,6 +312,13 @@ body::-webkit-scrollbar {
     width: 100%;
 }
 
+.intro-callout {
+    border: 1.2px solid var(--color-text);
+    background: var(--color-white);
+    padding: 16px 20px;
+    box-sizing: border-box;
+}
+
 .intro + .intro {
     margin-top: 16px;
 }
@@ -356,7 +363,7 @@ body::-webkit-scrollbar {
 .intro-image {
     width: 80%;
     height: auto;
-    margin: 20px 0;
+    margin: 20px auto;
     display: block;
 }
 
@@ -565,7 +572,7 @@ body::-webkit-scrollbar {
 }
 
 .carousel-category-image {
-    width: 120px;
+    width: 90px;
     height: 120px;
     object-fit: contain;
     transition: all 0.3s ease;
@@ -1154,6 +1161,13 @@ body::-webkit-scrollbar {
     padding: 0 16px 16px 16px;
 }
 
+.about-photo {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    display: block;
+}
+
 .about-item {
     display: flex;
     flex-direction: column;
@@ -1172,6 +1186,10 @@ body::-webkit-scrollbar {
 .about-text {
     color: var(--color-text);
     padding-left: 16px;
+}
+
+.no-padding {
+    padding-left: 0 !important;
 }
 
 .about-link {
@@ -1728,7 +1746,7 @@ body::-webkit-scrollbar {
 
     .intro {
         padding: 0 10px;
-        font-size: 12px !important;
+        font-size: 14px !important;
         width: 100%;
         min-width: 320px; /* 与其他容器保持一致 */
         max-width: 100%;
@@ -1737,6 +1755,10 @@ body::-webkit-scrollbar {
         margin-bottom: 6px;
         line-height: 1.2;
         text-align: left; /* 移动端左对齐更易读 */
+    }
+
+    .intro-callout {
+        padding: 14px;
     }
 
     .intro-wrapper .intro:first-of-type {
@@ -1753,6 +1775,15 @@ body::-webkit-scrollbar {
 
     .intro-item:first-of-type {
         margin-top: 0.7em;
+    }
+
+    .projects-column {
+        padding: 0 0px;
+    }
+
+    .intro-wrapper {
+        padding: 40px 0px;
+
     }
 
     /* 右侧按钮块：贴右对齐、禁止换行、不溢出 */

@@ -10,7 +10,7 @@
     grid-template-columns: repeat(5, minmax(145px, 1fr));
     gap: 4px;
     max-width: 100%;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     justify-content: center;
     position: relative;
@@ -183,6 +183,7 @@
         padding: 0 20px;
         max-width: 500px;
         position: relative;
+        margin: 0 auto;
     }
     
     /* 移动端提示文字 */
@@ -275,6 +276,7 @@
     .column-container {
         padding: 0 15px;
         max-width: 460px;
+        margin: 0 auto;
     }
     
     .category-column {
