@@ -315,7 +315,7 @@ body::-webkit-scrollbar {
 .intro-callout {
     border: 1.2px solid var(--color-text);
     background: var(--color-white);
-    padding: 16px 20px;
+    padding: 16px 24px;
     box-sizing: border-box;
 }
 
@@ -431,7 +431,7 @@ body::-webkit-scrollbar {
 .projects-column {
     flex: 0 0 760px;
     min-width: 0;
-    padding-top: 96px;
+    padding-top: 102px;
     padding-left: 30px;
 }
 
@@ -1137,7 +1137,9 @@ body::-webkit-scrollbar {
 
 .about-heading {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.05em;
     color: var(--color-text);
     padding: 0 40px 20px 16px !important;
     font-family: "Barlow", sans-serif;
@@ -1163,7 +1165,7 @@ body::-webkit-scrollbar {
 
 .about-photo {
     width: 100%;
-    max-width: 200px;
+    max-width: 160px;
     height: auto;
     display: block;
 }
@@ -1190,6 +1192,12 @@ body::-webkit-scrollbar {
 
 .no-padding {
     padding-left: 0 !important;
+    font-size: 14px !important;
+}
+
+.about-name {
+    padding-left: 0 !important;
+    font-size: 18px !important;
 }
 
 .about-link {
@@ -1207,7 +1215,9 @@ body::-webkit-scrollbar {
 
 .projects-heading {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.05em;
     color: var(--color-text);
     padding: 0 4px 4px 0px !important;
     font-family: "Barlow", sans-serif;
@@ -1240,7 +1250,9 @@ body::-webkit-scrollbar {
 
 .news-heading {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.05em;
     color: var(--color-text);
     padding: 0 40px 4px 16px !important;
     font-family: "Barlow", sans-serif;

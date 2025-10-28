@@ -1,4 +1,4 @@
-# Ziru Wei （魏·子茹）
+# Ziru Wei  ｜ 魏子茹
 
 ## Education
 
