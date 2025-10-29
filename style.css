@@ -545,7 +545,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 20px 0;
+    padding: 0px 0;
     background-color: var(--color-background);
 }
 
@@ -1216,7 +1216,7 @@ body::-webkit-scrollbar {
 .about-content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
     padding: 0 16px 16px 16px;
 }
 
@@ -1267,6 +1267,7 @@ body::-webkit-scrollbar {
 .about-label {
     font-weight: 600;
     color: var(--color-text);
+    padding-top:9px;
 }
 
 .about-text {
@@ -1381,7 +1382,7 @@ body::-webkit-scrollbar {
 }
 
 .news-time {
-    min-width: 80px;
+    min-width: 64px;
     color: var(--color-text);
     font-size: 12px;
     font-weight: 600;
