@@ -431,7 +431,7 @@ body::-webkit-scrollbar {
 .projects-column {
     flex: 0 0 760px;
     min-width: 0;
-    padding-top: 102px;
+    padding-top: 100px;
     padding-left: 30px;
 }
 
@@ -794,7 +794,7 @@ body::-webkit-scrollbar {
         flex: 1 1 auto;
         max-width: 760px;
         min-width: 0;
-        padding-top: 110px;
+        padding-top: 100px;
     }
 
     .news-column {
@@ -1325,8 +1325,8 @@ body::-webkit-scrollbar {
 /* News page style */
 .news-section {
     width: 100%;
-    margin: 8px 0 0 0;
-    padding: 16px 0px 0;
+    margin: 0px 0 0 0;
+    padding: 8px 0px 0;
     position: relative;
     z-index: 101;
     background-color: var(--color-background);
