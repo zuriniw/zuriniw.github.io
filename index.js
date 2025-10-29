@@ -7,6 +7,22 @@ console.log('Projects:', projects);
 
 const MODALITY_PLACEHOLDER_SRC = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22180%22%3E%3Crect%20width%3D%22320%22%20height%3D%22180%22%20fill%3D%22%23e0e0e0%22/%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%234c4c4c%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2215%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3Ecoming%20soon%3C/text%3E%3C/svg%3E';
 
+const getResearchTypeClass = (value) => {
+    const typeKey = String(value)
+        .toLowerCase()
+        .replace(/[^a-z]/g, '');
+
+    if (typeKey === 'integration' || typeKey === 'integrations' || typeKey.startsWith('affordance')) {
+        return 'research-type-aff';
+    }
+
+    if (typeKey === 'interactivity' || typeKey === 'interactivities') {
+        return 'research-type-int';
+    }
+
+    return 'research-type-neutral';
+};
+
 function createResearchProjectsSection() {
     const researchContainer = document.querySelector('.research-projects');
     const researchSection = document.querySelector('.research-section');
@@ -49,7 +65,30 @@ function createResearchProjectsSection() {
 
             const projectTitle = document.createElement('h4');
             projectTitle.className = 'carousel-project-title';
-            projectTitle.textContent = project.title;
+
+            const typeStack = document.createElement('span');
+            typeStack.className = 'research-type-stack';
+
+            const typeList = Array.isArray(project.researchType) ? project.researchType : [];
+            const indicators = typeList.length ? typeList : ['None'];
+
+            indicators.forEach((type, index) => {
+                const indicator = document.createElement('span');
+                indicator.className = 'research-type-indicator';
+                indicator.dataset.index = index;
+
+                indicator.classList.add(getResearchTypeClass(type));
+
+                typeStack.appendChild(indicator);
+            });
+
+            projectTitle.appendChild(typeStack);
+
+            const titleText = document.createElement('span');
+            titleText.className = 'research-card-title-text';
+            titleText.textContent = project.title;
+
+            projectTitle.appendChild(titleText);
             projectInfo.appendChild(projectTitle);
 
             projectCard.appendChild(projectImage);
