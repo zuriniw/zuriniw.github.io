@@ -794,6 +794,7 @@ body::-webkit-scrollbar {
         flex: 1 1 auto;
         max-width: 760px;
         min-width: 0;
+        padding-top: 110px;
     }
 
     .news-column {
@@ -1523,6 +1524,10 @@ body::-webkit-scrollbar {
         text-align: left !important;
         position: relative !important;
         top: auto !important;
+    }
+
+    .intro-callout {
+        margin-top: 14px !important;
     }
 
     .intro a,
