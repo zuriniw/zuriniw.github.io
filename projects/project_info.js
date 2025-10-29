@@ -133,8 +133,8 @@ const projects = [
         researchType: ["Integration", "Interactivity"],
     }),
     new Project({
-        name: "ModalityOrchestrator",
-        title: "ModalityOrchestrator",
+        name: "OmniOrchestrator",
+        title: "OmniOrchestrator",
         time: "2025",
         isteam: true,
         weight: 12,

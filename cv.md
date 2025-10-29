@@ -9,7 +9,7 @@
 
 Master of Science in Computational Design (HCI focus), GPA: 4.14/4.33  
 
-Thesis: *Towards Multimodal Interaction with Proactive Physical Agents* (Advised by Prof. Alexandra Ion)
+Thesis: *Toward Interacting with Proactive Intelligence in Everyday Physical Environments* (Advised by Prof. Alexandra Ion)
 
 
 <dl>
