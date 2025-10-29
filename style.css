@@ -1297,7 +1297,7 @@ body::-webkit-scrollbar {
 /* News page style */
 .news-section {
     width: 100%;
-    margin: 24px 0 0 0;
+    margin: 8px 0 0 0;
     padding: 16px 0px 0;
     position: relative;
     z-index: 101;
