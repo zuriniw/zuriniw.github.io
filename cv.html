@@ -51,21 +51,7 @@
                 const markdownDiv = document.getElementById('markdown-content');
                 markdownDiv.innerHTML = marked.parse(mdContent);
 
-                // 在名字（第一个h1）之后插入下载链接和社交媒体按钮
-                const h1Element = markdownDiv.querySelector('h1');
-                if (h1Element) {
-                    const downloadAndSocialHTML = `
-                        <div class="social-buttons no-print">
-                            <a href="https://github.com/zuriniw" class="social-btn" target="_blank" rel="noopener noreferrer">GitHub↗</a>
-                            <a href="https://www.behance.net/ziruwei" class="social-btn" target="_blank" rel="noopener noreferrer">Behance↗</a>
-                            <a href="https://www.youtube.com/@ZiruWei-ir9zj" class="social-btn" target="_blank" rel="noopener noreferrer">YouTube↗</a>
-                        </div>
-                                                <div class="cv-download-link no-print">
-                            <a href="data/cv.pdf" class="cv-download-text" download="Ziru_Wei_CV.pdf" target="_blank">Download PDF Version ↓</a>
-                        </div>
-                    `;
-                    h1Element.insertAdjacentHTML('afterend', downloadAndSocialHTML);
-                }
+                
 
                 const toc = new TableOfContents();
                 toc.init();

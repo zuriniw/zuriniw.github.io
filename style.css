@@ -1220,6 +1220,33 @@ body::-webkit-scrollbar {
     padding: 0 16px 16px 16px;
 }
 
+.about-links-row {
+    display: flex;
+    gap: 6px;
+    padding: 0 0px;
+    margin-top: -4px;
+}
+
+.about-mini-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "GeistMono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 10px 3px;
+    border: 1.2px solid var(--color-text);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.about-mini-button:hover {
+    background-color: var(--color-text);
+    color: var(--color-white);
+}
+
 .about-photo {
     width: 100%;
     max-width: 290px;
@@ -1254,7 +1281,7 @@ body::-webkit-scrollbar {
 
 .about-name {
     padding-left: 0 !important;
-    font-size: 18px !important;
+    font-size: 22px !important;
 }
 
 .about-link {

@@ -90,8 +90,8 @@ class Project {
 const projects = [
     new Project({
         name: "poi",
-        title: "Adaptive Exhibition",
-        subtitle: "An adaptive layout system via computing human factors in the environment",
+        title: "Body-in-the-Loop Exhibition",
+        subtitle: "Sensing gaze & body preference to co-evolve exhibition space",
         labels: ["XR", "HCD", "Physical"],
         time: "2024",
         ispage: true,
@@ -111,7 +111,6 @@ const projects = [
     new Project({
         name: "robff",
         title: "“Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots",
-        subtitle: "An adaptive layout system via computing human factors in the environment",
         time: "2025",
         isteam: true,
         weight: 11,
@@ -183,7 +182,7 @@ const projects = [
         ismarkdown: true,
         isflipped: false,
         tutor: "David Lindlbauer",
-        category: "Fundamental Interaction"
+        category: "Fundamental Interactions"
     }),
     new Project({
         name: "shapeshift",
@@ -486,7 +485,7 @@ const projects = [
         ismarkdown: true,
         weight: 9,
         situate: { x: 20, y: 50 },
-        category: "Fundamental Interaction"
+        category: "Fundamental Interactions"
     }),
     new Project({
         name: "autopfl",
@@ -524,7 +523,7 @@ const availableCategories = [
         illustration: "images/devices.png"
     },
     {
-        name: "Fundamental Interaction",
+        name: "Fundamental Interactions",
         illustration: "images/found.png"
     },
     {
