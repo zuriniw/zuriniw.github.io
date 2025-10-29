@@ -624,7 +624,7 @@ body::-webkit-scrollbar {
 
 .carousel-project-card {
     display: flex;
-    gap: 16px;
+    gap: 36px;
     background-color: var(--color-background);
     border: 1.2px solid var(--color-text);
     padding: 8px;
@@ -1859,7 +1859,7 @@ body::-webkit-scrollbar {
     }
 
     .intro-callout {
-        padding: 14px;
+        padding: 14px !important;
     }
 
     .intro-wrapper .intro:first-of-type {
