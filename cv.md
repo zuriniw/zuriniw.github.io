@@ -65,7 +65,7 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dd>Aug 2021 - Jul 2022</dd>
 </dl>
 
-- Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize utilization of limited MR devices within a small, low-tech construction team
+- Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize the utilization of limited MR devices within a small, low-tech construction team
 - Documented the design-to-construction process and contributed to academic writing
 
 ## Skills

@@ -50,7 +50,7 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 
 **Research Assistant, Humachine Lab, Soochow University** \hfill Aug 2021 - Jul 2022
 
-- Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize utilization of limited MR devices within a small, low-tech construction team
+- Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize the utilization of limited MR devices within a small, low-tech construction team
 - Documented the design-to-construction process and contributed to academic writing
 
 
