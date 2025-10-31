@@ -32,7 +32,7 @@ jobs:
 
     - name: Check PDF size
       run: |
-        ls -lh data/cv.pdf
+        ls -lh data/CV_Ziru_Wei.pdf
         echo "PDF generated successfully!"
 
     - name: Commit and push PDF
@@ -40,7 +40,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add data/cv.pdf data/cv_preprocessed.md
+        git add data/CV_Ziru_Wei.pdf data/cv_preprocessed.md
         git diff --staged --quiet || git commit -m "Auto-update CV PDF [skip ci]"
         git push
       env:
@@ -50,5 +50,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: cv-pdf
-        path: data/cv.pdf
+        path: data/CV_Ziru_Wei.pdf
         retention-days: 90

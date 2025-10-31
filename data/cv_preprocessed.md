@@ -4,9 +4,9 @@
 
 **Carnegie Mellon University** \hfill May 2026
 
-- Master of Science in Computational Design (HCI focus), GPA: 4.14/4.33
+- Master of Science in Computational Design (research-based, HCI focus), GPA: 4.14/4.33
 
-- Thesis: *Toward Interacting with Proactive Intelligence in Everyday Physical Environments* (Advised by Prof. Alexandra Ion)
+- Thesis Topic: *Toward Interacting with Proactive Intelligence in Everyday Physical Environments* (Advised by Prof. Alexandra Ion)
 
 
 **Soochow University** \hfill Jun 2024
@@ -15,42 +15,42 @@
 
 
 ## Research Works
-**(In submission, CHI 2026) “Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots**
+**(Under review at CHI 2026) “Let Me Lend You a Hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-Scale Personal Assistance Robots**
 
 \underline{Ziru Wei}, Violet Yinuo Han, Tanvi Handoo, Alexandra Ion
 
-**(In submission, CHI 2026) Embodiment and Interaction Influence Perceptions of Robotic Collaborators in Everyday Physical Tasks**
+**(Under review at CHI 2026) Embodiment and Interaction Influence Perceptions of Robotic Collaborators in Everyday Physical Tasks**
 
 Violet Yinuo Han, \underline{Ziru Wei}, Aiden Yiliu Li, Chris Wu, Alexandra Ion
 
 **On-site Holographic Building Construction: A Case Study of Aurora**
 
-Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* , 2022 (peer-reviewed, ~30% acceptance, top-tier computational design conference)
+Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)*, 2022 (peer-reviewed, ~30% acceptance, top-tier computational design conference)
 
 ## Posters and Abstracts
 **Embodied Generative Storytelling**
 
-\underline{Ziru Wei}, Jimmy Cheng. Abstract accepted, 4S 2025 Conference: Reverberations, Seattle, WA, Sept 3-6, 2025.
+\underline{Ziru Wei}, Jimmy Cheng. Abstract accepted, 4S 2025 Conference: Reverberations, Seattle, WA, Sept 3–6, 2025.
 
 ## Experience
 
 **Research Student, Interactive Structures Lab, Human-Computer Interaction Institute, Carnegie Mellon University** \hfill Mar 2025 - Present
 
-- Designed and conducted empirical human-robot interaction studies, investigating how users perceive proactive robot assistance across contexts, tasks, and proactivity; synthesized quantitative and qualitative results into design recommendations for unobtrusive assistance by physical agents.
+- Designed and conducted empirical human-robot interaction studies, investigating how users perceive proactive robot assistance across contexts, tasks, and proactivity; synthesized quantitative and qualitative results into design recommendations for unobtrusive assistance by physical agents
 - Developing an optimizer that selects, orchestrates, and schedules distributed multimodal outputs to initiate contextually appropriate assistance &nbsp;(ongoing)
 
 
 
 **Research Intern, WHY Research Lab, Carnegie Mellon University** \hfill Aug 2024 - Jan 2025
 
-- Replicated the “Ladybug” project by disassembling and re-soldering disk drives and integrating a Raspberry Pi.
+- Replicated the “Ladybug” project by disassembling and re-soldering disk drives and integrating a Raspberry Pi
 - Built the WasteStation database in Notion to map connections between components and potential reuse applications
 
 
 
 **Research Assistant, Humachine Lab, Soochow University** \hfill Aug 2021 - Jul 2022
 
-- Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize utilization of limited MR devices within a small, low-tech construction team.
+- Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize utilization of limited MR devices within a small, low-tech construction team
 - Documented the design-to-construction process and contributed to academic writing
 
 

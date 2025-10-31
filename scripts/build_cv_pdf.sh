@@ -15,7 +15,7 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 CV_MD="$PROJECT_ROOT/cv.md"
-CV_PDF="$PROJECT_ROOT/data/cv.pdf"
+CV_PDF="$PROJECT_ROOT/data/CV_Ziru_Wei.pdf"
 LATEX_TEMPLATE="$PROJECT_ROOT/scripts/cv_template.tex"
 
 echo "开始构建 CV PDF..."
