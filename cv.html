@@ -44,9 +44,6 @@
             .then(mdContent => {
                 const markdownDiv = document.getElementById('markdown-content');
                 markdownDiv.innerHTML = marked.parse(mdContent);
-
-                
-
                 const toc = new TableOfContents();
                 toc.init();
             })

@@ -46,8 +46,8 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dd>2025.04 - Present</dd>
 </dl>
 
-- Designed and conducted a Wizard-of-Oz study on how users perceive a proactive portable personal robot performing different types of assistances across private, social, and public contexts; synthesized quantitative and qualitative findings into design recommendations for developing unobtrusive proactive physical assistance
-- Developing a real-time computational pipeline for proactive physical agents to perceive and reason about contextual cues, and to orchestrate multimodal proactive behaviors to initiate assistance &nbsp;(ongoing)
+- Designed and conducted a Wizard-of-Oz study, investigating how users perceive proactive robot assistance across different contexts, tasks, and proactivities; synthesized quantitative and qualitative findings into design recommendations for developing unobtrusive proactive assistance from physical agents
+- Developing an optimizer for proactive AI agents to select, orchestrate, and plan the distributed multimodality to initiate contextually appropriate assistance &nbsp;(ongoing)
 
 <br>
 <dl>
