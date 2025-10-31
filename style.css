@@ -336,9 +336,17 @@ body::-webkit-scrollbar {
 }
 
 .intro-item {
-    margin: 12px 0 0;
+    margin: 24px 0 0;
     line-height: 1.2;
 }
+
+.intro-list {
+    padding-left: 48px;
+}
+
+/* .intro-list .intro-item {
+    max-width: 600px;
+} */
 
 .intro-item + .intro-item {
     margin-top: 8px;
@@ -361,7 +369,7 @@ body::-webkit-scrollbar {
 }
 
 .intro-image {
-    width: 80%;
+    width: 100%;
     height: auto;
     margin: 20px auto;
     display: block;
@@ -713,7 +721,6 @@ body::-webkit-scrollbar {
 
 .research-type-aff {
     background-color: #ff0d7a;
-    z-index: 2;
 }
 
 .research-type-int {
@@ -853,7 +860,7 @@ body::-webkit-scrollbar {
         flex: 1;
         max-width: 100%;
         width: 100%;
-        padding-top: 20px;
+        padding-top: 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -865,7 +872,6 @@ body::-webkit-scrollbar {
     }
 
     .intro-image {
-        max-width: 520px;
         width: 100%;
     }
 
@@ -1870,6 +1876,10 @@ body::-webkit-scrollbar {
         line-height: 1.4;
     }
 
+    .intro-list {
+        padding-left: 20px;
+    }
+
     .intro p.intro-break {
         margin: 10px 0 0;
     }
@@ -1885,6 +1895,11 @@ body::-webkit-scrollbar {
     .intro-wrapper {
         padding: 40px 0px;
 
+    }
+    
+    .intro-image {
+        width: 100%;
+        max-width: 640px;
     }
 
     /* 右侧按钮块：贴右对齐、禁止换行、不溢出 */

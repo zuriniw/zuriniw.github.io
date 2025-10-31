@@ -76,6 +76,7 @@ function createResearchProjectsSection() {
                 const indicator = document.createElement('span');
                 indicator.className = 'research-type-indicator';
                 indicator.dataset.index = index;
+                indicator.style.zIndex = String(100 - index);
 
                 indicator.classList.add(getResearchTypeClass(type));
 
