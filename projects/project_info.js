@@ -117,7 +117,7 @@ const projects = [
         otherLink2: null,
         isResearch: true,
         author: "Ziru Wei, Violet Yinuo Han, Tanvi Handoo, Alexandra Ion",
-        venue: "In submission",
+        venue: "Under review",
         researchType: ["Interactivity"],
     }),
     new Project({
@@ -129,7 +129,7 @@ const projects = [
         otherLink2: null,
         isResearch: true,
         author: "Violet Yinuo Han, Ziru Wei, Aiden Yiliu Li, Chris Wu, Alexandra Ion",
-        venue: "In submission",
+        venue: "Under review",
         researchType: ["Interactivity", "Integration"],
     }),
     new Project({
