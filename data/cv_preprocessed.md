@@ -1,20 +1,20 @@
-# Ziru Wei （魏·子茹）
+# Ziru Wei  ｜ 魏子茹
 
 ## Education
 
-**Carnegie Mellon University** \hfill 2026.05
+**Carnegie Mellon University** \hfill May 2026
 
 - Master of Science in Computational Design (HCI focus), GPA: 4.14/4.33
 
-- Thesis: *Towards Multimodal Interaction with Proactive Physical Agents* (Advised by Prof. Alexandra Ion)
+- Thesis: *Toward Interacting with Proactive Intelligence in Everyday Physical Environments* (Advised by Prof. Alexandra Ion)
 
 
-**Soochow University** \hfill 2024.06
+**Soochow University** \hfill Jun 2024
 
 - Bachelor of Architecture, GPA: 3.7/4.0
 
 
-## Publications
+## Research Works
 **(In submission, CHI 2026) “Let me lend you a hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-scale Personal Assistance Robots**
 
 \underline{Ziru Wei}, Violet Yinuo Han, Tanvi Handoo, Alexandra Ion
@@ -25,32 +25,32 @@ Violet Yinuo Han, \underline{Ziru Wei}, Aiden Yiliu Li, Chris Wu, Alexandra Ion
 
 **On-site Holographic Building Construction: A Case Study of Aurora**
 
-Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* , 2022 (peer-reviewed, ≈30 % acceptance, top-tier computational design conference)
+Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)* , 2022 (peer-reviewed, ~30% acceptance, top-tier computational design conference)
 
 ## Posters and Abstracts
-**Embodied Generative storytelling**
+**Embodied Generative Storytelling**
 
-\underline{Ziru Wei}, Jimmy Cheng. Abstract accepted, 4S 2025 Conference: Reverberations, Seattle, WA, Sept 3–6, 2025.
+\underline{Ziru Wei}, Jimmy Cheng. Abstract accepted, 4S 2025 Conference: Reverberations, Seattle, WA, Sept 3-6, 2025.
 
 ## Experience
 
-**Research Student at Interactive Structures Lab, Human-Computer Interaction Institute, Carnegie Mellon University** \hfill 2025.04 - Present
+**Research Student, Interactive Structures Lab, Human-Computer Interaction Institute, Carnegie Mellon University** \hfill Mar 2025 - Present
 
-- Designed and conducted a Wizard-of-Oz study on how users perceive a proactive portable personal robot performing different types of assistances across private, social, and public contexts; synthesized quantitative and qualitative findings into design recommendations for developing unobtrusive proactive physical assistance
-- Developing a real-time computational pipeline for proactive physical agents to perceive and reason about contextual cues, and to orchestrate multimodal proactive behaviors to initiate assistance &nbsp;(ongoing)
+- Designed and conducted empirical human-robot interaction studies, investigating how users perceive proactive robot assistance across contexts, tasks, and proactivity; synthesized quantitative and qualitative results into design recommendations for unobtrusive assistance by physical agents.
+- Developing an optimizer that selects, orchestrates, and schedules distributed multimodal outputs to initiate contextually appropriate assistance &nbsp;(ongoing)
 
 
 
-**Research Intern at WHY Research Lab, Carnegie Mellon University** \hfill 2024.08 - 2025.01
+**Research Intern, WHY Research Lab, Carnegie Mellon University** \hfill Aug 2024 - Jan 2025
 
-- Replicated the 'Ladybug' project, which transformed dismantled disk drives into a scanning device through disassembly, resoldering, and Raspberry Pi integration
+- Replicated the “Ladybug” project by disassembling and re-soldering disk drives and integrating a Raspberry Pi.
 - Built the WasteStation database in Notion to map connections between components and potential reuse applications
 
 
 
-**Research Assistant, Humachine Lab, Soochow University** \hfill 2021.08 - 2022.07
+**Research Assistant, Humachine Lab, Soochow University** \hfill Aug 2021 - Jul 2022
 
-- Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize the use of limited MR devices within a small, low-tech construction team
+- Implemented MR workflows for nonlinear façade assembly and designed four on-site collaboration methods to maximize utilization of limited MR devices within a small, low-tech construction team.
 - Documented the design-to-construction process and contributed to academic writing
 
 
@@ -59,7 +59,7 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 **Technical**
 
 - Hardware: Arduino, Raspberry Pi
-- Programming Languages: Python, R, C#, Pascal, HTML, CSS, Javascript
+- Programming Languages: Python, R, C#, Pascal, HTML, CSS, JavaScript
 
 
 **Design & Production**
@@ -107,25 +107,24 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 
 ## Activities
 
-**Course Project Reviewer** \hfill 2025.01 - 2025.05
+**Course Guest Reviewer, Fundamentals of Computational Design (62-275), Spring 2025, Carnegie Mellon University** \hfill Jan 2025 - May 2025
 
-- Worked as a Guest Reviewer for the Spring 2025 Fundamentals of Computational Design course at Carnegie Mellon University, taught by Prof. Vernelle A. A. Noel.
-- Facilitated project reviews for over 50 students working in teams, providing feedback to support their growth in computational design practices.
-
+- Provided feedback on team-based computational design projects for over 50 students
 
 
-**Student Volunteer at des[AI]gn conference 2024, American Institute of Architecture Students** \hfill 2024.10
+
+**Student Volunteer at des[AI]gn conference 2024, American Institute of Architecture Students** \hfill Oct 2024
 
 - Assisted in workshop setup, documented the sessions through photography, and facilitated the use of interactive swatch-making software for creating knit samples in Textiles Lab, Carnegie Mellon University
 - Coordinated logistics and facilitated the setup for an AI panel discussion and the opening session of the conference
 
 
-**Suzhou International Design Week** \hfill 2021.12
+**Suzhou International Design Week** \hfill Dec 2021
 
 - Exhibited 'Layered Rafters Lodge', a design integrating traditional material framing with modern bamboo construction techniques
 
 
-**Design Exhibition Curatorial Assistant** \hfill 2021.05
+**Design Exhibition Curatorial Assistant** \hfill May 2021
 
 - Organized featured models and drawings for the exhibition, assisting in the re-arrangement of the architecture department's showcase
 

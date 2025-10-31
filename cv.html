@@ -44,6 +44,19 @@
             .then(mdContent => {
                 const markdownDiv = document.getElementById('markdown-content');
                 markdownDiv.innerHTML = marked.parse(mdContent);
+
+                if (!document.querySelector('.cv-download-section')) {
+                    const heading = markdownDiv.querySelector('h1');
+                    if (heading) {
+                        const downloadSection = document.createElement('div');
+                        downloadSection.className = 'cv-download-section';
+                        downloadSection.innerHTML = `
+                            <a class="cv-download-btn" href="data/cv.pdf" target="_blank" rel="noopener noreferrer">Download CV (PDF)</a>
+                        `;
+                        heading.insertAdjacentElement('afterend', downloadSection);
+                    }
+                }
+
                 const toc = new TableOfContents();
                 toc.init();
             })
@@ -51,26 +64,6 @@
                 console.error('Error loading markdown:', error);
             });
 
-        // 检查PDF文件是否存在并获取更新时间
-        fetch('data/cv.pdf', { method: 'HEAD' })
-            .then(response => {
-                if (response.ok) {
-                    const lastModified = response.headers.get('last-modified');
-                    if (lastModified) {
-                        const date = new Date(lastModified);
-                        document.getElementById('pdf-date').textContent = date.toLocaleDateString();
-                    } else {
-                        document.getElementById('pdf-date').textContent = 'Available';
-                    }
-                } else {
-                    // PDF不存在，隐藏下载按钮
-                    document.querySelector('.cv-download-section').style.display = 'none';
-                }
-            })
-            .catch(error => {
-                console.log('PDF not available yet');
-                document.querySelector('.cv-download-section').style.display = 'none';
-            });
     </script>
 
     <!-- footer -->

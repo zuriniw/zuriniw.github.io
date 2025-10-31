@@ -42,7 +42,7 @@
 
 % H3 (\subsubsection) - smaller subsections if needed
 \renewcommand{\subsubsection}[1]{%
-    \vspace{0.8em}%
+    \vspace{0.4em}%
     {\normalsize\bfseries #1}%
     \vspace{0.25em}%
 }
@@ -95,17 +95,20 @@
 % Simple page setup
 \pagestyle{empty}
 
+% Avoid aggressive hyphenation while keeping paragraphs readable
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\raggedright
+
 % Title formatting (centered) with fixed contact info
-    \begin{center}
-        {\Huge\bfseries Ziru Wei}\\[6pt]
+\begin{center}
+    {\fontsize{20}{24}\selectfont\bfseries Ziru Wei}\\[6pt]
         {\large
           \href{mailto:ziruw@andrew.cmu.edu}{ziruw@andrew.cmu.edu} \,|\, 
           \href{https://zuriniw.github.io}{zuriniw.github.io}
         }\\[6pt]
-        {\small {Interested Topics: Technical HCI, Human–Robot Interaction,   
-        User Modeling, Multimodal Interaction, Extended Reality}}
+        {\small {Research Interests: Multimodal Interaction, User Modeling, Human-Robot Interaction, Extended Reality}}
     \end{center}
-    \vspace{0.5em}
     
     
 
