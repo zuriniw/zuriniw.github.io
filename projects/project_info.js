@@ -436,7 +436,7 @@ const projects = [
         category: "Devices"
     }),
     new Project({
-        name: "dataresonate",
+        name: "datareso",
         title: "Perceivable Data",
         subtitle: "An multi-modal data exploration toolkit for public urban discourse",
         labels: ["XR", "HCD"],

@@ -22,12 +22,16 @@ function parseTime(timeStr) {
 const newsItems = [
     new NewsItem({
         time: "2025.09",
-        event: `We submitted 2 papers to <b>CHI 2026</b>! Fingers crossed.`,
+        event: `★ We submitted 2 papers to <b>CHI 2026</b>! Fingers crossed.`,
 
     }),
     new NewsItem({
+        time: "2025.11",
+        event: `I won the Fasted Manipulation Prize in CMU course <a href="https://www.hcii.cmu.edu/course/special-topics-interactive-extended-reality-not-offered-spring-2026" class="news-link">05899 Interactive Extended Reality</a> taught by Prof. David Lindlbauer` 
+    }),
+    new NewsItem({
         time: "2025.08",
-        event: `I launched two new mini lateral-puzzle games this summer. For fans of horror and interactive storytelling, check them out: <a href="https://www.bilibili.com/video/BV1iyuMzoEuB/" class="news-link">here</a> and <a href="https://www.bilibili.com/video/BV1FpupzuEnm/?vd_source=0f99d8862012dc3500590ba5b2bad6e7" class="news-link">here</a>. (BiliBili account required)` 
+        event: `I launched 2 new mini lateral-puzzle games this summer. For fans of horror and interactive storytelling, check them out: <a href="https://www.bilibili.com/video/BV1iyuMzoEuB/" class="news-link">here</a> and <a href="https://www.bilibili.com/video/BV1FpupzuEnm/?vd_source=0f99d8862012dc3500590ba5b2bad6e7" class="news-link">here</a>. (BiliBili account required)` 
     }),
     new NewsItem({
         time: "2025.06",

@@ -85,23 +85,40 @@ function createResearchProjectsSection() {
 
             projectTitle.appendChild(typeStack);
 
-            const titleText = document.createElement('span');
+            const titleText = project.ispage
+                ? document.createElement('a')
+                : document.createElement('span');
             titleText.className = 'research-card-title-text';
+            if (project.ispage) {
+                titleText.href = project.getHtmlPath();
+                titleText.classList.add('research-card-title-link');
+            }
             titleText.textContent = project.title;
 
             projectTitle.appendChild(titleText);
             projectInfo.appendChild(projectTitle);
 
+            if (project.ispage) {
+                projectImage.classList.add('research-card-image-clickable');
+                projectImage.addEventListener('click', () => {
+                    window.location.href = project.getHtmlPath();
+                });
+            }
             projectCard.appendChild(projectImage);
             projectCard.appendChild(projectInfo);
 
             const projectDetails = document.createElement('div');
             projectDetails.className = 'research-card-details';
 
+            const highlightAuthor = (value) => {
+                if (!value) return '';
+                return String(value).replace(/Ziru Wei/g, '<span class="author-highlight">Ziru Wei</span>');
+            };
+
             if (project.author) {
                 const author = document.createElement('div');
                 author.className = 'research-card-author';
-                author.textContent = project.author;
+                author.innerHTML = highlightAuthor(project.author);
                 projectDetails.appendChild(author);
             }
 
@@ -151,14 +168,6 @@ function createResearchProjectsSection() {
             if (projectDetails.children.length) {
                 projectInfo.appendChild(projectDetails);
             }
-
-            if (project.ispage) {
-                projectCard.classList.add('research-card--clickable');
-                projectCard.addEventListener('click', () => {
-                    window.location.href = project.getHtmlPath();
-                });
-            }
-
             researchContainer.appendChild(projectCard);
         });
 }
