@@ -47,7 +47,7 @@ const newsItems = [
     }),
     new NewsItem({
         time: "2024.12",
-        event: `I won First Prize in CMU <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">15-112 Fundamentals of Programming and Computer Science</a> Term Project (selected from 400+ projects, David Kosbie and peers' choice)! See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
+        event: `I won First Prize in CMU <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">15-112 Fundamentals of Programming and Computer Science</a> Term Project (selected from 400+ projects, Prof. David Kosbie and peers' choice)! See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
     }),
     new NewsItem({
         time: "2025.01",
