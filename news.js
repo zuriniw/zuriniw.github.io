@@ -22,12 +22,12 @@ function parseTime(timeStr) {
 const newsItems = [
     new NewsItem({
         time: "2025.09",
-        event: `★ We submitted 2 papers to <b>CHI 2026</b>! Fingers crossed.`,
+        event: `★ We submitted <b>2 </b>papers to <b>CHI 2026</b>! Fingers crossed.`,
 
     }),
     new NewsItem({
         time: "2025.11",
-        event: `I won the Fasted Manipulation Prize in CMU course <a href="https://www.hcii.cmu.edu/course/special-topics-interactive-extended-reality-not-offered-spring-2026" class="news-link">05899 Interactive Extended Reality</a> taught by Prof. David Lindlbauer` 
+        event: `I won the Fasted Manipulation Prize in CMU <a href="https://www.hcii.cmu.edu/course/special-topics-interactive-extended-reality-not-offered-spring-2026" class="news-link">05-899 Interactive Extended Reality</a> taught by Prof. David Lindlbauer` 
     }),
     new NewsItem({
         time: "2025.08",
@@ -47,7 +47,7 @@ const newsItems = [
     }),
     new NewsItem({
         time: "2024.12",
-        event: `I won First Prize in the <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">CMU 15-112</a> Term Project (selected from 400+ projects, chosen by David Kosbie and audience vote)! See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
+        event: `I won First Prize in CMU <a href="https://www.cs.cmu.edu/~112-f24/gallery.html" class="news-link">15-112 Fundamentals of Programming and Computer Science</a> Term Project (selected from 400+ projects, David Kosbie and peers' choice)! See the <a href="projects/shapeshift/shapeshift.html" class="news-link">project</a>`,
     }),
     new NewsItem({
         time: "2025.01",
