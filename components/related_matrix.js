@@ -310,6 +310,7 @@ class RelatedMatrix {
 
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
-    const matrix = new RelatedMatrix();
-    matrix.init();
+    // Temporarily disabled related matrix
+    // const matrix = new RelatedMatrix();
+    // matrix.init();
 }); 
