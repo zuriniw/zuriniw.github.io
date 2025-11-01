@@ -339,6 +339,11 @@ body::-webkit-scrollbar {
     line-height: 1.2;
 }
 
+.intro-note {
+    display: inline;
+    background: rgba(0, 0, 0, 0.091);
+}
+
 .intro-list {
     padding-left: 48px;
 }

@@ -222,7 +222,7 @@ function createCategoryColumns() {
 
         // Filter and add projects for this category
         const categoryProjectList = projects
-            .filter(project => project.category === category.name && !project.isResearch)
+            .filter(project => !project.isResearch && (project.categories?.includes(category.name) || project.category === category.name))
             .slice()
             .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0));
 
@@ -402,7 +402,7 @@ function displayCategoryProjects(categoryName) {
 
     // Filter projects for this category
     const categoryProjects = projects
-        .filter(project => project.category === categoryName && !project.isResearch)
+        .filter(project => !project.isResearch && (project.categories?.includes(categoryName) || project.category === categoryName))
         .slice()
         .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0));
 

@@ -31,6 +31,7 @@ class Project {
         isflipped = false,
         author = null,
         category = null,
+        categories = null,
         isResearch = false,
         linkOrder = ['youtubeLink', 'paperLink', 'githubLink', 'otherLink2', 'doi'] // 默认顺序
     }) {
@@ -64,7 +65,16 @@ class Project {
         this.weight = weight;
         this.situate = situate;
         this.isflipped = isflipped;
-        this.category = category;
+        const resolvedCategories = Array.isArray(categories)
+            ? categories.filter(Boolean)
+            : categories != null
+                ? [categories]
+                : category != null
+                    ? [category]
+                    : [];
+
+        this.categories = resolvedCategories;
+        this.category = resolvedCategories.length ? resolvedCategories[0] : null;
         this.isResearch = isResearch;
         this.linkOrder = linkOrder;
     }
@@ -439,7 +449,7 @@ const projects = [
         ispage: true,
         weight: 8.7,
         ismarkdown: true,
-        category: "Blended Environment"
+        categories: ["Blended Environment", "Devices"]
     }),
     new Project({
         name: "weddingwall",
