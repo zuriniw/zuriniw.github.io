@@ -189,7 +189,7 @@
     /* 移动端提示文字 */
     /* .column-container::before {
         content: "Tap to TOGGLE, Double Tap to FOCUS  ";
-        font-family: "Barlow", serif;
+        font-family: "Roboto", sans-serif;
         position: absolute;
         display: block;
         top: -22px;
@@ -364,7 +364,7 @@
 }
 
 .column-preview-subtitle {
-    font-family: "Barlow", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 12px;
     color: var(--color-text);
     line-height: 1.3;

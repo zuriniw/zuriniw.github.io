@@ -157,7 +157,7 @@
 }
 .markdown-content p {
     margin: 24px 0;
-    font-family: "Barlow", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 360;
     line-height: 1.4;
@@ -213,7 +213,7 @@
 .markdown-content ol {
     margin: 12px 0;
     padding-left: 40px;
-    font-family: "Barlow", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     line-height: 1.2;
     margin-left: 8px;
@@ -231,7 +231,7 @@
 .markdown-content li {
     margin: 4px 0;
     padding-left: 4px;
-    font-family: "Barlow", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     line-height: 1.2;
     margin-left: 8px;
@@ -283,7 +283,7 @@
     font-style: italic;
     margin-top: 4px;
     margin-bottom: 120px;
-    font-family: "Barlow", sans-serif;
+    font-family: "Roboto", sans-serif;
     line-height: 1.2;
     font-size: 13px;
     font-weight: 390;
@@ -545,7 +545,7 @@
     .markdown-content p {
         margin: 24px 0;
         letter-spacing: 0.4px;
-        font-family: "Barlow", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 13px;
         font-weight: 360;
         line-height: 1.5;
@@ -592,7 +592,7 @@
         padding-left: 10px;
         padding-right: 10px;
         letter-spacing: 0.4px;
-        font-family: "Barlow", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 13px;
         font-weight: 360;
         line-height: 1.5;
@@ -613,7 +613,7 @@
         padding-left: 4px;
         margin-left: 8px;
         letter-spacing: 0.4px;
-        font-family: "Barlow", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 13px;
         font-weight: 360;
         line-height: 1.5;
@@ -661,7 +661,7 @@
         font-style: italic;
         margin-top: 0px;
         margin-bottom: 12px;
-        font-family: "Barlow", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 11px;
         font-weight: 360;
         opacity: 0.96;
