@@ -36,7 +36,7 @@ if (project) {
         const linkConfig = {
             'doi': { label: 'DOI↗', value: project.doi },
             'paperLink': { label: 'Paper↗', value: project.paperLink },
-            'youtubeLink': { label: 'Demo Video↗', value: project.youtubeLink },
+            'youtubeLink': { label: 'Video↗', value: project.youtubeLink },
             'githubLink': { label: 'GitHub↗', value: project.githubLink },
             'otherLink2': { label: 'Project Page↗', value: project.otherLink2 },
         };

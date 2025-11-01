@@ -246,14 +246,14 @@ const projects = [
         citation: "Sijie Liu, Ziru Wei, and Sining Wang. 2022. On-site Holographic Building Construction: A Case Study of Aurora. In Proceedings of CAADRIA ’22: The 27th International Conference on Computer-Aided Architectural Design Research in Asia (Post-Carbon). Sydney, Australia. April 9–15, 2022. DOI: https://doi.org/10.52842/conf.caadria.2022.2.405",
         tools: "Fologram, Rhino, Grasshopper",
         briefDescription: `Instead of chasing zero-tolerance implementation and avoiding any potential deviations, MR-aided design practices aim to increase construction allowance by injecting computation into human operations.`,
-        // youtubeLink: "https://www.dropbox.com/scl/fi/ajuzkeolpeorpc0979q8t/HolographicConstruction.mp4?rlkey=7s31yppucptg6rdk8dkhffny0&e=1&dl=0",
+        youtubeLink: "https://www.youtube.com/embed/H6xKJxs9u1o?si=0Meg0QDRaytgsf3E;controls=0",
         doi: "https://doi.org/10.52842/conf.caadria.2022.2.405",
         paperLink: "https://papers.cumincad.org/data/works/att/caadria2022_157.pdf",
         weight: 9.9,
         ismarkdown: true,
         situate: { x: 70, y: -85 },
         category: "Blended Environment",
-        venue: "CAADRIA 2022",
+        venue: "CAADRIA 2022 (~30%, Top-tier Computational Design Conference)",
         isResearch: true
     }),
     // new Project({

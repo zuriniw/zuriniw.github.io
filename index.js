@@ -130,6 +130,14 @@ function createResearchProjectsSection() {
                 links.push(link);
             };
 
+            if (project.youtubeLink) {
+                let videoUrl = String(project.youtubeLink);
+                const sanitized = videoUrl.replace(/&amp;/g, '&');
+                const embedMatch = sanitized.match(/youtube\.com\/embed\/([A-Za-z0-9_-]+)/i);
+                videoUrl = embedMatch ? `https://www.youtube.com/watch?v=${embedMatch[1]}` : sanitized;
+                addLink(videoUrl, 'Video');
+            }
+
             addLink(project.paperLink, 'Paper');
             addLink(project.doi, 'DOI');
 
@@ -142,30 +150,6 @@ function createResearchProjectsSection() {
 
             if (projectDetails.children.length) {
                 projectInfo.appendChild(projectDetails);
-            }
-
-            if (project.youtubeLink) {
-                const projectActions = document.createElement('div');
-                projectActions.className = 'carousel-project-actions';
-
-                let videoUrl = String(project.youtubeLink);
-                const sanitized = videoUrl.replace(/&amp;/g, '&');
-                const embedMatch = sanitized.match(/youtube\.com\/embed\/([A-Za-z0-9_-]+)/i);
-                videoUrl = embedMatch ? `https://www.youtube.com/watch?v=${embedMatch[1]}` : sanitized;
-
-                const videoButton = document.createElement('a');
-                videoButton.className = 'carousel-project-video';
-                videoButton.href = videoUrl;
-                videoButton.target = '_blank';
-                videoButton.rel = 'noopener noreferrer';
-                videoButton.textContent = '▶';
-                videoButton.setAttribute('aria-label', `Watch ${project.title} video`);
-                videoButton.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                });
-
-                projectActions.appendChild(videoButton);
-                projectCard.appendChild(projectActions);
             }
 
             if (project.ispage) {
