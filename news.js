@@ -27,7 +27,7 @@ const newsItems = [
     }),
     new NewsItem({
         time: "2025.11",
-        event: `I won the Fasted Manipulation Prize in CMU <a href="https://www.hcii.cmu.edu/course/special-topics-interactive-extended-reality-not-offered-spring-2026" class="news-link">05-899 Interactive Extended Reality</a> taught by Prof. David Lindlbauer` 
+        event: `I won the Fastest Manipulation Prize in CMU <a href="https://www.hcii.cmu.edu/course/special-topics-interactive-extended-reality-not-offered-spring-2026" class="news-link">05-899 Interactive Extended Reality</a> taught by Prof. David Lindlbauer` 
     }),
     new NewsItem({
         time: "2025.08",
