@@ -15,11 +15,11 @@
 
 
 ## Research Works
-**(Under review at CHI 2026) “Let Me Lend You a Hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-Scale Personal Assistance Robots**
+**(In submission) “Let Me Lend You a Hand”: Understanding Contextual Perceptions of Physical Proactivity in Small-Scale Personal Assistance Robots**
 
 \underline{Ziru Wei}, Violet Yinuo Han, Tanvi Handoo, Alexandra Ion
 
-**(Under review at CHI 2026) Embodiment and Interaction Influence Perceptions of Robotic Collaborators in Everyday Physical Tasks**
+**(In submission) Embodiment and Interaction Influence Perceptions of Robotic Collaborators in Everyday Physical Tasks**
 
 Violet Yinuo Han, \underline{Ziru Wei}, Aiden Yiliu Li, Chris Wu, Alexandra Ion
 
@@ -37,7 +37,7 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 **Research Student, Interactive Structures Lab, Human-Computer Interaction Institute, Carnegie Mellon University** \hfill Mar 2025 - Present
 
 - Designed and conducted empirical human-robot interaction studies, investigating how users perceive proactive robot assistance across contexts, tasks, and proactivity; synthesized quantitative and qualitative results into design recommendations for unobtrusive assistance by physical agents
-- Developing an optimizer that selects, orchestrates, and schedules distributed multimodal outputs to initiate contextually appropriate assistance &nbsp;(ongoing)
+- Modeling task-aware interruptibility backed by MLLM to close-loop control robot behaviors to initiate contextually appropriate assistance &nbsp;(ongoing)
 
 
 

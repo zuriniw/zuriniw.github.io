@@ -320,6 +320,22 @@ body::-webkit-scrollbar {
     background: rgba(0, 0, 0, 0.091);
 }
 
+.intro > ul {
+    margin: 0;
+    padding-left: 64px; /* 圆点和文字整体右移 */
+    font-weight: 400;
+    /* color: #6c757d; */
+}
+
+.intro > ul > li {
+    margin-bottom: 0.9rem;
+    margin-top: 0.8rem;
+
+    font-size: 0.9em;
+}
+
+
+
 .intro-list {
     padding-left: 48px;
 }
@@ -339,14 +355,43 @@ body::-webkit-scrollbar {
 .intro-highlight {
     font-weight: 600;
 }
-
-.intro-highlight-integration {
-    color: #ff0d7a;
+.intro-highlight-b,
+.intro-highlight-p {
+    position: relative;
+    color: inherit;            /* 不改文字颜色 */
 }
 
-.intro-highlight-interactivity {
-    color: #0004ff;
+/* INTEGRATION 高光 */
+.intro-highlight-p::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    /* 控制高光的“行高”和垂直位置 */
+    height: 0.6em;           /* 比整行小一点的高度 */
+    bottom: 0.1em;            /* 向下偏一点，贴近字底部 */
+
+    background: #ff0d8e2e;      /* 高光颜色 */
+    z-index: -1;              /* 在文字下面 */
 }
+
+/* INTERACTIVITY 高光 */
+.intro-highlight-b::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    height: 0.6em;
+    bottom: 0.1em;
+
+    background: #0015ff35;
+    z-index: -1;
+}
+
+.intro-highlight-integration { color: #ff0d7a; } .intro-highlight-interactivity { color: #0004ff; }
+
 
 .intro-image {
     width: 100%;
