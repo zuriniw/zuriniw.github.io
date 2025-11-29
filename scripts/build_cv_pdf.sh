@@ -11,6 +11,27 @@ if ! command -v pandoc &> /dev/null; then
     exit 1
 fi
 
+# 允许通过参数或环境变量切换字体
+FONT_CHOICE="${CV_FONT:-roboto}"
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --font=*)
+            FONT_CHOICE="${1#*=}"
+            shift
+            ;;
+        --font)
+            FONT_CHOICE="$2"
+            shift 2
+            ;;
+        *)
+            echo "未知参数: $1"
+            echo "用法: $0 [--font roboto|default]"
+            exit 1
+            ;;
+    esac
+done
+
 # 设置路径
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
@@ -37,30 +58,59 @@ PREPROCESSED_CV="$PROJECT_ROOT/data/cv_preprocessed.md"
 echo "预处理CV markdown文件..."
 "$SCRIPT_DIR/preprocess_cv.sh" "$CV_MD" "$PREPROCESSED_CV"
 
+# 字体配置
+FONT_CHOICE_LOWER=$(printf '%s' "$FONT_CHOICE" | tr '[:upper:]' '[:lower:]')
+FONT_METADATA_ARG=""
+
+case "$FONT_CHOICE_LOWER" in
+    roboto|"")
+        echo "使用 Roboto 字体渲染..."
+        FONT_METADATA_ARG="--metadata=useRoboto:true"
+        ;;
+    default|latex)
+        echo "使用默认 LaTeX 字体渲染..."
+        ;;
+    *)
+        echo "未知字体选项: $FONT_CHOICE"
+        echo "可选值: roboto（默认）, default"
+        exit 1
+        ;;
+esac
+
 # 生成PDF
 if [ -f "$TEMPLATE" ]; then
     echo "使用自定义模板生成PDF: $TEMPLATE"
-    pandoc "$PREPROCESSED_CV" \
-        --from=markdown+raw_html \
-        --template="$TEMPLATE" \
-        --pdf-engine=lualatex \
-        --metadata=title:"Ziru Wei - CV" \
-        -o "$CV_PDF"
+    PANDOC_ARGS=(
+        "$PREPROCESSED_CV"
+        --from=markdown+raw_html
+        --template="$TEMPLATE"
+        --pdf-engine=lualatex
+        --metadata=title:"Ziru Wei - CV"
+    )
 else
     echo "模板文件不存在，使用默认设置"
-    pandoc "$PREPROCESSED_CV" \
-        --pdf-engine=lualatex \
-        --variable=geometry:margin=0.75in \
-        --variable=fontsize=9pt \
-        --variable=documentclass=extarticle \
-        --variable=colorlinks=true \
-        --variable=linkcolor=blue \
-        --variable=urlcolor=blue \
-        --variable=author="Ziru Wei" \
-        --variable=title="Ziru Wei" \
-        --metadata=title:"Ziru Wei - CV" \
-        -o "$CV_PDF"
+    PANDOC_ARGS=(
+        "$PREPROCESSED_CV"
+        --pdf-engine=lualatex
+        --variable=geometry:margin=0.75in
+        --variable=fontsize=9pt
+        --variable=documentclass=extarticle
+        --variable=colorlinks=true
+        --variable=linkcolor=blue
+        --variable=urlcolor=blue
+        --variable=author="Ziru Wei"
+        --variable=title="Ziru Wei"
+        --metadata=title:"Ziru Wei - CV"
+    )
 fi
+
+if [ -n "$FONT_METADATA_ARG" ]; then
+    PANDOC_ARGS+=("$FONT_METADATA_ARG")
+fi
+
+PANDOC_ARGS+=(-o "$CV_PDF")
+
+pandoc "${PANDOC_ARGS[@]}"
 
 if [ $? -eq 0 ]; then
     echo "✅ CV PDF 构建成功: $CV_PDF"

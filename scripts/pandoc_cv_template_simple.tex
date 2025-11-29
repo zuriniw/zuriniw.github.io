@@ -5,24 +5,47 @@
 \documentclass[a4paper,9pt]{extarticle}
 
 % Basic packages
-\usepackage[utf8]{inputenc}
 \usepackage{geometry}
 \geometry{letterpaper, margin=0.75in}
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{enumitem}
 
-
-% (Using default LaTeX font; no custom main font configured)
+$if(useRoboto)$
+% Font setup (requires lualatex/xelatex)
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Roboto}[
+    Path=fonts/,
+    UprightFont={Roboto-VariableFont_wdth,wght.ttf},
+    UprightFeatures={RawFeature={+wght=400}},
+    BoldFont={Roboto-VariableFont_wdth,wght.ttf},
+    BoldFeatures={RawFeature={+wght=700}},
+    ItalicFont={Roboto-Italic-VariableFont_wdth,wght.ttf},
+    ItalicFeatures={RawFeature={+wght=400}},
+    BoldItalicFont={Roboto-Italic-VariableFont_wdth,wght.ttf},
+    BoldItalicFeatures={RawFeature={+wght=700}}
+]
+% Roboto is now the main font for the PDF output
+$else$
+% Default LaTeX font (Computer Modern) will be used
+$endif$
 
 % Hyperlink setup
+\definecolor{linkblue}{HTML}{015FB8}
 \hypersetup{
     colorlinks=true,
-    linkcolor=black,
-    urlcolor=gray,
+    linkcolor=linkblue,
+    urlcolor=linkblue,
     pdfborder={0 0 0},
     pdfauthor={Ziru Wei},
     pdftitle={Ziru Wei - CV}
+}
+
+% Underlined muted-blue hyperlinks
+\let\oldhref\href
+\renewcommand{\href}[2]{%
+    \oldhref{#1}{\textcolor{linkblue}{\uline{#2}}}%
 }
 
 % Configure heading levels: H1 minimal, H2 as main sections
@@ -33,9 +56,9 @@
 
 % H2 (\subsection) - main sections with dividers (Education, Skills, etc.)
 \renewcommand{\subsection}[1]{%
-    \vspace{1.6em}%
+    \vspace{1 em}%
     \noindent{\large\textsc{#1}}%
-    \vspace{0.2em}%
+    \vspace{0.1em}%
     \hrule%
     \vspace{0em}%
 }
@@ -58,8 +81,11 @@
 % Add extra spacing above bold text (for institution names, paper titles, etc.)
 \let\oldtextbf\textbf
 \renewcommand{\textbf}[1]{%
-    \vspace{0.8em}%
-    \noindent\oldtextbf{#1}%
+    \ifvmode
+        \vspace{0.8em}%
+        \noindent
+    \fi
+    \oldtextbf{#1}%
 }
 
 % List formatting - support nested lists with proper indentation
@@ -102,15 +128,25 @@
 
 % Title formatting (centered) with fixed contact info
 \begin{center}
-    {\fontsize{20}{24}\selectfont\bfseries Ziru Wei}\\[6pt]
+    {\fontsize{20}{24}\selectfont\bfseries Ziru Wei}\\[5pt]
         {\large
           \href{mailto:ziruw@andrew.cmu.edu}{ziruw@andrew.cmu.edu} \,|\, 
           \href{https://zuriniw.github.io}{zuriniw.github.io}
-        }\\[6pt]
-        {\small {Research Interests: Multimodal Interaction, Extended Reality, User Modeling, Human-Robot Interaction}}
+        }\\[8pt]
     \end{center}
-    
-    
+\vspace{0.25em}
+
+\noindent{ \textbf{Research Interests:} Bring AI capabilities into everyday physical environments to advance human lives}\\[4pt]
+\noindent\begin{minipage}{\textwidth}
+    {\setlength{\parindent}{0pt}%
+     \setlength{\leftskip}{0em}%
+     \small I aim to 
+     (1)construct AI-backed infrastructure that enables new interactive dimensions,
+     (2)augment existing interactive systems for more contextually appropriate and less disruptive interactivity, and 
+     (3)understand and model user behavior and perception to inform both.\par}
+\end{minipage}
+\vspace{0.5em}
+
 
 % Body content from markdown
 $body$

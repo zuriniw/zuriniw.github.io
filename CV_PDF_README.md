@@ -12,6 +12,21 @@ npm run build:cv
 
 生成的PDF将保存在 `data/CV_Ziru_Wei.pdf`，并可通过网站下载。
 
+## 🔤 字体切换
+
+默认使用 **Roboto** 字体渲染。可以通过参数或环境变量切换：
+
+```bash
+# 使用默认 LaTeX 字体
+./scripts/build_cv_pdf.sh --font default
+
+# 或者
+CV_FONT=default npm run build:cv
+
+# 切回 Roboto（也是默认设置）
+./scripts/build_cv_pdf.sh --font roboto
+```
+
 ## 📁 文件结构
 
 ```
