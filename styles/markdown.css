@@ -265,6 +265,15 @@
 .markdown-content dl dd {
     opacity: 0.6;
 }
+
+/* 确保 dl 后面的段落和列表项正确换行 */
+.markdown-content dl + p,
+.markdown-content dl + ul,
+.markdown-content dl + ol {
+    display: block;
+    margin-top: 12px;
+    clear: both;
+}
   
 
 /* 添加图片样式 */

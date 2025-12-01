@@ -43,7 +43,12 @@
             .then(response => response.text())
             .then(mdContent => {
                 const markdownDiv = document.getElementById('markdown-content');
-                markdownDiv.innerHTML = marked.parse(mdContent);
+                let htmlContent = marked.parse(mdContent);
+                
+                // 将 \textnormal{[R1]} 等 LaTeX 语法替换为 [R1]
+                htmlContent = htmlContent.replace(/\\textnormal\{(\[R\d+\])\}/g, '$1');
+                
+                markdownDiv.innerHTML = htmlContent;
 
                 if (!document.querySelector('.cv-download-section')) {
                     const heading = markdownDiv.querySelector('h1');

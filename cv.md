@@ -45,7 +45,9 @@ Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Com
     <dt>Research Student | Interactive Structures Lab, Human-Computer Interaction Institute, School of Computer Science, Carnegie Mellon University</dt>
     <dd>Mar 2025 - Present</dd>
 </dl>
+
 Advisor: Prof. Alexandra Ion
+
 - Developing a computational system for task-aware interruptibility estimation; leveraging multimodal LLMs to infer urgency, importance, and semantic relevance of robot goals relative to user activity; optimize robot interruption timing, trajectory, and notification details in high-stakes environments (See R1) 
 - Led a Wizard-of-Oz study (N=15) examining user perception of proactive robots; designed a 2×3 experiment (proactivity type × level) across 3 environments; mixed-methods analysis revealed environment and proactivity type shape perceived helpfulness and distraction; articulated design implications around privacy, agency, and trust (See R2) 
 - Contributed to a human-robot interaction study investigating the interplay between robotic arm mounting formats and assistance initiative levels (See R3)  
@@ -55,7 +57,8 @@ Advisor: Prof. Alexandra Ion
     <dt>Research Intern | WHY Research Lab, School of Architecture, Carnegie Mellon University</dt>
     <dd>Aug 2024 - Jan 2025</dd>
 </dl>
-- Advisor: Prof. Daragh Byrne
+
+Advisor: Prof. Daragh Byrne
 
 - Replicated an e-waste scanner by disassembling and re-soldering disk drives, integrating a Raspberry Pi controller; built the WasteStation database in Notion to map components and their potential reuse applications
 <br>
@@ -63,7 +66,9 @@ Advisor: Prof. Alexandra Ion
     <dt>Research Intern | Humachine Lab, Architecture Department, Soochow University</dt>
     <dd>May 2021 - Aug 2022</dd>
 </dl>
-- Advisor: Prof. Sining Wang
+
+Advisor: Prof. Sining Wang
+
 - Designed MR workflows and four on-site collaboration methods for nonlinear façade assembly with limited devices and a small construction team; documented the design-to-construction process and contributed to the literature review part in paper writing (See R5)
 
 ## Skills
