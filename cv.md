@@ -39,7 +39,7 @@ Violet Yinuo Han, <u>Ziru Wei</u>, Aiden Yiliu Li, Chris Wu, Alexandra Ion
 Sijie Liu, <u>Ziru Wei</u>, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)*, 2022 (peer-reviewed, ~30% acceptance, top-tier computational design conference)
 
 
-## Experience  
+## Research Experiences  
 
 <dl>
     <dt>Research Student | Interactive Structures Lab, Human-Computer Interaction Institute, School of Computer Science, Carnegie Mellon University</dt>

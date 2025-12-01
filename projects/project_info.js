@@ -140,11 +140,11 @@ const projects = [
         isResearch: true,
         author: "Violet Yinuo Han, Ziru Wei, Aiden Yiliu Li, Chris Wu, Alexandra Ion",
         venue: "In submission",
-        researchType: ["Interactivity", "Integration"],
+        researchType: ["Integration", "Interactivity"],
     }),
     new Project({
-        name: "OmniOrchestrator",
-        title: "OmniOrchestrator",
+        name: "ROrchestrator",
+        title: "ROrchestrator",
         time: "2025",
         isteam: true,
         weight: 12,
@@ -152,7 +152,7 @@ const projects = [
         isResearch: true,
         author: "Ziru Wei, Alexandra Ion",
         venue: "Ongoing research project",
-        researchType: ["Integration","Interactivity"],
+        researchType: ["Interactivity","Integration"],
     }),
     new Project({
         name: "seeingsaw",

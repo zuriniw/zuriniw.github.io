@@ -51,7 +51,7 @@ function createResearchProjectsSection() {
             projectImage.className = 'carousel-project-image';
 
             const img = document.createElement('img');
-            img.src = project.name === 'OmniOrchestrator'
+            img.src = project.name === 'ROrchestrator'
                 ? MODALITY_PLACEHOLDER_SRC
                 : project.gifImage;
             img.alt = project.title;
