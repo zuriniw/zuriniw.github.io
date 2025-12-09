@@ -37,11 +37,12 @@ Violet Yinuo Han, \underline{Ziru Wei}, Aiden Yiliu Li, Chris Wu, Alexandra Ion
 
 Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association for Computer-Aided Architectural Design Research in Asia (CAADRIA)*, 2022 (peer-reviewed, ~30% acceptance, top-tier computational design conference)
 
-## Experience
+## Research Experiences
 
 **Research Student | Interactive Structures Lab, Human-Computer Interaction Institute, School of Computer Science, Carnegie Mellon University** \hfill Mar 2025 - Present
 
 - Advisor: Prof. Alexandra Ion
+
 - Developing a computational system for task-aware interruptibility estimation; leveraging multimodal LLMs to infer urgency, importance, and semantic relevance of robot goals relative to user activity; optimize robot interruption timing, trajectory, and notification details in high-stakes environments (See R1)
 - Led a Wizard-of-Oz study (N=15) examining user perception of proactive robots; designed a 2×3 experiment (proactivity type × level) across 3 environments; mixed-methods analysis revealed environment and proactivity type shape perceived helpfulness and distraction; articulated design implications around privacy, agency, and trust (See R2)
 - Contributed to a human-robot interaction study investigating the interplay between robotic arm mounting formats and assistance initiative levels (See R3)
@@ -58,6 +59,7 @@ Sijie Liu, \underline{Ziru Wei}, Sining Wang. *Proceedings of the Association fo
 **Research Intern | Humachine Lab, Architecture Department, Soochow University** \hfill May 2021 - Aug 2022
 
 - Advisor: Prof. Sining Wang
+
 - Designed MR workflows and four on-site collaboration methods for nonlinear façade assembly with limited devices and a small construction team; documented the design-to-construction process and contributed to the literature review part in paper writing (See R5)
 
 
